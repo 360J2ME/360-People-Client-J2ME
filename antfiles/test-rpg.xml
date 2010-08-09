@@ -1,0 +1,1313 @@
+<!--
+  CDDL HEADER START
+  
+  The contents of this file are subject to the terms of the Common Development
+  and Distribution License (the "License").
+  You may not use this file except in compliance with the License.
+  
+  You can obtain a copy of the license at
+  src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+  http://github.com/360/360-Engine-for-Android
+  See the License for the specific language governing permissions and limitations under the License.
+  
+  When distributing Covered Code, include this CDDL HEADER in each file and
+   include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+  If applicable, add the following below this CDDL HEADER, with the fields
+  enclosed by brackets "[]" replaced with your own identifying information:
+  Portions Copyright [yyyy] [name of copyright owner]
+  
+  CDDL HEADER END
+  
+  Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+  Use is subject to license terms.
+-->
+
+<project 
+	name="RPG Tests" 
+	default="build-for-test" basedir=".">
+
+	<!-- 
+	******************************************************************************************************************************************* 
+	Configurations 
+	*******************************************************************************************************************************************-->
+
+	<!-- Distribution directory                                   -->
+	
+	<!-- import user specific properties -                  
+	please add and maintain local properties here
+	-->
+	<property file="../properties/${user.name}.properties" />
+
+	<echo>"user.name is:${user.name}"</echo>
+	
+	<!-- import global properties                                 -->
+	<property file="${polish.home}/global.properties" />
+
+	<!-- Using Ant-contrib tasks -->
+	<property name="antcontrib.home" location="C:/apps/ant-contrib"  />
+	<taskdef resource="net/sf/antcontrib/antlib.xml" 
+		 classpath="${antcontrib.home}/ant-contrib-1.0b3.jar" />
+	
+	<property 
+		name="blackberry.home" 
+		location="C:/Programmer/Research In Motion/BlackBerry JDE 4.1.0" 
+	/>
+	
+	<!-- the device for the test mode - you can define it on the command-line
+	     using the -D switch, e.g. ant -Ddevice=Generic/midp2 emulator -->
+	<property name="device" value="Sony-Ericsson/JavaPlatform8"/>
+
+	<!-- Definition of the J2ME Polish task:                      -->
+	<taskdef name="j2mepolish" 
+		classname="de.enough.polish.ant.PolishTask" 
+		classpath="${polish.home}/lib/enough-j2mepolish-build.jar:${polish.home}/lib/jdom.jar"
+	/>
+		
+	<!-- build targets, each target can be called via "ant [name]", 
+		 e.g. "ant clean", "ant test j2mepolish" or just "ant" for calling the default-target -->
+	
+	<target name="testVersion" 
+		description="Call this target first to include logging and test commands">
+		<property name="testversion" value="true" />
+	</target>
+
+	<!-- 
+	******************************************************************************************************************************************* 
+	Translation tools 
+	*******************************************************************************************************************************************-->
+
+	<target name="translations-help" description="Get help about this tool">
+		<java jar="../TranslationTool.jar" fork="true" failonerror="true">
+			<arg line="-help"/>
+		</java>	
+	</target>
+
+	<target name="translations-extract-and-display-cultures" description="Display all possible cultures">
+		<java jar="../TranslationTool.jar" fork="true" failonerror="true">
+			<arg line="-displaycultures"/>
+		</java>	
+	</target>
+
+	<target name="translations-extract-all" description="Extract all translations">
+		<antcall target="translations-extract">
+		    <param name="filename" value="messages.txt"/>
+		    <param name="folder" value="..\\resources\\en\\"/>
+		    <param name="culture" value="en-GB"/>
+		  </antcall>
+	</target>
+
+	<target name="translations-extract">
+		<mkdir dir="${folder}"/>
+		<java jar="../TranslationTool.jar" fork="true" failonerror="true">
+			<arg line="-textkeyprefix phonebook.java.%"/>
+			<arg line="-culture ${culture}"/>
+			<arg line="-ofolder ${folder}"/>
+			<arg line="-ofile ${filename}"/>
+			<arg line="-linestyle [key]=[text]"/>
+			<arg line="-defaultculture en-GB"/>
+		</java>
+		<!-- Substituting text keys so they match expected in build environment-->
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command" value="polish.command"/>
+		<replace file="${folder}${filename}" token="nowplus.clientphonebook.java.polish.title.input" value="polish.title.input"/>
+		<replace file="${folder}${filename}" token="nowplus.clientphonebook.java.polish.rss.command" value="polish.rss.command"/>
+		
+		<!-- NB Bug in Polish which makes it break if there are more than one textsub {} and line is too long -->
+		<!--replace file="${folder}${filename}" token="phonebook.java.determinetimezonebeforecall.thelocaltime" value="determinetimezonebeforecall.thelocaltime"/-->
+	</target>
+
+	<!-- 
+	******************************************************************************************************************************************* 
+	Build section
+	*******************************************************************************************************************************************-->
+	
+	<target name="init">
+		<!-- update polish settings files by copying it to the polish home dir-->
+		<copy todir="${polish.home}" overwrite="true" >
+			<fileset dir="../settings" includes="*.*"/>
+		</copy>
+		
+		<!-- Truncate build number to fit accepted j2me values-->
+		<propertyregex property="external-version"
+		              input="${build.number}"
+		              regexp="([0-9|.]*)\."
+		              select="\1"
+		              casesensitive="false" />
+
+		<echo message="external-version: ${external-version}"/>
+
+		<property name="debug" value="false" />
+	  	<property name="test" value="false" />
+		<property name="dir.work" value="../build/real" />
+		<property name="deploy-url" value="" />
+		<property name="external-version" value="" />
+		<property name="version" value="${build.number}" />
+		<property name="resource.dir" value="resources" />
+		<property name="MenuBar.OptionsPosition" value="left" />
+
+		<!-- static image constants -->
+		<!-- NOTE: extend and used these in ItemConstants class -->
+		<property name="zyb.social.community.icon.width" value="16" />
+		<property name="zyb.social.community.icon.height" value="16" />
+		
+		<property name="zyb.contact.avatar.width" value="50" />
+		<property name="zyb.contact.avatar.height" value="50" />
+		
+		<property name="zyb.contact.photo.thumb.width" value="56" />
+		<property name="zyb.contact.photo.thumb.height" value="56" />
+		
+		<property name="zyb.contact.photo.full.width" value="120" />
+		<property name="zyb.contact.photo.full.height" value="160" />
+		<!-- 
+		Devices we could support at some point
+																Motorola/K1,
+																Motorola/L7,
+																Motorola/Z3,
+																Motorola/Z8,
+																Motorola/V3x,
+																Motorola/V3xx,
+							
+																Small screen
+																Sony-Ericsson/Z310,
+
+																S40 3rd ed
+																Nokia/6151,
+																Nokia/5200,
+																Nokia/6270,
+																Nokia/6280,
+																Nokia/7370,
+																Nokia/6131,
+																Nokia/5300,
+
+																S60 2nd ed
+																Nokia/6630,
+																Nokia/6680,
+																Nokia/N70,
+
+		-->
+		
+		<property name="devices" value="							
+							
+																Sony-Ericsson/W910-ZYB
+																" />
+		<if>
+			<isset property="client.logLevel" />
+			<then>
+				<property name="com.zyb.nowplus.*" value="${client.logLevel}" />
+			</then>
+		</if>
+	</target>
+	 
+	<!-- In this target the J2ME Polish task is used.             -->
+	<!-- It has 3 sections:                                       -->
+	<!--    1. The info-section defines some general information  -->
+	<!--    2. The deviceRequirements-section chooses the devices -->
+	<!--       for which the application is optimized.            -->
+	<!--    3. The build-section controls the actual build        -->
+	<!--       process.                                            -->	
+	<target name="j2mepolish" 
+			depends="init, resource-prebuild-process"
+			description="This is the controller for the J2ME build process." 
+			>
+
+		<tstamp>
+		    <format property="TODAY" pattern="MM/dd/yyyy hh:mm aa" locale="en,UK"/>
+	    </tstamp>
+
+		<j2mepolish>
+		    <!-- general settings, these settings basically form the JAD-attributes. -->
+		    <!-- Have a look at the <jad>-section for setting specialised attributes.
+		         You can also define localized attributes in the resources/messages.txt files -->
+			<info
+				name="RPG Test"
+				version="${external-version}"
+				description="${external-version} - ZYB Mobile"
+				vendorName="ZYB ApS"
+				icon="zybicon.png"
+				infoUrl="http://zyb.com"
+				jarName="rpg-zyb.jar" 
+				jarUrl="${deploy-url}/rpg-zyb.jar"
+				copyright="Copyright 2007, 2008, 2009 ZYB. All rights reserved."
+			/>
+			
+			<!-- selection of supported devices -->
+			<!-- In the test mode the application is build only for the  -->
+			<!-- Generic/midp1 phone, but when the test-property is set to false, -->
+			<!-- the second deviceRequirements will be used instead. -->
+			<deviceRequirements if="unittesting">
+				<requirement name="Identifier" value="Sony-Ericsson/W910-ZYB" />
+			</deviceRequirements>
+			<deviceRequirements unless="unittesting">
+				<requirement name="Identifier" value="${devices}" />
+			</deviceRequirements>
+
+		    <!-- build settings -->
+			<!--
+			arguments to put into build target
+			polishDir="${polish.home}/j2mepolish-src/j2me/src" 
+			binaryLibraries=""
+			 -->
+			<build
+				symbols="ExampleSymbol, AnotherExample"
+				fullscreen="menu"
+				usePolishGui="true"
+				workDir="${dir.work}"
+				destDir="../${build.distDir}"
+					
+			>
+				<!-- define where our source files come from -->
+								
+				<sources>
+					<source dir="../sources/src" />
+					<source dir="../sources/personal/rudynorff/rpg" />
+				</sources>
+				
+				
+				<!-- midlets definition -->
+				
+				<midlets>
+					<midlet class="com.zyb.nowplus.DefaultMIDlet" name="ZYB Mobile"/>
+				</midlets>
+
+				<!-- project-wide variables - used for preprocessing.  -->
+				<!-- You can set localized variables in the resources/messages.txt files as well.  -->
+				<variables includeAntProperties="true" >
+					<!-- example variables:
+					In your Java-code you can use the following snipet to use this variable:
+					//#= private static final String UPDATE_URL = "${ update-url }";
+					You can change the title of the sample application with the "title"-var.
+					-->
+					<variable name="polish.animationInterval" value="50" />
+					<variable name="polish.TextField.useDirectInput" value="true" />
+					<variable name="polish.TextField.includeInputInfo" value="false" />
+					<variable name="polish.TextField.supportSymbolsEntry" value="true" />
+					<variable name="polish.MenuBar.useExtendedMenuBar" value="true" />
+					<variable name="polish.useScrollBar" value="false" />
+					<variable name="polish.ScreenInfo.enable" value="true" />
+					<variable name="polish.TextField.showInputInfo" value="false" />
+						
+					<!--variable name="polish.TextField.suppressCommands" value="true"/-->
+					
+					<!-- 
+					Forcing middle softkey to be displayed and used. 
+					-->
+					<variable name="polish.key.MiddleSoftKey" value="-5" />
+					<variable name="buildtime" value="${TODAY}"/>
+					
+					<!-- Handling inclusion of the JSR179 module -->
+					<!-- TODO: extend so that only GPS, A-GPS supporting phones have the JSR179 module -->
+					<variable name="zyb.jsr179.module.include" value="true" if="polish.api.locationapi" />
+					
+					<!-- Handling inclusion of SMS invite function -->
+					<variable name="zyb.sms.invite.include" value="true" if="polish.api.wmapi" />
+					
+					<!-- Handling inclusion of SMS sending function -->
+					<variable name="zyb.sms.send.include" value="true" if="polish.api.wmapi" />
+					<!--variable name="zyb.sms.send.include" value="true" if="polish.vendor.sony-ericsson" /-->
+				</variables>
+				
+				<!-- obfuscator settings: do not obfuscate when the test-property is true -->
+				<!-- <obfuscator name="ProGuard" useDefaultPackage="false" unless="polish.blackberry || skip.obfuscation || unittesting" >
+					<parameter name="optimize" value="true" /> 
+				</obfuscator>-->
+				
+				<!-- debug settings: only include debug setting when the test-property is true -->
+				<debug if="testversion" showLogOnError="true" verbose="true" level="error">
+					<handler name="pushloghandler" />
+					<filter pattern="com.zyb.nowplus.*" level="${com.zyb.nowplus.*}" />
+				</debug>
+				
+				<!-- Here you can set the dir attribute to "resources2" for an alternative design. -->
+				<resources
+					dir="../${resource.dir}"
+					defaultexcludes="yes"
+					excludes="readme.txt,Thumbs.db">
+					<localization dynamic="true" defaultLocale="en">
+						<locale name="en" />
+						<!--locale name="da-DK" /-->
+						<!--locale name="da" /-->
+					</localization>
+					
+					<copier name="antcall" target="resource-build-process"/>
+					
+				</resources>
+				
+				<jad>
+					 <!-- attribute name="SEMC-StandbyApplication" value="Y" /-->
+				</jad>
+
+				
+				<!--this is an example for signing MIDlets with J2ME Polish. -->
+				<!--java jar="${wtk.home}/bin/JadTool.jar" 
+				    fork="true" 
+				    failonerror="true" 
+				    if="polish.midp2" 
+					unless="test"
+					message="Adding signature for device ${polish.identifier}"
+					>
+					<arg line="-addjarsig"/>
+					<arg line="-keypass password"/>
+					<arg line="-alias zyb_aps"/>
+					<arg line="-keystore ndskeys.ks"/>
+					<arg line="-inputjad ${build.distDir}/${polish.jadName}"/>
+					<arg line="-outputjad ${build.distDir}/${polish.jadName}"/>
+					<arg line="-jarfile ${build.distDir}/${polish.jarName}"/>
+				</java>	
+				<java jar="${wtk.home}/bin/JadTool.jar" 
+					fork="true" 
+					failonerror="true" 
+					if="polish.midp2" 
+					unless="test"
+					message="Adding certificate for device ${polish.identifier}"
+					>
+					<arg line="-addcert"/>
+					<arg line="-alias zyb_aps"/>
+					<arg line="-keystore ndskeys.ks"/>
+					<arg line="-inputjad ${build.distDir}/${polish.jadName}"/>
+					<arg line="-inputjad ${build.distDir}/${polish.jadName}"/>
+					<arg line="-outputjad ${build.distDir}/${polish.jadName}"/>
+				</java-->	
+				
+				<!-- Pack JAR file using Kzip to reduce file size -->
+				<!--packager name="kzip" 
+					arguments="-add;;-rec;;-ns;;-zl121"/-->
+			
+			</build>
+			
+			<!-- execution of emulator(s) -->
+			<emulator
+				wait="true"
+				securityDomain="trusted"
+				enableProfiler="true"
+				enableMemoryMonitor="true"
+				enableNetworkMonitor="true"
+				if="debug"
+				>
+				<!-- this is an example for connecting to a debugger - use the ${polish.debug.port} Ant property
+				     for getting to know the port of the debugger. In this example the 
+				     "connect-debugger" target is also required.
+				-->
+				<!--
+				<debugger name="antcall" target="connect-debugger" port="6001" />
+				-->
+			</emulator>
+                        
+			<emulator
+				wait="true"
+				trace="none"
+				securityDomain="trusted"
+				enableProfiler="false"
+				enableMemoryMonitor="false"
+				enableNetworkMonitor="false"
+				if="test and not debug"
+				>
+				<parameter name="-Xdescriptor" value="${polish.jadName}" />
+			</emulator>
+
+		
+		</j2mepolish>
+		
+		<!--<java fork="yes" classname="org.microemu.app.Main" classpath="${microemu_path}" failonerror="true">
+			<arg line="file:///${basedir}/../dist/rpg_zyb.jad" />
+		</java>-->
+	</target>
+	
+	<target name="clean" 
+	  		description="allows a clean build. You should call [ant clean] whenever you made changes to devices.xml, vendors.xml or groups.xml">
+		<delete dir="../build" failonerror="false"/>
+		<delete dir="../${build.distDir}" failonerror="false"/>
+		<delete dir="../test/bin" failonerror="false" />
+		<!-- remove unnessesary windows specific files -->
+		<delete failonerror="false">
+			<fileset dir="..\resources" includes="Thumbs.db"/>
+			<fileset dir="..\resources\opaque" includes="Thumbs.db"/>
+			<fileset dir="..\resources\transparent" includes="Thumbs.db"/>
+		</delete>
+	</target>
+
+	<target name="build-for-test" description="builds a test version (includes logging and test commands)" depends="clean, testVersion, init, j2mepolish" />
+	<target name="build-release" description="builds a version for beta/live" depends="clean, init, j2mepolish" />
+
+    <path id = "j2me.api">
+        <pathelement location = "${wtk.home}/lib/cldcapi11.jar" />
+        <pathelement location = "${wtk.home}/lib/midpapi20.jar" />
+        <pathelement location = "${wtk.home}/lib/jsr75.jar" />
+    	<pathelement location = "${polish.home}/lib/enough-j2mepolish-client.jar" />
+    </path>
+	
+    <target name = "make-jdoc" description = "Creates javadoc.">
+        <javadoc destdir = "doc" use = "true" doctitle = "Now+ Java Client API"
+                 bootclasspathref = "j2me.api" > 
+            <packageset dir = "src" />
+            <link href = "file://${wtk.home}/docs/api/midp" offline = "true"
+                packagelistLoc = "${wtk.home}/docs/api/midp" />
+            <link href = "file://${polish.home}/doc/javadoc/j2me" offline = "true"
+                packagelistLoc = "${polish.home}/doc/javadoc/j2me" />
+        </javadoc>
+    </target>
+		
+	<!-- 3rd Party Tools Start
+		NOTE: Below tasks employ 3rd party optimization tools called using DOS batch files -->
+	<property name="pngout.home" location="C:\apps\PngOut"/>
+	<property name="imagemagick.home" location="C:\apps\ImageMagick-6.4.1-Q16"/>
+
+	<target name="resource-prebuild-process" description="Handles custom resources tasks before build precessing.">
+		
+		<echo message="resource-prebuild-process"/>
+				
+		<!-- Scale graphics resources according to supported screen resolutions -->
+		<antcall target="resource-scaling-raster" />
+		
+		<!-- copy css to scrres specific dirs -->
+		<antcall target="resource-css-deploy-process"/>
+		
+	</target>
+
+	<target name="resource-scrres-scale-optimize" unless="skip.resource.scaling" 
+		  		description="Scales resources images for the variety of target device screen resolusions.
+				Parameter overview: http://www.imagemagick.org/script/convert.php.
+				URL: http://www.imagemagick.org/script/index.php">
+			
+		<!-- del prior dirs -->
+		<delete dir="..\resources\ScreenSize.128x160" failonerror="false"/>
+		<delete dir="..\resources\ScreenSize.176x208" failonerror="false"/>
+		<delete dir="..\resources\ScreenSize.176x220" failonerror="false"/>
+		<delete dir="..\resources\ScreenSize.240x320" failonerror="false"/>
+		<delete dir="..\resources\ScreenSize.240x338" failonerror="false"/>
+		<delete dir="..\resources\ScreenSize.320x240" failonerror="false"/>
+		
+		<!-- init temporary working dirs -->
+		<mkdir dir="..\resources\ScreenSize.128x160_temp"/>
+		<mkdir dir="..\resources\ScreenSize.128x160_temp\opaque"/>
+		<mkdir dir="..\resources\ScreenSize.128x160_temp\transparent"/>
+		<mkdir dir="..\resources\ScreenSize.128x160_temp\fixed_ratio"/>
+		<mkdir dir="..\resources\ScreenSize.176x208_temp"/>
+		<mkdir dir="..\resources\ScreenSize.176x208_temp\opaque"/>
+		<mkdir dir="..\resources\ScreenSize.176x208_temp\transparent"/>
+		<mkdir dir="..\resources\ScreenSize.176x208_temp\fixed_ratio"/>
+		<mkdir dir="..\resources\ScreenSize.176x220_temp"/>
+		<mkdir dir="..\resources\ScreenSize.176x220_temp\opaque"/>
+		<mkdir dir="..\resources\ScreenSize.176x220_temp\transparent"/>
+		<mkdir dir="..\resources\ScreenSize.176x220_temp\fixed_ratio"/>		
+		<mkdir dir="..\resources\ScreenSize.240x320_temp"/>
+		<mkdir dir="..\resources\ScreenSize.240x320_temp\opaque"/>
+		<mkdir dir="..\resources\ScreenSize.240x320_temp\transparent"/>
+		<mkdir dir="..\resources\ScreenSize.240x320_temp\fixed_ratio"/>		
+		<mkdir dir="..\resources\ScreenSize.240x348_temp"/>
+		<mkdir dir="..\resources\ScreenSize.240x348_temp\opaque"/>
+		<mkdir dir="..\resources\ScreenSize.240x348_temp\transparent"/>
+		<mkdir dir="..\resources\ScreenSize.240x348_temp\fixed_ratio"/>		
+		<mkdir dir="..\resources\ScreenSize.320x240_temp"/>
+		<mkdir dir="..\resources\ScreenSize.320x240_temp\opaque"/>
+		<mkdir dir="..\resources\ScreenSize.320x240_temp\transparent"/>
+		<mkdir dir="..\resources\ScreenSize.320x240_temp\fixed_ratio"/>
+		
+		<!-- Scale to 128 x 160 dir -->		
+		<exec dir="..\resources\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.128x160_temp\opaque\%i call ${imagemagick.home}\convert %i -alpha off -resize 53.33%!x50%! ..\resources\ScreenSize.128x160_temp\opaque\%i"/>
+		</exec>
+		<exec dir="..\resources\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.128x160_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 53.33%!x50%! ..\resources\ScreenSize.128x160_temp\transparent\%i"/>
+		</exec>
+		<exec dir="..\resources\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.128x160_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 55%!x55%! ..\resources\ScreenSize.128x160_temp\transparent\%i"/>
+		</exec>
+		
+		<!-- Optimize 128 x 160 dir -->	
+		<exec dir="..\resources\ScreenSize.128x160_temp\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe /c6 %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.128x160_temp\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.128x160_temp\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>		
+		
+		<!-- Scale to 176 x 208 dir -->		
+		<exec dir="..\resources\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.176x208_temp\opaque\%i call ${imagemagick.home}\convert %i -alpha off -resize 73.33%!x65%! ..\resources\ScreenSize.176x208_temp\opaque\%i"/>
+		</exec>
+		<exec dir="..\resources\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.176x208_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 73.33%!x65%! ..\resources\ScreenSize.176x208_temp\transparent\%i"/>
+		</exec>
+		<exec dir="..\resources\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.176x208_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 75%!x75%! ..\resources\ScreenSize.176x208_temp\transparent\%i"/>
+		</exec>		
+		
+		<!-- Optimize 176 x 208 dir -->	
+		<exec dir="..\resources\ScreenSize.176x208_temp\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe /c6 %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.176x208_temp\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.176x208_temp\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>		
+		
+		<!-- Scale to 176 x 220 dir -->		
+		<exec dir="..\resources\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.176x220_temp\opaque\%i call ${imagemagick.home}\convert %i -alpha off -resize 73.33%!x68.75%! ..\resources\ScreenSize.176x220_temp\opaque\%i"/>
+		</exec>
+		<exec dir="..\resources\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.176x220_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 73.33%!x68.75%! ..\resources\ScreenSize.176x220_temp\transparent\%i"/>
+		</exec>
+		<exec dir="..\resources\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.176x220_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 75%!x75%! ..\resources\ScreenSize.176x220_temp\transparent\%i"/>
+		</exec>		
+		
+		<!-- Optimize 176 x 220 dir -->	
+		<exec dir="..\resources\ScreenSize.176x220_temp\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe /c6 %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.176x220_temp\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.176x220_temp\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>		
+		
+		<!-- Scale to 240 x 320 dir -->
+		<!-- NOTE that source images are already in this scale but doing the below will format transparency/opaque correctly -->
+		<exec dir="..\resources\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.240x320_temp\opaque\%i call ${imagemagick.home}\convert %i -alpha off -resize 100.0%!x100.0%! ..\resources\ScreenSize.240x320_temp\opaque\%i"/>
+		</exec>
+		<exec dir="..\resources\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.240x320_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 100.0%!x100.0%! ..\resources\ScreenSize.240x320_temp\transparent\%i"/>
+		</exec>
+		<exec dir="..\resources\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.240x320_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 100.0%!x100.0%! ..\resources\ScreenSize.240x320_temp\transparent\%i"/>
+		</exec>		
+		
+		<!-- Optimize 240 x 320 dir -->
+		<exec dir="..\resources\ScreenSize.240x320_temp\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe /c6 %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.240x320_temp\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.240x320_temp\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>		
+		
+		<!-- Scale to 240 x 348 dir -->
+		<!-- NOTE that source images are already in this scale but doing the below will format transparency/opaque correctly -->
+		<exec dir="..\resources\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.240x348_temp\opaque\%i call ${imagemagick.home}\convert %i -alpha off -resize 100.0%!x108.75%! ..\resources\ScreenSize.240x348_temp\opaque\%i"/>
+		</exec>
+		<exec dir="..\resources\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.240x348_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 100.0%!x108.75%! ..\resources\ScreenSize.240x348_temp\transparent\%i"/>
+		</exec>
+		<exec dir="..\resources\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.240x348_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 108.75%!x108.75%! ..\resources\ScreenSize.240x348_temp\transparent\%i"/>
+		</exec>		
+		
+		<!-- Optimize 240 x 348 dir -->
+		<exec dir="..\resources\ScreenSize.240x348_temp\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe /c6 %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.240x348_temp\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.240x348_temp\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>		
+		
+		<!-- Scale to 320 x 240 dir -->
+		<!-- NOTE that source images are already in this scale but doing the below will format transparency/opaque correctly -->
+		<exec dir="..\resources\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.320x240_temp\opaque\%i call ${imagemagick.home}\convert %i -alpha off -resize 133.34%!x75.0%! ..\resources\ScreenSize.320x240_temp\opaque\%i"/>
+		</exec>
+		<exec dir="..\resources\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.320x240_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 133.34%!x75.0%! ..\resources\ScreenSize.320x240_temp\transparent\%i"/>
+		</exec>
+		<exec dir="..\resources\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\ScreenSize.320x240_temp\transparent\%i call ${imagemagick.home}\convert %i -alpha on -resize 75.0%!x75.0%! ..\resources\ScreenSize.320x240_temp\transparent\%i"/>
+		</exec>		
+		
+		<!-- Optimize 320 x 240 dir -->
+		<exec dir="..\resources\ScreenSize.320x240_temp\transparent"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe /c6 %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.320x240_temp\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>
+		<exec dir="..\resources\ScreenSize.320x240_temp\fixed_ratio"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>		
+		
+		<!-- init scrres dirs -->
+		<mkdir dir="..\resources\ScreenSize.128x160"/>
+		<mkdir dir="..\resources\ScreenSize.176x208"/>
+		<mkdir dir="..\resources\ScreenSize.176x220"/>
+		<mkdir dir="..\resources\ScreenSize.240x320"/>
+		<mkdir dir="..\resources\ScreenSize.240x348"/>
+		<mkdir dir="..\resources\ScreenSize.320x240"/>
+		
+		<!-- update polish settings files -->
+		<copy todir="..\resources\ScreenSize.128x160" overwrite="true" >
+			<fileset dir="..\resources\ScreenSize.128x160_temp\transparent" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.128x160_temp\opaque" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.128x160_temp\fixed_ratio" includes="*.png"/>
+		</copy>
+		<copy todir="..\resources\ScreenSize.176x208" overwrite="true" >
+			<fileset dir="..\resources\ScreenSize.176x208_temp\transparent" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.176x208_temp\opaque" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.176x208_temp\fixed_ratio" includes="*.png"/>
+		</copy>
+		<copy todir="..\resources\ScreenSize.176x220" overwrite="true" >
+			<fileset dir="..\resources\ScreenSize.176x220_temp\transparent" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.176x220_temp\opaque" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.176x220_temp\fixed_ratio" includes="*.png"/>
+		</copy>
+		<copy todir="..\resources\ScreenSize.240x320" overwrite="true" >
+			<fileset dir="..\resources\ScreenSize.240x320_temp\transparent" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.240x320_temp\opaque" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.240x320_temp\fixed_ratio" includes="*.png"/>
+		</copy>
+		<copy todir="..\resources\ScreenSize.240x348" overwrite="true" >
+			<fileset dir="..\resources\ScreenSize.240x348_temp\transparent" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.240x348_temp\opaque" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.240x348_temp\fixed_ratio" includes="*.png"/>
+		</copy>
+		<copy todir="..\resources\ScreenSize.320x240" overwrite="true" >
+			<fileset dir="..\resources\ScreenSize.320x240_temp\transparent" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.320x240_temp\opaque" includes="*.png"/>
+			<fileset dir="..\resources\ScreenSize.320x240_temp\fixed_ratio" includes="*.png"/>
+		</copy>		
+		
+		<!-- delete temporary dirs -->
+		<delete dir="..\resources\ScreenSize.128x160_temp"/>
+		<delete dir="..\resources\ScreenSize.176x208_temp"/>
+		<delete dir="..\resources\ScreenSize.176x220_temp"/>
+		<delete dir="..\resources\ScreenSize.240x320_temp"/>
+		<delete dir="..\resources\ScreenSize.240x348_temp"/>
+		<delete dir="..\resources\ScreenSize.320x240_temp"/>
+		
+		<!-- copy css to scrres specific dirs -->
+		<antcall target="resource-css-deploy-process"/>
+		
+	</target>
+	
+	<target name="resource-css-deploy-process" description="Copies css file to resources folders">
+		
+		<!-- copy css to scrres specific dirs -->
+		<copy todir="..\resources\ScreenSize.128x160" overwrite="true" >
+			<fileset dir="..\resources\" includes="*.css"/>
+		</copy>
+		<copy todir="..\resources\ScreenSize.176x208" overwrite="true" >
+			<fileset dir="..\resources\" includes="*.css"/>
+		</copy>
+		<copy todir="..\resources\ScreenSize.176x220" overwrite="true" >
+			<fileset dir="..\resources\" includes="*.css"/>
+		</copy>
+		<copy todir="..\resources\ScreenSize.240x320" overwrite="true" >
+			<fileset dir="..\resources\" includes="*.css"/>
+		</copy>	
+		<copy todir="..\resources\ScreenSize.240x348" overwrite="true" >
+			<fileset dir="..\resources\" includes="*.css"/>
+		</copy>	
+		<copy todir="..\resources\ScreenSize.320x240" overwrite="true" >
+			<fileset dir="..\resources\" includes="*.css"/>
+		</copy>	
+		
+	</target>
+	
+	
+	<target name="resource-build-process" description="Handles custom resources ant tasks during build precessing 
+		Parameter overview: http://www.imagemagick.org/script/convert.php.
+		URL: http://www.imagemagick.org/script/index.php">
+		
+		<echo message="resource-build-process"/>
+		
+		<!--echoproperties></echoproperties-->
+
+		<!-- Copy screen resolution specific resources to res dir -->
+		<copy todir="${polish.resources.target}" overwrite="true" >
+			<fileset dir="..\resources\ScreenSize.${polish.screenwidth}x${polish.screenheight}" includes="*.png"/>
+			<fileset dir="..\resources" includes = "countries*" />
+			<fileset dir="..\resources" includes = "timezones*" />
+		</copy>		
+
+		<!-- Generate MIDlet icon according to device support -->
+		<antcall target="resource-icon-process"/>
+		
+	</target>
+		
+	<target name="resource-icon-process" description="Handles scaling and coloring of icon image per build 
+			Parameter overview: http://www.imagemagick.org/script/convert.php.
+			URL: http://www.imagemagick.org/script/index.php">
+			<echo message="resource-icon-process"/>
+		
+			<if>
+			 <equals arg1="${skip.resource.scaling}" arg2="false" />
+			 <then>
+				<antcall target="resource-icon-scale" />
+				<antcall target="resource-icon-fade" />
+			 </then>
+			</if>
+	</target>
+	
+	<target name="resource-icon-scale" unless="polish.group.series60"
+	  		description="Scales icon image for a given phone.
+			NOTE: using polish properties in anttasks requires using these in lowercase
+			Parameter overview: http://www.imagemagick.org/script/convert.php.
+			URL: http://www.imagemagick.org/script/index.php">
+		
+		<echo message="resource-icon-scale"/>
+		
+		<!-- Ensure definition of polish.icondim -->
+		<if>
+		 <equals arg1="${polish.icondepth:defined}" arg2="true" />
+		 <then>
+		 	<property name="polish.icondim" value="${polish.icondepth}"/>
+		 </then>
+		 <elseif>
+		 <equals arg1="${polish.iconwidth:defined}" arg2="true" />
+			 <then>
+			 	<property name="polish.icondim" value="${polish.iconwidth}"/>
+			 </then>
+		 </elseif>
+		 <elseif>
+		 	<equals arg1="${polish.iconheight:defined}" arg2="true" />
+			 <then>
+			 	<property name="polish.icondim" value="${polish.iconheight}"/>
+			 </then>
+		 </elseif>
+		</if>
+		
+		<!-- del prior dirs -->
+		<delete dir="..\resources\icon_tmp" failonerror="false"/>
+		
+		<!-- init temporary working dirs -->
+		<mkdir dir="..\resources\icon_tmp"/>
+	 	
+		<!-- Scale -->		
+		<exec dir="..\resources\icon"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\icon_tmp\%i call ${imagemagick.home}\convert %i -alpha on -resize ${polish.icondim}!x${polish.icondim}! ..\resources\icon_tmp\%i"/>
+		</exec>
+		
+		<!-- Optimize -->	
+		<exec dir="..\resources\icon_tmp"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>
+		
+		<!-- Overwrite icon file in resource dir only if given dir (screenres) exists -->
+		<copy todir="polish.resources.dir" overwrite="true" failonerror="false"  >
+			<fileset dir="..\resources\icon_tmp" includes="*.png"/>
+		</copy>
+		
+		<!-- delete temporary dirs -->
+		<delete dir="..\resources\icon_tmp"/>
+		 	
+	</target>
+	
+	<target name="resource-icon-fade" if="polish.group.series60"
+	  		description="Scales and fades icon image to gray for a given phone.
+			NOTE: using polish properties in anttasks requires using these in lowercase
+			Parameter overview: http://www.imagemagick.org/script/convert.php.
+			URL: http://www.imagemagick.org/script/index.php">
+		
+		<echo message="resource-icon-fade"/>
+			
+		<!-- Ensure definition of polish.icondim -->
+		<if>
+		 <equals arg1="${polish.icondepth:defined}" arg2="true" />
+		 <then>
+		 	<property name="polish.icondim" value="${polish.icondepth}"/>
+		 </then>
+		 <elseif>
+		 <equals arg1="${polish.iconwidth:defined}" arg2="true" />
+			 <then>
+			 	<property name="polish.icondim" value="${polish.iconwidth}"/>
+			 </then>
+		 </elseif>
+		 <elseif>
+		 	<equals arg1="${polish.iconheight:defined}" arg2="true" />
+			 <then>
+			 	<property name="polish.icondim" value="${polish.iconheight}"/>
+			 </then>
+		 </elseif>
+		</if>
+		
+		<!-- del prior dirs -->
+		<delete dir="..\resources\icon_tmp" failonerror="false"/>
+		
+		<!-- init temporary working dirs -->
+		<mkdir dir="..\resources\icon_tmp"/>
+			
+		<!-- Scale -->		
+		<exec dir="..\resources\icon"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do if not exist ..\resources\icon_tmp\%i call ${imagemagick.home}\convert %i -colorspace Gray -alpha on -resize ${polish.icondim}!x${polish.icondim}! ..\resources\icon_tmp\%i"/>
+		</exec>
+		
+		<!-- Optimize -->	
+		<exec dir="..\resources\icon_tmp"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.png) do call ${pngout.home}/pngout.exe %i"/>
+		</exec>
+		
+		<!-- Overwrite icon file in resource dir only if given dir (screenres) exists -->
+		<copy todir="${polish.resources.dir}" overwrite="true" failonerror="false"  >
+			<fileset dir="..\resources\icon_tmp" includes="*.png"/>
+		</copy>
+		
+		<!-- delete temporary dirs -->
+		<delete dir="..\resources\icon_tmp"/>
+		
+	</target>
+	
+	<property name="kzip.home" location="C:\apps\kzip"/>
+	<property name="7zip.home" value="c:\apps\7zip"/>
+	<target name="postprocess-rezip" 
+		description="Extracts a JAR file and repacks it using optimized KZIP algorithm">
+		
+		<mkdir dir="${build.distDir}\${polish.name}_rezip_temp"/>
+		
+		<move file="${build.distDir}\${polish.name}-zyb.jar" tofile="${build.distDir}\${polish.name}-zyb.zip" overwrite="true"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${7zip.home}\7za.exe x -o..\${build.distDir}\${polish.name}_rezip_temp ..\${build.distDir}\${polish.name}-zyb.zip"/>
+		</exec>
+
+		<exec dir="..\${build.distDir}\${polish.name}_rezip_temp" 
+			executable="cmd">
+    		<arg line="/c ${kzip.home}\kzip -add -rec -ns -zl121 ..\${build.distDir}\${polish.name}-zyb.jar"/>
+		</exec>
+		
+		<delete includeEmptyDirs="true" failonerror="false">
+			<fileset dir="${build.distDir}\${polish.name}_rezip_temp"/>
+		</delete>
+		<delete file="${build.distDir}\${polish.name}-zyb.zip" failonerror="false"/>
+		
+	</target>
+	
+	<!-- 3rd Party Tools End -->	
+	
+	<target name="run-nokia-S40E3FP2-240x320-emulator" depends="init"
+		description="Runs S40 3rd ed QVGA emulator">
+		
+		<property name="nokia.sdk.path" location="${nokia.s40.sdk.3.home}\bin"/>
+		<property name="emu-device" value="6131"/>
+		<property name="emu-device-name" value="S40_SDK_3rd_Edition_Feature_Pack_2"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-nokia-S40E5FP1-240x320-emulator" depends="init"
+		description="Runs S40 5th ed QVGA emulator">
+		
+		<property name="nokia.sdk.path" location="${nokia.s40.sdk.5.home}\bin"/>
+		<property name="emu-device" value="6500"/>
+		<property name="emu-device-name" value="S40_5th_Edition_SDK_Feature_Pack_1"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-nokia-S60E3FP2-240x320-emulator" depends="init"
+		description="Runs S60 3rd ed QVGA emulator">
+		
+		<property name="nokia.sdk.path" location="${nokia.s60.sdk.3.home}\bin"/>
+		<property name="emu-device" value="N95"/>
+		<property name="emu-device-name" value="S60_3rd_FP2_SDK"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP5-128x160-emulator" depends="init"
+		description="Runs JP5 128x160 emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="Z520"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_128x160_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP5-176x220-emulator" depends="init"
+		description="Runs JP5 176x220 emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="K750i"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_176x220_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP6-128x160-emulator" depends="init"
+		description="Runs JP6 128x160 emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="Z530"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_128x160_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP6-176x220-emulator" depends="init"
+		description="Runs JP6 176x220 emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="W550"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_176x220_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP6-240x320-emulator" depends="init"
+		description="Runs JP6 QVGA emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="W900i"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_240x320_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP7-128x160-emulator" depends="init"
+		description="Runs JP7 128x160 emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="Z310"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_128x160_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP7-176x220-emulator" depends="init"
+		description="Runs JP7 176x220 emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="K610i"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_176x220_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP7-240x320-emulator" depends="init"
+		description="Runs JP7 QVGA emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="K800i"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_240x320_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP8-176x220-emulator" depends="init"
+		description="Runs JP8 176x220 emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="K630"/>
+		<property name="emu-device-name" value="SonyEricsson_JP8_176x220_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	<target name="run-Sonyericsson-JP8-240x320-emulator" depends="init"
+		description="Runs JP8 QVGA emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>		
+		<property name="emu-device" value="W910-ZYB"/>
+		<property name="emu-device-name" value="SonyEricsson_JP8_240x320_Emu"/>
+		
+		<exec dir=".." 
+			executable="cmd">
+    		<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+	
+	
+	<!-- ***************************************************************************************
+	Run without debug
+	-->
+	
+	<target name="run-witout-debug-Sonyericsson-JP8-240x320-emulator" depends="init"
+		description="Runs JP8 QVGA emulator">
+		
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>		
+		<property name="emu-device" value="rpg"/>
+		<property name="emu-device-name" value="SonyEricsson_JP8_240x320_Emu"/>
+		<property name="command-line" value="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\..\dist\${emu-device}-zyb.jad
+				-Xdomain:maximum
+    			-Xdevice:${emu-device-name} 
+    			" />
+<!-- com.zyb.nowplus.NowPlus -->
+		<echo>${command-line}</echo>
+		<exec dir="${basedir}" 
+			executable="cmd">
+    		<arg line="${command-line}" />
+		</exec>
+	</target>
+
+	<!-- ***************************************************************************************
+	Automated test cases
+	-->
+	
+	<target name="init-s40">
+		<property name="sdk.path" location="${nokia.s40.sdk.5.home}\bin"/>
+		<property name="emulator.dir" value="${nokia.s40.sdk.5.home}\bin\Storage\6500500\C\predefgallery\predefgraphics"/>
+		<property name="emulator.process.name" value="S40_5th_Edition_SDK_Feature_Pack_1_em.exe"/>
+		<property name="emu-device" value="6500"/>
+		<property name="emu-device-name" value="S40_5th_Edition_SDK_Feature_Pack_1"/>
+		<property name="emulator-command" value="/c ${sdk.path}\emulator.exe
+    		    -Xuse:6500500
+    		    -Xnew
+    		    -Xdescriptor:&quot;${build.distDir}\${emu-device}-zyb.jad&quot;
+    		    -Xsecurity_domain:maximum
+    			-Xdevice:${emu-device-name}"/>
+		
+	</target>
+
+	<target name="init-s60">
+		<property name="sdk.path" location="${nokia.s60.sdk.3.home}\bin"/>
+		<property name="emulator.dir" value="\epoc32\winscw\c\Data\Images\Pictures"/>
+		<property name="emulator.process.name" value="S40_5th_Edition_SDK_Feature_Pack_1_em.exe"/>
+		<property name="emu-device" value="N95"/>
+		<property name="emu-device-name" value="S60Emulator"/>
+		<property name="emulator-command" value="/c ${sdk.path}\emulator.exe
+    		    -Xuse:6500500
+    		    -Xnew
+    		    -Xdescriptor:${build.distDir}\${emu-device}-zyb.jad 
+    		    -Xsecurity_domain:Trusted
+    			-Xdevice:${emu-device-name}"/>
+	</target>
+
+	<target name="init-SE-w910">
+		<property name="sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emulator.dir" value="${se.sdk.home}\WTK2\appdb\SonyEricsson_JP7_240x320_Emu\filesystem\c%3A\image\camera_semc"/>
+		<property name="emu-device" value="w910"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_240x320_Emu"/>
+		<property name="emulator-command" value="/c ${sdk.path}\emulator.exe
+    		    -Xdescriptor:..\dist\${emu-device}-zyb.jad 
+    		    -Xdomain:Trusted
+    			-Xdevice:${emu-device-name}"/>
+	</target>
+	
+	<import file="unit-test.xml"/>
+	
+	<target name="visual-verification-testing" depends="clean,init,init-s40">  
+		<ant antfile="visual-verification.xml" target="test-automatic-run-emulator">  
+			<!--property name="whoami" value="apps"/-->  
+		</ant>  
+	</target> 
+
+	<target name="resource-scaling-svg" depends="init" unless="skip.resource.scaling" 
+		description="
+		Scales SVG master source files to supported device screen resolutions.
+		NOTE: Solid background resources are placed in ../resources/svg/opaque.
+		NOTE: Transparent background are placed in ../resources/svg/transparent.
+		">
+		<ant antfile="image-resource-processing.xml" target="res-scale">
+			<property name="polish.resources.source.dir" value="..\resources\svg"/>
+			<property name="polish.resources.target.dir" value="..\resources"/>
+			<property name="polish.resources.source.format.extension" value=".svg"/>
+			<property name="polish.resources.target.format.extension" value=".png"/>
+		</ant>  
+	</target> 
+	
+	<target name="resource-scaling-raster" depends="init" unless="skip.resource.scaling" 
+		description="
+		Scales PNG master source files to supported device screen resolutions.
+		NOTE: Solid background resources are placed in ../resources/raster/opaque.
+		NOTE: Transparent background are placed in ../resources/raster/transparent.
+		">
+		<ant antfile="image-resource-processing.xml" target="res-scale">
+			<property name="polish.resources.source.dir" value="..\resources\raster"/>
+			<property name="polish.resources.target.dir" value="..\resources"/>
+			<property name="polish.resources.source.format.extension" value=".png"/>
+			<property name="polish.resources.target.format.extension" value=""/>
+		</ant>  
+	</target> 	
+
+	<!-- work in progress -->
+	<target name="test-if-resources-are-used" depends="init,build-for-test">  
+		<ant antfile="test-resources.xml" target="test-if-resources-are-used">  
+			<!--property name="resource-folder" value="${resource.dir}"/-->  
+			<property name="resource-folder" value="${dir.work}"/>  
+			<!--property name="source-folder" value="${dir.work}"/-->  
+			<property name="file-extension" value=".java"/>  
+		</ant>  
+	</target> 
+	
+	<import file="deploy.xml" />
+	<target name="build-and-deploy-for-dev" depends="build-for-test,ftpDist"/>  
+	
+	<import file="static-code-analysis.xml" />
+	
+	<import file="unit-test.xml" />
+</project>

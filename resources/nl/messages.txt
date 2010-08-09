@@ -1,0 +1,907 @@
+#-------------------------------------------------------------------------------
+# CDDL HEADER START
+# 
+# The contents of this file are subject to the terms of the Common Development
+# and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+# 
+# You can obtain a copy of the license at
+# src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+# http://github.com/360/360-Engine-for-Android
+# See the License for the specific language governing permissions and limitations under the License.
+# 
+# When distributing Covered Code, include this CDDL HEADER in each file and
+#  include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+# If applicable, add the following below this CDDL HEADER, with the fields
+# enclosed by brackets "[]" replaced with your own identifying information:
+# Portions Copyright [yyyy] [name of copyright owner]
+# 
+# CDDL HEADER END
+# 
+# Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+# Use is subject to license terms.
+#-------------------------------------------------------------------------------
+nowplus.client.java.app.criticalerror.text=Er heeft zich een probleem voorgedaan. Start 360 opnieuw en log opnieuw in. Om je gegevens te beschermen worden de contactgegevens uit je mobiel geïmporteerd wanneer je inlogt.
+
+nowplus.client.java.app.criticalerror.title=Opnieuw starten vereist
+
+nowplus.client.java.app.serviceunavailable.text=Het netwerk is momenteel niet beschikbaar
+
+nowplus.client.java.app.serviceunavailable.title=Verbinden mislukt
+
+nowplus.client.java.application.initialisation.failed.title=REDUNDANT
+
+nowplus.client.java.application.popup.text=Start…
+
+nowplus.client.java.application.popup.title=Start…
+
+nowplus.client.java.browse.confirm.headline=Browser open
+
+nowplus.client.java.browse.confirm.text=Je verlaat 360 en opent een browser.
+
+nowplus.client.java.browser.notification.title=Laadt pagina…
+
+nowplus.client.java.cabsabsync.popup.receiving=Voltooit synchronisatie met 360
+
+nowplus.client.java.cabsabsync.popup.receiving.failed=De synchronisatie is niet voltooid. Dit gebeurt wanneer je de toepassing de volgende keer start.
+
+nowplus.client.java.cabsabsync.popup.sending=Verzendt contacten naar 360
+
+nowplus.client.java.cabsabsync.popup.sending.failed=We konden niet al je contacten synchroniseren met 360. Dit gebeurt wanneer je de toepassing de volgende keer start.
+
+nowplus.client.java.cabsabsync.popup.title=Synchroniseert je contacten...
+
+nowplus.client.java.chat.thread.confirm.delete.text=Will je deze contact echt verwijderen?
+
+nowplus.client.java.chat.thread.confirm.delete.title=Verwijder contact
+
+nowplus.client.java.chat.thread.date.day.fri=Vr
+
+nowplus.client.java.chat.thread.date.day.mon=Ma
+
+nowplus.client.java.chat.thread.date.day.sat=Za
+
+nowplus.client.java.chat.thread.date.day.sun=Zo
+
+nowplus.client.java.chat.thread.date.day.thu=Do
+
+nowplus.client.java.chat.thread.date.day.tue=Di
+
+nowplus.client.java.chat.thread.date.day.wed=Wo
+
+nowplus.client.java.chat.thread.error.contact.notconnected=Your message can't be sent because you and {0} are not connected on 360. You can connect to from his details page.
+
+nowplus.client.java.chat.thread.error.contact.notonline=Je bericht kan niet worden verzonden, omdat je vriend niet is ingelogd bij {0}. Je kunt beginnen met chatten wanneer je vriend weer online is.
+
+nowplus.client.java.chat.thread.error.user.notonline=redundant
+
+nowplus.client.java.chat.thread.error.user.notsignedin=Je bericht kan niet worden verzonden, want je bent niet ingelogd bij {0}. Je kunt bij {0} inloggen via je Accounts onder Mijn profiel.
+
+nowplus.client.java.chat.thread.send=Verz.
+
+nowplus.client.java.chat.thread.textfield.helptext=Typ hier.
+
+nowplus.client.java.chat.thread.title=Chatten
+
+nowplus.client.java.chat.thread.you=Ik
+
+nowplus.client.java.command.close=Sluit
+
+nowplus.client.java.command.exit=Afsl.
+
+nowplus.client.java.command.ignore=Negeer
+
+nowplus.client.java.command.open=Open
+
+nowplus.client.java.command.options=Opties
+
+nowplus.client.java.command.roaming.yes=Ja
+
+nowplus.client.java.contextual.menu.command.add.new.contact=Contact toevoegen
+
+nowplus.client.java.contextual.menu.command.block=Blokkeer contact
+
+nowplus.client.java.contextual.menu.command.connect=Koppel
+
+nowplus.client.java.contextual.menu.command.create.email=Nieuwe e-mail
+
+nowplus.client.java.contextual.menu.command.create.new=Nieuw…
+
+nowplus.client.java.contextual.menu.command.create.sms=Nieuwe sms
+
+nowplus.client.java.contextual.menu.command.create.text=Verzend sms
+
+nowplus.client.java.contextual.menu.command.delete=Verw.
+
+nowplus.client.java.contextual.menu.command.edit.profile=Bewerk profiel
+
+nowplus.client.java.contextual.menu.command.exit=Afsl.
+
+nowplus.client.java.contextual.menu.command.help=Help
+
+nowplus.client.java.contextual.menu.command.invite=Uitnodigen
+
+nowplus.client.java.contextual.menu.command.more=Meer…
+
+nowplus.client.java.contextual.menu.command.open.filter=Naar boven
+
+nowplus.client.java.contextual.menu.command.open.ongoing.chat=Open best. chat
+
+nowplus.client.java.contextual.menu.command.search=Zoeken in 360
+
+nowplus.client.java.contextual.menu.command.settings=Instellingen
+
+nowplus.client.java.contextual.menu.command.switch.application=Andere applicatie
+
+nowplus.client.java.contextual.menu.command.view.profile=Bekijk profiel
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.text=Weet je zeker dat je {0} wilt verwijderen?
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.title=Verwijder contact
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.text=Weet je zeker dat je {0} wilt verwijderen?
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.title=Verwijder gegevens
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.text1=Wil je {0} echt uit je profiel verwijderen?
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.title=Verwijder account
+
+nowplus.client.java.contextual.menu.infobar.profile=Profiel
+
+nowplus.client.java.contextual.menu.navbar.Chat=Chatten
+
+nowplus.client.java.contextual.menu.navbar.Email=E-mailen
+
+nowplus.client.java.contextual.menu.navbar.Poke=Porren
+
+nowplus.client.java.contextual.menu.navbar.SMS=Sms'en
+
+nowplus.client.java.contextual.menu.navbar.call=Bellen
+
+nowplus.client.java.contextual.menu.notify.block.text=Contact is geblokkeerd.
+
+nowplus.client.java.contextual.menu.notify.block.title=Blokkeer contact
+
+nowplus.client.java.contextual.menu.notify.connect.text=Je 360-koppelverzoek is verzonden.
+
+nowplus.client.java.contextual.menu.notify.connect.title=Koppel
+
+nowplus.client.java.contextual.menu.notify.invite.text=Je contact is uitgenodigd.
+
+nowplus.client.java.contextual.menu.notify.invite.title=Uitnodigen
+
+nowplus.client.java.date.friday=Vrijdag
+
+nowplus.client.java.date.monday=Maandag
+
+nowplus.client.java.date.now=Nu
+
+nowplus.client.java.date.saturday=Zaterdag
+
+nowplus.client.java.date.sunday=Zondag
+
+nowplus.client.java.date.thursday=Donderdag
+
+nowplus.client.java.date.today=Vandaag
+
+nowplus.client.java.date.tuesday=Dinsdag
+
+nowplus.client.java.date.wednesday=Woensdag
+
+nowplus.client.java.date.yesterday=Gisteren
+
+nowplus.client.java.edit.contact.add=Toev.
+
+nowplus.client.java.edit.contact.address=Adres
+
+nowplus.client.java.edit.contact.address.country=Land
+
+nowplus.client.java.edit.contact.address.postcode=Postcode
+
+nowplus.client.java.edit.contact.address.region=Provincie
+
+nowplus.client.java.edit.contact.address.street=Straat
+
+nowplus.client.java.edit.contact.address.town=Plaats
+
+nowplus.client.java.edit.contact.bdinvalid.text=De geboortedatum moet in het verleden liggen
+
+nowplus.client.java.edit.contact.birthday=Verjaardag
+
+nowplus.client.java.edit.contact.command.edit=Bewerk
+
+nowplus.client.java.edit.contact.command.new=Nieuw
+
+nowplus.client.java.edit.contact.command.save=Opsl.
+
+nowplus.client.java.edit.contact.command.switch.multitab=Letters apart inv.
+
+nowplus.client.java.edit.contact.command.switch.native=Gebr. T9-tekstinvoer
+
+nowplus.client.java.edit.contact.command.takepicture=Maak foto
+
+nowplus.client.java.edit.contact.delete.failed.notify.text=We kunnen de gegevens niet verwijderen. Start de toepassing opnieuw als dit probleem zich blijft voordoen.
+
+nowplus.client.java.edit.contact.delete.failed.notify.title=Verwijderen mislukt
+
+nowplus.client.java.edit.contact.edit=Bewerk
+
+nowplus.client.java.edit.contact.email=E-mail
+
+nowplus.client.java.edit.contact.email.address=E-mailadres
+
+nowplus.client.java.edit.contact.group=Groep
+
+nowplus.client.java.edit.contact.group.label=Groepsnaam
+
+nowplus.client.java.edit.contact.im=Chat
+
+nowplus.client.java.edit.contact.invalid.email.text=Je hebt een onjuist e-mailadres ingevoerd. Probeer het nogmaals.
+
+nowplus.client.java.edit.contact.invalid.email.title=Onjuist e-mailadres
+
+nowplus.client.java.edit.contact.invalid.name.text=Je contact kan niet worden opgeslagen zonder naam. Wijzigingen annuleren?
+
+nowplus.client.java.edit.contact.invalid.name.title=Naam ontbreekt
+
+nowplus.client.java.edit.contact.missing.name.confirm.no=Nee
+
+nowplus.client.java.edit.contact.missing.name.confirm.yes=Ja
+
+nowplus.client.java.edit.contact.missing.name.notify.ok=OK
+
+nowplus.client.java.edit.contact.missing.name.text=Je moet minimaal één naam invoeren.
+
+nowplus.client.java.edit.contact.missing.name.title=Naam ontbreekt
+
+nowplus.client.java.edit.contact.name=Naam
+
+nowplus.client.java.edit.contact.name.first=Voorn.
+
+nowplus.client.java.edit.contact.name.last=Achtern.
+
+nowplus.client.java.edit.contact.name.middle=Tweede
+
+nowplus.client.java.edit.contact.note=Opmerkingen
+
+nowplus.client.java.edit.contact.note.enter=Voer een opmerking in.
+
+nowplus.client.java.edit.contact.phone=Tel.
+
+nowplus.client.java.edit.contact.phone.number=Telefoonnr.
+
+nowplus.client.java.edit.contact.phone.preffered=Voorkeur
+
+nowplus.client.java.edit.contact.subtype.label=Label
+
+nowplus.client.java.edit.contact.take.picture=Maak foto
+
+nowplus.client.java.edit.contact.title=Bewerk profiel
+
+nowplus.client.java.edit.contact.update.failed.notify.text=We kunnen je contactgegevens niet bijwerken. Start de toepassing opnieuw als dit probleem zich blijft voordoen.
+
+nowplus.client.java.edit.contact.update.failed.notify.title=Bijwerken mislukt
+
+nowplus.client.java.edit.contact.update.notify.text=Profiel wordt bijgewerkt
+
+nowplus.client.java.edit.contact.update.notify.title=Werkt bij
+
+nowplus.client.java.edit.contact.url=Website
+
+nowplus.client.java.edit.contact.url.address=URL
+
+nowplus.client.java.edit.contact.work=Gegevens werk
+
+nowplus.client.java.exit.confirm.headline=Weet je zeker dat je wilt afsluiten?
+
+nowplus.client.java.exit.confirm.no=Nee
+
+nowplus.client.java.exit.confirm.text=Afsl.
+
+nowplus.client.java.exit.confirm.yes=Ja
+
+nowplus.client.java.exit.notification.headline=Sluit…
+
+nowplus.client.java.exit.notification.text=Even geduld. De toepassing wordt afgesloten.
+
+nowplus.client.java.help.confirm.headline=Je verlaat 360 en opent een browser.
+
+nowplus.client.java.help.confirm.text=Browser open
+
+nowplus.client.java.identity.vodafone360.chatlabel=360-chat
+
+nowplus.client.java.landingpage.tagline=redundant
+
+nowplus.client.java.landingpage.tagline1=Een 360-service
+
+nowplus.client.java.landingpage.tagline2=De hele wereld binnen handbereik
+
+nowplus.client.java.launch.postponed.text=redundant
+
+nowplus.client.java.launch.postponed.title=redundant
+
+nowplus.client.java.list.order.first=Voorn.
+
+nowplus.client.java.list.order.last=Achtern.
+
+nowplus.client.java.list.order.none=Geen
+
+nowplus.client.java.login.connection.disallowed.text=Start de toepassing opnieuw om door te gaan.
+
+nowplus.client.java.login.connection.disallowed.title=Verbinding niet toegestaan
+
+nowplus.client.java.login.loginfailed.text=Je gebruikersnaam en/of wachtwoord kloppen niet. Probeer het nogmaals.
+
+nowplus.client.java.login.loginfailed.title=Probeer het nogmaals
+
+nowplus.client.java.login.notification.loggingin=Inloggen…
+
+nowplus.client.java.login.reauthenticate.text=Je accountgegevens zijn gewijzigd. Log opnieuw in.
+
+nowplus.client.java.login.title=Inloggen
+
+nowplus.client.java.loginform.command.cancel=Annul.
+
+nowplus.client.java.loginform.command.mark=Select.
+
+nowplus.client.java.loginform.command.save=Inloggen
+
+nowplus.client.java.loginform.command.unmark=Annuleer selectie
+
+nowplus.client.java.loginform.headline=Inloggen
+
+nowplus.client.java.loginform.password.chosepassword.hint=Wachtwoord
+
+nowplus.client.java.loginform.password.hint=Wachtwoord
+
+nowplus.client.java.loginform.rememberme.label=Bewaar mijn gegevens
+
+nowplus.client.java.loginform.username.choseusername.hint=Gebruikersnaam
+
+nowplus.client.java.loginform.username.hint=Gebruikersnaam
+
+nowplus.client.java.network.search.command.search=Zoeken
+
+nowplus.client.java.network.search.title=Zoeken in 360
+
+nowplus.client.java.networkdown.text=Je hebt tijdelijk geen netwerkverbinding. 360 is opnieuw beschikbaar zodra het netwerk weer beschikbaar is.
+
+nowplus.client.java.networkdown.title=Netwerkverbinding verbroken
+
+nowplus.client.java.new.contact.title=Nieuwe contact
+
+nowplus.client.java.newpasswordrestart.text=Je wachtwoord is gewijzigd. Je moet de toepassing opnieuw starten en je wachtwoord opnieuw invoeren om door te gaan.
+
+nowplus.client.java.newpasswordrestart.title=Wachtwoord gewijzigd
+
+nowplus.client.java.peoplepage.meview.availability.available=Beschikbaar
+
+nowplus.client.java.peoplepage.meview.availability.invisible=Onzichtbaar
+
+nowplus.client.java.peoplepage.meview.availability.label=Beschikbaarheid
+
+nowplus.client.java.peoplepage.meview.availability.offline=Offline
+
+nowplus.client.java.peoplepage.meview.command.set=Inst.
+
+nowplus.client.java.peoplepage.meview.myprofile=Mijn profiel
+
+nowplus.client.java.peoplepage.meview.settings=Instellingen
+
+nowplus.client.java.peoplepage.meview.sn.status=Plaatst ook op {0}
+
+nowplus.client.java.peoplepage.meview.sn.status1=redundant
+
+nowplus.client.java.peoplepage.meview.sn.status2=redundant
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.text=We kunnen je status niet bijwerken. Start de toepassing opnieuw als dit probleem zich blijft voordoen.
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.title=Status bijwerken mislukt
+
+nowplus.client.java.peoplepage.meview.status.helptext=Wat doe je nu?
+
+nowplus.client.java.peoplepage.meview.status.label=Statusbericht
+
+nowplus.client.java.peoplepage.meview.submit.command.update=Bijwerken
+
+nowplus.client.java.peoplepage.meview.webaccounts=Accounts
+
+nowplus.client.java.peoplepage.notification.pleasewait=Even geduld…
+
+nowplus.client.java.peoplepage.people.filter.all=Alle contacten
+
+nowplus.client.java.peoplepage.people.filter.colleages=Werk
+
+nowplus.client.java.peoplepage.people.filter.family=Familie
+
+nowplus.client.java.peoplepage.people.filter.friends=Vrienden
+
+nowplus.client.java.peoplepage.people.filter.nowplus=Gekoppeld
+
+nowplus.client.java.peoplepage.people.filter.online=Online
+
+nowplus.client.java.peoplepage.people.filter.phonebook=Telefoonboek
+
+nowplus.client.java.peoplepage.tab.chat=Chatten
+
+nowplus.client.java.peoplepage.tab.icon.name.contacts=Contacten
+
+nowplus.client.java.peoplepage.tab.me=Ik
+
+nowplus.client.java.peoplepage.tab.people=People
+
+nowplus.client.java.peoplepage.tab.status=Status
+
+nowplus.client.java.peoplepage.tab.timeline=Timeline
+
+nowplus.client.java.peoplepage.tab.timeline.empty=Empty
+
+polish.command.back=Terug
+
+polish.command.cancel=Annul.
+
+polish.command.clear=Wis
+
+polish.command.delete=Verw.
+
+polish.command.entersymbol=Voeg symb. toe
+
+polish.command.followlink=Ga
+
+polish.command.hide=Verbrg.
+
+polish.command.mark=Select.
+
+polish.command.ok=OK
+
+polish.command.options=Opties
+
+polish.command.select=Select.
+
+polish.command.submit=Verzend
+
+polish.command.unmark=Annuleer selectie
+
+nowplus.client.java.polish.dateformatemptytext=DD/MM/JJJJ
+
+polish.rss.command.followlink=Ga
+
+polish.rss.command.select=Weerg.
+
+polish.title.input=Begin met typen
+
+nowplus.client.java.profilepage.connect.item=Koppel contact
+
+nowplus.client.java.profilepage.content.address=Adres
+
+nowplus.client.java.profilepage.content.birthday=Verjaardag
+
+nowplus.client.java.profilepage.content.callorsms=Telefoonnummers
+
+nowplus.client.java.profilepage.content.command.call=Bellen
+
+nowplus.client.java.profilepage.content.command.chat=Chatten
+
+nowplus.client.java.profilepage.content.command.mms=Mms'en
+
+nowplus.client.java.profilepage.content.command.open=Open
+
+nowplus.client.java.profilepage.content.command.sms=Sms'en
+
+nowplus.client.java.profilepage.content.command.write=Schrijven
+
+nowplus.client.java.profilepage.content.date.month.apr=april
+
+nowplus.client.java.profilepage.content.date.month.aug=augustus
+
+nowplus.client.java.profilepage.content.date.month.dec=december
+
+nowplus.client.java.profilepage.content.date.month.feb=februari
+
+nowplus.client.java.profilepage.content.date.month.jan=januari
+
+nowplus.client.java.profilepage.content.date.month.jul=juli
+
+nowplus.client.java.profilepage.content.date.month.jun=juni
+
+nowplus.client.java.profilepage.content.date.month.mar=maart
+
+nowplus.client.java.profilepage.content.date.month.may=mei
+
+nowplus.client.java.profilepage.content.date.month.nov=november
+
+nowplus.client.java.profilepage.content.date.month.oct=oktober
+
+nowplus.client.java.profilepage.content.date.month.okt=oktober
+
+nowplus.client.java.profilepage.content.date.month.sep=september
+
+nowplus.client.java.profilepage.content.email=E-mail
+
+nowplus.client.java.profilepage.content.groupes=Groepen
+
+nowplus.client.java.profilepage.content.im=Chat
+
+nowplus.client.java.profilepage.content.name=Naam
+
+nowplus.client.java.profilepage.content.notes=Opmerkingen
+
+nowplus.client.java.profilepage.content.socialnetwork=Accounts
+
+nowplus.client.java.profilepage.content.url=Website
+
+nowplus.client.java.profilepage.content.work=Gegevens werk
+
+nowplus.client.java.profilepage.content.work.company=Bedrijf
+
+nowplus.client.java.profilepage.content.work.department=Afdeling
+
+nowplus.client.java.profilepage.content.work.title=Functie
+
+nowplus.client.java.profilepage.invite.item.label=Nodig contact uit voor
+
+nowplus.client.java.profilepage.invite.item.text=360
+
+nowplus.client.java.profilepage.subtype.fax=Fax
+
+nowplus.client.java.profilepage.subtype.home=Thuis
+
+nowplus.client.java.profilepage.subtype.mobile=Mobiel
+
+nowplus.client.java.profilepage.subtype.other=Overig
+
+nowplus.client.java.profilepage.subtype.work=Werk
+
+nowplus.client.java.profilepage.tab.details=Profiel
+
+nowplus.client.java.roamingwarning.text=Mag 360 verbinding maken tijdens roaming? Je moet mogelijk betalen voor dataroaming.
+
+nowplus.client.java.roamingwarning.title=Roaming
+
+nowplus.client.java.settings.about.text=People - Een 360-service (c) Vodafone 2009
+
+nowplus.client.java.settings.about.text2010=People - Een 360-service (c) Vodafone 2010
+
+nowplus.client.java.settings.about.title=Info
+
+nowplus.client.java.settings.clearstorage.confirm.no=Nee
+
+nowplus.client.java.settings.clearstorage.confirm.text=Weet je zeker dat je alle gegevens uit deze toepassing wilt verwijderen?
+
+nowplus.client.java.settings.clearstorage.confirm.title=Verwijder alle gegevens
+
+nowplus.client.java.settings.clearstorage.confirm.yes=Ja
+
+nowplus.client.java.settings.clearstorage.warning.text=Let op: als je de gegevens verwijdert, worden al je contacten, berichten en verbonden netwerken uit de toepassing verwijderd. Je wordt uitgelogd bij 360. Log daarna opnieuw in of registreer jezelf voor een nieuwe account.
+
+nowplus.client.java.settings.clearstorage.warning.title=Waarschuwing
+
+nowplus.client.java.settings.command.save=Opsl.
+
+nowplus.client.java.settings.datatraffic.title=Dataverkeer
+
+nowplus.client.java.settings.removedataitem=Verwijder alle op deze telefoon opgeslagen gegevens uit de toepassing
+
+nowplus.client.java.settings.removedataitem.title=Verwijder gegevens
+
+nowplus.client.java.settings.reset.confirm.text=Wil je de teller voor dataverkeer echt op nul zetten?
+
+nowplus.client.java.settings.reset.confirm.title=Zet teller op nul
+
+nowplus.client.java.settings.resetcounteritem=Zet teller op nul
+
+nowplus.client.java.settings.roaming.enableroaming=Dataroaming altijd aan
+
+nowplus.client.java.settings.roaming.title=Dataroaming
+
+nowplus.client.java.settings.software.title=Software
+
+nowplus.client.java.settings.sortcontacts.firstlast=Voorn., achtern.
+
+nowplus.client.java.settings.sortcontacts.lastfirst=Achtern., voorn.
+
+nowplus.client.java.settings.sortcontacts.title=Sorteer contacten op
+
+nowplus.client.java.settings.sync.progress=Start synchronisatie...
+
+nowplus.client.java.settings.sync.syncitem=Synchroniseer nu
+
+nowplus.client.java.settings.sync.title=Synchroniseer je contacten
+
+nowplus.client.java.settings.title=Instellingen
+
+nowplus.client.java.signup.checkingdata.progress.headline=Even geduld
+
+nowplus.client.java.signup.checkingdata.progress.text=Controleert gegevens…
+
+nowplus.client.java.signup.command.cancel=Annul.
+
+nowplus.client.java.signup.command.continue=Doorgaan
+
+nowplus.client.java.signup.command.exit=Afsl.
+
+nowplus.client.java.signup.command.read=Lezen
+
+nowplus.client.java.signup.command.select=Select.
+
+nowplus.client.java.signup.congratulations.headline=Gefeliciteerd!
+
+nowplus.client.java.signup.congratulations.rememberme=Bewaar mijn gegevens
+
+nowplus.client.java.signup.congratulations.youarenow=Je bent nu ingelogd bij 360.
+
+nowplus.client.java.signup.enterdata.chosepassword=Kies een wachtwoord 
+
+nowplus.client.java.signup.enterdata.choseusername=Kies een gebruikersnaam 
+
+nowplus.client.java.signup.enterdata.dob=Voer je geboortedatum in.
+
+nowplus.client.java.signup.enterdata.emailfield.hint=E-mailadres
+
+nowplus.client.java.signup.enterdata.emailfield.title=Voer je e-mailadres in.
+
+nowplus.client.java.signup.enterdata.entermobilenumber=Voer je mobiele nummer in.
+
+nowplus.client.java.signup.enterdata.entermobilenumber.hint=met int. code (bijv. +31).
+
+nowplus.client.java.signup.enterdata.headline=Registreren is simpel 
+
+nowplus.client.java.signup.enterdata.privacy.text=Privacyverklaring
+
+nowplus.client.java.signup.enterdata.termsandconditions.checkbox.label=Ik accepteer de
+
+nowplus.client.java.signup.enterdata.termsandconditions.text=Algemene voorwaarden
+
+nowplus.client.java.signup.error.agecheck.text=De ingevoerde leeftijd lijkt verkeerd. Typ je leeftijd nog een keer.
+
+nowplus.client.java.signup.error.agecheck.title=Leeftijdscontrole
+
+nowplus.client.java.signup.error.dobnotprovided=Je moet je geboortedatum invoeren.
+
+nowplus.client.java.signup.error.dobnotprovided.headline=Geboortedatum ontbreekt
+
+nowplus.client.java.signup.error.email.headline=E-mail
+
+nowplus.client.java.signup.error.email.invalid=E-mailadres ongeldig
+
+nowplus.client.java.signup.error.headline=Registratie mislukt
+
+nowplus.client.java.signup.error.mustaccepttc=Je moet de algemene voorwaarden accepteren voor registratie.
+
+nowplus.client.java.signup.error.mustaccepttc.headline=Algemene voorwaarden
+
+nowplus.client.java.signup.error.mustbe14=Je moet 14 jaar of ouder zijn voor een account.
+
+nowplus.client.java.signup.error.mustbe14.headline=Leeftijdscontrole
+
+nowplus.client.java.signup.error.mustbeinternational=Je telefoonnummer moet de internationale notatie hebben (dus eerst bijvoorbeeld +31).
+
+nowplus.client.java.signup.error.mustbeinternational.headline=Internationale notatie
+
+nowplus.client.java.signup.error.mustenterphonenumber=Je moet een mobiel nummer invoeren voor registratie.
+
+nowplus.client.java.signup.error.mustenterphonenumber.headline=Mobiel nummer ontbreekt
+
+nowplus.client.java.signup.error.passwordchars=De volgende tekens mogen niet gebruikt worden
+
+nowplus.client.java.signup.error.passwordchars.headline=Tekens in wachtwoord
+
+nowplus.client.java.signup.error.passwordlength=Je wachtwoord moet tussen de 6 en 25 tekens bevatten.
+
+nowplus.client.java.signup.error.passwordlength.headline=Lengte van wachtwoord
+
+nowplus.client.java.signup.error.usernamechars=De volgende tekens mogen niet gebruikt worden
+
+nowplus.client.java.signup.error.usernamechars.headline=Tekens in gebruikersnaam
+
+nowplus.client.java.signup.error.usernamelength=Je gebruikersnaam moet tussen de 6 en 50 tekens bevatten.
+
+nowplus.client.java.signup.error.usernamelength.headline=Lengte van gebruikersnaam
+
+nowplus.client.java.signup.importsn.confirmation.text=Wil je je contacten van je accounts nu importeren?
+
+nowplus.client.java.signup.importsn.confirmation.title=Importeer accounts
+
+nowplus.client.java.signup.signupfailed.dobinvalid=Geboortedatum ongeldig. De notatie klopt niet of je bent nog geen 14 jaar.
+
+nowplus.client.java.signup.signupfailed.internalerror=Er is iets fout gegaan.
+
+nowplus.client.java.signup.signupfailed.languageinvalid=Jouw taal wordt helaas niet ondersteund
+
+nowplus.client.java.signup.signupfailed.mobilemodelinvalid=Type mobiel onbekend of niet ondersteund door systeem.
+
+nowplus.client.java.signup.signupfailed.msisdninvalid=Onjuist telefoonnummer
+
+nowplus.client.java.signup.signupfailed.msisdnmissing=Je moet een telefoonnummer invoeren
+
+nowplus.client.java.signup.signupfailed.passwordinvalid=Wachtwoord te kort/lang of bevat ongeldige tekens
+
+nowplus.client.java.signup.signupfailed.passwordnotspecified=Je moet een wachtwoord invoeren
+
+nowplus.client.java.signup.signupfailed.tcnotaccepted=Je moet de algemene voorwaarden accepteren
+
+nowplus.client.java.signup.signupfailed.title=Registratie mislukt
+
+nowplus.client.java.signup.signupfailed.usernamealreadytaken=Gebruikersnaam niet vrij
+
+nowplus.client.java.signup.signupfailed.usernameblacklisted=Gebruikersnaam op zwarte lijst
+
+nowplus.client.java.signup.signupfailed.usernameforbidden=Gebruikersnaam verboden. Kies een andere naam.
+
+nowplus.client.java.signup.signupfailed.usernamenotspecified=Gebruikersnaam ontbreekt
+
+nowplus.client.java.signup.signupfailedwrongnumber.text=We kunnen geen contact maken met dat telefoonnummer. Probeer het nogmaals.
+
+nowplus.client.java.signup.signupfailedwrongnumber.title=Verifiëren mislukt
+
+nowplus.client.java.signup.title=Registreer je nu
+
+nowplus.client.java.signup.waitforsms.notification.text=Je telefoonnummer wordt gecontroleerd. Dit kan even duren. Even geduld.
+
+nowplus.client.java.signup.waitforsms.notification.title=Controleert nummer…
+
+nowplus.client.java.signup.welcome.button.login=Inloggen
+
+nowplus.client.java.signup.welcome.button.signup=Registreer je nu!
+
+nowplus.client.java.signup.welcome.headline=Welkom bij People - Een 360-service
+
+nowplus.client.java.sms.error.notification.headline=Sms-bericht verzenden mislukt
+
+nowplus.client.java.sms.error.notification.message=Sms-bericht kan niet worden verzonden.
+
+nowplus.client.java.sms.notification.headline=Verzendt sms-bericht
+
+nowplus.client.java.smscomposer.title=Sms-bericht
+
+nowplus.client.java.smsform.message.hint=Voer je bericht in
+
+nowplus.client.java.statuspage.command.request=Select.
+
+nowplus.client.java.statuspage.error.user.notonline=Je status wordt niet bijgewerkt, omdat je nu geen verbinding hebt met 360. Je statusbericht wordt opgeslagen en bijgewerkt wanneer je verbinding hebt.
+
+nowplus.client.java.statuspage.noresult=Status leeg
+
+nowplus.client.java.statuspage.request=Volgende {0} act. opvragen
+
+nowplus.client.java.sync.cancel.popup.text=Annuleert…
+
+nowplus.client.java.sync.popup.text=Importeert gegevens: {0}
+
+nowplus.client.java.sync.popup.title=Importeert contacten… 
+
+nowplus.client.java.sync.user.disallowed.create.text=Sluit de toepassing en werk de instellingen voor deze toepassing bij, zodat toegang tot het adresboek van de telefoon mogelijk wordt.
+
+nowplus.client.java.sync.user.disallowed.create.title=Kan adresboek van telefoon niet bewerken
+
+nowplus.client.java.sync.user.disallowed.delete.text=Sluit de toepassing en werk de instellingen voor deze toepassing bij, zodat toegang tot het adresboek van de telefoon mogelijk wordt.
+
+nowplus.client.java.sync.user.disallowed.delete.title=Kan adresboek van telefoon niet bewerken
+
+nowplus.client.java.sync.user.disallowed.open.text=Sluit de toepassing en werk de instellingen voor deze toepassing bij, zodat toegang tot het adresboek van de telefoon mogelijk wordt.
+
+nowplus.client.java.sync.user.disallowed.open.title=Kan adresboek van telefoon niet lezen
+
+nowplus.client.java.sync.user.disallowed.read.text=Sluit de toepassing en werk de instellingen voor deze toepassing bij, zodat toegang tot het adresboek van de telefoon mogelijk wordt.
+
+nowplus.client.java.sync.user.disallowed.read.title=Kan niet lezen uit adresboek van telefoon
+
+nowplus.client.java.sync.user.disallowed.write.text=Sluit de toepassing en werk de instellingen voor deze toepassing bij, zodat toegang tot het adresboek van de telefoon mogelijk wordt.
+
+nowplus.client.java.sync.user.disallowed.write.title=Kan niet opslaan in adresboek van telefoon
+
+nowplus.client.java.sync.with.360.text=Je kunt je mobiel nu synchroniseren met 360. Dit kan tot 10 minuten in beslag nemen.
+
+nowplus.client.java.sync.with.360.title=Synchroniseer met 360
+
+nowplus.client.java.takepicture.command.new=Nieuw
+
+nowplus.client.java.takepicture.command.takepic=Maak foto
+
+nowplus.client.java.takepicture.command.usethis=Gebr. deze
+
+nowplus.client.java.takepicture.confirm.usethisimage=Gebr. deze foto
+
+titlebar.httpcounter.kb=kB
+
+nowplus.client.java.updateapplication.confirm.yes=Ja
+
+nowplus.client.java.updateapplication.headline=Er is een nieuwe versie van People – Een 360-service – beschikbaar
+
+nowplus.client.java.updateapplication.text=Update installeren?
+
+nowplus.client.java.webaccounts.add.title=Account toevoegen
+
+nowplus.client.java.webaccounts.command.done=Gereed
+
+nowplus.client.java.webaccounts.command.edit=Bewerk
+
+nowplus.client.java.webaccounts.command.login=Inloggen
+
+nowplus.client.java.webaccounts.command.logout=Uitloggen
+
+nowplus.client.java.webaccounts.edit.info.suffix=Inloggegevens
+
+nowplus.client.java.webaccounts.edit.password=Wachtwoord
+
+nowplus.client.java.webaccounts.edit.title=Bewerk account
+
+nowplus.client.java.webaccounts.edit.username=Gebruikersnaam
+
+nowplus.client.java.webaccounts.edit.username_email=Gebruikersnaam/e-mail
+
+nowplus.client.java.webaccounts.facebook.disclaimer=Als je doorgaat, geef je Vodafone 360 toegang tot je profielgegevens, de gegevens van je vrienden en alle andere inhoud die nodig is voor een correcte werking. Ook ga je door Vodafone 360 te gebruiken akkoord met de gebruiksvoorwaarden van Facebook (kijk op http://www.facebook.com/terms.php).
+
+nowplus.client.java.webaccounts.facebook.disclaimer.header=Algemene voorwaarden voor Facebook
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text1=Wanneer je deze toepassing koppelt aan Facebook, kun je openbare profielfoto's en contactgegevens van je vrienden overbrengen naar People en daarmee je adresboek vullen.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text2=Wanneer je op Inloggen klikt, ga je ermee akkoord dat je een niet-exclusieve, niet-overdraagbare persoonlijke licentie krijgt voor het gebruik van de openbare profielfoto's van je vrienden op People.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text3=Deze licentie loopt af wanneer Facebook of de eigenaar van de foto vraagt om de foto te verwijderen. Deze licentie geeft je niet het recht om die foto's te gebruiken voor commerciële doeleinden of voor andere diensten of toepassingen.
+
+nowplus.client.java.webaccounts.item.adding=Voegt toe
+
+nowplus.client.java.webaccounts.item.deleting=Verwijdert
+
+
+nowplus.client.java.webaccounts.item.updating=Werkt bij
+
+
+nowplus.client.java.webaccounts.overview.title=Sociale netwerken
+
+nowplus.client.java.webaccounts.popup.deletesn.text=Wil je {0} echt uit je profiel verwijderen?
+
+nowplus.client.java.webaccounts.popup.deletesn.title=Verwijder account
+
+nowplus.client.java.webaccounts.popup.importnow.text=Wil je je contacten van je accounts nu importeren?
+
+nowplus.client.java.webaccounts.popup.importnow.title=Importeer accounts
+
+nowplus.client.java.webaccounts.popup.loggingout.text=Logt uit bij account. Even geduld.
+
+nowplus.client.java.webaccounts.popup.loggingout.title=Logt uit
+
+nowplus.client.java.webaccounts.popup.loginfailed.text=Inloggen bij account niet mogelijk
+
+nowplus.client.java.webaccounts.popup.loginfailed.title=Inloggen mislukt
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.text=Je bent nu ingelogd in het account
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.title=Ingelogd
+
+nowplus.client.java.webaccounts.popup.logoutfailed.text=Er is iets fout gegaan bij het uitloggen. Probeer het nogmaals.
+
+nowplus.client.java.webaccounts.popup.logoutfailed.title=Uitloggen mislukt
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.text=Je bent nu uitgelogd bij de account
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.title=Uitgelogd
+
+nowplus.client.java.webaccounts.popup.removefailed.text=Er is iets fout gegaan bij het verwijderen van de account. Probeer het nogmaals.
+
+nowplus.client.java.webaccounts.popup.removefailed.title=Verwijderen mislukt
+
+nowplus.client.java.webaccounts.popup.removesucceeded.text=De account is verwijderd.
+
+nowplus.client.java.webaccounts.popup.removesucceeded.title=Verwijderd
+
+nowplus.client.java.webaccounts.popup.saving.text=Verzamelt gegevens uit account
+
+nowplus.client.java.webaccounts.popup.saving.title=Inloggen
+
+nowplus.client.java.webaccounts.popup.savingfailed.text=Account kan niet worden toegevoegd
+
+nowplus.client.java.webaccounts.popup.savingfailed.title=Account toevoegen mislukt
+
+nowplus.client.java.webaccounts.popup.savingsuccess.text=Account toegevoegd
+
+nowplus.client.java.webaccounts.popup.savingsuccess.title=Account toegevoegd
+
+nowplus.client.java.webaccounts.progress.deletesn.title=Schoont op…
+
+nowplus.client.java.webaccounts.title=Accounts
+
+nowplus.client.java.webaccounts.windowslive.disclaimer.text=Als je je Windows Live-account toevoegt aan 360, word je bij het starten van deze toepassing steeds automatisch ingelogd bij Windows Live.
+

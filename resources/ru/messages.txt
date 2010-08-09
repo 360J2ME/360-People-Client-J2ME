@@ -1,0 +1,907 @@
+#-------------------------------------------------------------------------------
+# CDDL HEADER START
+# 
+# The contents of this file are subject to the terms of the Common Development
+# and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+# 
+# You can obtain a copy of the license at
+# src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+# http://github.com/360/360-Engine-for-Android
+# See the License for the specific language governing permissions and limitations under the License.
+# 
+# When distributing Covered Code, include this CDDL HEADER in each file and
+#  include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+# If applicable, add the following below this CDDL HEADER, with the fields
+# enclosed by brackets "[]" replaced with your own identifying information:
+# Portions Copyright [yyyy] [name of copyright owner]
+# 
+# CDDL HEADER END
+# 
+# Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+# Use is subject to license terms.
+#-------------------------------------------------------------------------------
+nowplus.client.java.app.criticalerror.text=Произошла ошибка. Перезапу�?тите 360 и войдите �?нова. Дл�? защиты Ваших данных адре�?на�? книга Вашего телефона будет импортирована при входе.
+
+nowplus.client.java.app.criticalerror.title=Требует�?�? перезапу�?к
+
+nowplus.client.java.app.serviceunavailable.text=Сеть временно недо�?тупна
+
+nowplus.client.java.app.serviceunavailable.title=�?е удает�?�? подключить�?�?
+
+nowplus.client.java.application.initialisation.failed.title=REDUNDANT
+
+nowplus.client.java.application.popup.text=Запу�?к...
+
+nowplus.client.java.application.popup.title=Запу�?к...
+
+nowplus.client.java.browse.confirm.headline=Открыть браузер
+
+nowplus.client.java.browse.confirm.text=Вы �?обираете�?ь покинуть 360 и открыть браузер
+
+nowplus.client.java.browser.notification.title=Загрузка �?траницы...
+
+nowplus.client.java.cabsabsync.popup.receiving=Завершение �?инхронизации �? 360
+
+nowplus.client.java.cabsabsync.popup.receiving.failed=Синхронизаци�? не завершена. Тем не менее, она будет завершена при �?ледующем запу�?ке приложени�?.
+
+nowplus.client.java.cabsabsync.popup.sending=Отправка контактов в 360
+
+nowplus.client.java.cabsabsync.popup.sending.failed=�?ам не удало�?ь �?инхронизировать в�?е Ваши контакты �? 360. Тем не менее, они будут �?инхронизированы при �?ледующем запу�?ке приложени�?.
+
+nowplus.client.java.cabsabsync.popup.title=Синхронизаци�? контактов...
+
+nowplus.client.java.chat.thread.confirm.delete.text=Удалить �?тот контакт?
+
+nowplus.client.java.chat.thread.confirm.delete.title=Удал. контакт
+
+nowplus.client.java.chat.thread.date.day.fri=Пт
+
+nowplus.client.java.chat.thread.date.day.mon=Пн
+
+nowplus.client.java.chat.thread.date.day.sat=Сб
+
+nowplus.client.java.chat.thread.date.day.sun=В�?
+
+nowplus.client.java.chat.thread.date.day.thu=Чт
+
+nowplus.client.java.chat.thread.date.day.tue=Вт
+
+nowplus.client.java.chat.thread.date.day.wed=Ср
+
+nowplus.client.java.chat.thread.error.contact.notconnected=Your message can't be sent because you and {0} are not connected on 360. You can connect to from his details page.
+
+nowplus.client.java.chat.thread.error.contact.notonline=Ваше �?ообщение не может быть отправлено, так как Ваш друг не вошел в {0}. Вы можете при�?тупить к чату, когда Ваш друг будет в �?ети.
+
+nowplus.client.java.chat.thread.error.user.notonline=redundant
+
+nowplus.client.java.chat.thread.error.user.notsignedin=Ваше �?ообщение не может быть отправлено, потому что Вы не вошли в {0}. Можете войти в {0}, выбрав "�?ккаунты" в разделе "Я".
+
+nowplus.client.java.chat.thread.send=Отправ.
+
+nowplus.client.java.chat.thread.textfield.helptext=Введите тек�?т зде�?ь
+
+nowplus.client.java.chat.thread.title=Чат
+
+nowplus.client.java.chat.thread.you=Я
+
+nowplus.client.java.command.close=Закрыть
+
+nowplus.client.java.command.exit=Выход
+
+nowplus.client.java.command.ignore=Игнорировать
+
+nowplus.client.java.command.open=Открыть
+
+nowplus.client.java.command.options=Параметры
+
+nowplus.client.java.command.roaming.yes=Да
+
+nowplus.client.java.contextual.menu.command.add.new.contact=Добавить  контакт
+
+nowplus.client.java.contextual.menu.command.block=Блок. контакт
+
+nowplus.client.java.contextual.menu.command.connect=Соединить�?�?
+
+nowplus.client.java.contextual.menu.command.create.email=�?овое �?л. �?ообщение
+
+nowplus.client.java.contextual.menu.command.create.new=Создать новое...
+
+nowplus.client.java.contextual.menu.command.create.sms=�?овое SMS
+
+nowplus.client.java.contextual.menu.command.create.text=Создать тек�?т
+
+nowplus.client.java.contextual.menu.command.delete=Удалить
+
+nowplus.client.java.contextual.menu.command.edit.profile=Ред. профиль
+
+nowplus.client.java.contextual.menu.command.exit=Выход
+
+nowplus.client.java.contextual.menu.command.help=Справка
+
+nowplus.client.java.contextual.menu.command.invite=Пригла�?ить
+
+nowplus.client.java.contextual.menu.command.more=Еще...
+
+nowplus.client.java.contextual.menu.command.open.filter=�?аверх
+
+nowplus.client.java.contextual.menu.command.open.ongoing.chat=Открыть текущий чат
+
+nowplus.client.java.contextual.menu.command.search=Пои�?к в 360
+
+nowplus.client.java.contextual.menu.command.settings=Параметры
+
+nowplus.client.java.contextual.menu.command.switch.application=Переключить приложение
+
+nowplus.client.java.contextual.menu.command.view.profile=Про�?м. профиль
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.text=Удалить {0}?
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.title=Удалить контакт
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.text=Удалить {0}?
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.title=Удал. �?ведени�?
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.text1=Удалить {0} из Вашего профил�??
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.title=Удал. аккаунт
+
+nowplus.client.java.contextual.menu.infobar.profile=Профиль
+
+nowplus.client.java.contextual.menu.navbar.Chat=Чат
+
+nowplus.client.java.contextual.menu.navbar.Email=Эл. почта
+
+nowplus.client.java.contextual.menu.navbar.Poke=Продвинуть
+
+nowplus.client.java.contextual.menu.navbar.SMS=SMS
+
+nowplus.client.java.contextual.menu.navbar.call=Вызов
+
+nowplus.client.java.contextual.menu.notify.block.text=Ваш контакт заблокирован
+
+nowplus.client.java.contextual.menu.notify.block.title=Блок. контакт
+
+nowplus.client.java.contextual.menu.notify.connect.text=Ваш запро�? �?оединени�? �? 360 отравлен
+
+nowplus.client.java.contextual.menu.notify.connect.title=Соединить�?�?
+
+nowplus.client.java.contextual.menu.notify.invite.text=Ваш контакт приглашен
+
+nowplus.client.java.contextual.menu.notify.invite.title=Пригла�?ить
+
+nowplus.client.java.date.friday=П�?тница
+
+nowplus.client.java.date.monday=Понедельник
+
+nowplus.client.java.date.now=Сейча�?
+
+nowplus.client.java.date.saturday=Суббота
+
+nowplus.client.java.date.sunday=Во�?кре�?енье
+
+nowplus.client.java.date.thursday=Четверг
+
+nowplus.client.java.date.today=Сегодн�?
+
+nowplus.client.java.date.tuesday=Вторник
+
+nowplus.client.java.date.wednesday=Среда
+
+nowplus.client.java.date.yesterday=Вчера
+
+nowplus.client.java.edit.contact.add=Добавить
+
+nowplus.client.java.edit.contact.address=�?дре�?
+
+nowplus.client.java.edit.contact.address.country=Страна
+
+nowplus.client.java.edit.contact.address.postcode=Индек�?
+
+nowplus.client.java.edit.contact.address.region=Обла�?ть
+
+nowplus.client.java.edit.contact.address.street=Улица
+
+nowplus.client.java.edit.contact.address.town=Город
+
+nowplus.client.java.edit.contact.bdinvalid.text=Дата рождени�? должна быть в прошлом
+
+nowplus.client.java.edit.contact.birthday=День рожд.
+
+nowplus.client.java.edit.contact.command.edit=Ред.
+
+nowplus.client.java.edit.contact.command.new=Создать
+
+nowplus.client.java.edit.contact.command.save=Сохр.
+
+nowplus.client.java.edit.contact.command.switch.multitab=Станд. ввод тек�?та
+
+nowplus.client.java.edit.contact.command.switch.native=Прогноз тек�?та
+
+nowplus.client.java.edit.contact.command.takepicture=Сделать �?нимок
+
+nowplus.client.java.edit.contact.delete.failed.notify.text=Сведени�? удалить не удало�?ь. Е�?ли �?то продолжит�?�?, перезапу�?тите приложение.
+
+nowplus.client.java.edit.contact.delete.failed.notify.title=�?е удает�?�? удалить
+
+nowplus.client.java.edit.contact.edit=Ред.
+
+nowplus.client.java.edit.contact.email=Эл. почта
+
+nowplus.client.java.edit.contact.email.address=�?дре�? �?л. почты
+
+nowplus.client.java.edit.contact.group=Группа
+
+nowplus.client.java.edit.contact.group.label=Им�? группы
+
+nowplus.client.java.edit.contact.im=Чат
+
+nowplus.client.java.edit.contact.invalid.email.text=Вы ввели неверный адре�? �?л. почты. Повторите попытку.
+
+nowplus.client.java.edit.contact.invalid.email.title=�?еверный адре�? �?л. почты
+
+nowplus.client.java.edit.contact.invalid.name.text=�?ельз�? �?охранить контакт, не указав им�?. Отменить изменени�??
+
+nowplus.client.java.edit.contact.invalid.name.title=От�?ут�?твует им�?
+
+nowplus.client.java.edit.contact.missing.name.confirm.no=�?ет
+
+nowplus.client.java.edit.contact.missing.name.confirm.yes=Да
+
+nowplus.client.java.edit.contact.missing.name.notify.ok=OK
+
+nowplus.client.java.edit.contact.missing.name.text=�?еобходимо вве�?ти хот�? бы 1 им�?
+
+nowplus.client.java.edit.contact.missing.name.title=От�?ут�?твует им�?
+
+nowplus.client.java.edit.contact.name=ФИО
+
+nowplus.client.java.edit.contact.name.first=Им�?
+
+nowplus.client.java.edit.contact.name.last=Фамили�?
+
+nowplus.client.java.edit.contact.name.middle=Отче�?тво
+
+nowplus.client.java.edit.contact.note=Заметки
+
+nowplus.client.java.edit.contact.note.enter=Добавить заметку
+
+nowplus.client.java.edit.contact.phone=Телефон
+
+nowplus.client.java.edit.contact.phone.number=Тел. номер
+
+nowplus.client.java.edit.contact.phone.preffered=Сделать о�?новным
+
+nowplus.client.java.edit.contact.subtype.label=Метка
+
+nowplus.client.java.edit.contact.take.picture=Сделать �?нимок
+
+nowplus.client.java.edit.contact.title=Ред. профиль
+
+nowplus.client.java.edit.contact.update.failed.notify.text=�?е удало�?ь обновить �?ведени�? Вашего контакта. Е�?ли �?то продолжит�?�?, перезапу�?тите приложение.
+
+nowplus.client.java.edit.contact.update.failed.notify.title=�?е удает�?�? обновить
+
+nowplus.client.java.edit.contact.update.notify.text=Профиль обновл�?ет�?�?
+
+nowplus.client.java.edit.contact.update.notify.title=Обновление
+
+nowplus.client.java.edit.contact.url=Веб-�?айт
+
+nowplus.client.java.edit.contact.url.address=Веб-адре�?
+
+nowplus.client.java.edit.contact.work=О работе
+
+nowplus.client.java.exit.confirm.headline=Хотите выйти?
+
+nowplus.client.java.exit.confirm.no=�?ет
+
+nowplus.client.java.exit.confirm.text=Выход
+
+nowplus.client.java.exit.confirm.yes=Да
+
+nowplus.client.java.exit.notification.headline=Закрывает�?�?
+
+nowplus.client.java.exit.notification.text=Подождите. Приложение закрывает�?�?.
+
+nowplus.client.java.help.confirm.headline=Вы �?обираете�?ь покинуть 360 и открыть веб-браузер
+
+nowplus.client.java.help.confirm.text=Открыть веб-браузер
+
+nowplus.client.java.identity.vodafone360.chatlabel=Чат 360
+
+nowplus.client.java.landingpage.tagline=redundant
+
+nowplus.client.java.landingpage.tagline1=Служба 360
+
+nowplus.client.java.landingpage.tagline2=Ваш мир - одно целое
+
+nowplus.client.java.launch.postponed.text=redundant
+
+nowplus.client.java.launch.postponed.title=redundant
+
+nowplus.client.java.list.order.first=Первый
+
+nowplus.client.java.list.order.last=Фамили�?
+
+nowplus.client.java.list.order.none=�?е указано
+
+nowplus.client.java.login.connection.disallowed.text=Дл�? продолжени�? перезапу�?тите приложение
+
+nowplus.client.java.login.connection.disallowed.title=Соединение запрещено
+
+nowplus.client.java.login.loginfailed.text=�?еверное им�? пользовател�? и/или пароль. Повторите попытку.
+
+nowplus.client.java.login.loginfailed.title=Повторите попытку
+
+nowplus.client.java.login.notification.loggingin=Вход...
+
+nowplus.client.java.login.reauthenticate.text=Сведени�? Вашего аккаунта изменили�?ь. �?еобходимо войти заново.
+
+nowplus.client.java.login.title=Вход
+
+nowplus.client.java.loginform.command.cancel=Отмена
+
+nowplus.client.java.loginform.command.mark=Выбр.
+
+nowplus.client.java.loginform.command.save=Вход
+
+nowplus.client.java.loginform.command.unmark=Отменить выбор
+
+nowplus.client.java.loginform.headline=Вход в 360
+
+nowplus.client.java.loginform.password.chosepassword.hint=Пароль
+
+nowplus.client.java.loginform.password.hint=Пароль
+
+nowplus.client.java.loginform.rememberme.label=Запомнить мен�?
+
+nowplus.client.java.loginform.username.choseusername.hint=Им�? пользовател�?
+
+nowplus.client.java.loginform.username.hint=Им�? пользовател�?
+
+nowplus.client.java.network.search.command.search=Пои�?к
+
+nowplus.client.java.network.search.title=Пои�?к в 360
+
+nowplus.client.java.networkdown.text=Ваше �?оединение �? �?етью временно не работает. Служба 360 заработает, когда �?еть �?нова будет до�?тупной
+
+nowplus.client.java.networkdown.title=Сетевое �?оединение разорвано
+
+nowplus.client.java.new.contact.title=�?овый контакт
+
+nowplus.client.java.newpasswordrestart.text=Обнаружено изменение парол�?. Чтобы продолжить, перезапу�?тите приложение и введите пароль.
+
+nowplus.client.java.newpasswordrestart.title=Изменил�?�? пароль
+
+nowplus.client.java.peoplepage.meview.availability.available=Свободен
+
+nowplus.client.java.peoplepage.meview.availability.invisible=�?евидимый
+
+nowplus.client.java.peoplepage.meview.availability.label=До�?тупно�?ть
+
+nowplus.client.java.peoplepage.meview.availability.offline=�?е в �?ети
+
+nowplus.client.java.peoplepage.meview.command.set=У�?тановить
+
+nowplus.client.java.peoplepage.meview.myprofile=Мой профиль
+
+nowplus.client.java.peoplepage.meview.settings=Параметры
+
+nowplus.client.java.peoplepage.meview.sn.status=Публикует�?�? и в {0}
+
+nowplus.client.java.peoplepage.meview.sn.status1=redundant
+
+nowplus.client.java.peoplepage.meview.sn.status2=redundant
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.text=�?е удало�?ь обновить Ваше �?о�?то�?ние. Е�?ли �?то продолжит�?�?, попробуйте перезапу�?тить приложение.
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.title=�?е удает�?�? обновить �?о�?то�?ние
+
+nowplus.client.java.peoplepage.meview.status.helptext=Чем Вы �?ейча�? зан�?ты?
+
+nowplus.client.java.peoplepage.meview.status.label=Сообщение �?о�?то�?ни�?
+
+nowplus.client.java.peoplepage.meview.submit.command.update=Обновить
+
+nowplus.client.java.peoplepage.meview.webaccounts=�?ккаунты
+
+nowplus.client.java.peoplepage.notification.pleasewait=Подождите...
+
+nowplus.client.java.peoplepage.people.filter.all=В�?е
+
+nowplus.client.java.peoplepage.people.filter.colleages=Работа
+
+nowplus.client.java.peoplepage.people.filter.family=Семь�?
+
+nowplus.client.java.peoplepage.people.filter.friends=Друзь�?
+
+nowplus.client.java.peoplepage.people.filter.nowplus=Св�?зь у�?тановлена
+
+nowplus.client.java.peoplepage.people.filter.online=В �?ети
+
+nowplus.client.java.peoplepage.people.filter.phonebook=Тел.книга
+
+nowplus.client.java.peoplepage.tab.chat=Чат
+
+nowplus.client.java.peoplepage.tab.icon.name.contacts=Контакты
+
+nowplus.client.java.peoplepage.tab.me=Я
+
+nowplus.client.java.peoplepage.tab.people=People
+
+nowplus.client.java.peoplepage.tab.status=Со�?то�?ние
+
+nowplus.client.java.peoplepage.tab.timeline=Врем. шкала
+
+nowplus.client.java.peoplepage.tab.timeline.empty=Empty
+
+polish.command.back=�?азад
+
+polish.command.cancel=Отмена
+
+polish.command.clear=Очи�?тить
+
+polish.command.delete=Удалить
+
+polish.command.entersymbol=Доб. �?имвол
+
+polish.command.followlink=Перейти
+
+polish.command.hide=Скрыть
+
+polish.command.mark=Выбр.
+
+polish.command.ok=OK
+
+polish.command.options=Параметры
+
+polish.command.select=Выбр.
+
+polish.command.submit=Отправ.
+
+polish.command.unmark=Отмен. выбор
+
+nowplus.client.java.polish.dateformatemptytext=ДД/ММ/ГГГГ
+
+polish.rss.command.followlink=Перейти
+
+polish.rss.command.select=Показать
+
+polish.title.input=�?ачните печатать
+
+nowplus.client.java.profilepage.connect.item=Соединить�?�? �? контактом
+
+nowplus.client.java.profilepage.content.address=�?дре�?
+
+nowplus.client.java.profilepage.content.birthday=День рожд.
+
+nowplus.client.java.profilepage.content.callorsms=Тел. номера
+
+nowplus.client.java.profilepage.content.command.call=Вызов
+
+nowplus.client.java.profilepage.content.command.chat=Чат
+
+nowplus.client.java.profilepage.content.command.mms=Сообщ. к изобр.
+
+nowplus.client.java.profilepage.content.command.open=Открыть
+
+nowplus.client.java.profilepage.content.command.sms=SMS
+
+nowplus.client.java.profilepage.content.command.write=�?апи�?ать
+
+nowplus.client.java.profilepage.content.date.month.apr=�?прель
+
+nowplus.client.java.profilepage.content.date.month.aug=�?вгу�?т
+
+nowplus.client.java.profilepage.content.date.month.dec=Декабрь
+
+nowplus.client.java.profilepage.content.date.month.feb=Февраль
+
+nowplus.client.java.profilepage.content.date.month.jan=Январь
+
+nowplus.client.java.profilepage.content.date.month.jul=Июль
+
+nowplus.client.java.profilepage.content.date.month.jun=Июнь
+
+nowplus.client.java.profilepage.content.date.month.mar=Март
+
+nowplus.client.java.profilepage.content.date.month.may=Май
+
+nowplus.client.java.profilepage.content.date.month.nov=�?о�?брь
+
+nowplus.client.java.profilepage.content.date.month.oct=Окт�?брь
+
+nowplus.client.java.profilepage.content.date.month.okt=Окт�?брь
+
+nowplus.client.java.profilepage.content.date.month.sep=Сент�?брь
+
+nowplus.client.java.profilepage.content.email=Эл. почта
+
+nowplus.client.java.profilepage.content.groupes=Группы
+
+nowplus.client.java.profilepage.content.im=Чат
+
+nowplus.client.java.profilepage.content.name=Им�?
+
+nowplus.client.java.profilepage.content.notes=Заметки
+
+nowplus.client.java.profilepage.content.socialnetwork=�?ккаунты
+
+nowplus.client.java.profilepage.content.url=Веб-�?айт
+
+nowplus.client.java.profilepage.content.work=О работе
+
+nowplus.client.java.profilepage.content.work.company=Компани�?
+
+nowplus.client.java.profilepage.content.work.department=Отдел
+
+nowplus.client.java.profilepage.content.work.title=Обращение
+
+nowplus.client.java.profilepage.invite.item.label=Пригла�?ить контакт в
+
+nowplus.client.java.profilepage.invite.item.text=360
+
+nowplus.client.java.profilepage.subtype.fax=Фак�?
+
+nowplus.client.java.profilepage.subtype.home=Дом
+
+nowplus.client.java.profilepage.subtype.mobile=Моб.
+
+nowplus.client.java.profilepage.subtype.other=Другое
+
+nowplus.client.java.profilepage.subtype.work=Работа
+
+nowplus.client.java.profilepage.tab.details=Профиль
+
+nowplus.client.java.roamingwarning.text=Разрешить �?лужбе 360 подключать�?�? во врем�? роуминга? При передаче данных может взимать�?�? плата за роуминг
+
+nowplus.client.java.roamingwarning.title=Вы в режиме роуминга
+
+nowplus.client.java.settings.about.text=People - �?лужба 360 (c) Vodafone 2009
+
+nowplus.client.java.settings.about.text2010=People - �?лужба 360 (c) Vodafone 2010
+
+nowplus.client.java.settings.about.title=О �?лужбе
+
+nowplus.client.java.settings.clearstorage.confirm.no=�?ет
+
+nowplus.client.java.settings.clearstorage.confirm.text=Удалить в�?е данные из �?того приложени�??
+
+nowplus.client.java.settings.clearstorage.confirm.title=Удалить в�?е данные
+
+nowplus.client.java.settings.clearstorage.confirm.yes=Да
+
+nowplus.client.java.settings.clearstorage.warning.text=Будьте о�?торожны. При удалении данных из приложени�? будут удалены в�?е Ваши контакты, �?ообщени�? и подключенные �?ети. Вы выйдете из 360 и �?можете �?нова войти или зареги�?трировать новый аккаунт.
+
+nowplus.client.java.settings.clearstorage.warning.title=Предупреждение
+
+nowplus.client.java.settings.command.save=Сохр.
+
+nowplus.client.java.settings.datatraffic.title=Трафик данных
+
+nowplus.client.java.settings.removedataitem=Удалить в�?е данные из приложени�? на �?том телефоне
+
+nowplus.client.java.settings.removedataitem.title=Удал. данные
+
+nowplus.client.java.settings.reset.confirm.text=Сбро�?ить показатели �?четчика трафика данных?
+
+nowplus.client.java.settings.reset.confirm.title=Сбро�? �?четчика
+
+nowplus.client.java.settings.resetcounteritem=Сбро�? �?четчика
+
+nowplus.client.java.settings.roaming.enableroaming=В�?егда включать передачу данных в роуминге
+
+nowplus.client.java.settings.roaming.title=Передача данных в роуминге
+
+nowplus.client.java.settings.software.title=Программы
+
+nowplus.client.java.settings.sortcontacts.firstlast=Им�?, фамили�?
+
+nowplus.client.java.settings.sortcontacts.lastfirst=Фамили�?, им�?
+
+nowplus.client.java.settings.sortcontacts.title=Сорт. контакты по
+
+nowplus.client.java.settings.sync.progress=�?ачать �?инхр...
+
+nowplus.client.java.settings.sync.syncitem=Синхр. �?ейча�?
+
+nowplus.client.java.settings.sync.title=Синхр. контакты
+
+nowplus.client.java.settings.title=Параметры
+
+nowplus.client.java.signup.checkingdata.progress.headline=Подождите
+
+nowplus.client.java.signup.checkingdata.progress.text=Проверка Ваших �?ведений...
+
+nowplus.client.java.signup.command.cancel=Отмена
+
+nowplus.client.java.signup.command.continue=Далее
+
+nowplus.client.java.signup.command.exit=Выход
+
+nowplus.client.java.signup.command.read=Читать
+
+nowplus.client.java.signup.command.select=Выбр.
+
+nowplus.client.java.signup.congratulations.headline=Поздравл�?ем!
+
+nowplus.client.java.signup.congratulations.rememberme=Запомнить мен�?
+
+nowplus.client.java.signup.congratulations.youarenow=Вы вошли в 360
+
+nowplus.client.java.signup.enterdata.chosepassword=Выберите пароль 
+
+nowplus.client.java.signup.enterdata.choseusername=Выберите им�? пользовател�? 
+
+nowplus.client.java.signup.enterdata.dob=Введите дату Вашего рождени�?
+
+nowplus.client.java.signup.enterdata.emailfield.hint=�?дре�? �?л. почты
+
+nowplus.client.java.signup.enterdata.emailfield.title=Введите адре�? �?л. почты
+
+nowplus.client.java.signup.enterdata.entermobilenumber=Введите номер моб.телефона
+
+nowplus.client.java.signup.enterdata.entermobilenumber.hint=Вкл. междунар. код, напр. +44
+
+nowplus.client.java.signup.enterdata.headline=Реги�?траци�? - �?то про�?то 
+
+nowplus.client.java.signup.enterdata.privacy.text=За�?вление о конфиденциально�?ти
+
+nowplus.client.java.signup.enterdata.termsandconditions.checkbox.label=Я прочитал(а) и принимаю
+
+nowplus.client.java.signup.enterdata.termsandconditions.text=У�?лови�? и положени�?
+
+nowplus.client.java.signup.error.agecheck.text=Веро�?тно Вы ввели неверный возра�?т; повторите попытку.
+
+nowplus.client.java.signup.error.agecheck.title=Проверка возра�?та
+
+nowplus.client.java.signup.error.dobnotprovided=�?еобходимо вве�?ти дату Вашего рождени�?
+
+nowplus.client.java.signup.error.dobnotprovided.headline=Дата рождени�? не указана
+
+nowplus.client.java.signup.error.email.headline=Эл. почта
+
+nowplus.client.java.signup.error.email.invalid=�?едоп. адре�? �?л. почты
+
+nowplus.client.java.signup.error.headline=�?е удает�?�? зареги�?трировать�?�?
+
+nowplus.client.java.signup.error.mustaccepttc=Дл�? реги�?трации необходимо прин�?ть У�?лови�? и положени�?
+
+nowplus.client.java.signup.error.mustaccepttc.headline=У�?лови�? и положени�?
+
+nowplus.client.java.signup.error.mustbe14=Дл�? реги�?трации аккаунта Вам должно быть не менее 14 лет
+
+nowplus.client.java.signup.error.mustbe14.headline=Проверка возра�?та
+
+nowplus.client.java.signup.error.mustbeinternational=Предо�?тавл�?емый тел. номер должен быть указан в международном формате, напр. нач. �? +44
+
+nowplus.client.java.signup.error.mustbeinternational.headline=Международный формат
+
+nowplus.client.java.signup.error.mustenterphonenumber=Дл�? реги�?трации необходимо вве�?ти моб. номер
+
+nowplus.client.java.signup.error.mustenterphonenumber.headline=Моб. номер не указан
+
+nowplus.client.java.signup.error.passwordchars=В пароле нельз�? и�?пользовать �?ледующие �?имволы
+
+nowplus.client.java.signup.error.passwordchars.headline=Символы парол�?
+
+nowplus.client.java.signup.error.passwordlength=Пароль должен быть длиной от 6 до 25 �?имволов
+
+nowplus.client.java.signup.error.passwordlength.headline=Длина парол�?
+
+nowplus.client.java.signup.error.usernamechars=В имени пользовател�? нельз�? и�?пользовать �?ледующие �?имволы
+
+nowplus.client.java.signup.error.usernamechars.headline=Символы имени пользовател�?
+
+nowplus.client.java.signup.error.usernamelength=Им�? пользовател�? должно быть длиной от 6 до 50 �?имволов
+
+nowplus.client.java.signup.error.usernamelength.headline=Длина имени пользовател�?
+
+nowplus.client.java.signup.importsn.confirmation.text=Импортировать контакты из Ваших аккаунтов?
+
+nowplus.client.java.signup.importsn.confirmation.title=Импорт. аккаунты
+
+nowplus.client.java.signup.signupfailed.dobinvalid=Указана неправильна�? дата рождени�?. Либо и�?пользован неверный формат даты, либо Вам меньше 14 лет.
+
+nowplus.client.java.signup.signupfailed.internalerror=Произошла ошибка
+
+nowplus.client.java.signup.signupfailed.languageinvalid=К �?ожалению, �?тот �?зык не поддерживает�?�?
+
+nowplus.client.java.signup.signupfailed.mobilemodelinvalid=Эта модель телефона либо неизве�?тна, либо не поддерживает�?�? данной �?лужбой.
+
+nowplus.client.java.signup.signupfailed.msisdninvalid=�?еверный тел. номер
+
+nowplus.client.java.signup.signupfailed.msisdnmissing=�?еобходимо вве�?ти тел. номер
+
+nowplus.client.java.signup.signupfailed.passwordinvalid=Ваш пароль �?лишком короткий/длинный или �?одержит недопу�?тимые �?имволы
+
+nowplus.client.java.signup.signupfailed.passwordnotspecified=�?еобходимо вве�?ти пароль
+
+nowplus.client.java.signup.signupfailed.tcnotaccepted=�?еобходимо прин�?ть У�?лови�? и положени�?
+
+nowplus.client.java.signup.signupfailed.title=�?е удает�?�? зареги�?трировать�?�?
+
+nowplus.client.java.signup.signupfailed.usernamealreadytaken=Это им�? пользовател�? уже и�?пользует�?�?
+
+nowplus.client.java.signup.signupfailed.usernameblacklisted=Это им�? пользовател�? зане�?ено в черный �?пи�?ок
+
+nowplus.client.java.signup.signupfailed.usernameforbidden=Это им�? пользовател�? запрещено. Выберите другое им�? пользовател�?
+
+nowplus.client.java.signup.signupfailed.usernamenotspecified=Им�? пользовател�? не указано
+
+nowplus.client.java.signup.signupfailedwrongnumber.text=Мы не можем найти �?тот телефонный номер. Пожалуй�?та, повторите попытку.
+
+nowplus.client.java.signup.signupfailedwrongnumber.title=�?е удает�?�? проверить
+
+nowplus.client.java.signup.title=Реги�?траци�?
+
+nowplus.client.java.signup.waitforsms.notification.text=Мы выполн�?ем проверку Вашего телефонного номера. Подождите: �?то может зан�?ть какое-то врем�?.
+
+nowplus.client.java.signup.waitforsms.notification.title=Проверка телефонного номера...
+
+nowplus.client.java.signup.welcome.button.login=Войти в мой аккаунт
+
+nowplus.client.java.signup.welcome.button.signup=Реги�?траци�? аккаунта
+
+nowplus.client.java.signup.welcome.headline=Добро пожаловать в People - �?лужбу 360!
+
+nowplus.client.java.sms.error.notification.headline=�?е удает�?�? отправить SMS
+
+nowplus.client.java.sms.error.notification.message=SMS отправить не удало�?ь.
+
+nowplus.client.java.sms.notification.headline=Отправка SMS
+
+nowplus.client.java.smscomposer.title=SMS-�?ообщение
+
+nowplus.client.java.smsform.message.hint=Введите Ваше �?ообщение
+
+nowplus.client.java.statuspage.command.request=Выбр.
+
+nowplus.client.java.statuspage.error.user.notonline=Ваше �?о�?то�?ние не обновл�?ет�?�?, так как Вы не подключены к 360. Ваше �?ообщение �?о�?то�?ни�? будет �?охранено и обновлено по�?ле подключени�?.
+
+nowplus.client.java.statuspage.noresult=Со�?то�?ние не указано
+
+nowplus.client.java.statuspage.request=Запро�?ить �?ледующие {0} дей�?твий
+
+nowplus.client.java.sync.cancel.popup.text=Отмена...
+
+nowplus.client.java.sync.popup.text=Импорт {0} �? телефона...
+
+nowplus.client.java.sync.popup.title=Импорт контактов... 
+
+nowplus.client.java.sync.user.disallowed.create.text=Закройте приложение и обновите параметры �?того приложени�?, чтобы разрешить до�?туп к адре�?ной книге телефона.
+
+nowplus.client.java.sync.user.disallowed.create.title=�?е удает�?�? редактировать адре�?ную книгу телефона
+
+nowplus.client.java.sync.user.disallowed.delete.text=Закройте приложение и обновите параметры �?того приложени�?, чтобы разрешить до�?туп к адре�?ной книге телефона.
+
+nowplus.client.java.sync.user.disallowed.delete.title=�?е удает�?�? редактировать адре�?ную книгу телефона
+
+nowplus.client.java.sync.user.disallowed.open.text=Закройте приложение и обновите параметры �?того приложени�?, чтобы разрешить до�?туп к адре�?ной книге телефона.
+
+nowplus.client.java.sync.user.disallowed.open.title=�?е удает�?�? прочитать адре�?ную книгу телефона
+
+nowplus.client.java.sync.user.disallowed.read.text=Закройте приложение и обновите параметры �?того приложени�?, чтобы разрешить до�?туп к адре�?ной книге телефона.
+
+nowplus.client.java.sync.user.disallowed.read.title=�?е удает�?�? прочитать из адре�?ной книги телефона
+
+nowplus.client.java.sync.user.disallowed.write.text=Закройте приложение и обновите параметры �?того приложени�?, чтобы разрешить до�?туп к адре�?ной книге телефона.
+
+nowplus.client.java.sync.user.disallowed.write.title=�?е удает�?�? �?охранить в адре�?ную книгу телефона
+
+nowplus.client.java.sync.with.360.text=Ваш телефон готов к �?инхронизации �? 360. Это может зан�?ть до 10 минут
+
+nowplus.client.java.sync.with.360.title=Синхр. �? 360
+
+nowplus.client.java.takepicture.command.new=Создать
+
+nowplus.client.java.takepicture.command.takepic=Сделать �?нимок
+
+nowplus.client.java.takepicture.command.usethis=И�?пользовать
+
+nowplus.client.java.takepicture.confirm.usethisimage=И�?п. �?то изображение
+
+titlebar.httpcounter.kb=кБ
+
+nowplus.client.java.updateapplication.confirm.yes=Да
+
+nowplus.client.java.updateapplication.headline=По�?вила�?ь нова�? вер�?и�? People – �?лужбы 360
+
+nowplus.client.java.updateapplication.text=У�?тановить обновление?
+
+nowplus.client.java.webaccounts.add.title=Добавить аккаунт
+
+nowplus.client.java.webaccounts.command.done=Готово
+
+nowplus.client.java.webaccounts.command.edit=Ред.
+
+nowplus.client.java.webaccounts.command.login=Вход
+
+nowplus.client.java.webaccounts.command.logout=Выход
+
+nowplus.client.java.webaccounts.edit.info.suffix=Сведени�? входа
+
+nowplus.client.java.webaccounts.edit.password=Пароль
+
+nowplus.client.java.webaccounts.edit.title=Ред. аккаунт
+
+nowplus.client.java.webaccounts.edit.username=Им�? пользовател�?
+
+nowplus.client.java.webaccounts.edit.username_email=Им�? пользовател�?/�?л. почта
+
+nowplus.client.java.webaccounts.facebook.disclaimer=Продолжив, Вы позвол�?ете Vodafone 360 получить до�?туп к информации Вашего профил�?, информации про Ваших друзей и другому �?одержимому, необходимому дл�? работы �?лужбы. Кроме того, при и�?пользовании Vodafone 360 Вы также принимаете У�?лови�? и�?пользовани�? Facebook (по�?етите http://www.facebook.com/terms.php).
+
+nowplus.client.java.webaccounts.facebook.disclaimer.header=У�?лови�? и положени�? Facebook
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text1=Подключив данное приложение к Facebook, Вы �?можете зане�?ти в адре�?ную книгу People открытые дл�? общего до�?тупа изображени�? и контактные �?ведени�? Ваших друзей.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text2=�?ажав "Вход", Вы �?оглашаете�?ь, что Вам предо�?тавлена неи�?ключительна�? и не подлежаща�? передаче лична�? лицензи�? на и�?пользование открытых дл�? общего до�?тупа фотографий Ваших друзей в People.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text3=Срок дей�?тви�? лицензии заканчивает�?�?, е�?ли Facebook или владелец фотографий требуют их удалить. Данна�? лицензи�? не позвол�?ет Вам и�?пользовать фотографии в коммерче�?ких цел�?х или в  других �?лужбах и приложени�?х.
+
+nowplus.client.java.webaccounts.item.adding=Добавление
+
+nowplus.client.java.webaccounts.item.deleting=Удаление
+
+
+nowplus.client.java.webaccounts.item.updating=Обновление
+
+
+nowplus.client.java.webaccounts.overview.title=Социальные �?ети
+
+nowplus.client.java.webaccounts.popup.deletesn.text=Удалить {0} из Вашего профил�??
+
+nowplus.client.java.webaccounts.popup.deletesn.title=Удал. аккаунт
+
+nowplus.client.java.webaccounts.popup.importnow.text=Импортировать контакты из Ваших аккаунтов?
+
+nowplus.client.java.webaccounts.popup.importnow.title=Импорт. аккаунты
+
+nowplus.client.java.webaccounts.popup.loggingout.text=Подождите, пока выполн�?ет�?�? выход из Вашего аккаунта
+
+nowplus.client.java.webaccounts.popup.loggingout.title=Выход
+
+nowplus.client.java.webaccounts.popup.loginfailed.text=Вам не удало�?ь войти в аккаунт
+
+nowplus.client.java.webaccounts.popup.loginfailed.title=�?е удает�?�? войти
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.text=Вы вошли в аккаунт
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.title=Выход выполнен
+
+nowplus.client.java.webaccounts.popup.logoutfailed.text=Ошибка при попытке выхода. Повторите попытку.
+
+nowplus.client.java.webaccounts.popup.logoutfailed.title=�?е удает�?�? выйти
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.text=Вы вышли из аккаунта
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.title=Выход выполнен
+
+nowplus.client.java.webaccounts.popup.removefailed.text=Ошибка при попытке удалить аккаунт. Повторите попытку.
+
+nowplus.client.java.webaccounts.popup.removefailed.title=�?е удает�?�? удалить
+
+nowplus.client.java.webaccounts.popup.removesucceeded.text=�?ккаунт у�?пешно удален.
+
+nowplus.client.java.webaccounts.popup.removesucceeded.title=У�?пешно удалено
+
+nowplus.client.java.webaccounts.popup.saving.text=Сбор информации из аккаунта
+
+nowplus.client.java.webaccounts.popup.saving.title=Вход
+
+nowplus.client.java.webaccounts.popup.savingfailed.text=�?е удало�?ь добавить аккаунт
+
+nowplus.client.java.webaccounts.popup.savingfailed.title=�?е удает�?�? добавить аккаунт
+
+nowplus.client.java.webaccounts.popup.savingsuccess.text=�?ккаунт добавлен
+
+nowplus.client.java.webaccounts.popup.savingsuccess.title=Добавлен аккаунт
+
+nowplus.client.java.webaccounts.progress.deletesn.title=Очи�?тка...
+
+nowplus.client.java.webaccounts.title=�?ккаунты
+
+nowplus.client.java.webaccounts.windowslive.disclaimer.text=Добавив в 360 Ваш аккаунт Windows Live, Вы будете автоматиче�?ки входить в Windows Live при каждом запу�?ке �?того приложени�?.
+

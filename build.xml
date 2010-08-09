@@ -1,0 +1,2290 @@
+<!--
+  CDDL HEADER START
+  
+  The contents of this file are subject to the terms of the Common Development
+  and Distribution License (the "License").
+  You may not use this file except in compliance with the License.
+  
+  You can obtain a copy of the license at
+  src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+  http://github.com/360/360-Engine-for-Android
+  See the License for the specific language governing permissions and limitations under the License.
+  
+  When distributing Covered Code, include this CDDL HEADER in each file and
+   include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+  If applicable, add the following below this CDDL HEADER, with the fields
+  enclosed by brackets "[]" replaced with your own identifying information:
+  Portions Copyright [yyyy] [name of copyright owner]
+  
+  CDDL HEADER END
+  
+  Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+  Use is subject to license terms.
+-->
+<project 
+	name="NOW+ Java Client Trunk" 
+	default="build-for-test">
+
+	<!-- 
+	******************************************************************************************************************************************* 
+	Configurations 
+	*******************************************************************************************************************************************-->
+
+
+	<!-- Distribution directory                                   -->
+	<property name="build.distDir" value="dist" />
+
+	<!-- import user specific properties -                  
+	please add and maintain local properties here
+	-->
+	<property file="properties/${user.name}.properties" />
+
+	<echo>"user.name is: ${user.name}"</echo>
+
+	<!-- import global properties                                 -->
+	<property file="${polish.home}/global.properties" />
+
+	<!-- Using Antelope tasks -->
+	<property name="antelope.home" location="C:\apps\antelope"  />
+	<taskdef resource="ise/antelope/tasks/antlib.xml" uri="http://antelope.tigris.org"
+             classpath="${antelope.home}/AntelopeTasks_3.5.1.jar" />
+
+	<!-- Using Ant-contrib tasks -->
+	<property name="antcontrib.home" location="C:\apps\ant-contrib"  />
+	<taskdef resource="net/sf/antcontrib/antlib.xml" 
+		 classpath="${antcontrib.home}/ant-contrib-1.0b3.jar" />
+
+	<!-- unzip *.cod file for blackberry -->
+	<property name="unzip.dest.dir" location="${basedir}/dist/blackberry"  />
+	<property name="zip.dest.dir" location="${basedir}/dist/blackberry/zip2pc"  />
+
+	<!--property 
+		name="blackberry.home" 
+		location="C:/Programmer/Research In Motion/BlackBerry JDE 4.1.0" 
+	/-->
+
+	<taskdef name="create-tables" classname="com.zyb.atc.AlphabetTablesCreator"
+        classpath="${basedir}/lib/atc.jar" />
+
+	<!-- Default number of optimisation passes                    -->
+	<property name="optimizationpasses" value="3" />
+
+	<!-- Definition of the J2ME Polish task                      -->
+	<taskdef name="j2mepolish" 
+		classname="de.enough.polish.ant.PolishTask" 
+		classpath="${polish.home}/bin/classes:${polish.home}/lib/enough-j2mepolish-build.jar:${polish.home}/lib/jdom.jar:"
+	/>
+
+	<!-- build targets, each target can be called via "ant [name]", 
+		 e.g. "ant clean", "ant test j2mepolish" or just "ant" for calling the default-target -->
+
+	<target name="testVersion" 
+		description="Call this target first to include logging and test commands">
+		<property name="testversion" value="true" />
+	</target>
+
+
+
+	<!-- 
+	******************************************************************************************************************************************* 
+	Translation tools 
+	
+	NB: Don't forget to add  -D"file.encoding=UTF-8" as argument to your Java RE, else some characters will look odd
+	*******************************************************************************************************************************************-->
+
+	<target name="translations-help" description="Get help about this tool">
+		<java jar="${basedir}/TranslationTool.jar" fork="true" failonerror="true">
+			<arg line="-help"/>
+		</java>
+	</target>
+
+	<target name="translations-extract-and-display-cultures" description="Display all possible cultures">
+		<java jar="${basedir}/TranslationTool.jar" fork="true" failonerror="true">
+			<arg line="-displaycultures"/>
+		</java>
+	</target>
+
+
+
+	<target name="translations-show-missing-translations" description="Show Missing translations (if any)">
+		<antcall target="translations-missing">
+			<param name="culture" value="en-GB"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the English texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="de-DE"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the German texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="pt-PT"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the PT texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="nl-NL"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the NL texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="da-DK"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the DK texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="es-ES"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the ES texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="cs-CZ"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the CZ texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="it-IT"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the IT texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="fr-FR"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the FR texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="tr-TR"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the TR texts</echo>
+		<antcall target="translations-missing">
+			<param name="culture" value="el-GR"/>
+		</antcall>
+		<antcall target="translations-missing">
+			<param name="culture" value="ru-RU"/>
+		</antcall>
+		<echo>Done checking for Missing Translations in the GR texts</echo>
+		<!--antcall target="translations-extract">
+		    <param name="filename" value="messages.txt"/>
+		    <param name="folder" value="${basedir}\\resources\\af\\"/>
+		    <param name="culture" value="af-ZA"/>
+		  </antcall-->
+	</target>
+
+	<target name="translations-extract-all" description="Extract all translations">
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\en\\"/>
+			<param name="culture" value="en-GB"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\de\\"/>
+			<param name="culture" value="de-DE"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\pt\\"/>
+			<param name="culture" value="pt-PT"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\nl\\"/>
+			<param name="culture" value="nl-NL"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\da\\"/>
+			<param name="culture" value="da-DK"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\es\\"/>
+			<param name="culture" value="es-ES"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\cs\\"/>
+			<param name="culture" value="cs-CZ"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\it\\"/>
+			<param name="culture" value="it-IT"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\fr\\"/>
+			<param name="culture" value="fr-FR"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\tr\\"/>
+			<param name="culture" value="tr-TR"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\el\\"/>
+			<param name="culture" value="el-GR"/>
+		</antcall>
+		<antcall target="translations-extract">
+			<param name="filename" value="messages.txt"/>
+			<param name="folder" value="${basedir}\\resources\\ru\\"/>
+			<param name="culture" value="ru-RU"/>
+		</antcall>
+		<!--antcall target="translations-extract">
+		    <param name="filename" value="messages.txt"/>
+		    <param name="folder" value="${basedir}\\resources\\af\\"/>
+		    <param name="culture" value="af-ZA"/>
+		  </antcall-->
+	</target>
+	<target name="translations-missing">
+		<mkdir dir="${folder}"/>
+		<echo>before</echo>
+		<java jar="${basedir}/TranslationTool.jar" fork="true" failonerror="true" >
+			<sysproperty key="file.encoding" value="UTF-8"/>
+
+			<arg line="-connectionstring jdbc:jtds:sqlserver://172.19.2.3:1433/ZYB_TRANSLATION_NOWPLUS;characterEncoding=UTF-8;characterSetResults=UTF-8" />
+			<arg line="-user sa"/>
+			<arg line="-pass SuperZYB2006!"/>
+			<arg line="-textkeyprefix nowplus.client.java.%"/>
+			<arg line="-culture ${culture}"/>
+			<arg line="-ofolder ${folder}"/>
+			<arg line="-ofile ${filename}"/>
+			<arg line="-linestyle [key]=[text]"/>
+			<arg line="-defaultculture en-GB"/>
+			<arg line="-showMissingTranslations"/>
+		</java>
+		<echo>Done Checking for Missing Translations</echo>
+	</target>
+
+	<target name="translations-extract" >
+		<mkdir dir="${folder}"/>
+		<echo>before</echo>
+		<java jar="${basedir}/TranslationTool.jar" fork="true" failonerror="true" >
+			<sysproperty key="file.encoding" value="UTF-8"/>
+
+			<arg line="-connectionstring jdbc:jtds:sqlserver://172.19.2.3:1433/ZYB_TRANSLATION_NOWPLUS;characterEncoding=UTF-8;characterSetResults=UTF-8" />
+			<arg line="-user sa"/>
+			<arg line="-pass SuperZYB2006!"/>
+			<arg line="-textkeyprefix nowplus.client.java.%"/>
+			<arg line="-culture ${culture}"/>
+			<arg line="-ofolder ${folder}"/>
+			<arg line="-ofile ${filename}"/>
+			<arg line="-linestyle [key]=[text]"/>
+			<arg line="-defaultculture en-GB"/>
+		</java>
+		<echo>after</echo>
+		<!-- Substituting text keys so they match expected in build environment-->
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.ok" value="polish.command.ok"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.cancel" value="polish.command.cancel"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.select" value="polish.command.select"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.mark" value="polish.command.mark"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.unmark" value="polish.command.unmark"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.options" value="polish.command.options"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.delete" value="polish.command.delete"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.clear" value="polish.command.clear"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.hide" value="polish.command.hide"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.title.input" value="polish.title.input"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.entersymbol" value="polish.command.entersymbol"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.followlink" value="polish.command.followlink"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.submit" value="polish.command.submit"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.command.back" value="polish.command.back"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.rss.command.select" value="polish.rss.command.select"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.rss.command.followlink" value="polish.rss.command.followlink"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.titlebar.httpcounter.kb" value="titlebar.httpcounter.kb"/>
+		<replace file="${folder}${filename}" token="nowplus.client.java.polish.DateFormatEmptyText" value="polish.DateFormatEmptyText"/>
+
+	</target>
+
+	<!-- 
+	******************************************************************************************************************************************* 
+	Build section
+	*******************************************************************************************************************************************-->
+
+	<target name="init" unless="init.done" >
+
+		<!-- Dirty hack. Not sure why it is run several times. Conflicts with ANT documentation of depends attribute -->
+		<property name="init.done" value="true" />
+
+		<!-- update polish settings files by copying it to the polish home dir-->
+		<copy todir="${polish.home}" overwrite="true" >
+			<fileset dir="${basedir}\settings" includes="*.*"/>
+		</copy>
+
+		<!-- Truncate build number to fit accepted j2me values-->
+		<propertyregex property="external-version"
+		              input="${build.number}"
+		              regexp="([0-9|.]*)\."
+		              select="\1"
+		              casesensitive="false" />
+
+		<!-- Mobica -->
+		<propertyregex property="revision-number"
+		              input="${build.number}"
+		              regexp="[0-9|.]*\.([0-9]+)"
+		              select="\1"
+		              casesensitive="false" />
+		<!-- Mobica -->
+
+		<echo message="internal-version: ${build.number}" />
+		<echo message="external-version: ${external-version}"/>
+		<property name="debug" value="false" />
+		<property name="visualverification" value="false" />
+		<property name="test" value="false" />
+		<property name="dir.work" value="build/real" />
+		<property name="deploy-url" value="" />
+		<property name="external-version" value="" />
+		<property name="version" value="${build.number}" />
+		<property name="resource.dir" value="resources" />
+		<property name="MenuBar.OptionsPosition" value="left" />
+		<property name="external.webpages.domain" value="login.preprod.nowplus.com" />
+
+		<!-- static image constants -->
+		<!-- NOTE: extend and used these in ItemConstants class -->
+		<property name="zyb.social.community.icon.width" value="16" />
+		<property name="zyb.social.community.icon.height" value="16" />
+
+		<property name="zyb.contact.avatar.width" value="50" />
+		<property name="zyb.contact.avatar.height" value="50" />
+
+		<property name="zyb.contact.photo.thumb.width" value="56" />
+		<property name="zyb.contact.photo.thumb.height" value="56" />
+
+		<property name="zyb.contact.photo.full.width" value="120" />
+		<property name="zyb.contact.photo.full.height" value="160" />
+
+
+		<echo>${visualverification}</echo>
+		<if>
+			<isset property="unittesting" />
+			<then>
+				<property name="devices" value="Sony-Ericsson/W910-ZYB" />
+			</then>
+			<else>
+				<property name="devices" value="${devices-to-release}" />
+			</else>
+		</if>
+		<if>
+			<!--This property needs to be set in the properties file to build for Nokia 3110-->
+			<isset property="use.360.short.name" />
+			<then>
+				<property name="midlet-name" value="360 People" />
+			</then>
+			<else>
+				<property name="midlet-name" value="Vodafone People" />
+			</else>
+		</if>
+		<create-tables>
+			<fileset dir = "resources/alphabet">
+				<include name = "af" />
+				<include name = "cs" />
+				<include name = "da" />
+				<include name = "de" />
+				<include name = "el" />
+				<include name = "en" />
+				<include name = "es" />
+				<include name = "fr" />
+				<include name = "it" />
+				<include name = "nl" />
+				<include name = "pt" />
+				<include name = "tr" />
+				<include name = "ru" />
+			</fileset>
+		</create-tables>
+
+		<!-- this is a hack to get obfuscation working when using Bouncy Castle -->
+
+
+		<if>
+			<isset property="skip.obfuscation" />
+			<then>
+				<property name="include.binaries" value="lib/BC.zip;lib/cldc_classes.zip" />
+				<property name="use.alternative.java.math.path" value="true" />
+			</then>
+		</if>
+
+		<if>
+			<isset property="unittesting" />
+			<then>
+				<property name="include.binaries" value="lib/BC.zip;lib/cldc_classes.zip" />
+				<property name="use.alternative.java.math.path" value="true" />
+			</then>
+		</if>
+
+		<property name="include.binaries" value="lib/BClight.zip" />
+
+	</target>
+
+	<!-- In this target the J2ME Polish task is used.             -->
+	<!-- It has 3 sections:                                       -->
+	<!--    1. The info-section defines some general information  -->
+	<!--    2. The deviceRequirements-section chooses the devices -->
+	<!--       for which the application is optimized.            -->
+	<!--    3. The build-section controls the actual build        -->
+	<!--       process.                                            -->
+	<target name="j2mepolish" 
+			depends="init, pre-build-processes"
+			description="This is the controller for the J2ME build process." 
+			>
+
+		<tstamp>
+			<format property="TODAY" pattern="MM/dd/yyyy hh:mm aa" locale="en,UK"/>
+		</tstamp>
+
+		<j2mepolish>
+			<!-- general settings, these settings basically form the JAD-attributes. -->
+			<!-- Have a look at the <jad>-section for setting specialised attributes.
+		         You can also define localized attributes in the resources/messages.txt files -->
+			<info
+				name="${midlet-name}"
+				version="${external-version}"
+				description="${external-version} - Vodafone People"
+				vendorName="Vodafone"
+				icon="icon.png"
+				infoUrl="http://www.vodafone.com"
+				jarName="${polish.name}-zyb.jar" 
+				jarUrl="${polish.name}-zyb.jar"
+				copyright="Copyright 2010 Vodafone. All rights reserved."
+			/>
+
+			<!-- selection of supported devices -->
+			<!-- In the test mode the application is build only for the  -->
+			<!-- Generic/midp1 phone, but when the test-property is set to false, -->
+			<!-- the second deviceRequirements will be used instead. -->
+			<deviceRequirements>
+				<requirement name="Identifier" value="${devices}" />
+			</deviceRequirements>
+
+			<!-- build settings -->
+			<!--polishDir="${polish.home}/j2mepolish-src/j2me/src" 
+			 -->
+			<!--polishDir="${polish.j2me.cvs.home}/source/src" 
+			 -->
+			<build
+				symbols="ExampleSymbol, AnotherExample"
+				fullscreen="menu"
+				usePolishGui="true"
+				workDir="${dir.work}"
+				destDir="${build.distDir}"
+			>
+				<libraries>
+					<library file="lib/FlurryAgent.jar" if="polish.blackberry" />
+					<library file="lib/BClight.zip" unless="polish.blackberry || skip.obfuscation || unittesting"/>
+					<library file="lib/BC.zip" if="skip.obfuscation || unittesting" />
+					<library file="lib/cldc_classes.zip" if="skip.obfuscation || unittesting" />
+				</libraries>
+
+				<!-- define where our source files come from -->
+
+				<sources>
+					<source dir="sources/src" />
+					<source dir="sources/visualverificationtest" if="visualverification==true" />
+					<source dir="sources/personal/${personal.folder}" if="include.personal.folder"/>
+				</sources>
+
+
+				<!-- midlets definition -->
+
+				<midlets>
+					<midlet if="include.personal.folder" class="${personal.midlet}" name="Test midlet" />
+					<midlet unless="visualverification==true" class="com.zyb.nowplus.NowPlus" name="${midlet-name}"/>
+					<midlet if="visualverification==true" class="TestMidlet"/>
+				</midlets>
+
+				<!-- project-wide variables - used for preprocessing.  -->
+				<!-- You can set localized variables in the resources/messages.txt files as well.  -->
+				<variables includeAntProperties="true" >
+
+					<variable name="use.alternative.java.math.path" value="true" if="skip.obfuscation || unittesting" />
+
+					<!-- example variables:
+					In your Java-code you can use the following snipet to use this variable:
+					//#= private static final String UPDATE_URL = "${ update-url }";
+					You can change the title of the sample application with the "title"-var.
+					-->
+					<variable name="polish.animationInterval" value="50" />
+					<variable name="polish.MenuBar.useExtendedMenuBar" value="true" />
+					<variable name="polish.MenuBar.suppressHideCommand" value="true" />
+					<variable name="polish.useScrollBar" value="true" />
+					<variable name="polish.ScreenInfo.enable" value="true" />
+					<variable name="polish.Browser.PaintDownloadIndicator" value="false" />
+					<variable name="polish.Display.useUserInputValidation" value="true" />
+
+					<!--Import custom smiley configuration-->
+					<variable file="${resource.dir}/properties/smileys.properties" />
+
+					<variable name="polish.DateField.useDirectInput" value="true"/>
+					<!--changed from "dmy" to "fr" because this format matches DD/MM/YYYY as default format-->
+					<variable name="polish.DateFormat" value="fr"/>
+					<variable name="polish.DateFormatEmptyText" value="DD/MM/YYYY"/>
+					<variable name="DateFormatSeparator" value="/"/>
+
+					<variable name="polish.TextField.useDirectInput" value="true" />
+					<variable name="polish.TextField.showHelpText" value="true" />
+					<variable name="polish.TextField.supportSymbolsEntry" value="true" />
+					<variable name="polish.TextField.includeInputInfo" value="false" />
+					<variable name="polish.TextField.showInputInfo" value="false" />
+					<variable name="polish.TextField.suppressDeleteCommand" value="true" />
+					<variable name="polish.text-layout.parentCenter" value="true" />
+
+					<variable name="polish.CommandItem.showCommand" value="true"  unless="polish.blackberry"/>
+
+					<variable name="using.native.textfield" value="true"  unless="polish.key.ClearKey:defined"/>
+
+					<!-- 
+					Forcing middle softkey to be displayed and used. 
+					-->
+					<variable name="polish.key.MiddleSoftKey" value="-5" />
+					<variable name="buildtime" value="${TODAY}"/>
+
+					<!-- Handling inclusion of the JSR179 module -->
+					<!-- TODO: extend so that only GPS, A-GPS supporting phones have the JSR179 module -->
+					<variable name="zyb.jsr179.module.include" value="true" if="polish.api.locationapi" />
+
+					<!-- Handling inclusion of SMS invite function -->
+					<variable name="zyb.sms.invite.include" value="true" if="polish.api.wmapi" />
+
+					<!-- Handling inclusion of SMS sending function -->
+					<variable name="zyb.sms.send.include" value="true" if="polish.api.wmapi" />
+					<!--variable name="zyb.sms.send.include" value="true" if="polish.vendor.sony-ericsson" /-->
+
+					<!-- Add support for dynamic charset for i.e. greek characters -->
+					<variable name="polish.TextField.useDynamicCharset" value="true" unless="polish.blackberry"/>
+					<variable name="polish.TextField.noNewLine" value="true" if="polish.blackberry"/>
+
+					<!-- support for cycling Form -->
+					<variable name="polish.Form.allowCycling" value="true"/>
+
+					<!-- support for cycling FramedForm -->
+					<variable name="polish.FramedForm.allowCycling" value="true"/>
+
+					<!-- support for cycling Container -->
+					<!-- variable name="polish.Container.allowCycling" value="true"/-->
+					<!-- NOTE: Must be set false. Setting true activates lines 1344-1354 in Container which breaks 
+					'delayed construction' design of BaseFramedForm. Instances of Container that are to cycle needs to
+					be set to do so explicitly as a consequence of this -->
+					<variable name="polish.Container.allowCycling" value="false"/>
+
+					<!-- use BlackBerry native <code>MainScreen</code> -->
+					<variable name="polish.useFullScreen" value="false" if="polish.blackberry"/>
+
+					<!-- Huawei and Samsung used to send sms twice this is a workaround to prevent that -->
+					<variable name="polish.device.sendsmsdelay" value="2000" if="polish.vendor == Samsung || polish.vendor == Huawei"/>
+
+					<!-- NOTE: Temporary hack, to be handled in 'pre-preprocess-processes' once Enough fix useAntProperties option -->
+					<variable name="polish.blackberry.isTouchBuild" value="false" unless="polish.blackberry.isTouchBuild == true"/>
+
+					<!-- Activate virtual list provider for all BB touch devices -->
+					<variable name="activate.virtual.listprovider" value="true" if="polish.blackberry.isTouchBuild == true"/>
+
+					<!-- Manually set time in millis to pass before animation (and paint) thread becomes inactive, 3 min by default, now set to 30sec -->
+					<variable name="polish.Animation.MaxIdleTime" value="30000"/>
+
+				</variables>
+
+				<!-- debug settings: only include debug setting when the test-property is true -->
+				<debug if="testversion" showLogOnError="false" verbose="true" level="error">
+					<handler if="${logging.tofile}" name="file" >
+						<parameter name="useUniqueName" value="${logging.uniquename}" />
+						<parameter name="flushEachEntry" value="false" />
+					</handler>
+
+					<handler if="${logging.todisplay}" name="display" />
+
+					<!--
+					<handler name="mobicafileloghandler">
+ 						<parameter name="preferredRoot" value="C:" />
+ 						<parameter name="customPath" value="C:/predefgallery/predefphotos/" />
+      						<parameter name="useUniqueName" value="false" />
+      						<parameter name="fileName" value="applog.txt" />
+      						<parameter name="flushEachEntry" value="false" />
+	    				</handler>
+					-->
+
+					<filter pattern="com.zyb.nowplus.*" level="${com.zyb.nowplus.*}" />
+					<filter pattern="com.zyb.nowplus.presentation.*" level="${logging.presentation}" />
+					<filter pattern="com.zyb.nowplus.business.*" level="${logging.business}" />
+					<filter pattern="com.zyb.nowplus.data.protocol.*" level="${logging.protocol}" />
+					<filter pattern="${logging.custom.1.pattern}" level="${logging.custom.1.level}" />
+					<filter pattern="${logging.custom.2.pattern}" level="${logging.custom.2.level}" />
+					<filter pattern="${logging.custom.3.pattern}" level="${logging.custom.3.level}" />
+					<filter pattern="${logging.custom.4.pattern}" level="${logging.custom.4.level}" />
+					<filter pattern="${logging.custom.5.pattern}" level="${logging.custom.5.level}" />
+					<filter pattern="${logging.custom.6.pattern}" level="${logging.custom.6.level}" />
+					<filter pattern="${logging.custom.7.pattern}" level="${logging.custom.7.level}" />
+					<filter pattern="${logging.custom.8.pattern}" level="${logging.custom.8.level}" />
+					<filter pattern="${logging.custom.9.pattern}" level="${logging.custom.9.level}" />
+				</debug>
+
+				<!-- Here you can set the dir attribute to "resources2" for an alternative design. -->
+				<resources
+					dir="${resource.dir}"
+					defaultexcludes="yes"
+					excludes="readme.txt,Thumbs.db">
+					<localization dynamic="true" defaultLocale="en">
+						<locale name="en" encoding="UTF8" />
+						<locale name="de" encoding="UTF8" />
+						<locale name="nl" encoding="UTF8" />
+						<locale name="da" encoding="UTF8" />
+						<locale name="es" encoding="UTF8" />
+						<locale name="pt" encoding="UTF8" />
+						<locale name="cs" encoding="UTF8" />
+						<locale name="it" encoding="UTF8" />
+						<locale name="fr" encoding="UTF8" />
+						<locale name="tr" encoding="UTF8" />
+						<locale name="el" encoding="UTF8" />
+						<locale name="ru" encoding="UTF8" />
+						<!--locale name="af" encoding="UTF8" /-->
+					</localization>
+
+					<root dir="resources/keymappings" />
+
+					<copier name="antcall" target="resource-build-process"/>
+
+				</resources>
+
+				<precompiler name="antcall" target="pre-compile-processes" />
+
+				<postcompiler name="antcall" target="post-compile-processes" />
+
+				<!-- obfuscator settings: do not obfuscate when the test-property is true -->
+
+
+				<obfuscator name="ProGuard" useDefaultPackage="true" unless="skip.obfuscation || unittesting || strip.only.unused.classes" >
+
+					<parameter name="verbose" value="true" />
+
+					<parameter name="printseeds" value="" />
+					<parameter name="overloadaggressively" value="true" />
+					<parameter name="repackageclasses" value="" />
+					<parameter name="allowaccessmodification" value="" />
+					<parameter name="mergeinterfacesaggressively" value="" />
+					<parameter name="optimize" value="true" />
+					<!-- Note: switching '-optimize' off will disable multiple optimization passes -->
+					<parameter name="optimizations" value="class/marking/final,class/merging/vertical,class/merging/horizontal,
+					field/marking/private,method/marking/private,method/marking/final,method/inlining/short,method/inlining/unique,
+					code/merging,code/simplification/variable,code/simplification/arithmetic,code/simplification/field,
+					code/simplification/branch,code/removal/simple,code/removal/exception,code/allocation/variable,
+					code/removal/variable,code/simplification/cast,code/simplification/advanced,code/removal/advanced,
+					method/marking/static,field/removal/writeonly,field/propagation/value,
+					method/propagation/parameter,method/propagation/returnvalue,method/inlining/tailrecursion" />
+					<parameter name="optimizationpasses" value="${optimizationpasses}" />
+					<parameter name="printmapping" value="proguard.map" />
+
+					<!--
+					This optimization argument results in preverification error
+						method/removal/parameter
+
+					Individually these arguments result in preverification error, but not combined
+						code/removal/variable,code/simplification/cast,code/simplification/advanced,code/removal/advanced,
+						method/marking/static,field/removal/writeonly,field/propagation/value,
+						method/propagation/parameter,method/propagation/returnvalue,method/inlining/tailrecursion
+					-->
+				</obfuscator>
+
+				<obfuscator name="ProGuard" useDefaultPackage="true" if="strip.only.unused.classes" >
+					<parameter name="verbose" value="true" />
+
+					<parameter name="dontobfuscate" value="" />
+					<parameter name="optimizationpasses" value="${optimizationpasses}" />
+				</obfuscator>
+
+				<postobfuscator name="antcall" target="post-obfuscation-processes" unless="skip.obfuscation || unittesting" />
+
+				<jad>
+					<attribute name="MIDlet-Heap-Size" value="4000000" targetsmanifest="false" if="polish.group.SE-JavaPlatform8" />
+					<attribute name="MIDlet-Heap-Size" value="3000000" targetsmanifest="false" if="polish.group.SE-JavaPlatform7" />
+
+					<!--no sms send, no lg call-->
+					<attribute name="MIDlet-Permissions" 
+					 		value="javax.microedition.io.Connector.http,javax.microedition.pim.ContactList.read,javax.microedition.pim.ContactList.write,javax.microedition.io.Connector.sms,javax.wireless.messaging.sms.receive" 
+						 	if="polish.device.supports.nativesms != false and not (polish.vendor == LG and polish.name != KE-970-ZYB)" />
+
+					<!--no sms send,  lg call-->
+					<attribute name="MIDlet-Permissions" 
+						value="javax.microedition.io.Connector.http,javax.microedition.pim.ContactList.read,javax.microedition.pim.ContactList.write,javax.microedition.io.Connector.sms,javax.wireless.messaging.sms.receive,javax.microedition.midlet.MIDlet.phoneCall" 
+						if="polish.device.supports.nativesms != false and (polish.vendor == LG and polish.name != KE-970-ZYB)" />
+
+					<!--sms send, no lg call-->
+					<attribute name="MIDlet-Permissions" 
+						value="javax.microedition.io.Connector.http,javax.microedition.pim.ContactList.read,javax.microedition.pim.ContactList.write,javax.microedition.io.Connector.sms,javax.wireless.messaging.sms.receive,javax.wireless.messaging.sms.send" 
+						if="polish.device.supports.nativesms == false and not (polish.vendor == LG and polish.name != KE-970-ZYB)" />
+
+					<!--sms send, lg call-->
+					<attribute name="MIDlet-Permissions" 
+						value="javax.microedition.io.Connector.http,javax.microedition.pim.ContactList.read,javax.microedition.pim.ContactList.write,javax.microedition.io.Connector.sms,javax.wireless.messaging.sms.receive,javax.wireless.messaging.sms.send,javax.microedition.midlet.MIDlet.phoneCall" 
+						if="polish.device.supports.nativesms == false and (polish.vendor == LG and polish.name != KE-970-ZYB)" />
+				</jad>
+
+				<!--this is an example for signing MIDlets with J2ME Polish. -->
+				<!--java jar="${wtk.home}/bin/JadTool.jar" 
+				    fork="true" 
+				    failonerror="true" 
+				    if="polish.midp2" 
+					unless="test"
+					message="Adding signature for device ${polish.identifier}"
+					>
+					<arg line="-addjarsig"/>
+					<arg line="-keypass password"/>
+					<arg line="-alias zyb_aps"/>
+					<arg line="-keystore ndskeys.ks"/>
+					<arg line="-inputjad ${build.distDir}/${polish.jadName}"/>
+					<arg line="-outputjad ${build.distDir}/${polish.jadName}"/>
+					<arg line="-jarfile ${build.distDir}/${polish.jarName}"/>
+				</java>	
+				<java jar="${wtk.home}/bin/JadTool.jar" 
+					fork="true" 
+					failonerror="true" 
+					if="polish.midp2" 
+					unless="test"
+					message="Adding certificate for device ${polish.identifier}"
+					>
+					<arg line="-addcert"/>
+					<arg line="-alias zyb_aps"/>
+					<arg line="-keystore ndskeys.ks"/>
+					<arg line="-inputjad ${build.distDir}/${polish.jadName}"/>
+					<arg line="-inputjad ${build.distDir}/${polish.jadName}"/>
+					<arg line="-outputjad ${build.distDir}/${polish.jadName}"/>
+				</java-->
+
+				<!-- Pack JAR file using Kzip to reduce file size -->
+				<!--packager name="kzip" 
+					arguments="-add;;-rec;;-ns;;-zl121"/-->
+
+			</build>
+
+			<!-- execution of emulator(s) -->
+			<emulator
+				wait="true"
+				securityDomain="trusted"
+				enableProfiler="true"
+				enableMemoryMonitor="true"
+				enableNetworkMonitor="true"
+				if="debug"
+				>
+				<!-- this is an example for connecting to a debugger - use the ${polish.debug.port} Ant property
+				     for getting to know the port of the debugger. In this example the 
+				     "connect-debugger" target is also required.
+				-->
+				<!--
+				<debugger name="antcall" target="connect-debugger" port="6001" />
+				-->
+			</emulator>
+
+			<emulator
+				wait="true"
+				trace="none"
+				securityDomain="trusted"
+				enableProfiler="false"
+				enableMemoryMonitor="false"
+				enableNetworkMonitor="false"
+				if="test and not debug"
+				>
+			</emulator>
+
+
+		</j2mepolish>
+	</target>
+
+	<target name="clean" 
+	  		description="allows a clean build. You should call [ant clean] whenever you made changes to devices.xml, vendors.xml or groups.xml">
+		<delete dir="build" failonerror="false"/>
+		<delete dir="${build.distDir}" failonerror="false"/>
+		<delete dir="test/bin" failonerror="false" />
+		<!-- remove unnessesary windows specific files -->
+		<delete failonerror="false">
+			<fileset dir="${basedir}\resources" includes="Thumbs.db"/>
+			<fileset dir="${basedir}\resources\opaque" includes="Thumbs.db"/>
+			<fileset dir="${basedir}\resources\transparent" includes="Thumbs.db"/>
+		</delete>
+	</target>
+
+	<target name="build-for-test" description="builds a test version (includes logging and test commands)" depends="clean, testVersion, init, j2mepolish, post-build-processes" />
+	<target name="build-release" description="builds a version for beta/live" depends="clean, init, j2mepolish, post-build-processes" />
+	<target name="build-release-post-compare" description="builds a version for beta/live and runs comparison of output JAR files, requires ${activate.post.build.jarfile.comparison} set to true" depends="clean, init, j2mepolish, post-build-processes, post-obfuscation-file-compare" />
+	<target name="build-for-translation-qa" description="builds a version for translation qa" depends="clean, init, translations-extract-all, j2mepolish" />
+
+	<path id = "j2me.api">
+		<pathelement location = "${wtk.home}/lib/cldcapi11.jar" />
+		<pathelement location = "${wtk.home}/lib/midpapi20.jar" />
+		<pathelement location = "${wtk.home}/lib/jsr75.jar" />
+		<pathelement location = "${wtk.home}/lib/wma20.jar" />
+		<pathelement location = "${polish.home}/lib/enough-j2mepolish-client.jar" />
+	</path>
+
+	<target name = "make-jdoc" description = "Creates javadoc.">
+		<javadoc destdir = "doc" use = "true" doctitle = "Now+ Java Client API"
+                 bootclasspathref = "j2me.api" >
+			<packageset dir = "sources/src" />
+			<link href = "file://${wtk.home}/docs/api/midp" offline = "true"
+                packagelistLoc = "${wtk.home}/docs/api/midp" />
+			<link href = "file://${polish.home}/doc/javadoc/j2me" offline = "true"
+                packagelistLoc = "${polish.home}/doc/javadoc/j2me" />
+		</javadoc>
+	</target>
+
+	<target name="pre-build-processes" description="Handles custom tasks before build precessing.">
+
+		<echo message="pre-build-processes"/>
+
+		<!-- echoproperties/-->
+
+		<!-- Scale graphics resources according to supported screen resolutions -->
+		<antcall target="resource-scaling" />
+
+		<!-- copy css to scrres specific dirs -->
+		<ant antfile="antfiles/image-resource-processing.xml" target="resource-css-deploy-process"/>
+
+	</target>
+
+	<target name="check-true-colour">
+		<condition property="doesNeedTrueColour">
+			<or>
+				<equals arg1="${polish.name}" arg2="N70-ZYB"/>
+				<equals arg1="${polish.name}" arg2="N73-ZYB"/>
+				<equals arg1="${polish.name}" arg2="N80-ZYB"/>
+				<equals arg1="${polish.name}" arg2="E71-ZYB"/>
+				<equals arg1="${polish.name}" arg2="E65-ZYB"/>
+				<equals arg1="${polish.name}" arg2="SGH-i560-ZYB"/>
+			</or>
+		</condition>
+	</target>
+
+	<target name="resource-build-process" description="Handles custom routines during 'resource' processing">
+
+		<echo message="resource-build-process"/>
+
+		<!--echoproperties/-->
+
+		<copy todir="${polish.resources.target}" overwrite="true" >
+			<fileset dir="${basedir}\resources\keymappings" includes = "keymappings*" />
+			<fileset dir="${basedir}\resources\alphabet" includes = "a-t" />
+		</copy>
+
+		<antcall target="resource-copy-images-true-colour" />
+		<antcall target="resource-copy-images" />
+
+		<!-- Generate MIDlet icon according to device support -->
+		<antcall target="resource-icon-process"/>
+
+		<!-- Envoke routines to be handled prior to preprocessing -->
+		<antcall target="pre-preprocess-processes"/>
+
+	</target>
+
+	<target name="resource-copy-images-true-colour" depends="check-true-colour" if="doesNeedTrueColour">
+
+		<echo>Copy true-colour - image</echo>
+		<echo message="${basedir}\resources\ScreenSize.${polish.screenwidth}x${polish.screenheight}_true_colour"/>
+		<copy todir="${polish.resources.target}" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.${polish.screenwidth}x${polish.screenheight}_true_colour" includes="*.png"/>
+		</copy>
+
+	</target>
+
+	<target name="resource-copy-images" depends="check-true-colour" unless="doesNeedTrueColour">
+
+		<echo>Copy - image</echo>
+
+		<copy todir="${polish.resources.target}" overwrite="true" >
+			<fileset dir="${basedir}\resources\ScreenSize.${polish.screenwidth}x${polish.screenheight}" includes="*.png"/>
+		</copy>
+
+	</target>
+
+	<target name="resource-icon-process" description="Handles scaling and coloring of icon image per build">
+
+		<echo message="resource-icon-process"/>
+
+		<!--echoproperties/-->
+
+		<!-- scale, optimize and deploy -->
+		<foreach list="${polish.iconsize}" target="resource-icon-scale" param="polish.resources.icon.size" delimiter=","/>
+
+	</target>
+
+	<target name="resource-icon-scale"
+	  		description="Scales icon image for a given phone.
+			NOTE: using polish properties in anttasks requires using these in lowercase">
+
+		<echo message="resource-icon-scale"/>
+
+		<if>
+			<isset property="polish.iconwidth" />
+			<then>
+				<!-- do nothing -->
+			</then>
+			<else>
+				<property name="polish.iconwidth" value="32"/>
+			</else>
+		</if>
+
+		<!-- scale, optimize and deploy -->
+		<ant antfile="antfiles/image-resource-processing.xml" target="icon-scale">
+			<property name="polish.resources.source.dir" value="${basedir}\resources\icon"/>
+			<property name="polish.resources.target.dir" value="${polish.resources.target}"/>
+			<property name="polish.resources.source.format.extension" value=".svg"/>
+			<property name="polish.resources.target.format.extension" value=".png"/>
+			<property name="polish.resources.icon.size.source" value="64"/>
+			<property name="polish.resources.icon.size.target" value="${polish.iconwidth}"/>
+		</ant>
+
+	</target>
+
+	<target name="post-obfuscation-processes">
+
+		<echo message="post-obfuscation-processes"/>
+
+		<antcall target="remove-unreferenced-resources"/>
+
+		<antcall target="post-obfuscation-file-compare-prepare"/>
+
+		<!-- images to solid archive-->
+		<!--
+		<copy todir="${polish.base.dir}\obfuscated\\img_tmp" overwrite="true" >
+			<fileset dir="${polish.base.dir}\obfuscated\" includes = "*.png" />
+		</copy>	
+		<java jar="${basedir}\antlib\solidarchive_generator_1.0.jar" 
+		      	fork="true" 
+		      	failonerror="true" 
+			>
+			<arg line="${polish.base.dir}\obfuscated\img_tmp\" />
+			<arg line="${polish.base.dir}\obfuscated\img.bin" />
+		</java>
+		<delete includeEmptyDirs="true" failonerror="false">
+			<fileset dir="${polish.base.dir}\obfuscated\" includes = "*.png" />
+		</delete>
+		<delete dir="${polish.base.dir}\obfuscated\img_tmp\" failonerror="false"/>
+		-->
+
+	</target>
+
+	<target name="remove-unreferenced-resources" description="">
+
+		<echo message="remove-unreferenced-resources ${polish.base.dir}\obfuscated\"/>
+
+		<java jar="${basedir}\RemoveUnusedResources.jar" 
+			fork="true" 
+			failonerror="true" 
+			>
+			<arg line="-rootfolder ${polish.base.dir}\obfuscated\" />
+			<!--arg line="-alternativeresourcefolder ${polish.base.dir}\resources\" /-->
+			<arg line="-filetypes png" />
+			<arg line="-ignorefiles icon.png" />
+		</java>
+	</target>
+
+	<target name="post-obfuscation-file-compare" 
+		description="Compares JAR file of argument [-rootfolder] folder and groups identical files in folders" 
+		if="activate.post.build.jarfile.comparison">
+
+		<echo>NOTE: Obfuscation MUST be turned on for this task to function properly</echo>
+		<echo>NOTE: Input Jar files MUST be packed using ZIP algorithm</echo>
+		<echo>NOTE: Input Jar files containing MANIFEST will break routine</echo>
+		<echo>See task 'post-obfuscation-file-compare-prepare' to see how Jars should be created</echo>
+
+		<java jar="${basedir}\antlib\post_obfuscation_file_compare_1.0.jar" 
+			fork="true" 
+			failonerror="true" 
+			>
+			<arg line="-rootfolder ${basedir}" />
+			<arg line="-destfolder ${basedir}\dist" />
+			<arg line="-comparefolder ${basedir}\jarcompare" />
+		</java>
+
+		<delete dir="${basedir}\\jarcompare" />
+
+	</target>
+
+	<target name="post-obfuscation-file-compare-prepare" 
+		description="Prepares JAR files for comparison" 
+		if="activate.post.build.jarfile.comparison"
+		depends="check-true-colour">
+
+		<echo>Copy and rename Jar</echo>
+
+		<!-- Copy and rename JAR with obfuscated class files -->
+		<mkdir dir="${basedir}\\jarcompare" />
+		<copy todir="${basedir}\\jarcompare" overwrite="true" >
+			<fileset dir="${basedir}\\build\\real">
+				<filename name="dest.jar"/>
+			</fileset>
+		</copy>
+		<rename dest="${basedir}\\jarcompare\\${polish.name}_dest.jar" src="${basedir}\\jarcompare\\dest.jar"/>
+
+		<echo>Unpack Jar</echo>
+
+		<!-- Unpack JAR -->
+		<mkdir dir="${basedir}\\jarcompare\\dest_temp" />
+		<unjar src="${basedir}\\jarcompare\\${polish.name}_dest.jar" dest="${basedir}\\jarcompare\\dest_temp" />
+
+		<echo>Copy Resources</echo>
+
+		<!-- Copy resources to temp dir -->
+
+		<!-- keymaps & alphabet -->
+		<copy todir="${polish.resources.target}" overwrite="true" >
+			<fileset dir="${basedir}\resources\keymappings" includes = "keymappings*" />
+			<fileset dir="${basedir}\resources\alphabet" includes = "a-t" />
+		</copy>
+
+		<!-- Images -->
+		<if>
+			<isset property="doesNeedTrueColour" />
+			<then>
+				<copy todir="${basedir}\\jarcompare\\dest_temp" overwrite="true">
+					<fileset dir="${basedir}\resources\ScreenSize.${polish.screenwidth}x${polish.screenheight}_true_colour" includes="*.png"/>
+				</copy>
+			</then>
+			<else>
+				<copy todir="${basedir}\\jarcompare\\dest_temp" overwrite="true" >
+					<fileset dir="${basedir}\resources\ScreenSize.${polish.screenwidth}x${polish.screenheight}" includes="*.png"/>
+				</copy>
+			</else>
+		</if>
+
+
+		<if>
+			<isset property="polish.iconwidth" />
+			<then>
+				<!-- do nothing -->
+			</then>
+			<else>
+				<property name="polish.iconwidth" value="32"/>
+			</else>
+		</if>
+
+		<!-- Icon -->
+		<ant antfile="antfiles/image-resource-processing.xml" target="icon-scale">
+			<property name="polish.resources.source.dir" value="${basedir}\resources\icon"/>
+			<property name="polish.resources.target.dir" value="${basedir}\\jarcompare\\dest_temp"/>
+			<property name="polish.resources.source.format.extension" value=".svg"/>
+			<property name="polish.resources.target.format.extension" value=".png"/>
+			<property name="polish.resources.icon.size.source" value="64"/>
+			<property name="polish.resources.icon.size.target" value="${polish.iconwidth}"/>
+		</ant>
+
+		<echo>Repack Jar</echo>
+
+		<!-- Repack JAR -->
+		<zip basedir="${basedir}\\jarcompare\\dest_temp" destfile="${basedir}\\jarcompare\\${polish.name}_dest.jar" />
+		<delete dir="${basedir}\\jarcompare\\dest_temp" />
+
+	</target>
+
+	<target name="pre-preprocess-processes" description="Handles custom tasks before preprocessing">
+
+		<echo message="pre-preprocess-processes"/>
+
+		<!-- Define if build is Blackberry touch build -->
+		<!-- NOTE: Defining properties here does at present time not allow one to use these for
+			preprocessing during polish builds. The 'useAntProperties' option of the 'variables'
+			section is not working as intended -->
+		<if>
+			<and>
+				<equals arg1="${polish.vendor}" arg2="BlackBerry"/>
+				<or>
+					<!-- Add touch devices when needed -->
+					<equals arg1="${polish.name}" arg2="Storm9500_4.7_vf"/>
+					<equals arg1="${polish.name}" arg2="Storm9520_5.0_vf"/>
+				</or>
+			</and>
+			<then>
+				<property name="polish.blackberry.isTouchBuild" value="true"/>
+			</then>
+			<else>
+				<property name="polish.blackberry.isTouchBuild" value="false"/>
+			</else>
+		</if>
+
+	</target>
+
+	<target name="pre-compile-processes" description="Handles custom tasks before compilation">
+
+		<echo message="pre-compile-processes"/>
+
+		<if>
+			<isset property="teamcity.build.checkoutDir" />
+			<then>
+				<echo>Deleting files not needed for Coverity</echo>
+
+				<delete dir="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\bluetooth\\" failonerror="false"/>
+				<delete dir="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\rmi\\" failonerror="false"/>
+				<delete dir="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\log\\bluetooth\\" failonerror="false"/>
+				<delete dir="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\video\\" failonerror="false"/>
+				<delete file="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\ui\\SnapshotScreen.java" failonerror="false"/>
+
+				<delete dir="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\pim\\" failonerror="false"/>
+				<delete dir="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\ui\\chartviews\\" failonerror="false"/>
+				<delete dir="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\util\\sensor\\" failonerror="false"/>
+
+				<delete file="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\browser\\protocols\\HttpBluetoothProtocolHandler.java" failonerror="false"/>
+				<delete file="${teamcity.build.checkoutDir}\build\real\${cov.device}\en\source\\de\\enough\\polish\\ui\\remotescreen\\BluetoothRemoteScreen.java" failonerror="false"/>
+			</then>
+		</if>
+
+	</target>
+
+	<target name="post-build-processes" description="Do some post build to all output files">
+		<echo message="post-build-processes"/>
+
+		<!-- Mobica -->
+		<if>
+			<equals arg1="${javaverified.naming}" arg2="true" />
+			<then>
+				<replaceregexp match="MIDlet-Jar-URL: (.*)-ZYB-zyb.jar" replace="MIDlet-Jar-URL: people_b_\1_vodafone_v1_0_1_${revision-number}.jar">
+					<fileset dir="${basedir}\dist" includes="*.jad"/>
+				</replaceregexp>
+
+				<move todir="${basedir}\dist" verbose="true" overwrite="true">
+					<fileset dir="${basedir}\dist" includes="*.jar"/>
+					<globmapper from="*-ZYB-zyb.jar" to="people_b_*_vodafone_v1_0_1_${revision-number}.jar" casesensitive="no"/>
+				</move>
+
+				<move todir="${basedir}\dist" verbose="true" overwrite="true">
+					<fileset dir="${basedir}\dist" includes="*.jad"/>
+					<globmapper from="*-ZYB-zyb.jad" to="people_b_*_vodafone_v1_0_1_${revision-number}.jad" casesensitive="no"/>
+				</move>
+			</then>
+		</if>
+		<!-- Mobica -->
+
+		<copy todir="${basedir}\dist" verbose="true" overwrite="true">
+			<fileset dir="${basedir}\dist" includes="*.jad"/>
+			<globmapper from="*.jad" to="*-socket.jad"/>
+		</copy>
+
+		<fileset dir="${basedir}\dist" includes="*-socket.jad" id="socket-fileset" />
+		<modify-socket-fileset  filesetref="socket-fileset" />
+
+		<!-- Rename code files to avoid confusion when unzipping-->
+		<!-- copy todir="${basedir}\dist" verbose="true" overwrite="true">
+			<fileset dir="${basedir}\dist" includes="*.cod"/>
+			<globmapper from="*.cod" to="*-base.cod"/>
+		</copy -->
+
+		<!-- fileset dir="${basedir}\dist" id="bb-fileset">
+			<include name="Pearl8100_4.5_vf-zyb-base.cod"/>
+			<include name="Pearl8110_4.5_vf-zyb-base.cod"/>
+			<include name="Curve8900_4.6_vf-zyb-base.cod"/>
+			<include name="Curve8300_4.5_vf-zyb-base.cod"/>
+			<include name="Curve8520_4.6_vf-zyb-base.cod"/>
+			<include name="Storm9500_4.7_vf-zyb-base.cod"/>
+			<include name="Storm9520_5.0_vf-zyb-base.cod"/>
+			<include name="Bold_vf-zyb-base.cod"/>
+			<include name="Bold9700_4.6_vf-zyb-base.cod"/>
+			<include name="Bold9700_5.0_vf-zyb-base.cod"/>
+			<include name="Pearl9100_4.6_vf-zyb-base.cod"/>
+			<include name="Pearl9100_5.0_vf-zyb-base.cod"/>
+		</fileset -->
+
+		<fileset dir="${basedir}\dist" id="bb-fileset">
+			<include name="Pearl8100_4.5_vf-zyb.cod"/>
+			<include name="Pearl8110_4.5_vf-zyb.cod"/>
+			<include name="Curve8900_4.6_vf-zyb.cod"/>
+			<include name="Curve8300_4.5_vf-zyb.cod"/>
+			<include name="Curve8520_4.6_vf-zyb.cod"/>
+			<include name="Storm9500_4.7_vf-zyb.cod"/>
+			<include name="Storm9520_5.0_vf-zyb.cod"/>
+			<include name="Bold_vf-zyb.cod"/>
+			<include name="Bold9700_4.6_vf-zyb.cod"/>
+			<include name="Bold9700_5.0_vf-zyb.cod"/>
+			<include name="Pearl9100_4.6_vf-zyb.cod"/>
+			<include name="Pearl9100_5.0_vf-zyb.cod"/>
+		</fileset>
+
+		<!-- zip .cod and .jad files for PC installation -->
+		<mkdir dir="${zip.dest.dir}" />
+
+		<zip destfile="${zip.dest.dir}/Curve8900_4.6_vf-zyb.zip">
+			<fileset dir="${basedir}\dist">
+				<include name="Curve8900_4.6_vf-zyb.cod" />
+				<include name="Curve8900_4.6_vf-zyb.jad" />
+				<include name="Curve8900_4.6_vf-zyb.alx" />
+				<include name="Curve8900_4.6_vf-zyb-socket.jad" />
+			</fileset>
+		</zip>
+
+
+		<zip destfile="${zip.dest.dir}/Storm9500_4.7_vf-zyb.zip">
+			<fileset dir="${basedir}\dist">
+				<include name="Storm9500_4.7_vf-zyb.cod" />
+				<include name="Storm9500_4.7_vf-zyb.jad" />
+				<include name="Storm9500_4.7_vf-zyb.alx" />
+				<include name="Storm9500_4.7_vf-zyb-socket.jad" />
+			</fileset>
+		</zip>
+
+
+		<zip destfile="${zip.dest.dir}/Storm9520_5.0_vf-zyb.zip">
+			<fileset dir="${basedir}\dist">
+				<include name="Storm9520_5.0_vf-zyb.cod" />
+				<include name="Storm9520_5.0_vf-zyb.jad" />
+				<include name="Storm9520_5.0_vf-zyb.alx" />
+				<include name="Storm9520_5.0_vf-zyb-socket.jad" />
+			</fileset>
+		</zip>
+
+
+		<zip destfile="${zip.dest.dir}/Bold_vf-zyb.zip">
+			<fileset dir="${basedir}\dist">
+				<include name="Bold_vf-zyb.cod" />
+				<include name="Bold_vf-zyb.jad" />
+				<include name="Bold_vf-zyb.alx" />
+				<include name="Bold_vf-zyb-socket.jad" />
+			</fileset>
+		</zip>
+
+
+		<zip destfile="${zip.dest.dir}/Bold9700_5.0_vf-zyb.zip">
+			<fileset dir="${basedir}\dist">
+				<include name="Bold9700_5.0_vf-zyb.cod" />
+				<include name="Bold9700_5.0_vf-zyb.jad" />
+				<include name="Bold9700_5.0_vf-zyb.alx" />
+				<include name="Bold9700_5.0_vf-zyb-socket.jad" />
+			</fileset>
+		</zip>
+
+		<zip destfile="${zip.dest.dir}/Pearl9100_4.6_vf-zyb.zip">
+			<fileset dir="${basedir}\dist">
+				<include name="Pearl9100_4.6_vf-zyb.cod" />
+				<include name="Pearl9100_4.6_vf-zyb.jad" />
+				<include name="Pearl9100_4.6_vf-zyb.alx" />
+				<include name="Pearl9100_4.6_vf-zyb-socket.jad" />
+			</fileset>
+		</zip>
+
+		<zip destfile="${zip.dest.dir}/Pearl9100_5.0_vf-zyb.zip">
+			<fileset dir="${basedir}\dist">
+				<include name="Pearl9100_5.0_vf-zyb.cod" />
+				<include name="Pearl9100_5.0_vf-zyb.jad" />
+				<include name="Pearl9100_5.0_vf-zyb.alx" />
+				<include name="Pearl9100_5.0_vf-zyb-socket.jad" />
+			</fileset>
+		</zip>
+
+
+		<!-- copy *.jad files into unzip destination folder -->
+		<copy todir="${unzip.dest.dir}">
+			<fileset dir="${basedir}\dist">
+				<include name="Pearl8100_4.5_vf-zyb.jad" />
+				<include name="Pearl8100_4.5_vf-zyb.alx" />
+				<include name="Pearl8100_4.5_vf-zyb-socket.jad"/>
+
+				<include name="Pearl8110_4.5_vf-zyb.jad"/>
+				<include name="Pearl8110_4.5_vf-zyb.alx"/>
+				<include name="Pearl8110_4.5_vf-zyb-socket.jad"/>
+
+				<include name="Curve8900_4.6_vf-zyb.jad"/>
+				<include name="Curve8900_4.6_vf-zyb.alx"/>
+				<include name="Curve8900_4.6_vf-zyb-socket.jad"/>
+
+				<include name="Curve8300_4.5_vf-zyb.jad"/>
+				<include name="Curve8300_4.5_vf-zyb.alx"/>
+				<include name="Curve8300_4.5_vf-zyb-socket.jad"/>
+
+				<include name="Curve8520_4.6_vf-zyb.jad"/>
+				<include name="Curve8520_4.6_vf-zyb.alx"/>
+				<include name="Curve8520_4.6_vf-zyb-socket.jad"/>
+
+				<include name="Storm9500_4.7_vf-zyb.jad"/>
+				<include name="Storm9500_4.7_vf-zyb.alx"/>
+				<include name="Storm9500_4.7_vf-zyb-socket.jad"/>
+
+				<include name="Storm9520_5.0_vf-zyb.jad"/>
+				<include name="Storm9520_5.0_vf-zyb.alx"/>
+				<include name="Storm9520_5.0_vf-zyb-socket.jad"/>
+
+				<include name="Bold_vf-zyb.jad"/>
+				<include name="Bold_vf-zyb.alx"/>
+				<include name="Bold_vf-zyb-socket.jad"/>
+
+				<include name="Bold9700_4.6_vf-zyb.jad"/>
+				<include name="Bold9700_4.6_vf-zyb.alx"/>
+				<include name="Bold9700_4.6_vf-zyb-socket.jad"/>
+
+				<include name="Bold9700_5.0_vf-zyb.jad"/>
+				<include name="Bold9700_5.0_vf-zyb.alx"/>
+				<include name="Bold9700_5.0_vf-zyb-socket.jad"/>
+
+				<include name="Pearl9100_4.6_vf-zyb.jad"/>
+				<include name="Pearl9100_4.6_vf-zyb.alx"/>
+				<include name="Pearl9100_4.6_vf-zyb-socket.jad"/>
+
+				<include name="Pearl9100_5.0_vf-zyb.jad"/>
+				<include name="Pearl9100_5.0_vf-zyb.alx"/>
+				<include name="Pearl9100_5.0_vf-zyb-socket.jad"/>
+
+			</fileset>
+		</copy>
+
+		<unzip-fileset  filesetref="bb-fileset" />
+
+	</target>
+
+	<macrodef name="modify-socket-fileset">
+		<attribute name="filesetref" />
+		<sequential>
+			<for param="file">
+				<fileset  refid="@{filesetref}"/>
+				<sequential>
+					<echo file="@{file}" append="true">X-VF-TCPSupport: true</echo>
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
+	<macrodef name="unzip-fileset">
+		<attribute name="filesetref" />
+		<sequential>
+			<for param="file">
+				<fileset  refid="@{filesetref}"/>
+				<sequential>
+					<echo>${basedir}</echo>
+					<unzip src="@{file}" dest="${unzip.dest.dir}"  />
+				</sequential>
+			</for>
+		</sequential>
+	</macrodef>
+
+	<target name="post-compile-processes" description="Handles custom tasks after compilation and resource assemply">
+
+		<echo message="post-compile-processes"/>
+
+		<!--echoproperties/-->
+
+		<if>
+			<equals arg1="${activate.solidarchive.textkeys}" arg2="true" />
+			<then>
+
+				<!-- process localization keys -->
+				<copy todir="${polish.resources.dir}\locale_tmp" overwrite="true" >
+					<fileset dir="${polish.resources.dir}" includes = "*.loc" />
+				</copy>
+				<!-- merge to bin -->
+				<java jar="${basedir}\antlib\solidarchive_generator_1.0.jar" 
+				      	fork="true" 
+				      	failonerror="true" 
+					>
+					<arg line="${polish.resources.dir}\locale_tmp\" />
+					<arg line="${polish.resources.dir}\locale.bin" />
+				</java>
+				<!-- clean up -->
+				<delete includeEmptyDirs="true" failonerror="false" >
+					<fileset dir="${polish.resources.dir}" includes = "*.loc" />
+				</delete>
+				<delete dir="${polish.resources.dir}\locale_tmp\" failonerror="false"/>
+
+			</then>
+		</if>
+
+		<if>
+			<equals arg1="${activate.solidarchive.charset}" arg2="true" />
+			<then>
+
+				<!-- process keymappings keys -->
+				<copy todir="${polish.resources.dir}\keymap_tmp" overwrite="true" >
+					<fileset dir="${polish.resources.dir}" includes = "*.km" />
+				</copy>
+				<!-- merge to bin -->
+				<java jar="${basedir}\antlib\solidarchive_generator_1.0.jar" 
+				      	fork="true" 
+				      	failonerror="true" 
+					>
+					<arg line="${polish.resources.dir}\keymap_tmp\" />
+					<arg line="${polish.resources.dir}\keymap.bin" />
+				</java>
+				<!-- clean up -->
+				<delete includeEmptyDirs="true" failonerror="false">
+					<fileset dir="${polish.resources.dir}" includes = "*.km" />
+				</delete>
+				<delete dir="${polish.resources.dir}\keymap_tmp\" failonerror="false"/>
+
+			</then>
+		</if>
+
+		<!-- process alphabet -->
+		<!--
+		<copy todir="${polish.resources.dir}\alpha_tmp" overwrite="true" >
+			<fileset dir="${polish.resources.dir}" includes = "at-*" />
+		</copy>	
+		<java jar="${basedir}\antlib\solidarchive_generator_1.0.jar" 
+		      	fork="true" 
+		      	failonerror="true" 
+			>
+			<arg line="${polish.resources.dir}\alpha_tmp" />
+			<arg line="${polish.resources.dir}\alpha.bin" />
+		</java>
+		<delete includeEmptyDirs="true" failonerror="false">
+			<fileset dir="${polish.resources.dir}" includes = "at-*" />
+		</delete>
+		<delete dir="${polish.resources.dir}\alpha_tmp" failonerror="false"/>
+		-->
+
+	</target>
+
+	<!-- 3rd Party Tools End -->
+
+	<target name="run-nokia-S40E3FP2-240x320-emulator" depends="init"
+		description="Runs S40 3rd ed QVGA emulator">
+
+		<property name="nokia.sdk.path" location="${nokia.s40.sdk.3.home}\bin"/>
+		<property name="emu-device" value="6131"/>
+		<property name="emu-device-name" value="S40_SDK_3rd_Edition_Feature_Pack_2"/>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-nokia-S40E5FP1-240x320-emulator" depends="init"
+		description="Runs S40 5th ed QVGA emulator">
+
+		<property name="nokia.sdk.path" location="${nokia.s40.sdk.5.home}\bin"/>
+		<property name="emu-device" value="6300-ZYB"/>
+		<property name="emu-device-name" value="S40_5th_Edition_SDK_Feature_Pack_1"/>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-profiling-nokia-S40E5FP1-240x320-emulator" depends="init"
+		description="Runs S40 5th ed QVGA emulator">
+
+		<property name="nokia.sdk.path" location="${nokia.s40.sdk.5.home}\bin"/>
+		<property name="emu-device" value="6500"/>
+		<property name="emu-device-name" value="S40_5th_Edition_SDK_Feature_Pack_1"/>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug 
+    			-Xdevice:${emu-device-name} 
+    			-Xnoagent 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=n"/>
+
+		</exec>
+	</target>
+
+	<target name="run-nokia-S60E3FP2-240x320-emulator" depends="init"
+		description="Runs S60 3rd ed QVGA emulator">
+
+		<property name="nokia.sdk.path" location="${nokia.s60.sdk.3.home}\bin"/>
+		<property name="emu-device" value="N95"/>
+		<property name="emu-device-name" value="S60_3rd_FP2_SDK"/>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP5-128x160-emulator" depends="init"
+		description="Runs JP5 128x160 emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="Z520"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_128x160_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xdomain:maximum
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP5-176x220-emulator" depends="init"
+		description="Runs JP5 176x220 emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="K750i"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_176x220_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xdomain:maximum
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP6-128x160-emulator" depends="init"
+		description="Runs JP6 128x160 emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="Z530"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_128x160_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xdomain:maximum
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP6-176x220-emulator" depends="init"
+		description="Runs JP6 176x220 emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="W550"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_176x220_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xdomain:maximum
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP6-240x320-emulator" depends="init"
+		description="Runs JP6 QVGA emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="W900i"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_240x320_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xdomain:maximum
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP7-128x160-emulator" depends="init"
+		description="Runs JP7 128x160 emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="Z310"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_128x160_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xdomain:maximum
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP7-176x220-emulator" depends="init"
+		description="Runs JP7 176x220 emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="K610-ZYB"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_176x220_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xdomain:maximum
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP7-240x320-emulator" depends="init"
+		description="Runs JP7 QVGA emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="K800-ZYB"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_240x320_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xdomain:maximum
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP8-176x220-emulator" depends="init"
+		description="Runs JP8 176x220 emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="K630-ZYB"/>
+		<property name="emu-device-name" value="SonyEricsson_JP8_176x220_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad 
+    			-Xdebug -Xdevice:${emu-device-name} 
+    			-Xdomain:maximum
+    			-Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-Sonyericsson-JP8-240x320-emulator" depends="init"
+		description="Runs JP8 QVGA emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="W910-ZYB"/>
+		<property name="emu-device-name" value="SonyEricsson_JP8_240x320_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad
+    			-Xdevice:${emu-device-name} 
+    			-Xheapsize:4M
+    			-Xdomain:maximum
+    			-Xdebug -Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<!-- 
+	Nokia:
+	-help      Display this text
+    -version   Display version information about the emulator
+    -classpath The class path for the VM
+    -Xverbose[:allocation | gc | gcverbose | class | classverbose | verifier 
+              | stackmaps | bytecodes | methods | methodsverbose | frames
+              | stackchunks | exceptions | events | threading | monitors 
+              | networking | all
+               Enable verbose output
+    -Xquery    Print SDK option information and immediately exit
+    -Xnew      Forces a new emulator instance to be created, even if
+               an existing emulator instance may be available for reuse.
+    -Xuse:<phone number>       
+               Specifies a particular emulator instance to be reused, if that emulator
+               instance exists and emulator instance reuse has been enabled.               
+    -Xkdpv:<level>
+               Specifies the message tracing level (0 to 9) for the KVM debug proxy.    
+    -Xdebug    Use a remote debugger
+    -Xrunjdwp:[address=<address>,transport=dt_socket,server=<y>,suspend=<y>]
+               Debugging options
+    -Xdevice:<device name>  
+               Name of the device to be emulated
+    -Xdescriptor:<jad file name>  
+               The JAD file to be executed
+    -Xjam[:install=<jad or jar file url>]      
+               Java Application Manager and support
+               for Over The Air provisioning (OTA)
+    -Xheapsize:<size>       
+               (e.g. 65536 or 128k or 1M)
+               Specifies the VM heapsize 
+    -Xhttp_proxy:<address>[:<port>]
+               Defines the address and port number of the http proxy.
+    -Xinbox:<file path>
+                Specifies the path for the message inbox directory.
+    -Xlanguage:<language name>
+               Specifies the language for the SDK to operate in.
+    -Xoutbox:<file path>
+               Specifies the path for the message outbox directory.
+    -Xontop    If specified the SDK GUI window will always be on top of all
+               other windows.
+    -Xsecurity_domain:<domain name>
+               Specifies a security domain for the MIDlet.
+               Domain name can take the one of following values: Trusted, Untrusted, Maximum, Minimum.
+	
+	-->
+
+	<target name="run-WTK-DefaultColorPhone-emulator" depends="init"
+		description="Runs WTK QVGA emulator">
+
+		<property name="emu-path" location="${wtk.home}\bin"/>
+		<property name="emu-device" value="6300-ZYB"/>
+		<property name="emu-device-name" value="DefaultColorPhone"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="C:\Documents and Settings\anders\j2mewtk\2.5.2\appdb\DefaultColorPhone\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="/c ${emu-path}\emulator.exe
+    			-classpath ${polish.home}\import\enough-j2mepolish-client.jar;${polish.home}\import\enough-j2mepolish-client-java5.jar;${polish.home}\import\nokia-ui.jar;${polish.home}\import\pim.jar;${polish.home}\import\midp-2.0.jar;${polish.home}\import\midp-2.0.jar;${polish.home}\import\cldc-1.0.jar;${polish.home}\import\cldc-1.1.jar;${basedir}\dist\${emu-device}-zyb.jar
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad
+    			-Xdevice:${emu-device-name} 
+    			-Xheapsize:2M
+    			-Xdomain:maximum
+    			-Xdebug -Xrunjdwp:transport=dt_socket,address=8001,server=y"/>
+		</exec>
+	</target>
+
+	<target name="run-microemulator" depends="init"
+		description="Runs Microemulator">
+
+		<property name="emu-path" location="${microemulator.home}"/>
+		<property name="emu-device" value="w910-ZYB"/>
+		<property name="emu-device-name" value="SonyEricsson_JP8_240x320_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<java jar="${emu-path}/microemulator.jar" fork="true" failonerror="true">
+			<arg line="-cp"/>
+			<arg line="microemulator.jar;${emu-path}\lib\cldcapi11.jar;${emu-path}\lib\midpapi20.jar;${emu-path}\lib\microemu-jsr-75.jar;${emu-path}\lib\microemu-jsr-120.jar;${emu-path}\lib\microemu-nokiaui.jar org.microemu.app.Main ${basedir}\dist\${emu-device}-zyb.jad"/>
+			<arg line="org.microemu.app.Main"/>
+			<arg line="${basedir}\dist\${emu-device}-zyb.jad"/>
+		</java>
+
+		<!--exec dir="${basedir}" 
+			executable="cmd">
+    		<arg line="/c ${emu-path}\java -cp microemulator.jar;${emu-path}\lib\cldcapi11.jar;${emu-path}\lib\midpapi20.jar;${emu-path}\lib\microemu-jsr-75.jar;${emu-path}\lib\microemu-jsr-120.jar;${emu-path}\lib\microemu-nokiaui.jar org.microemu.app.Main ${basedir}\dist\${emu-device}-zyb.jad"/>
+		</exec-->
+
+	</target>
+
+	<!-- ***************************************************************************************
+	Run without debug
+	-->
+
+	<target name="run-without-debug-Sonyericsson-JP8-240x320-emulator" depends="init"
+		description="Runs JP8 QVGA emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="W910-ZYB"/>
+		<property name="emu-device-name" value="SonyEricsson_JP8_240x320_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<!-- -Xprefs:./properties/emulatorproperties/el.emulator.properties			-->
+
+		<property name="command-line" value="/c ${nokia.sdk.path}\emulator.exe 
+				-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad
+				-Xdomain:maximum
+    			-Xdevice:${emu-device-name} 
+    			" />
+		<echo>${command-line}</echo>
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="${command-line}" />
+		</exec>
+	</target>
+
+	<target name="run-without-debug-Sonyericsson-JP7-176x220-emulator" depends="init"
+		description="Runs JP7 emulator">
+
+		<property name="nokia.sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<property name="emu-device" value="K610-ZYB"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_176x220_Emu"/>
+
+		<if>
+			<equals arg1="${delete-rms-before-run}" arg2="true" />
+			<then>
+				<echo>Deleting RMS</echo>
+				<delete dir="${se.sdk.home}\WTK2\appdb\${emu-device-name}" failonerror="false"/>
+			</then>
+		</if>
+
+		<property name="command-line" value="/c ${nokia.sdk.path}\emulator.exe 
+    			-Xdescriptor:${basedir}\dist\${emu-device}-zyb.jad
+				-Xdomain:maximum
+				
+    			-Xdevice:${emu-device-name} 
+    			" />
+		<echo>${command-line}</echo>
+		<exec dir="${basedir}" 
+			executable="cmd">
+			<arg line="${command-line}" />
+		</exec>
+	</target>
+
+	<target name="run-BlackBerry_Pearl_8110-emulator" depends="init"
+		description="Runs BB 240x260 emulator">
+
+		<property name="bb-sdk-path" location="${blackberry.home}\BlackBerry JDE 4.5.0"/>
+		<property name="mds-path" location="${bb-sdk-path}\MDS"/>
+		<property name="emu-path" location="${bb-sdk-path}\simulator"/>
+
+		<!-- Launch MDS -->
+		<exec dir="${mds-path}"
+			executable="cmd" spawn="true">
+			<arg line="/c run.bat" />
+		</exec>
+
+		<!-- Launch Emulator -->
+		<property name="command-line" value="/c fledge.exe
+				/app=Jvm.dll 
+				/handheld=8110 
+				/session=8110 
+				/app-param=DisableRegistration 
+				/app-param=JvmAlxConfigFile:8110.xml 
+				/data-port=0x4d44 
+				/data-port=0x4d4e 
+				/pin=0x2100000A 
+    			" />
+		<echo>${command-line}</echo>
+		<exec dir="${emu-path}"
+			executable="cmd">
+			<arg line="${command-line}" />
+		</exec>
+	</target>
+
+	<target name="run-BlackBerry_Pearl_8110-emulator-load-app" depends="init"
+		description=" ">
+		<exec dir="${blackberry.home}\BlackBerry JDE 4.5.0"
+			executable="${blackberry.home}\BlackBerry JDE 4.5.0\simulator\fledgecontroller.exe">
+			<arg line="/session=8110 /execute=LoadCod(C:\\workspace\\NowPlusClient_trunk\\dist\\pearl4.5_vf-zyb.cod)" />
+		</exec>
+		<!--exec dir="${blackberry.home}\BlackBerry JDE 4.5.0"
+			executable="${blackberry.home}\BlackBerry JDE 4.5.0\simulator\fledgecontroller.exe">
+    		<arg line="/session=8110 /execute=reset" />
+		</exec-->
+	</target>
+
+	<target name="run-BlackBerry_Pearl_8110-emulator-delete-app" depends="init"
+		description=" ">
+		<exec dir="${blackberry.home}\BlackBerry JDE 4.5.0"
+			executable="${blackberry.home}\BlackBerry JDE 4.5.0\bin\JavaLoader.exe">
+			<arg line="-u erase -f pearl4$2e5_vf$2dzyb" />
+		</exec>
+	</target>
+
+	<target name="run-BlackBerry_Bold_9000-emulator" depends="init"
+		description="Runs BB 240x260 emulator">
+
+		<property name="bb-sdk-path" location="${blackberry.home}\BlackBerry JDE 4.6.0"/>
+		<property name="mds-path" location="${bb-sdk-path}\MDS"/>
+		<property name="emu-path" location="${bb-sdk-path}\simulator"/>
+
+		<!-- Launch MDS -->
+		<exec dir="${mds-path}"
+			executable="cmd" spawn="true">
+			<arg line="/c run.bat" />
+		</exec>
+
+		<!-- Launch Emulator -->
+		<property name="command-line" value="/c fledge.exe
+				/app=Jvm.dll 
+				/handheld=9000 
+				/session=9000 
+				/app-param=DisableRegistration 
+				/app-param=JvmAlxConfigFile:9000.xml 
+				/app-param=JvmDebugFile:systemout.txt
+				/data-port=0x4d44
+				/data-port=0x4d4e 
+				/pin=0x2100000A
+    			" />
+		<echo>${command-line}</echo>
+		<exec dir="${emu-path}"
+			executable="cmd"
+			spawn="true">
+			<arg line="${command-line}" />
+		</exec>
+	</target>
+
+	<target name="run-BlackBerry_Bold_9000-emulator-show-logfile" depends="init"
+		description="Shows BB 240x260 emulator logfile">
+		<loadfile srcfile="C:\apps\Research In Motion\BlackBerry JDE 4.6.0\simulator\systemout.txt" property="src.file.tail">
+			<filterchain>
+				<filterreader classname="org.apache.tools.ant.filters.TailFilter">
+					<param name="lines" value="150"/>
+				</filterreader>
+			</filterchain>
+		</loadfile>
+		<echo>${src.file.tail}</echo>
+	</target>
+
+
+	<target name="run-BlackBerry_Storm_9500-emulator" depends="init"
+		description="Runs BB 240x260 emulator">
+
+		<property name="bb-sdk-path" location="${blackberry.home}\BlackBerry JDE 4.7.0"/>
+		<property name="mds-path" location="${bb-sdk-path}\MDS"/>
+		<property name="emu-path" location="${bb-sdk-path}\simulator"/>
+
+		<!-- Launch MDS -->
+		<exec dir="${mds-path}"
+			executable="cmd" spawn="true">
+			<arg line="/c run.bat" />
+		</exec>
+
+		<!-- Launch Emulator -->
+		<property name="command-line" value="/c fledge.exe
+				/app=Jvm.dll 
+				/handheld=9500
+				/session=9500
+				/app-param=DisableRegistration
+				/app-param=JvmAlxConfigFile:9500.xml
+				/app-param=launch=Vodafone_People
+				/data-port=0x4d44
+				/data-port=0x4d4e
+				/pin=0x2100000A 
+    			" />
+		<echo>${command-line}</echo>
+		<exec dir="${emu-path}"
+			executable="cmd">
+			<arg line="${command-line}" />
+		</exec>
+
+	</target>
+
+	<!-- ***************************************************************************************
+	Visual verification test cases
+	-->
+	<target name="init-visualverification"
+		description="Init for visual verification">
+		<property name="visualverification" value="true"/>
+		<property name="visualverification.folder" value="root1/photos/"/>
+	</target>
+
+	<target name="init-s40">
+		<property name="sdk.path" location="${nokia.s40.sdk.5.home}\bin"/>
+		<property name="emulator.dir" value="${nokia.s40.sdk.5.home}\bin\Storage\6500500\C\predefgallery\predefgraphics"/>
+		<property name="emulator.process.name" value="S40_5th_Edition_SDK_Feature_Pack_1_em.exe"/>
+		<property name="emu-device" value="6500"/>
+		<property name="emu-device-name" value="S40_5th_Edition_SDK_Feature_Pack_1"/>
+		<property name="emulator-command" value="/c ${sdk.path}\emulator.exe
+    		    -Xuse:6500500
+    		    -Xnew
+    		    -Xdescriptor:&quot;${basedir}\${build.distDir}\${emu-device}-zyb.jad&quot;
+    		    -Xsecurity_domain:maximum
+    			-Xdevice:${emu-device-name}"/>
+
+	</target>
+
+	<target name="init-s60">
+		<property name="sdk.path" location="${nokia.s60.sdk.3.home}\bin"/>
+		<property name="emulator.dir" value="\epoc32\winscw\c\Data\Images\Pictures"/>
+		<property name="emulator.process.name" value="S40_5th_Edition_SDK_Feature_Pack_1_em.exe"/>
+		<property name="emu-device" value="N95"/>
+		<property name="emu-device-name" value="S60Emulator"/>
+		<property name="emulator-command" value="/c ${sdk.path}\emulator.exe
+    		    -Xuse:6500500
+    		    -Xnew
+    		    -Xdescriptor:${build.distDir}\${emu-device}-zyb.jad 
+    		    -Xsecurity_domain:maximum
+    			-Xdevice:${emu-device-name}"/>
+	</target>
+
+	<target name="init-SE-w910">
+		<delete dir="${se.sdk.home}\WTK2\appdb\SonyEricsson_JP8_240x320_Emu" failonerror="false"/>
+		<property name="sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<mkdir dir="${se.sdk.home}\WTK2\appdb\SonyEricsson_JP8_240x320_Emu\filesystem\${visualverification.folder}\${i18n}" />
+		<property name="emulator.dir" value="${se.sdk.home}\WTK2\appdb\SonyEricsson_JP8_240x320_Emu\filesystem\${visualverification.folder}\${i18n}"/>
+		<property name="emulator.process.name" value="emulator.exe"/>
+		<property name="emu-device-name" value="SonyEricsson_JP8_240x320_Emu"/>
+		<property name="emulator-command" value="/c ${sdk.path}\emulator.exe
+    		    -Xdescriptor:${basedir}\dist\W910-with-transparency-zyb.jad 
+    		    -Xdomain:maximum
+    		    -Xprefs:./properties/emulatorproperties/${i18n}.emulator.properties				
+    			-Xdevice:${emu-device-name}
+				TestMidlet"/>
+	</target>
+
+	<target name="init-SE-k610">
+		<delete dir="${se.sdk.home}\WTK2\appdb\SonyEricsson_JP7_176x220_Emu" failonerror="false"/>
+		<property name="sdk.path" location="${se.sdk.home}\WTK2\bin"/>
+		<mkdir dir="${se.sdk.home}\WTK2\appdb\SonyEricsson_JP7_176x220_Emu\filesystem\${visualverification.folder}\${i18n}" />
+		<property name="emulator.dir" value="${se.sdk.home}\WTK2\appdb\SonyEricsson_JP7_176x220_Emu\filesystem\${visualverification.folder}\${i18n}"/>
+		<property name="emulator.process.name" value="emulator.exe"/>
+		<property name="emu-device-name" value="SonyEricsson_JP7_176x220_Emu"/>
+		<property name="emulator-command" value="/c ${sdk.path}\emulator.exe
+    		    -Xdescriptor:${basedir}\dist\k610i-zyb.jad 
+    		    -Xdomain:maximum
+    		    -Xprefs:./properties/emulatorproperties/${i18n}.emulator.properties				
+    			-Xdevice:${emu-device-name}
+				TestMidlet"/>
+	</target>
+
+
+	<target name="visual-verification-test-on-emulator-SE-w910" depends="init-SE-w910">
+		<ant antfile="antfiles/visual-verification.xml" target="test-automatic-run-emulator" />
+		<ant antfile="antfiles/visual-verification.xml" target="test-automaticconvert_raw_test_images_to_png">
+			<property name="screensize" value="240x320"/>
+		</ant>
+		<ant antfile="antfiles/visual-verification.xml" target="test-automatic-move-files">
+			<property name="emu-device" value="W910-with-transparency"/>
+		</ant>
+	</target>
+
+	<target name="visual-verification-test-on-emulator-SE-k610" depends="init-SE-k610">
+		<ant antfile="antfiles/visual-verification.xml" target="test-automatic-run-emulator" />
+		<ant antfile="antfiles/visual-verification.xml" target="test-automaticconvert_raw_test_images_to_png">
+			<property name="screensize" value="176x220"/>
+		</ant>
+		<ant antfile="antfiles/visual-verification.xml" target="test-automatic-move-files" >
+			<property name="emu-device" value="K610i"/>
+		</ant>
+	</target>
+
+	<target name="visual-verification-testing" depends="clean,init-visualverification,init,build-for-test">
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="en"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="en"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="de"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="de"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="pt"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="pt"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="nl"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="nl"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="da"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="da"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="es"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="es"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="cs"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="cs"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="it"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="it"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="fr"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="fr"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="tr"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="tr"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="el"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="el"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="af"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="af"/>
+		</ant>
+
+		<ant target="visual-verification-test-on-emulator-SE-w910">
+			<property name="i18n" value="ru"/>
+		</ant>
+		<ant target="visual-verification-test-on-emulator-SE-k610">
+			<property name="i18n" value="ru"/>
+		</ant>
+
+		<ant antfile="antfiles/visual-verification.xml" target="test-generate-html-page-from-pngs" />
+		<ant antfile="antfiles/visual-verification.xml" target="test-visuals-dist" />
+	</target>
+
+
+	<!-- ***************************************************************************************
+	Unit test cases
+	-->
+
+	<import file="antfiles/unit-test.xml"/>
+
+	<import file="antfiles/alphabet-tables.xml"/>
+
+	<target name="resource-scaling" depends="init" unless="skip.resource.scaling" 
+		description="Scales master assets set to supported device screen resolutions.">
+
+		<ant antfile="antfiles/image-resource-processing.xml" target="res-scale">
+			<property name="polish.resources.base.dir" value="${basedir}\resources"/>
+		</ant>
+
+	</target>
+
+	<!-- work in progress -->
+	<target name="test-if-resources-are-used" depends="init,build-for-test">
+		<ant antfile="antfiles/test-resources.xml" target="test-if-resources-are-used">
+			<!--property name="resource-folder" value="${resource.dir}"/-->
+			<property name="resource-folder" value="${dir.work}"/>
+			<!--property name="source-folder" value="${dir.work}"/-->
+			<property name="file-extension" value=".java"/>
+		</ant>
+	</target>
+
+	<import file="antfiles/coverity.xml" />
+
+	<import file="antfiles/deploy.xml" />
+
+	<target name="build-and-deploy-for-dev" depends="build-for-test,fileDist,deploy-latest-html-dev"/>
+	<target name="build-and-deploy-for-release" depends="build-release-post-compare,fileDist,deploy-latest-html-dev"/>
+
+	<import file="antfiles/static-code-analysis.xml" />
+
+	<import file="antfiles/unit-test.xml" />
+
+
+	<!-- ***************************************************************************************
+	Create drop of this environment for Samsung, SE, Opera etc. 
+	We want to leave out compiled code, personal property files, licences etc.
+	-->
+	<target name="create-codebase-drop-for-3rd-party">
+		<tstamp>
+			<format property="TIMESTAMP" pattern="dd_MMMM_yyyy" locale="en,UK" />
+		</tstamp>
+		<property name="mytempfolderforzip" value="tempfolderforzip" />
+		<delete dir="${mytempfolderforzip}" />
+		<copy todir="${mytempfolderforzip}" verbose="true">
+			<fileset dir=".\">
+				<exclude name="**/.svn/**"/>
+				<exclude name="**/.polishSettings/**"/>
+				<include name="antfiles/**"/>
+				<include name="antlib/**"/>
+				<include name="lib/**"/>
+				<include name="properties/tcbuild.properties"/>
+				<include name="properties/emulatorproperties/**"/>
+				<include name="resources/**"/>
+				<exclude name="resources/ScreenSize.**/"/>
+				<include name="settings/**"/>
+				<include name="sources/**"/>
+				<exclude name="sources/personal/**"/>
+				<exclude name="sources/visualverificationtest/**"/>
+				<include name="build.xml"/>
+				<include name="RemoveUnusedResources.jar"/>
+				<include name="TranslationTool.jar"/>
+			</fileset>
+		</copy>
+		<zip destfile="360_JavaClientCodeBaseDrop_${TIMESTAMP}.zip" basedir="${mytempfolderforzip}" />
+		<delete dir="${mytempfolderforzip}"/>
+	</target>
+</project>

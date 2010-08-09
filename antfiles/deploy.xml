@@ -1,0 +1,348 @@
+<!--
+  CDDL HEADER START
+  
+  The contents of this file are subject to the terms of the Common Development
+  and Distribution License (the "License").
+  You may not use this file except in compliance with the License.
+  
+  You can obtain a copy of the license at
+  src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+  http://github.com/360/360-Engine-for-Android
+  See the License for the specific language governing permissions and limitations under the License.
+  
+  When distributing Covered Code, include this CDDL HEADER in each file and
+   include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+  If applicable, add the following below this CDDL HEADER, with the fields
+  enclosed by brackets "[]" replaced with your own identifying information:
+  Portions Copyright [yyyy] [name of copyright owner]
+  
+  CDDL HEADER END
+  
+  Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+  Use is subject to license terms.
+-->
+
+<!--
+	ZYB deployment script to be used
+	by a build server to deploy artifacts.
+-->
+<project 
+	name="ZYB Mobile Deploy" 
+	default="usage" basedir=".">
+	
+	<tstamp/>
+	
+	<tstamp>
+      <format property="update.releasenotes.date" pattern="dd_MM_yyyy"/>
+  	</tstamp>
+	
+	<!-- Distribution directory -->
+	<property name="build.distDir" value="dist" />
+	
+	<!-- release note for daily build -->
+	<property name="releasenotes.html.generic" value="release_note_template" />
+	<property name="build.releasenotes.dir" value="info" />
+	
+	<!--property name="build.version" value="SNAPSHOT-${TSTAMP}" /-->
+	
+	<target name="ftpDist" description="FTP contents of ${build.distDir} dir to remote server over FTP. Set ftp.user, ftp.password, ftp.remoteRootDir and ftp.serverUri properties.">
+		<property name="_remoteDir" value="${ftp.remoteRootDir}/${build.number}" />
+		<echo message="FTP distribution components to ${ftp.serverUri}/${_remoteDir}" />
+
+		<echo message="FTP create remote dir [${_remoteDir}]" />
+
+		<ftp action="mkdir"
+			server="${ftp.serverUri}"
+			userid="${ftp.user}"
+			password="${ftp.password}"
+			remotedir="${_remoteDir}" />
+
+		<ftp action="put" 
+			server="${ftp.serverUri}" 
+			userid="${ftp.user}" 
+			password="${ftp.password}" 
+			remotedir="${_remoteDir}" >
+			<fileset dir="${build.distDir}" />
+		</ftp>
+
+		<ftp action="put" 
+			server="${ftp.serverUri}" 
+			userid="${ftp.user}" 
+			password="${ftp.password}" 
+			remotedir="${ftp.remoteRootDir}/latest" >
+			<fileset dir="${build.distDir}" />
+		</ftp>				
+	</target>
+
+	
+	
+		<target name="sftpDist" description="SFTP contents of ${build.distDir} dir to remote server over FTP. Set ftp.user, ftp.password, ftp.remoteRootDir and ftp.serverUri properties.">
+			<echo message="FTP distribution components to ${sftp.user}:${sftp.pass}@sftp.serverUri:${sftp.remoteRootDir}" />
+
+			  <scp trust="true" todir="${sftp.user}:${sftp.pass}@${sftp.serverUri}:${sftp.remoteRootDir}">
+			  	<fileset dir="${build.distDir}" />
+			  </scp>
+
+		</target>
+	
+	<!--mkdir dir="${file.serverUri}${_remoteDir}"/-->
+	<property name="_remoteDir" value="${file.remoteRootDir}\${build.number}" />
+	<property name="_dest" value="${file.serverUri}${_remoteDir}" />
+		
+	<target name="fileDist" description="Copy contents of ${build.distDir} dir to distribution server" depends="copy.updated.releasenotes,copy.generic.releasenotes">
+		<echo message="File distribution components to ${_dest}" />
+
+		<copy todir="${file.serverUri}${_remoteDir}" overwrite="true" >
+			<fileset dir="${build.distDir}" />
+		</copy>
+		
+		<mkdir dir="${file.serverUri}\${file.remoteOpenRootDir}\${build.number}"/>
+		
+		<!-- Copy unzipped BB builds to open directory with no password-->
+		<copy todir="${file.serverUri}\${file.remoteOpenRootDir}\${build.number}" overwrite="true" failonerror="false">
+			<fileset dir="${unzip.dest.dir}" />
+		</copy>
+		
+		<!--ant target="send-email-build-confirmation" /--> 
+	</target>
+	
+	<target name="usage" description="Show usage information">
+		<echo message="ZYB Phonebook deployment script. Use -projecthelp switch for target details." />
+	</target>
+
+	<target name="deploy-latest-html-dev" description="generate html file containing latest files">
+		<echo message="Generating ${file.serverUri}${latest.html.dev}" />
+			<echo file="${file.serverUri}${latest.html.dev}" append="false">
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE html PUBLIC &quot;-//WAPFORUM//DTD XHTML Mobile 1.0//EN&quot; &quot;http://www.wapforum.org/DTD/xhtml-mobile10.dtd&quot;&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;title&gt;Latest client build &lt;/title&gt;
+&lt;meta http-equiv=&quot;Cache-Control&quot; content=&quot;no-cache&quot; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+		
+&lt;strong&gt;Latest build is ${build.number}  (${TSTAMP} ${DSTAMP}) &lt;/strong&gt; &lt;br&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/${releasenotes.html.generic}.html&quot;&gt;Release notes &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Pearl8100_4.5_vf-zyb.jad&quot;&gt;BlackBerry Pearl 8100 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Pearl8100_4.5_vf-zyb-socket.jad&quot;&gt;BlackBerry Pearl 8100 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Pearl8110_4.5_vf-zyb.jad&quot;&gt;BlackBerry Pearl 8110 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Pearl8110_4.5_vf-zyb-socket.jad&quot;&gt;BlackBerry Pearl 8110 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Curve8900_4.6_vf-zyb.jad&quot;&gt;BlackBerry Curve 8900 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Curve8900_4.6_vf-zyb-socket.jad&quot;&gt;BlackBerry Curve 8900 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/zip2pc/Curve8900_4.6_vf-zyb.zip&quot;&gt;BlackBerry Curve 8900 (Download for PC) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Curve8300_4.5_vf-zyb.jad&quot;&gt;BlackBerry Curve 8300 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Curve8300_4.5_vf-zyb-socket.jad&quot;&gt;BlackBerry Curve 8300 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Curve8520_4.6_vf-zyb.jad&quot;&gt;BlackBerry Curve 8520 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Curve8520_4.6_vf-zyb-socket.jad&quot;&gt;BlackBerry Curve 8520 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Storm9500_4.7_vf-zyb.jad&quot;&gt;BlackBerry Storm 9500 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Storm9500_4.7_vf-zyb-socket.jad&quot;&gt;BlackBerry Storm 9500 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/zip2pc/Storm9500_4.7_vf-zyb.zip&quot;&gt;BlackBerry Storm 9500 (Download for PC) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Storm9520_5.0_vf-zyb.jad&quot;&gt;BlackBerry Storm 9520 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Storm9520_5.0_vf-zyb-socket.jad&quot;&gt;BlackBerry Storm 9520 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/zip2pc/Storm9520_5.0_vf-zyb.zip&quot;&gt;BlackBerry Storm 9520 (Download for PC) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Bold_vf-zyb.jad&quot;&gt;BlackBerry Bold 9000 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Bold_vf-zyb-socket.jad&quot;&gt;BlackBerry Bold 9000 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/zip2pc/Bold_vf-zyb.zip&quot;&gt;BlackBerry Bold 9000 (Download for PC) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;			
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Bold9700_5.0_vf-zyb.jad&quot;&gt;BlackBerry Bold 9700 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Bold9700_5.0_vf-zyb-socket.jad&quot;&gt;BlackBerry Bold 9700 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/zip2pc/Bold9700_5.0_vf-zyb.zip&quot;&gt;BlackBerry Bold 9700 (Download for PC) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;			
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Pearl9100_5.0_vf-zyb.jad&quot;&gt;BlackBerry Pearl 9100 (HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/Pearl9100_5.0_vf-zyb-socket.jad&quot;&gt;BlackBerry Pearl 9100 (TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteOpenRootDir}/${build.number}/zip2pc/Pearl9100_5.0_vf-zyb.zip&quot;&gt;BlackBerry Pearl 9100 (Download for PC) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+				
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/C905-zyb-zyb.jar&quot;&gt;C905 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/C905-zyb-zyb.jad&quot;&gt;C905 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/C905-zyb-zyb-socket.jad&quot;&gt;C905 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K610-zyb-zyb.jar&quot;&gt;K610 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K610-zyb-zyb.jad&quot;&gt;K610 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K610-zyb-zyb-socket.jad&quot;&gt;K610 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K850-zyb-zyb.jar&quot;&gt;K850 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K850-zyb-zyb.jad&quot;&gt;K850 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K850-zyb-zyb-socket.jad&quot;&gt;K850 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K630-zyb-zyb.jar&quot;&gt;K630 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K630-zyb-zyb.jad&quot;&gt;K630 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K630-zyb-zyb-socket.jad&quot;&gt;K630 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K800-zyb-zyb.jar&quot;&gt;K800 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K800-zyb-zyb.jad&quot;&gt;K800 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/K800-zyb-zyb-socket.jad&quot;&gt;K800 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/w910-zyb-zyb.jar&quot;&gt;W910 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/w910-zyb-zyb.jad&quot;&gt;W910 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/w910-zyb-zyb-socket.jad&quot;&gt;W910 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/w760-zyb-zyb.jar&quot;&gt;W760 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/w760-zyb-zyb.jad&quot;&gt;W760 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/w760-zyb-zyb-socket.jad&quot;&gt;W760 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/5000-zyb-zyb.jar&quot;&gt;Nokia/5000 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/w760-zyb-zyb.jad&quot;&gt;Nokia/5000 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/w760-zyb-zyb-socket.jad&quot;&gt;Nokia/5000 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6288-zyb-zyb.jar&quot;&gt;Nokia/6288 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6288-zyb-zyb.jad&quot;&gt;Nokia/6288 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6288-zyb-zyb-socket.jad&quot;&gt;Nokia/6288 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6300-zyb-zyb.jar&quot;&gt;Nokia/6300 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6300-zyb-zyb.jad&quot;&gt;Nokia/6300 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6300-zyb-zyb-socket.jad&quot;&gt;Nokia/6300 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6270-zyb-zyb.jar&quot;&gt;Nokia/6270 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6270-zyb-zyb.jad&quot;&gt;Nokia/6270 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6270-zyb-zyb-socket.jad&quot;&gt;Nokia/6270 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6267-zyb-zyb.jar&quot;&gt;Nokia/6267 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6267-zyb-zyb.jad&quot;&gt;Nokia/6267 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/6267-zyb-zyb-socket.jad&quot;&gt;Nokia/6267 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+Covers also	6500 Slide &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/7510-zyb-zyb.jar&quot;&gt;Nokia/7510 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/7510-zyb-zyb.jad&quot;&gt;Nokia/7510 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/7510-zyb-zyb-socket.jad&quot;&gt;Nokia/7510 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+Covers also	2700 Classic, 2730 Classic, 5130, 5310 Xpress Music, 5610 Xpress Music, 6212 Classic, 6301, 6500 Classic, 6600 Fold, 7310 Supernova, 7900 &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/7310supernova-ZYB-zyb.jar&quot;&gt;Nokia/7610 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/7310supernova-ZYB-zyb.jad&quot;&gt;Nokia/7610 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/7310supernova-ZYB-zyb-socket.jad&quot;&gt;Nokia/7610 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+Covers also	3120 Classic, 3600 Slide, 6208 Classic, 6303, 6600 Slide, 7610 Supernova &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/5220XpressMusic-ZYB-zyb.jar&quot;&gt;Nokia/5220 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/5220XpressMusic-ZYB-zyb.jad&quot;&gt;Nokia/5220 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/5220XpressMusic-ZYB-zyb-socket.jad&quot;&gt;Nokia/5220 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+Covers also	5330 Xpress Music, 7500 &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/SGH-i560-zyb-zyb.jar&quot;&gt;Samsung/SGH-i560 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/SGH-i560-zyb-zyb.jad&quot;&gt;Samsung/SGH-i560 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/SGH-i560-zyb-zyb-socket.jad&quot;&gt;Samsung/SGH-i560 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/SGH-U700-zyb-zyb.jar&quot;&gt;Samsung/SGH-U700 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/SGH-U700-zyb-zyb.jad&quot;&gt;Samsung/SGH-U700 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/SGH-U700-zyb-zyb-socket.jad&quot;&gt;Samsung/SGH-U700 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/SGH-D900-zyb-zyb.jar&quot;&gt;Samsung/SGH-D900 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/SGH-D900-zyb-zyb.jad&quot;&gt;Samsung/SGH-D900 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/SGH-D900-zyb-zyb-socket.jad&quot;&gt;Samsung/SGH-D900 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/V735-zyb-zyb.jar&quot;&gt;Huawei/V735 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/V735-zyb-zyb.jad&quot;&gt;Huawei/V735 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/V735-zyb-zyb-socket.jad&quot;&gt;Huawei/V735 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/V835-zyb-zyb.jar&quot;&gt;Huawei/V835 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/V835-zyb-zyb.jad&quot;&gt;Huawei/V835 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/V835-zyb-zyb-socket.jad&quot;&gt;Huawei/V835 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/N73-zyb-zyb.jar&quot;&gt;Nokia/N73 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/N73-zyb-zyb.jad&quot;&gt;Nokia/N73 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/N73-zyb-zyb-socket.jad&quot;&gt;Nokia/N73 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/N70-zyb-zyb.jar&quot;&gt;Nokia/N70 series (.jar for Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/N70-zyb-zyb.jad&quot;&gt;Nokia/N70 series (.jad for non-Vodafone branded phones, HTTP) &lt;/a&gt; &lt;br&gt;
+&lt;a href=&quot;${file.remoteRootDir}/${build.number}/N70-zyb-zyb-socket.jad&quot;&gt;Nokia/N70 series (.jad for TCP/IP) &lt;/a&gt; &lt;br&gt;
+&lt;br&gt;
+&lt;/body&gt;
+&lt;/html&gt;				
+			</echo>
+
+		<!--copy todir="${file.serverUri}" overwrite="true" >
+			<fileset file="${file.serverUri}${latest.html.dev}" />
+		</copy-->
+
+	</target>
+
+
+	<!-- copy updated html file if it exists e.g. file named 'release_note_template_29_04_2010.html' -->
+	<available property="has.updated.releasenotes" file="${build.releasenotes.dir}/${releasenotes.html.generic}_${update.releasenotes.date}.html" />
+
+	<!-- copy updated releaseNotes html file into ${file.serverUri} -->
+	<target name="copy.updated.releasenotes" if="has.updated.releasenotes">
+		<copy file="${build.releasenotes.dir}\${releasenotes.html.generic}_${update.releasenotes.date}.html" tofile="${file.serverUri}\${file.remoteOpenRootDir}\${build.number}\${releasenotes.html.generic}.html" failonerror="false" overwrite="true" />
+		<echo message="Moving ${releasenotes.html.generic}_${update.releasenotes.date}.html to${file.serverUri}\${file.remoteOpenRootDir}\${build.number}\${releasenotes.html.generic}.html" />
+	</target>
+
+	<!-- no updated file so copy generic releaseNotes html file into ${file.serverUri} -->
+	<target name="copy.generic.releasenotes" unless="has.updated.releasenotes">
+		<copy file="${build.releasenotes.dir}\${releasenotes.html.generic}.html" tofile="${file.serverUri}\${file.remoteOpenRootDir}\${build.number}\${releasenotes.html.generic}.html" failonerror="false" overwrite="true" />
+		<echo message="Moving ${releasenotes.html.generic}.html to ${file.serverUri}\${file.remoteOpenRootDir}\${build.number}\${releasenotes.html.generic}.html" />
+	</target>
+	
+	<target name="deploy-move-latest-html-dev-test" description="generate html file containing latest files">
+	
+	
+		<echo message="Moving ${file.serverUri}\${latest.html.dev} to ${file.serverUri}\${latest.html.test}" />
+		
+		<move file="${file.serverUri}\\${latest.html.dev}" tofile="${file.serverUri}\\${latest.html.test}" overwrite="true" />
+		
+		
+		<if>		
+			<isset property="emails.to.distribute.testbuilds.to" />
+				<then>
+					<echo>Sending email to ${emails.to.distribute.testbuilds.to}</echo>
+					<mail 	tolist="${emails.to.distribute.testbuilds.to}" mailhost="mailsrv.zyb.com" 
+					   		mailport="25" 
+					   		subject="New Java client build ready for testing">
+							<from address="build@zyb.com"/>
+							<replyto address="build@zyb.com"/>
+							<message>
+This is an automated build ready for testing. These can be fetched through http://files.zyb.com/latest.html
+							</message>
+							
+					</mail>
+				</then>
+			<else>
+				<echo>Skipping email notification</echo>
+			</else>
+		</if>				
+
+	
+	</target>
+	
+	
+	
+	<target name="send-email-build-confirmation" >
+		<property name="_dest" value="http://files.zyb.com/nowplus/qa/en/${build.number}/" />
+		<if>		
+			<isset property="emails.to.distribute.to" />
+				<then>
+					<echo>Sending email to ${emails.to.distribute.to}</echo>
+					<mail 	tolist="${emails.to.distribute.to}" mailhost="mailsrv.zyb.com" 
+					   		mailport="25" 
+					   		subject="Java client ready for QA">
+							<from address="jens@zyb.com"/>
+							<replyto address="jens@zyb.com"/>
+							<!--to address="${emails.to.distribute.to}"/-->
+							<message>
+This is an automated email telling you there is a new client build available with latest texts.
+								
+Files for Java client can be fetched from ${_dest}
+								
+If you are using a Vodafone branded phone you may want to use the .jar file rather than .jad file.
+
+If there are any problems don't hesitate contacting me!
+							</message>
+							
+					</mail>
+				</then>
+			<else>
+				<echo>Skipping email notification</echo>
+			</else>
+		</if>				
+	</target>
+
+
+
+</project>

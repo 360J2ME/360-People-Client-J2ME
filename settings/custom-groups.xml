@@ -1,0 +1,287 @@
+<!--
+  CDDL HEADER START
+  
+  The contents of this file are subject to the terms of the Common Development
+  and Distribution License (the "License").
+  You may not use this file except in compliance with the License.
+  
+  You can obtain a copy of the license at
+  src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+  http://github.com/360/360-Engine-for-Android
+  See the License for the specific language governing permissions and limitations under the License.
+  
+  When distributing Covered Code, include this CDDL HEADER in each file and
+   include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+  If applicable, add the following below this CDDL HEADER, with the fields
+  enclosed by brackets "[]" replaced with your own identifying information:
+  Portions Copyright [yyyy] [name of copyright owner]
+  
+  CDDL HEADER END
+  
+  Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+  Use is subject to license terms.
+-->
+
+<!-- 
+    Override JP7 to ensure that MenuBar is in the left side of the screen
+    <capability name="MenuBar.OptionsPosition" value="left" />
+-->
+<groups>
+
+	<group>
+		<name>SE-JavaPlatform7</name>
+		<capability name="OS" value="Sony-Ericsson OS" />
+		<capability name="JavaPlatform" value="MIDP/2.0, JTWI/1.0" />
+		<capability name="JavaConfiguration" value="CLDC/1.1" />
+		<capability name="JavaPackage" value="mmapi, wmapi2.0, nokia-ui, pdaapi, webservice" />
+		<capability name="Bugs" value="usesVideoRam" />
+		<capability name="key.ReturnKey" value="-11"/>
+		<capability name="MenuBar.OptionsPosition" value="left" />
+		<capability name="MenuBar.OkPosition" value="" />
+		<capability name="ScreenSize" value="" />
+		<capability name="FullCanvasSize" value="" />
+		<capability name="CanvasSize" value=""/>
+		<capability name="dtmf.separator" value=";postd=" />
+		<capability name="Bugs" value="NoPermanentBacklight" />
+	</group>
+	
+	<group>
+		<name>S40-ZYB</name>
+
+		<!-- ************ PIM mappings ************************ -->
+		
+		<!-- Supports Complex Name-->
+		<capability name="pim.support.NAME" value="true" />
+		<capability name="pim.support.NAME.FIRST" value="true" />
+		<capability name="pim.support.NAME.MIDDLE" value="false" />
+		<capability name="pim.support.NAME.LAST" value="true" />
+
+		<!-- Supports NOTE ( INFO )-->
+		<capability name="pim.support.NOTE" value="true" />
+		<!-- Supports Work Title -->
+		<capability name="pim.support.TITLE" value="true" />
+		<!-- Supports Work Company -->
+		<capability name="pim.support.ORG" value="true" />
+		<!-- Supports Web Address -->
+		<capability name="pim.support.URL" value="true" />
+		<!-- Supports Birthday -->
+		<capability name="pim.support.BIRTHDAY" value="true" />
+
+		<!--Supports e-mail address-->
+		<capability name="pim.support.EMAIL" value="CAB_HOME" />
+		<capability name="pim.mapping.EMAIL.CAB_HOME" value="NAB_NONE" />
+		
+		<!-- Supports TEL -->
+		<capability name="pim.support.TEL"
+			value="CAB_HOME, CAB_MOBILE, CAB_WORK, CAB_FAX, CAB_OTHER" />
+		<capability name="pim.support.TEL.maxValues" value="5" />
+		<capability name="pim.support.TEL.PREF" value="true" />
+		<capability name="pim.mapping.TEL.CAB_HOME" value="NAB_HOME" />
+		<capability name="pim.mapping.TEL.CAB_MOBILE" value="NAB_MOBILE" />
+		<capability name="pim.mapping.TEL.CAB_WORK" value="NAB_WORK" />
+		<capability name="pim.mapping.TEL.CAB_FAX" value="NAB_FAX" />
+		<capability name="pim.mapping.TEL.CAB_OTHER" value="NAB_NONE" />
+		<!-- Supports addresses -->
+		<capability name="pim.support.ADDRESS" value="CAB_ADDR_HOME" />
+		<capability name="pim.mapping.ADDRESS.CAB_ADDR_HOME" value="NAB_NONE" />
+
+
+		<!-- ************ end of PIM mappings ************************ -->
+
+		<!-- Delay between two, subsequent keypresses - in milliseconds. If user doesn't press key before specified time, native editor will e opened. -->
+		<capability name="nativeEditor.delayBetweenKeys" value="300" />
+		<capability name="device.supports.nativesms" value="false" />
+		<capability name="device.supports.nativemms" value="false" />
+		<capability name="device.supports.nativeemail" value="false" />
+
+		<capability name="key.AddSymbolKey" value="" />
+		<capability name="TextField.supportSymbolsEntry" value="false" />
+
+		<capability name="TextField.charactersKeyStar" value="*+" />
+		<capability name="TextField.charactersKey0" value=" 0" />
+		
+		<capability name="key.GreenCallKey" value="-10" />
+		
+		<capability name="pim.sync.firstrun" value="IMPORT"/>
+		<capability name="pim.sync.always" value="IMPORT"/>
+		
+		<capability name="polish.removeThumbnails" value="true"/>
+        
+        <!-- set if opening native browser closes application -->
+		<capability name="device.requires.polish.browser" value="true" />
+		
+		<capability name="device.supports.multiple.connections"	value="true" />
+        
+        <!-- position of icon of top bar; icon must be shifted, because on s40 native data traffic indicator is visible 
+        and covers our custom indicator-->
+        <capability name="polish.globeicon.left" value="21" />
+        
+        <!-- Additional white screen at startup to avoid "Nothing to display" -->
+        <capability name="polish.device.requires.preloadscreen" value="true"/>
+		
+		<!-- IconSize for 240x320 it must be overriden when different screen size is used -->
+		<capability name="IconSize" value="46x48" />	
+		
+		<!-- on nokia s40 devices TextField.INITIAL_CAPS_NEVER makes upercase characters not available, which is not desired -->
+		<capability name="polish.device.textField.requires.initialCapsNeverFix" value="true" />
+
+        <!-- UI animation -->
+        <capability name="polish.use-ui-animation" value="true" />
+        
+        <!-- Locale strings for text commands for native text input must be loaded as early as possible 
+			(in static initialization blok in NowPlus class). 
+        Otherwise locale string are loaded using default algorithm by j2me polish  -->
+        <capability name="polish.device.requires.loadLanguageTextKeysEarly" value="true" />
+        
+		<capability name="Bugs" value="greenCallKeyKeyMappedToFire" />		
+	</group>
+	
+	<group>
+        <name>S60-ZYB</name>
+        
+		<!-- ****     PIM    *****-->
+		<!-- Supports Complex Name-->
+		<capability name="pim.support.NAME" value="true" />
+		<capability name="pim.support.NAME.FIRST" value="true" />
+		<capability name="pim.support.NAME.MIDDLE" value="true" />
+		<capability name="pim.support.NAME.LAST" value="true" />
+		
+		<!-- Supports NOTE ( INFO )-->
+		<capability name="pim.support.NOTE" value="true" />
+		<!-- Supports Work Title -->
+		<capability name="pim.support.TITLE" value="true" />
+		<!-- Supports Work Company -->
+		<capability name="pim.support.ORG" value="true" />
+		<!-- Supports Web Address -->
+		<capability name="pim.support.URL" value="true" />
+		<!-- Supports Birthday -->
+		<capability name="pim.support.BIRTHDAY" value="true" />
+		<!--Supports e-mail address-->
+		<capability name="pim.support.EMAIL" value="CAB_HOME,CAB_WORK"/>
+		<capability name="pim.mapping.EMAIL.CAB_HOME" value="NAB_HOME"/>
+		<capability name="pim.mapping.EMAIL.CAB_WORK" value="NAB_WORK"/>
+        <!-- Supports addresses -->
+		<capability name="pim.support.ADDRESS" value="CAB_ADDR_HOME, CAB_ADDR_WORK"/>
+		<capability name="pim.mapping.ADDRESS.CAB_ADDR_HOME" value="NAB_HOME"/>
+        <capability name="pim.mapping.ADDRESS.CAB_ADDR_WORK" value="NAB_WORK"/>
+		<!-- Supports TEL -->
+		<capability name="pim.support.TEL" value="CAB_HOME, CAB_MOBILE, CAB_WORK, CAB_FAX, CAB_OTHER"/>
+        <capability name="pim.support.TEL.maxValues" value="5" />
+        <capability name="pim.support.TEL.PREF" value="false" />
+        <capability name="pim.mapping.TEL.CAB_HOME" value="NAB_HOME"/>
+        <capability name="pim.mapping.TEL.CAB_MOBILE" value="NAB_MOBILE"/>
+        <capability name="pim.mapping.TEL.CAB_WORK" value="NAB_WORK"/>
+        <capability name="pim.mapping.TEL.CAB_FAX" value="NAB_FAX"/>
+        <capability name="pim.mapping.TEL.CAB_OTHER" value="NAB_NONE"/>
+		<!-- ***    PIM END    *** -->
+
+		<capability name="device.supports.nativemms" value="false" />
+		<capability name="device.supports.nativesms" value="false" />
+		<capability name="device.supports.nativeemail" value="false" />
+		<capability name="pim.sync.firstrun" value="IMPORT"/>
+		<capability name="pim.sync.always" value="IMPORT"/>
+		
+        <!-- position of icon of top bar; icon must be shifted, because on s40 native data traffic indicator is visible
+        and covers our custom indicator-->
+        <capability name="polish.globeicon.left" value="21" />
+
+        <!-- UI animation -->
+        <capability name="polish.use-ui-animation" value="false" />
+	</group>
+	
+	<group>
+		<name>Huawei</name>
+		<features>hasCommandKeyEvents</features>		
+		<capability name="key.LeftSoftKey" value="-6" />
+		<capability name="key.RightSoftKey" value="-7" />
+		<capability name="key.MiddleSoftKey" value="-5" />
+		<capability name="key.ReturnKey" value="-6" />
+		<capability name="key.ClearKey" value="-8" />
+		<capability name="key.SelectKey" value="-5" />
+		<capability name="key.leftKey" value="-3" />
+		<capability name="key.rightKey" value="-4" />
+		<capability name="key.upKey" value="-1" />
+		<capability name="key.downKey" value="-2" />
+		<capability name="key.FireKey" value="-5" />
+		<capability name="canvas.isdoublebuffered" value="true" />
+		<capability name="key.TopLeftSoftKey" value="-13" />
+		<capability name="key.TopRightSoftKey" value="-4" />
+		<capability name="key.GreenCallKey" value="-10" />				
+		<capability name="key.ChangeInputModeKey" value="42"/>
+				
+		<capability name="mmapi.supportsvideocapture" value="true" />
+		<capability name="JavaPlatform" value="MIDP/2.0" />
+		<capability name="JavaConfiguration" value="CLDC/1.1" />
+		<capability name="JavaPackage" value="mmapi, wmapi2.0, jtwi, security, pimapi, fileconnection, pdaapi" />
+	</group>
+	
+	<group>
+		<name>Huawei-ZYB</name>
+		<capability name="IconSize" value="32x32" />
+		
+		<capability name="device.supports.multiple.connections" value="true" />
+		
+		<capability name="device.supports.nativemms" value="false" />
+        <!-- Additional white screen at startup to avoid "Nothing to display" -->
+        <capability name="polish.device.requires.preloadscreen" value="true"/>
+		<capability name="polish.device.requires.custom.textfield" value="true" />
+		<capability name="polish.device.requires.plus.on.starkey" value="true" />
+		
+		<capability name="TextField.charactersKeyStar" value="*+" />
+		<capability name="TextField.charactersKey0" value=" 0" />
+		<capability name="polish.device.sendsmsdelay" value="2000" />
+		 
+		<capability name="use-ui-animation" value="false"/>
+		
+		<!-- Workaround for huawei odd keyreleased behaviour 	-->
+		<capability name="ignoreoddplatformrequest" value="true" />
+		
+		<!-- default font name -->
+		<capability name="polish.device.fontname" value="normal" />
+		
+		<!--  encoding used for loading charsets -->
+		<capability name="polish.device.encoding" value="utf-8" />
+        
+        <capability name="polish.device.requires.customPolygonDraw" value="true" />
+	</group>
+	
+	<group>
+		<name>Samsung-ZYB</name>
+		<description>Samsung devices that are not S60-based.</description>
+		
+		<!-- default font name -->
+		<capability name="polish.device.fontname" value="normal" />
+		
+		<!--  encoding used for loading charsets -->
+		<capability name="polish.device.encoding" value="utf-8" />
+
+        <!-- UI animation -->
+        <capability name="polish.use-ui-animation" value="true" />
+	</group>
+	
+	<group>
+		<name>Samsung-S60-ZYB</name>
+		<parent>S60-ZYB</parent>	
+		<description>Samsung devices that are S60-based.</description>
+		
+		<!--  encoding used for loading charsets -->
+		<capability name="polish.device.encoding" value="utf-8" />
+
+        <!-- UI animation -->
+        <capability name="polish.use-ui-animation" value="true" />
+	</group>
+	
+	<group>
+		<name>LG-ZYB</name>
+		
+		<capability name="TextField.charactersKeyStar" value="*.," />
+		<capability name="TextField.charactersKey0" value="0+ " /> 
+		<capability name="TextField.charactersKeyPound" value="#" />
+
+		<capability name="polish.device.requires.custom.textfield" value="true" />
+		<capability name="device.supports.multiple.connections" value="true" />
+
+        <!-- UI animation -->
+        <capability name="polish.use-ui-animation" value="true" />
+	</group>
+</groups>

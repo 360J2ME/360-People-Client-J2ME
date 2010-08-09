@@ -1,0 +1,179 @@
+<!--
+  CDDL HEADER START
+  
+  The contents of this file are subject to the terms of the Common Development
+  and Distribution License (the "License").
+  You may not use this file except in compliance with the License.
+  
+  You can obtain a copy of the license at
+  src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+  http://github.com/360/360-Engine-for-Android
+  See the License for the specific language governing permissions and limitations under the License.
+  
+  When distributing Covered Code, include this CDDL HEADER in each file and
+   include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+  If applicable, add the following below this CDDL HEADER, with the fields
+  enclosed by brackets "[]" replaced with your own identifying information:
+  Portions Copyright [yyyy] [name of copyright owner]
+  
+  CDDL HEADER END
+  
+  Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+  Use is subject to license terms.
+-->
+
+<project 
+	name="ZYB Now+ testing" >
+	
+	<target name="test-automatic-run-emulator"
+		description="Runs test cases in emulator">
+	
+		<echo>Deleting files from ${emulator.dir}</echo>
+		<delete failonerror="false">
+			<fileset dir="${emulator.dir}" includes="*.raw"/>
+			<fileset dir="${emulator.dir}" includes="index.html"/>
+			<fileset dir="${emulator.dir}" includes="*.png"/>
+		</delete>
+	
+		<sleep seconds="5" />
+    			
+    	<antcall target="test-automatic-start-emulator" />		
+    	<!--antcall target="test-automatic-start-emulator" />		
+    	<antcall target="test-automatic-start-emulator" />		
+    	<antcall target="test-automatic-start-emulator" />		
+    	<antcall target="test-automatic-start-emulator" />		
+    	<antcall target="test-automatic-start-emulator" />		
+    	<antcall target="test-automatic-start-emulator" /-->		
+	</target>
+
+	
+
+	<target name="test-automatic-start-emulator" unless="emulator.success">
+
+		<echo>Starting emulator ${emulator-command} </echo>
+		<exec dir="${basedir}" spawn="false" 
+			executable="cmd">
+    		<arg line="${emulator-command}"/>
+		</exec>
+		
+		<sleep seconds="30" />
+		
+		<echo>Killing emulator</echo>
+		<exec failonerror="false" dir="${basedir}" spawn="false" 
+			executable="cmd">
+    		<arg line="/c taskkill
+    		    /F 
+    		    /IM emulator.exe"/>
+		</exec>
+	
+		<property name="emulator.success" value="true" />
+	</target>	
+	
+	
+	<target name="test-automaticconvert_raw_test_images_to_png" 
+		description="Converts raw test images to png. Uses ImageMagic">
+		<exec dir="${emulator.dir}"
+			executable="cmd"
+			os="${os.name}">
+			<arg line="/c for %i in (*.raw) do if exist %i call ${imagemagick.home}\convert -size ${screensize} -depth 8 rgb:%i %i.png"/>
+		</exec>
+	</target>
+	
+	<target name="test-automatic-move-files" 
+		description="Move files to basedir">
+
+		<mkdir dir="${basedir}\visual_verification\"/>
+
+		<property name="target.dir" value="${basedir}\visual_verification\${emu-device}\${i18n}\test"/>
+		<delete failonerror="false">
+			<fileset dir="${target.dir}" includes="*.raw"/>
+			<fileset dir="${target.dir}" includes="errorlog.txt"/>
+			<fileset dir="${target.dir}" includes="*.png"/>
+		</delete>
+		<mkdir dir="${target.dir}"/>
+		<move todir="${target.dir}">
+			<fileset dir="${emulator.dir}" includes="*.txt"/>
+			<fileset dir="${emulator.dir}" includes="*.raw.png"/>
+		</move>
+	</target>
+
+	<target name="test-generate-html-page-from-pngs" 
+		description="Generates a html page from png files in folder">
+		<java jar="${basedir}/GenerateHTMLFromImages.jar" 
+		    fork="true" 
+		    failonerror="true">
+			<arg line="-folder ${basedir}\visual_verification\"/>
+			<arg line="-outputfile visuals.html"/>
+		</java>
+	</target>
+
+
+    <target name="test-visuals-dist">
+      <echo message="Coverage files to ${file.serverUri}" />
+      <copy todir="${file.serverUri}" overwrite="true" >
+       <fileset dir="${basedir}\visual_verification\" />
+      </copy>
+    </target>
+
+	
+	<target name="test-automatic-images-against-master" 
+		description="Compares test images against master images">
+
+		<property name="emu-device" value="w910-zyb" />
+		<property name="root.dir" value="${basedir}\visual_verification\${emu-device}\"/>
+		<property name="master.dir" value="${root.dir}master/"/>
+		<property name="result.dir" value="${root.dir}result/"/>
+		<property name="test.dir" value="${root.dir}test/"/>
+
+		<mkdir dir="${result.dir}"/>
+
+		<delete failonerror="false">
+			<fileset dir="${root.dir}" includes="testresult.html"/>
+			<fileset dir="${result.dir}" includes="*.png"/>
+			<fileset dir="${result.dir}" includes="*.txt"/>
+		</delete>
+
+		<java jar="${basedir}/imagecompare.jar" 
+		    fork="true" 
+		    failonerror="false">
+			<arg line="-masterdir ${master.dir}"/>
+			<arg line="-resultdir ${result.dir}"/>
+			<arg line="-testdir ${test.dir}"/>
+			<arg line="-conffile conf.txt"/>
+		</java>
+		
+		<!--available file="${result.dir}/errors.txt" property="errorfile.exists"/--> 
+		
+		<java jar="${basedir}/testfusion.jar" 
+		    fork="true" 
+		    failonerror="false">
+			<arg line="-rootdir ${root.dir}"/>
+			<arg line="-masterdir master/"/>
+			<arg line="-resultdir result/"/>
+			<arg line="-testdir test/"/>
+			<arg line="-filename testresult.html"/>
+		</java>
+		
+		<loadfile property="errors" failonerror="false" srcFile="${test.dir}errorlog.txt"/>
+		<property name="errors" value="" />
+		
+		<echo file="${root.dir}testresult.html" append="true">${errors}</echo>
+
+		<move file="${basedir}\visual_verification\" todir="${build.distDir}"/>
+		
+		<!--mail 	mailhost="svr-sbs.zyb.local" 
+		   		mailport="25" 
+		   		subject="Continuous client test results"
+  				messagemimetype="text/html">
+  				<messagefile="${root.dir}/testresult.html" >
+  			<from address="build@zyb.com"/>
+  			<replyto address="jens@zyb.com"/>
+  			<to address="jens@zyb.com"/>
+  			<message>The nightly client test results: http://java.build.zyb.com/luntbuild/publish/ZYBPhonebook/4.Unit%20tests/${build.version}/artifacts/visual_verification/6500/testresult.html</message>
+   	 			<fileset dir="${master.dir}">
+      				<include name="*.*"/>
+    			</fileset>
+    			
+		</mail-->
+	</target>
+</project>

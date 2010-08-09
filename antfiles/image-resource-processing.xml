@@ -1,0 +1,764 @@
+<!--
+  CDDL HEADER START
+  
+  The contents of this file are subject to the terms of the Common Development
+  and Distribution License (the "License").
+  You may not use this file except in compliance with the License.
+  
+  You can obtain a copy of the license at
+  src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+  http://github.com/360/360-Engine-for-Android
+  See the License for the specific language governing permissions and limitations under the License.
+  
+  When distributing Covered Code, include this CDDL HEADER in each file and
+   include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+  If applicable, add the following below this CDDL HEADER, with the fields
+  enclosed by brackets "[]" replaced with your own identifying information:
+  Portions Copyright [yyyy] [name of copyright owner]
+  
+  CDDL HEADER END
+  
+  Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+  Use is subject to license terms.
+-->
+
+<project 
+	name="Now+ build time image processing ant scripts"
+	xmlns:atl="http://antelope.tigris.org">
+
+	<!-- DOCUMENT CHANGES YOU MAKE TO THIS FILE!!! 
+	
+		 LOOK AT HOW PEOPLE HAVE DONE THIS AND DO THE SAME -->
+
+	<!-- 3rd Party Tools Start
+		NOTE: Below tasks employ 3rd party optimization tools called using DOS batch files -->
+	<property name="pngout.home" location="C:\apps\PngOut"/>
+	<property name="imagemagick.home" location="C:\apps\ImageMagick-6.4.1-Q16"/>
+	
+	<!-- Define custom batik task -->
+	<taskdef name="batik-rasterize"
+		classname="org.apache.tools.ant.taskdefs.optional.RasterizerTask">
+		
+		<classpath>
+			
+			<pathelement location="${basedir}/antlib/batik/*.jar" />
+			
+			<pathelement location="${basedir}/antlib/batik/batik-codec.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-parser.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-awt-util.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-script.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-xml.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-ext.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-css.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-anim.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-svg-dom.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-gvt.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-bridge.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-dom.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-util.jar" />
+			<pathelement location="${basedir}/antlib/batik/xml-apis-ext.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-rasterizer.jar" />
+			<pathelement location="${basedir}/antlib/batik/batik-transcoder.jar" />
+			<pathelement location="${basedir}/antlib/batik/RasterizerTask.jar" />
+	  	</classpath>
+		
+	</taskdef>
+	
+	<target name="resource-cleanup" 
+		description="Cleans up resources directories of images processed in the past">
+
+		<echo message="res-scale"/>
+		<echo message="NOTE: Following parameters are MANDATORY for this target to work:"/>
+		<echo message="polish.resources.base.dir: '${polish.resources.base.dir}'"/>
+
+		<!-- del prior dirs -->
+		
+		<!-- SE Dirs -->
+		<delete dir="${polish.resources.base.dir}\ScreenSize.128x160" failonerror="false"/>
+		<delete dir="${polish.resources.base.dir}\ScreenSize.176x208" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.176x220" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.240x320" failonerror="false" />
+				
+		<!-- BB Dirs -->
+		<delete dir="${polish.resources.base.dir}\ScreenSize.480x320" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.480x360" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.320x240" failonerror="false"/>
+		<delete dir="${polish.resources.base.dir}\ScreenSize.240x260" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.360x480" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.360x400" failonerror="false" />
+		
+		<!-- Nokia Dirs -->
+		<delete dir="${polish.resources.base.dir}\ScreenSize.128x160_true_colour" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.176x208_true_colour" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.240x320_true_colour" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.352x416_true_colour" failonerror="false" />
+		<delete dir="${polish.resources.base.dir}\ScreenSize.320x240_true_colour" failonerror="false" />
+
+	</target>
+
+	<target name="res-scale" 
+		description="Start image processing routines specific to porting teams">
+
+		<echo message="res-scale"/>
+		<echo message="NOTE: Following parameters are MANDATORY for this target to work:"/>
+		<echo message="polish.resources.base.dir: '${polish.resources.base.dir}'"/>
+
+		<!-- Clean up -->
+		<antcall target="resource-cleanup">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+		</antcall>
+
+		<!-- Process for projects -->
+		<antcall target="res-scale-java">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+		</antcall>
+
+		<antcall target="res-scale-blackberry">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+		</antcall>
+
+		<antcall target="res-scale-nokia">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+		</antcall>
+
+	</target>
+
+	<target name="res-scale-java" 
+		description="Image processing routines specific to the Java team">
+
+		<echo message="res-scale-java"/>
+		<echo message="NOTE: Following parameters are MANDATORY for this target to work:"/>
+		<echo message="polish.resources.base.dir: '${polish.resources.base.dir}'"/>
+
+		<!--antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="screen.size" value="128x160"/>
+			<param name="resize.proportions" value="53.33"/>
+		</antcall-->
+
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="176x220"/>
+			<param name="resize.proportions" value="73.33"/>
+		</antcall>
+
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="240x320"/>
+			<param name="resize.proportions" value="100.0"/>
+		</antcall>
+
+	</target>
+
+	<target name="res-scale-blackberry" 
+		description="Image processing routines specific to the Blackberry team">
+
+		<echo message="res-scale-blackberry"/>
+		<echo message="NOTE: Following parameters are MANDATORY for this target to work:"/>
+		<echo message="polish.resources.base.dir: '${polish.resources.base.dir}'"/>
+
+		<!-- Process assets specific to Java. Java Master Screen Resolution 240x320 -->
+		<!-- BB 9500 9520 150% -->
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="360x480" />
+			<param name="resize.proportions" value="150" />
+		</antcall>
+		
+		<!-- BB 8900 9700 150% -->
+		<copy todir="${basedir}\resources\ScreenSize.480x360" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.360x480" includes="*.png" />
+		</copy>
+		
+		<!-- BB 9100 150% -->
+		<copy todir="${basedir}\resources\ScreenSize.360x400" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.360x480" includes="*.png" />
+		</copy>
+		
+		<!-- BB 9000 150% -->
+		<copy todir="${basedir}\resources\ScreenSize.480x320" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.360x480" includes="*.png" />
+		</copy>
+		
+		<!-- BB 8300 8520 100% -->
+		<copy todir="${basedir}\resources\ScreenSize.320x240" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.240x320" includes="*.png" />
+		</copy>
+		
+		<!-- BB 8100 8110 100% -->
+		<copy todir="${basedir}\resources\ScreenSize.240x260" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.240x320" includes="*.png" />
+		</copy>
+
+		<!-- Process assets specific to BlackBerry. BlackBerry Master Screen Resolution 360x480 -->
+		<!-- BB 9500 9520 100% -->
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg_bb"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster_bb"/>
+			<param name="screen.size" value="360x480" />
+			<param name="resize.proportions" value="100" />
+		</antcall>
+		
+		<!-- BB 8900 9700 100% -->
+		<copy todir="${basedir}\resources\ScreenSize.480x360" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.360x480" includes="*.png" />
+		</copy>
+		
+		<!-- BB 9100 100% -->
+		<copy todir="${basedir}\resources\ScreenSize.360x400" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.360x480" includes="*.png" />
+		</copy>
+		
+		<!-- BB 9000 100% -->
+		<copy todir="${basedir}\resources\ScreenSize.480x320" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.360x480" includes="*.png" />
+		</copy>
+
+		<!-- BB 8100 8110 66% -->
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}" />
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg_bb" />
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster_bb" />
+			<param name="screen.size" value="240x260" />
+			<param name="resize.proportions" value="66.66" />
+		</antcall>
+		
+		<!-- BB 8300 8520 66% -->
+		<copy todir="${basedir}\resources\ScreenSize.320x240" overwrite="true">
+			<fileset dir="${basedir}\resources\ScreenSize.240x260" includes="*.png" />
+		</copy>
+		
+	</target>
+
+	<target name="res-scale-nokia" 
+		description="Image processing routines specific to the Nokia team">
+
+		<echo message="res-scale-nokia"/>
+		<echo message="NOTE: Following parameters are MANDATORY for this target to work:"/>
+		<echo message="polish.resources.base.dir: '${polish.resources.base.dir}'"/>
+
+		<!--generations of icons for devices that required true colour png -->
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="128x160"/>
+			<param name="resize.proportions" value="60.0"/>
+		</antcall>
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="128x160"/>
+			<param name="resize.proportions" value="60.00"/>
+			<param name="resources.suffix" value="_true_colour"/>
+		</antcall>
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="176x208"/>
+			<param name="resize.proportions" value="73.33"/>
+		</antcall>
+
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="176x208"/>
+			<param name="resize.proportions" value="73.33"/>
+			<param name="resources.suffix" value="_true_colour"/>
+		</antcall>
+
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="240x320"/>
+			<param name="resize.proportions" value="100.0"/>
+			<param name="resources.suffix" value="_true_colour"/>
+		</antcall>
+		
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="320x240"/>
+			<param name="resize.proportions" value="100.0"/>
+			<param name="resources.suffix" value="_true_colour"/>
+		</antcall>
+
+		<antcall target="res-scale-raster-and-vector">
+			<param name="polish.resources.base.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.vector.dir" value="${polish.resources.base.dir}\svg"/>
+			<param name="polish.resources.raster.dir" value="${polish.resources.base.dir}\raster"/>
+			<param name="screen.size" value="352x416"/>
+			<param name="resize.proportions" value="150.0"/>
+			<param name="resources.suffix" value="_true_colour"/>
+		</antcall>
+	</target>
+
+	<target name="res-scale-raster-and-vector" 
+		description="Helper target that ensure that scaling calls for both 'raster' and 'vector' resources are handled">
+
+		<echo message="res-scale-raster-and-vector"/>
+		<echo message="NOTE: Following parameters are MANDATORY for this target to work:"/>
+		<echo message="polish.resources.base.dir: '${polish.resources.base.dir}'"/>
+		<echo message="polish.resources.vector.dir: '${polish.resources.vector.dir}'"/>
+		<echo message="polish.resources.raster.dir: '${polish.resources.raster.dir}'"/>
+		<echo message="screen.size: '${screen.size}'"/>
+		<echo message="resize.proportions: '${resize.proportions}'"/>
+		<echo message="NOTE: Following parameters are OPTIONAL:"/>
+		<echo message="resources.suffix: '${resources.suffix}'"/>
+
+		<!-- Handle raster resources -->
+		<antcall target="res-scale-raster">
+			<param name="polish.resources.source.dir" value="${polish.resources.raster.dir}"/>
+			<param name="polish.resources.target.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.source.format.extension" value=".png"/>
+			<param name="polish.resources.target.format.extension" value=".png"/>
+			<param name="resize.proportions" value="${resize.proportions}%x${resize.proportions}%!"/>
+			<param name="screen.size" value="${screen.size}"/>
+			<param name="resources.suffix" value="${resources.suffix}"/>
+		</antcall>
+		
+		<!-- Handle vector resources -->
+		<antcall target="res-scale-vector">
+			<param name="polish.resources.source.dir" value="${polish.resources.vector.dir}"/>
+			<param name="polish.resources.target.dir" value="${polish.resources.base.dir}"/>
+			<param name="polish.resources.source.format.extension" value=".svg"/>
+			<param name="polish.resources.target.format.extension" value=".png"/>
+			<param name="resize.proportions" value="${resize.proportions}"/>
+			<param name="screen.size" value="${screen.size}"/>
+			<param name="resources.suffix" value="${resources.suffix}"/>
+		</antcall>
+
+	</target>
+
+	<target name="resource-css-deploy-process" 
+		description="Copies css file to all resources folders">
+
+		<!-- copy css to scrres specific dirs -->
+
+		<copy todir="${basedir}\resources\ScreenSize.128x160" overwrite="true" failonerror="false">
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+
+		<copy todir="${basedir}\resources\ScreenSize.176x208" overwrite="true" failonerror="false">
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+
+		<copy todir="${basedir}\resources\ScreenSize.176x220" overwrite="true" failonerror="false" >
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+
+		<!--copy todir="${basedir}\resources\ScreenSize.240x260" overwrite="true" failonerror="false">
+			<fileset dir="${basedir}\resources\" includes="*.css" />
+		</copy-->
+
+		<copy todir="${basedir}\resources\ScreenSize.240x320" overwrite="true" failonerror="false" >
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+
+		<!--copy todir="${basedir}\resources\ScreenSize.240x348" overwrite="true" failonerror="false">
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy-->
+
+		<!--copy todir="${basedir}\resources\ScreenSize.320x240" overwrite="true" failonerror="false">
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy-->
+
+		<copy todir="${basedir}\resources\ScreenSize.480x320" overwrite="true" failonerror="false" >
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+
+		<copy todir="${basedir}\resources\ScreenSize.480x360" overwrite="true" failonerror="false">
+			<fileset dir="${basedir}\resources\" includes="*.css" />
+		</copy>
+		
+		<copy todir="${basedir}\resources\ScreenSize.320x240" overwrite="true" failonerror="false" >
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+
+		<copy todir="${basedir}\resources\ScreenSize.240x260" overwrite="true" failonerror="false">
+			<fileset dir="${basedir}\resources\" includes="*.css" />
+		</copy>
+		
+		<copy todir="${basedir}\resources\ScreenSize.360x480" overwrite="true" failonerror="false">
+			<fileset dir="${basedir}\resources\" includes="*.css" />
+		</copy>
+		
+		<copy todir="${basedir}\resources\ScreenSize.360x400" overwrite="true" failonerror="false">
+			<fileset dir="${basedir}\resources\" includes="*.css" />
+		</copy>
+
+		<!-- Copy file for true colour -->
+		<copy todir="${basedir}\resources\ScreenSize.128x160_true_colour" overwrite="true" failonerror="false" >
+				<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+		
+		<copy todir="${basedir}\resources\ScreenSize.176x208_true_colour" overwrite="true" failonerror="false" >
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+
+		<copy todir="${basedir}\resources\ScreenSize.240x320_true_colour" overwrite="true" failonerror="false" >
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+		
+		<copy todir="${basedir}\resources\ScreenSize.320x240_true_colour" overwrite="true" failonerror="false" >
+					<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+		
+		<copy todir="${basedir}\resources\ScreenSize.352x416_true_colour" overwrite="true" failonerror="false" >
+			<fileset dir="${basedir}\resources\" includes="*.css"/>
+		</copy>
+		
+	</target>
+
+	<target name="res-scale-vector"
+	  		description="
+			Scales given vector image resources to desired output format according to passed resize proportions.
+			The scaling and rasterizations process uses Batik SVG Toolkit (http://xmlgraphics.apache.org/batik/).
+			The Ant task used for batik ('batik-rasterize') is customized for this project. For the repository for 
+			the customization at svn://office.zyb.local:3691/nowplus/trunk/batik-1.7.
+			NOTE: Solid background resources are placed in ${polish.resources.source.dir}/opaque.
+			NOTE: Transparent background resources are placed in ${polish.resources.source.dir}/transparent.
+		">
+
+		<echo message="res-scale-vector"/>
+		<echo message="NOTE: Following parameters are MANDATORY for this target to work:"/>
+		<echo message="polish.resources.source.dir: '${polish.resources.source.dir}'"/>
+		<echo message="polish.resources.target.dir: '${polish.resources.target.dir}'"/>
+		<echo message="polish.resources.source.format.extension: '${polish.resources.source.format.extension}'"/>
+		<echo message="polish.resources.target.format.extension: '${polish.resources.target.format.extension}'"/>
+		<echo message="resize.proportions: '${resize.proportions}'"/>
+		<echo message="screen.size: '${screen.size}'"/>
+		<echo message="NOTE: Following properties are OPTIONAL:"/>
+		<echo message="resources.suffix: '${resources.suffix}'"/>
+
+		<!-- decide if truecolor should be used -->
+		<if>
+			<not>
+				<equals arg1="${resources.suffix}" arg2="_true_colour"/>
+			</not>
+			<then>
+				<var name="resources.suffix" value=""/>
+			</then>
+			<else>
+				<var name="resources.suffix" value="_true_colour"/>
+			</else>
+		</if>
+		
+		<!-- init temporary working dirs -->
+		<mkdir dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}"/>
+		<mkdir dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque"/>
+		<mkdir dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\transparent"/>
+
+		<!-- fetch file number -->
+		<resourcecount property="opaque_file_num">
+			<fileset dir="${polish.resources.source.dir}\opaque" includes="*${polish.resources.source.format.extension}" />
+		</resourcecount>
+		
+		<echo message="opaque_file_num: '${opaque_file_num}'"/>
+		
+		<!-- perform scaling -->
+		<if>
+			<not>
+				<equals arg1="${opaque_file_num}" arg2="0" />
+			</not>
+			<then>
+				<batik-rasterize  
+					result="image/png"
+					scalefactor="${resize.proportions}"
+					srcdir="${polish.resources.source.dir}\opaque"
+			    	destdir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque"
+				>
+			   		<fileset dir="${polish.resources.source.dir}\opaque">
+						<include name="*.${polish.resources.source.format.extension}" />
+					</fileset>
+				</batik-rasterize>
+			</then>
+		</if>
+		
+		<resourcecount property="transparent_file_num">
+	   		<fileset dir="${polish.resources.source.dir}\transparent" includes="*${polish.resources.source.format.extension}" />
+		</resourcecount>
+		
+		<echo message="transparent_file_num: '${transparent_file_num}'"/>
+		
+		<if>
+			<not>
+				<equals arg1="${transparent_file_num}" arg2="0" />
+			</not>
+			<then>
+				<batik-rasterize  
+					result="image/png"
+					bg="0,0,0,0"
+					scalefactor="${resize.proportions}"
+					srcdir="${polish.resources.source.dir}\transparent"
+			    	destdir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\transparent" 
+				>
+			   		<fileset dir="${polish.resources.source.dir}\transparent" >
+			   			<include name="*.${polish.resources.source.format.extension}" />
+					</fileset>
+				</batik-rasterize>
+			</then>
+		</if>
+
+		<!-- Optimize -->
+		<if>
+			<equals arg1="${resources.suffix}" arg2="_true_colour">
+			</equals>
+			<then>
+				<exec dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\transparent"
+					executable="cmd"
+					os="${os.name}"
+					>
+					<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+					<arg line="/c for %i in (*${polish.resources.target.format.extension}) do call ${pngout.home}/pngout.exe /c6 /q %i"/>
+				</exec>
+			</then>
+			<else>
+				<exec dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp\transparent"
+					executable="cmd"
+					os="${os.name}">
+					<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+					<arg line="/c for %i in (*${polish.resources.target.format.extension}) do call ${pngout.home}/pngout.exe /q %i"/>
+				</exec>
+			</else>
+		</if>
+		<exec dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque"
+			executable="cmd"
+			os="${os.name}">
+			<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+			<arg line="/c for %i in (*${polish.resources.target.format.extension}) do call ${pngout.home}/pngout.exe /q %i"/>
+		</exec>
+
+		<!-- init output dirs -->
+		<mkdir dir="${polish.resources.target.dir}\ScreenSize.${screen.size}${resources.suffix}"/>
+
+		<!-- copy to output dirs -->
+		<copy todir="${polish.resources.target.dir}\ScreenSize.${screen.size}${resources.suffix}" overwrite="true" >
+			<fileset dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\transparent" includes="*${polish.resources.target.format.extension}"/>
+			<fileset dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque" includes="*${polish.resources.target.format.extension}"/>
+		</copy>
+
+		<!-- delete temporary dirs -->
+		<delete dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}"/>
+
+	</target>
+	
+	<target name="res-scale-raster"
+		  		description="
+				Scales given raster image resources to desired output format according to passed resize proportions.
+				Parameter overview: http://www.imagemagick.org/script/convert.php. URL: http://www.imagemagick.org/script/index.php
+				NOTE: Solid background resources are placed in ${polish.resources.source.dir}/opaque.
+				NOTE: Transparent background resources are placed in ${polish.resources.source.dir}/transparent.
+				">
+
+			<echo message="res-scale-raster"/>
+			<echo message="NOTE: Following parameters are MANDATORY for this target to work:"/>
+			<echo message="polish.resources.source.dir: '${polish.resources.source.dir}'"/>
+			<echo message="polish.resources.target.dir: '${polish.resources.target.dir}'"/>
+			<echo message="polish.resources.source.format.extension: '${polish.resources.source.format.extension}'"/>
+			<echo message="polish.resources.target.format.extension: '${polish.resources.target.format.extension}'"/>
+			<echo message="resize.proportions: '${resize.proportions}'"/>
+			<echo message="screen.size: '${screen.size}'"/>
+			<echo message="NOTE: Following properties are OPTIONAL:"/>
+			<echo message="resources.suffix: '${resources.suffix}'"/>
+
+			<!-- decide if truecolor should be used -->
+			<if>
+				<not>
+					<equals arg1="${resources.suffix}" arg2="_true_colour"/>
+				</not>
+				<then>
+					<var name="resources.suffix" value=""/>
+				</then>
+				<else>
+					<var name="resources.suffix" value="_true_colour"/>
+				</else>
+			</if>
+			
+			<!-- init temporary working dirs -->
+			<mkdir dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}"/>
+			<mkdir dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque"/>
+			<mkdir dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\transparent"/>
+
+			<!-- perform scaling -->
+			<!-- Note: '~n' in output filename removes original file extension -->
+			<if>
+				<equals arg1="${screen.size}" arg2="320x240"></equals>
+				<then>
+					<exec dir="${polish.resources.source.dir}\opaque"
+						executable="cmd"
+						os="${os.name}">
+						<arg line="/c for %i in (*${polish.resources.source.format.extension}) do if not exist ${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque\%i call ${imagemagick.home}\convert -strokewidth 0 -alpha off -depth 8 -filter blackman -resize '66.66%x66.66%' %i ${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque\%~ni${polish.resources.target.format.extension} "/>
+					</exec>
+				</then>
+				<else>
+					<exec dir="${polish.resources.source.dir}\opaque"
+					executable="cmd"
+					os="${os.name}">
+					<arg line="/c for %i in (*${polish.resources.source.format.extension}) do if not exist ${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque\%i call ${imagemagick.home}\convert -strokewidth 0 -alpha off -depth 8 -filter blackman -resize '${resize.proportions}' %i ${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque\%~ni${polish.resources.target.format.extension} "/>
+					</exec>
+				</else>
+			</if>
+			<exec dir="${polish.resources.source.dir}\transparent"
+				executable="cmd"
+				os="${os.name}">
+				<arg line="/c for %i in (*${polish.resources.source.format.extension}) do if not exist ${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\transparent\%i call ${imagemagick.home}\convert -background none -strokewidth 0 -alpha on -depth 8 -filter blackman -resize '${resize.proportions}' %i ${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\transparent\%~ni${polish.resources.target.format.extension}"/>
+			</exec>
+
+			<!-- Optimize -->
+			<if>
+				<equals arg1="${resources.suffix}" arg2="_true_colour">
+				</equals>
+				<then>
+					<exec dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\transparent"
+						executable="cmd"
+						os="${os.name}">
+						<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+						<arg line="/c for %i in (*${polish.resources.target.format.extension}) do call ${pngout.home}/pngout.exe /c6 /q %i"/>
+					</exec>
+				</then>
+				<else>
+					<exec dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp\transparent"
+						executable="cmd"
+						os="${os.name}">
+						<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+						<arg line="/c for %i in (*${polish.resources.target.format.extension}) do call ${pngout.home}/pngout.exe /q %i"/>
+					</exec>
+				</else>
+			</if>
+			<exec dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque"
+				executable="cmd"
+				os="${os.name}">
+				<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+				<arg line="/c for %i in (*${polish.resources.target.format.extension}) do call ${pngout.home}/pngout.exe /q %i"/>
+			</exec>
+
+			<!-- init output dirs -->
+			<mkdir dir="${polish.resources.target.dir}\ScreenSize.${screen.size}${resources.suffix}"/>
+
+			<!-- copy to output dirs -->
+			<copy todir="${polish.resources.target.dir}\ScreenSize.${screen.size}${resources.suffix}" overwrite="true" >
+				<fileset dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\transparent" includes="*${polish.resources.target.format.extension}"/>
+				<fileset dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}\opaque" includes="*${polish.resources.target.format.extension}"/>
+			</copy>
+
+			<!-- delete temporary dirs -->
+			<delete dir="${polish.resources.source.dir}\ScreenSize.${screen.size}_temp${resources.suffix}"/>
+
+		</target>
+
+	<target name="icon-scale"
+	  		description="
+			Scales given icon image resources to desired output format according to defines icon size.
+			Parameter overview: http://www.imagemagick.org/script/convert.php.
+			URL: http://www.imagemagick.org/script/index.php">
+
+		<echo message="icon-scale"/>
+		<echo message="NOTE: Following parameters are MANDATORY for this target to work:"/>
+		<echo message="polish.resources.source.dir: '${polish.resources.source.dir}'"/>
+		<echo message="polish.resources.target.dir: '${polish.resources.target.dir}'"/>
+		<echo message="polish.resources.source.format.extension: '${polish.resources.source.format.extension}'"/>
+		<echo message="polish.resources.target.format.extension: '${polish.resources.target.format.extension}'"/>
+		<echo message="polish.resources.icon.size.source: '${polish.resources.icon.size.source}'"/>
+		<echo message="polish.resources.icon.size.target: '${polish.resources.icon.size.target}'"/>
+
+		<!-- del prior dirs -->
+		<delete dir="${polish.resources.source.dir}\icon_tmp" failonerror="false"/>
+
+		<!-- init temporary working dirs -->
+		<mkdir dir="${polish.resources.source.dir}\icon_tmp"/>
+		
+		<!-- Handle vector resources -->
+		<if>
+			<atl:isgreaterthan arg1="${polish.resources.icon.size.target}" arg2="${polish.resources.icon.size.source}"/>
+				<then>
+					<!-- Scaling up, use density scale -->
+					<math result="tmp.density" operand1="${polish.resources.icon.size.target}" operation="/" operand2="${polish.resources.icon.size.source}" datatype="float"/>
+					<math result="new.density" operand1="${tmp.density}" operation="*" operand2="72" datatype="float"/>
+				</then>
+				<else>
+					<!-- Scaling down, use resize scale -->
+					<math result="size.tmp" operand1="${polish.resources.icon.size.target}" operation="/" operand2="${polish.resources.icon.size.source}" datatype="float"/>
+					<math result="size.percentage" operand1="${size.tmp}" operation="*" operand2="100"/>
+				</else>
+		</if>
+
+		<!-- perform scaling -->
+		<!-- Note: '~n' in output filename removes original file extension -->
+		<if>
+			<atl:isgreaterthan arg1="${polish.resources.icon.size.target}" arg2="${polish.resources.icon.size.source}"/>
+				<then>
+					<!-- Scaling up, use density scale -->
+					<exec dir="${polish.resources.source.dir}\"
+						executable="cmd"
+						os="${os.name}">
+						<arg line="/c for %i in (*${polish.resources.source.format.extension}) do if not exist ${polish.resources.source.dir}\icon_tmp\%i call ${imagemagick.home}\convert -strokewidth 0 -alpha on -depth 8 -background none -density '${new.density}' %i ${polish.resources.source.dir}\icon_tmp\%~ni${polish.resources.target.format.extension}"/>
+					</exec>
+				</then>
+				<else>
+					<!-- Scaling down, use resize scale -->
+					<if>
+						<equals arg1="${polish.fix_application_icon_transparency}" arg2="true"/>
+						<then>
+							<exec dir="${polish.resources.source.dir}\"
+								executable="cmd"
+								os="${os.name}">
+								<arg line="/c for %i in (*${polish.resources.source.format.extension}) do if not exist ${polish.resources.source.dir}\icon_tmp\%i call ${imagemagick.home}\convert -strokewidth 0 -alpha off -depth 6 -background white -filter blackman -resize '${size.percentage}%x${size.percentage}%!' %i ${polish.resources.source.dir}\icon_tmp\%~ni${polish.resources.target.format.extension}"/>
+							</exec>
+							</then>
+							<else>
+							<exec dir="${polish.resources.source.dir}\"
+								executable="cmd"
+								os="${os.name}">
+								<arg line="/c for %i in (*${polish.resources.source.format.extension}) do if not exist ${polish.resources.source.dir}\icon_tmp\%i call ${imagemagick.home}\convert -strokewidth 0 -alpha on -depth 8 -background none -filter blackman -resize '${size.percentage}%x${size.percentage}%!' %i ${polish.resources.source.dir}\icon_tmp\%~ni${polish.resources.target.format.extension}"/>
+							</exec>
+						</else>
+					</if>
+				</else>
+		</if>
+
+		<if>
+			<equals arg1="${polish.fix_application_icon_transparency}" arg2="true"/>
+			<then>
+				<exec dir="${polish.resources.source.dir}\icon_tmp"  
+					executable="cmd"
+					os="${os.name}">
+					<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+					<arg line="/c for %i in (*${polish.resources.target.format.extension}) do call ${pngout.home}/pngout.exe /c2 %i"/>
+				</exec>
+			</then>
+			<else>
+				<exec dir="${polish.resources.source.dir}\icon_tmp"  
+					executable="cmd"
+					os="${os.name}">
+					<!-- Change /s* parameter to /s0 to do algorithmic image optimization as well -->
+					<arg line="/c for %i in (*${polish.resources.target.format.extension}) do call ${pngout.home}/pngout.exe /c6 %i"/>
+				</exec>
+			</else>
+	    </if>
+		
+		<!-- Overwrite icon file in resource dir only if given dir (screenres) exists -->
+		<copy todir="${polish.resources.target.dir}" overwrite="true" failonerror="false"  >
+			<fileset dir="${polish.resources.source.dir}\icon_tmp" includes="*${polish.resources.target.format.extension}"/>
+		</copy>
+
+		<!-- delete temporary dirs -->
+		<!--delete dir="${polish.resources.source.dir}\icon_tmp"/-->
+
+	</target>
+
+</project>

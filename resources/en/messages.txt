@@ -1,0 +1,907 @@
+#-------------------------------------------------------------------------------
+# CDDL HEADER START
+# 
+# The contents of this file are subject to the terms of the Common Development
+# and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+# 
+# You can obtain a copy of the license at
+# src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+# http://github.com/360/360-Engine-for-Android
+# See the License for the specific language governing permissions and limitations under the License.
+# 
+# When distributing Covered Code, include this CDDL HEADER in each file and
+#  include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+# If applicable, add the following below this CDDL HEADER, with the fields
+# enclosed by brackets "[]" replaced with your own identifying information:
+# Portions Copyright [yyyy] [name of copyright owner]
+# 
+# CDDL HEADER END
+# 
+# Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+# Use is subject to license terms.
+#-------------------------------------------------------------------------------
+nowplus.client.java.app.criticalerror.text=An error has occurred so you need to restart 360 and log in again. To secure your data, your phone's address book will be imported when you log in.
+
+nowplus.client.java.app.criticalerror.title=Restart needed
+
+nowplus.client.java.app.serviceunavailable.text=The network is unavailable at the moment
+
+nowplus.client.java.app.serviceunavailable.title=Unable to connect
+
+nowplus.client.java.application.initialisation.failed.title=REDUNDANT
+
+nowplus.client.java.application.popup.text=Starting up...
+
+nowplus.client.java.application.popup.title=Starting up...
+
+nowplus.client.java.browse.confirm.headline=Open browser
+
+nowplus.client.java.browse.confirm.text=You are about to leave 360 and open a browser
+
+nowplus.client.java.browser.notification.title=Loading page...
+
+nowplus.client.java.cabsabsync.popup.receiving=Finalising synchronisation with 360
+
+nowplus.client.java.cabsabsync.popup.receiving.failed=Synchronisation wasn't complete. However, it will be completed next time you start the application.
+
+nowplus.client.java.cabsabsync.popup.sending=Sending contacts to 360
+
+nowplus.client.java.cabsabsync.popup.sending.failed=We were unable to sync all of your contacts with 360. However, they will be synced next time you start the application.
+
+nowplus.client.java.cabsabsync.popup.title=Syncing your contacts...
+
+nowplus.client.java.chat.thread.confirm.delete.text=Are you sure you want to delete this contact?
+
+nowplus.client.java.chat.thread.confirm.delete.title=Delete contact
+
+nowplus.client.java.chat.thread.date.day.fri=Fri
+
+nowplus.client.java.chat.thread.date.day.mon=Mon
+
+nowplus.client.java.chat.thread.date.day.sat=Sat
+
+nowplus.client.java.chat.thread.date.day.sun=Sun
+
+nowplus.client.java.chat.thread.date.day.thu=Thu
+
+nowplus.client.java.chat.thread.date.day.tue=Tue
+
+nowplus.client.java.chat.thread.date.day.wed=Wed
+
+nowplus.client.java.chat.thread.error.contact.notconnected=Your message can't be sent because you and {0} are not connected on 360. You can connect to from his details page.
+
+nowplus.client.java.chat.thread.error.contact.notonline=Your message can't be sent as your friend is not signed in to {0}. You can start to chat when your friend is online again.
+
+nowplus.client.java.chat.thread.error.user.notonline=redundant
+
+nowplus.client.java.chat.thread.error.user.notsignedin=Your message can't be sent because you are not logged in to {0}. You can log in to {0} under your 'Accounts' under 'Me'.
+
+nowplus.client.java.chat.thread.send=Send
+
+nowplus.client.java.chat.thread.textfield.helptext=Type text here
+
+nowplus.client.java.chat.thread.title=Chat
+
+nowplus.client.java.chat.thread.you=Me
+
+nowplus.client.java.command.close=Close
+
+nowplus.client.java.command.exit=Exit
+
+nowplus.client.java.command.ignore=Ignore
+
+nowplus.client.java.command.open=Open
+
+nowplus.client.java.command.options=Options
+
+nowplus.client.java.command.roaming.yes=Yes
+
+nowplus.client.java.contextual.menu.command.add.new.contact=Add new contact
+
+nowplus.client.java.contextual.menu.command.block=Block contact
+
+nowplus.client.java.contextual.menu.command.connect=Connect
+
+nowplus.client.java.contextual.menu.command.create.email=New email
+
+nowplus.client.java.contextual.menu.command.create.new=Create new...
+
+nowplus.client.java.contextual.menu.command.create.sms=New SMS
+
+nowplus.client.java.contextual.menu.command.create.text=Create text
+
+nowplus.client.java.contextual.menu.command.delete=Delete
+
+nowplus.client.java.contextual.menu.command.edit.profile=Edit profile
+
+nowplus.client.java.contextual.menu.command.exit=Exit
+
+nowplus.client.java.contextual.menu.command.help=Help
+
+nowplus.client.java.contextual.menu.command.invite=Invite
+
+nowplus.client.java.contextual.menu.command.more=More...
+
+nowplus.client.java.contextual.menu.command.open.filter=Jump to top
+
+nowplus.client.java.contextual.menu.command.open.ongoing.chat=Open ongoing chat
+
+nowplus.client.java.contextual.menu.command.search=Search 360
+
+nowplus.client.java.contextual.menu.command.settings=Settings
+
+nowplus.client.java.contextual.menu.command.switch.application=Switch Application
+
+nowplus.client.java.contextual.menu.command.view.profile=View profile
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.text=Are you sure you want to delete {0}?
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.title=Delete contact
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.text=Are you sure you want to delete {0}?
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.title=Delete detail
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.text1=Are you sure you want to delete {0} from your profile?
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.title=Delete account
+
+nowplus.client.java.contextual.menu.infobar.profile=Profile
+
+nowplus.client.java.contextual.menu.navbar.Chat=Chat
+
+nowplus.client.java.contextual.menu.navbar.Email=Email
+
+nowplus.client.java.contextual.menu.navbar.Poke=Poke
+
+nowplus.client.java.contextual.menu.navbar.SMS=SMS
+
+nowplus.client.java.contextual.menu.navbar.call=Call
+
+nowplus.client.java.contextual.menu.notify.block.text=Your contact has been blocked
+
+nowplus.client.java.contextual.menu.notify.block.title=Block contact
+
+nowplus.client.java.contextual.menu.notify.connect.text=Your 360 connection request has been sent
+
+nowplus.client.java.contextual.menu.notify.connect.title=Connect
+
+nowplus.client.java.contextual.menu.notify.invite.text=Your contact has been invited
+
+nowplus.client.java.contextual.menu.notify.invite.title=Invite
+
+nowplus.client.java.date.friday=Friday
+
+nowplus.client.java.date.monday=Monday
+
+nowplus.client.java.date.now=Now
+
+nowplus.client.java.date.saturday=Saturday
+
+nowplus.client.java.date.sunday=Sunday
+
+nowplus.client.java.date.thursday=Thursday
+
+nowplus.client.java.date.today=Today
+
+nowplus.client.java.date.tuesday=Tuesday
+
+nowplus.client.java.date.wednesday=Wednesday
+
+nowplus.client.java.date.yesterday=Yesterday
+
+nowplus.client.java.edit.contact.add=Add
+
+nowplus.client.java.edit.contact.address=Address
+
+nowplus.client.java.edit.contact.address.country=Country
+
+nowplus.client.java.edit.contact.address.postcode=Post code
+
+nowplus.client.java.edit.contact.address.region=County
+
+nowplus.client.java.edit.contact.address.street=Street
+
+nowplus.client.java.edit.contact.address.town=Town
+
+nowplus.client.java.edit.contact.bdinvalid.text=Date of birth must be in the past
+
+nowplus.client.java.edit.contact.birthday=Birthday
+
+nowplus.client.java.edit.contact.command.edit=Edit
+
+nowplus.client.java.edit.contact.command.new=New
+
+nowplus.client.java.edit.contact.command.save=Save
+
+nowplus.client.java.edit.contact.command.switch.multitab=Use multi-tap text
+
+nowplus.client.java.edit.contact.command.switch.native=Use predictive text
+
+nowplus.client.java.edit.contact.command.takepicture=Take picture
+
+nowplus.client.java.edit.contact.delete.failed.notify.text=The detail couldn't be deleted. If this continues, restart the application.
+
+nowplus.client.java.edit.contact.delete.failed.notify.title=Unable to delete
+
+nowplus.client.java.edit.contact.edit=Edit
+
+nowplus.client.java.edit.contact.email=Email
+
+nowplus.client.java.edit.contact.email.address=Email address
+
+nowplus.client.java.edit.contact.group=Group
+
+nowplus.client.java.edit.contact.group.label=Group name
+
+nowplus.client.java.edit.contact.im=Chat
+
+nowplus.client.java.edit.contact.invalid.email.text=You've entered the wrong email address. Please try again.
+
+nowplus.client.java.edit.contact.invalid.email.title=Wrong email
+
+nowplus.client.java.edit.contact.invalid.name.text=Your contact can't be saved without a name. Do you want to cancel these changes?
+
+nowplus.client.java.edit.contact.invalid.name.title=Name missing
+
+nowplus.client.java.edit.contact.missing.name.confirm.no=No
+
+nowplus.client.java.edit.contact.missing.name.confirm.yes=Yes
+
+nowplus.client.java.edit.contact.missing.name.notify.ok=OK
+
+nowplus.client.java.edit.contact.missing.name.text=You need to enter at least one name
+
+nowplus.client.java.edit.contact.missing.name.title=Name missing
+
+nowplus.client.java.edit.contact.name=Name
+
+nowplus.client.java.edit.contact.name.first=First
+
+nowplus.client.java.edit.contact.name.last=Last
+
+nowplus.client.java.edit.contact.name.middle=Middle
+
+nowplus.client.java.edit.contact.note=Notes
+
+nowplus.client.java.edit.contact.note.enter=Enter note
+
+nowplus.client.java.edit.contact.phone=Phone
+
+nowplus.client.java.edit.contact.phone.number=Phone number
+
+nowplus.client.java.edit.contact.phone.preffered=Use as preferred
+
+nowplus.client.java.edit.contact.subtype.label=Label
+
+nowplus.client.java.edit.contact.take.picture=Take picture
+
+nowplus.client.java.edit.contact.title=Edit profile
+
+nowplus.client.java.edit.contact.update.failed.notify.text=Your contact details couldn't be updated. If this continues, restart the application.
+
+nowplus.client.java.edit.contact.update.failed.notify.title=Unable to update
+
+nowplus.client.java.edit.contact.update.notify.text=Profile is being updated
+
+nowplus.client.java.edit.contact.update.notify.title=Updating
+
+nowplus.client.java.edit.contact.url=Website
+
+nowplus.client.java.edit.contact.url.address=Web address
+
+nowplus.client.java.edit.contact.work=Work info
+
+nowplus.client.java.exit.confirm.headline=Are you sure you want to exit?
+
+nowplus.client.java.exit.confirm.no=No
+
+nowplus.client.java.exit.confirm.text=Exit
+
+nowplus.client.java.exit.confirm.yes=Yes
+
+nowplus.client.java.exit.notification.headline=Closing
+
+nowplus.client.java.exit.notification.text=Just a moment. The application is closing down.
+
+nowplus.client.java.help.confirm.headline=You're about to leave 360 and open the web browser
+
+nowplus.client.java.help.confirm.text=Open web browser
+
+nowplus.client.java.identity.vodafone360.chatlabel=360 Chat
+
+nowplus.client.java.landingpage.tagline=redundant
+
+nowplus.client.java.landingpage.tagline1=A 360 service
+
+nowplus.client.java.landingpage.tagline2=Bringing your world together
+
+nowplus.client.java.launch.postponed.text=redundant
+
+nowplus.client.java.launch.postponed.title=redundant
+
+nowplus.client.java.list.order.first=First
+
+nowplus.client.java.list.order.last=Last
+
+nowplus.client.java.list.order.none=None
+
+nowplus.client.java.login.connection.disallowed.text=You need to restart the application to continue
+
+nowplus.client.java.login.connection.disallowed.title=Connection not allowed
+
+nowplus.client.java.login.loginfailed.text=Your username and/or password aren't right. Please try again.
+
+nowplus.client.java.login.loginfailed.title=Try again
+
+nowplus.client.java.login.notification.loggingin=Logging in...
+
+nowplus.client.java.login.reauthenticate.text=Your account details seem to have changed. You'll need to log in again.
+
+nowplus.client.java.login.title=Log in
+
+nowplus.client.java.loginform.command.cancel=Cancel
+
+nowplus.client.java.loginform.command.mark=Select
+
+nowplus.client.java.loginform.command.save=Log in
+
+nowplus.client.java.loginform.command.unmark=Unselect
+
+nowplus.client.java.loginform.headline=Log in to 360
+
+nowplus.client.java.loginform.password.chosepassword.hint=Password
+
+nowplus.client.java.loginform.password.hint=Password
+
+nowplus.client.java.loginform.rememberme.label=Remember me
+
+nowplus.client.java.loginform.username.choseusername.hint=Username
+
+nowplus.client.java.loginform.username.hint=Username
+
+nowplus.client.java.network.search.command.search=Search
+
+nowplus.client.java.network.search.title=Search 360
+
+nowplus.client.java.networkdown.text=Your network connection is temporarily down. 360 will go online when the network is available again
+
+nowplus.client.java.networkdown.title=Network connection lost
+
+nowplus.client.java.new.contact.title=New contact
+
+nowplus.client.java.newpasswordrestart.text=A password change has been detected. You need to restart the application and type in your password again to continue use.
+
+nowplus.client.java.newpasswordrestart.title=Password changed
+
+nowplus.client.java.peoplepage.meview.availability.available=Available
+
+nowplus.client.java.peoplepage.meview.availability.invisible=Invisible
+
+nowplus.client.java.peoplepage.meview.availability.label=Availability
+
+nowplus.client.java.peoplepage.meview.availability.offline=Offline
+
+nowplus.client.java.peoplepage.meview.command.set=Set
+
+nowplus.client.java.peoplepage.meview.myprofile=My profile
+
+nowplus.client.java.peoplepage.meview.settings=Settings
+
+nowplus.client.java.peoplepage.meview.sn.status=Posts to {0} too
+
+nowplus.client.java.peoplepage.meview.sn.status1=redundant
+
+nowplus.client.java.peoplepage.meview.sn.status2=redundant
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.text=Your status couldn't be updated. If this continues, try restarting the application.
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.title=Unable to update status
+
+nowplus.client.java.peoplepage.meview.status.helptext=What are you doing now?
+
+nowplus.client.java.peoplepage.meview.status.label=Status message
+
+nowplus.client.java.peoplepage.meview.submit.command.update=Update
+
+nowplus.client.java.peoplepage.meview.webaccounts=Accounts
+
+nowplus.client.java.peoplepage.notification.pleasewait=Just a moment...
+
+nowplus.client.java.peoplepage.people.filter.all=All
+
+nowplus.client.java.peoplepage.people.filter.colleages=Work
+
+nowplus.client.java.peoplepage.people.filter.family=Family
+
+nowplus.client.java.peoplepage.people.filter.friends=Friends
+
+nowplus.client.java.peoplepage.people.filter.nowplus=Connected
+
+nowplus.client.java.peoplepage.people.filter.online=Online
+
+nowplus.client.java.peoplepage.people.filter.phonebook=Phonebook
+
+nowplus.client.java.peoplepage.tab.chat=Chat
+
+nowplus.client.java.peoplepage.tab.icon.name.contacts=Contacts
+
+nowplus.client.java.peoplepage.tab.me=Me
+
+nowplus.client.java.peoplepage.tab.people=People
+
+nowplus.client.java.peoplepage.tab.status=Status
+
+nowplus.client.java.peoplepage.tab.timeline=Timeline
+
+nowplus.client.java.peoplepage.tab.timeline.empty=Empty
+
+polish.command.back=Back
+
+polish.command.cancel=Cancel
+
+polish.command.clear=Clear
+
+polish.command.delete=Delete
+
+polish.command.entersymbol=Add symbol
+
+polish.command.followlink=Go
+
+polish.command.hide=Hide
+
+polish.command.mark=Select
+
+polish.command.ok=OK
+
+polish.command.options=Options
+
+polish.command.select=Select
+
+polish.command.submit=Send
+
+polish.command.unmark=Unselect
+
+nowplus.client.java.polish.dateformatemptytext=DD/MM/YYYY
+
+polish.rss.command.followlink=Go
+
+polish.rss.command.select=Show
+
+polish.title.input=Start typing
+
+nowplus.client.java.profilepage.connect.item=Connect to contact
+
+nowplus.client.java.profilepage.content.address=Address
+
+nowplus.client.java.profilepage.content.birthday=Birthday
+
+nowplus.client.java.profilepage.content.callorsms=Phone numbers
+
+nowplus.client.java.profilepage.content.command.call=Call
+
+nowplus.client.java.profilepage.content.command.chat=Chat
+
+nowplus.client.java.profilepage.content.command.mms=Picture message
+
+nowplus.client.java.profilepage.content.command.open=Open
+
+nowplus.client.java.profilepage.content.command.sms=Text
+
+nowplus.client.java.profilepage.content.command.write=Write
+
+nowplus.client.java.profilepage.content.date.month.apr=April
+
+nowplus.client.java.profilepage.content.date.month.aug=August
+
+nowplus.client.java.profilepage.content.date.month.dec=December
+
+nowplus.client.java.profilepage.content.date.month.feb=February
+
+nowplus.client.java.profilepage.content.date.month.jan=January
+
+nowplus.client.java.profilepage.content.date.month.jul=July
+
+nowplus.client.java.profilepage.content.date.month.jun=June
+
+nowplus.client.java.profilepage.content.date.month.mar=March
+
+nowplus.client.java.profilepage.content.date.month.may=May
+
+nowplus.client.java.profilepage.content.date.month.nov=November
+
+nowplus.client.java.profilepage.content.date.month.oct=October
+
+nowplus.client.java.profilepage.content.date.month.okt=October
+
+nowplus.client.java.profilepage.content.date.month.sep=September
+
+nowplus.client.java.profilepage.content.email=Email
+
+nowplus.client.java.profilepage.content.groupes=Groups
+
+nowplus.client.java.profilepage.content.im=Chat
+
+nowplus.client.java.profilepage.content.name=Name
+
+nowplus.client.java.profilepage.content.notes=Notes
+
+nowplus.client.java.profilepage.content.socialnetwork=Accounts
+
+nowplus.client.java.profilepage.content.url=Website
+
+nowplus.client.java.profilepage.content.work=Work info
+
+nowplus.client.java.profilepage.content.work.company=Company
+
+nowplus.client.java.profilepage.content.work.department=Department
+
+nowplus.client.java.profilepage.content.work.title=Title
+
+nowplus.client.java.profilepage.invite.item.label=Invite contact to
+
+nowplus.client.java.profilepage.invite.item.text=360
+
+nowplus.client.java.profilepage.subtype.fax=Fax
+
+nowplus.client.java.profilepage.subtype.home=Home
+
+nowplus.client.java.profilepage.subtype.mobile=Mobile
+
+nowplus.client.java.profilepage.subtype.other=Other
+
+nowplus.client.java.profilepage.subtype.work=Work
+
+nowplus.client.java.profilepage.tab.details=Profile
+
+nowplus.client.java.roamingwarning.text=Would you like 360 to connect whilst roaming? Roaming data charges may apply
+
+nowplus.client.java.roamingwarning.title=You are roaming
+
+nowplus.client.java.settings.about.text=People - A 360 service (c) Vodafone 2009
+
+nowplus.client.java.settings.about.text2010=People - A 360 service (c) Vodafone 2010
+
+nowplus.client.java.settings.about.title=About
+
+nowplus.client.java.settings.clearstorage.confirm.no=No
+
+nowplus.client.java.settings.clearstorage.confirm.text=Are you sure you want to delete all data from this application?
+
+nowplus.client.java.settings.clearstorage.confirm.title=Delete all data
+
+nowplus.client.java.settings.clearstorage.confirm.yes=Yes
+
+nowplus.client.java.settings.clearstorage.warning.text=Be careful. Removing data will delete all your contacts, messages and connected networks from the application. You'll be logged out of 360 and can log back in again or sign up for a new account.
+
+nowplus.client.java.settings.clearstorage.warning.title=Warning
+
+nowplus.client.java.settings.command.save=Save
+
+nowplus.client.java.settings.datatraffic.title=Data traffic
+
+nowplus.client.java.settings.removedataitem=Delete all data from this application on this phone
+
+nowplus.client.java.settings.removedataitem.title=Delete data
+
+nowplus.client.java.settings.reset.confirm.text=Are you sure you would like to reset the data traffic counter?
+
+nowplus.client.java.settings.reset.confirm.title=Reset counter
+
+nowplus.client.java.settings.resetcounteritem=Reset counter
+
+nowplus.client.java.settings.roaming.enableroaming=Always turn on data while roaming
+
+nowplus.client.java.settings.roaming.title=Data roaming
+
+nowplus.client.java.settings.software.title=Software
+
+nowplus.client.java.settings.sortcontacts.firstlast=First, Last
+
+nowplus.client.java.settings.sortcontacts.lastfirst=Last, First
+
+nowplus.client.java.settings.sortcontacts.title=Sort contacts by
+
+nowplus.client.java.settings.sync.progress=Starting sync...
+
+nowplus.client.java.settings.sync.syncitem=Sync now
+
+nowplus.client.java.settings.sync.title=Sync Contacts
+
+nowplus.client.java.settings.title=Settings
+
+nowplus.client.java.signup.checkingdata.progress.headline=Please wait
+
+nowplus.client.java.signup.checkingdata.progress.text=Checking your details...
+
+nowplus.client.java.signup.command.cancel=Cancel
+
+nowplus.client.java.signup.command.continue=Continue
+
+nowplus.client.java.signup.command.exit=Exit
+
+nowplus.client.java.signup.command.read=Read
+
+nowplus.client.java.signup.command.select=Select
+
+nowplus.client.java.signup.congratulations.headline=Congratulations!
+
+nowplus.client.java.signup.congratulations.rememberme=Remember me
+
+nowplus.client.java.signup.congratulations.youarenow=You're now logged in to 360
+
+nowplus.client.java.signup.enterdata.chosepassword=Choose a password 
+
+nowplus.client.java.signup.enterdata.choseusername=Choose a username 
+
+nowplus.client.java.signup.enterdata.dob=Enter your date of birth
+
+nowplus.client.java.signup.enterdata.emailfield.hint=Email address
+
+nowplus.client.java.signup.enterdata.emailfield.title=Enter your email
+
+nowplus.client.java.signup.enterdata.entermobilenumber=Enter your mobile number
+
+nowplus.client.java.signup.enterdata.entermobilenumber.hint=Incl int code like +44
+
+nowplus.client.java.signup.enterdata.headline=Registration is easy 
+
+nowplus.client.java.signup.enterdata.privacy.text=Privacy Statement
+
+nowplus.client.java.signup.enterdata.termsandconditions.checkbox.label=I have read and agree to the
+
+nowplus.client.java.signup.enterdata.termsandconditions.text=Terms & Conditions
+
+nowplus.client.java.signup.error.agecheck.text=The age you entered seems to be wrong, please type it again.
+
+nowplus.client.java.signup.error.agecheck.title=Age check
+
+nowplus.client.java.signup.error.dobnotprovided=You need to enter your date of birth
+
+nowplus.client.java.signup.error.dobnotprovided.headline=Date of birth missing
+
+nowplus.client.java.signup.error.email.headline=Email
+
+nowplus.client.java.signup.error.email.invalid=Invalid Email Address
+
+nowplus.client.java.signup.error.headline=Unable to sign up
+
+nowplus.client.java.signup.error.mustaccepttc=You need to agree to the Terms & Conditions to sign up
+
+nowplus.client.java.signup.error.mustaccepttc.headline=Terms & Conditions
+
+nowplus.client.java.signup.error.mustbe14=You need to be 14 or older to sign up for an account
+
+nowplus.client.java.signup.error.mustbe14.headline=Age check
+
+nowplus.client.java.signup.error.mustbeinternational=The phone number you give needs to be in international format e.g. starting with +44
+
+nowplus.client.java.signup.error.mustbeinternational.headline=International format
+
+nowplus.client.java.signup.error.mustenterphonenumber=You need to enter a mobile number to sign up
+
+nowplus.client.java.signup.error.mustenterphonenumber.headline=Mobile number missing
+
+nowplus.client.java.signup.error.passwordchars=The following characters aren't allowed in a password
+
+nowplus.client.java.signup.error.passwordchars.headline=Password characters
+
+nowplus.client.java.signup.error.passwordlength=Your password needs to be between 6 and 25 characters long
+
+nowplus.client.java.signup.error.passwordlength.headline=Password length
+
+nowplus.client.java.signup.error.usernamechars=The following characters aren't allowed in a username
+
+nowplus.client.java.signup.error.usernamechars.headline=Username characters
+
+nowplus.client.java.signup.error.usernamelength=Your username needs to be between 6 and 50 characters
+
+nowplus.client.java.signup.error.usernamelength.headline=Username length
+
+nowplus.client.java.signup.importsn.confirmation.text=Do you want to import contacts from your accounts?
+
+nowplus.client.java.signup.importsn.confirmation.title=Import accounts
+
+nowplus.client.java.signup.signupfailed.dobinvalid=Your date of birth is wrong. Either the date format is incorrect, or you are not 14 or older.
+
+nowplus.client.java.signup.signupfailed.internalerror=Something just went wrong
+
+nowplus.client.java.signup.signupfailed.languageinvalid=Sorry, your language is not supported
+
+nowplus.client.java.signup.signupfailed.mobilemodelinvalid=This mobile model is either unknown or is not supported by this service.
+
+nowplus.client.java.signup.signupfailed.msisdninvalid=Wrong phone number
+
+nowplus.client.java.signup.signupfailed.msisdnmissing=You need to enter a phone number
+
+nowplus.client.java.signup.signupfailed.passwordinvalid=Your password is too short, too long or contains invalid characters
+
+nowplus.client.java.signup.signupfailed.passwordnotspecified=You need to enter a password
+
+nowplus.client.java.signup.signupfailed.tcnotaccepted=You need to accept the Terms & Conditions
+
+nowplus.client.java.signup.signupfailed.title=Unable to sign up
+
+nowplus.client.java.signup.signupfailed.usernamealreadytaken=Username is already taken
+
+nowplus.client.java.signup.signupfailed.usernameblacklisted=Username is blacklisted
+
+nowplus.client.java.signup.signupfailed.usernameforbidden=Username is not allowed. Please choose another username
+
+nowplus.client.java.signup.signupfailed.usernamenotspecified=Username is missing
+
+nowplus.client.java.signup.signupfailedwrongnumber.text=Sorry, we can't locate that phone number. Please try again.
+
+nowplus.client.java.signup.signupfailedwrongnumber.title=Unable to verify
+
+nowplus.client.java.signup.title=Sign up
+
+nowplus.client.java.signup.waitforsms.notification.text=We are currently validating your phone number. This may take a while. Please wait!
+
+nowplus.client.java.signup.waitforsms.notification.title=Checking phone number...
+
+nowplus.client.java.signup.welcome.button.login=Log in to my account
+
+nowplus.client.java.signup.welcome.button.signup=Sign up for an account
+
+nowplus.client.java.signup.welcome.headline=Welcome to People - A 360 service
+
+nowplus.client.java.sms.error.notification.headline=Unable to send SMS
+
+nowplus.client.java.sms.error.notification.message=Sorry, the SMS couldn't be sent.
+
+nowplus.client.java.sms.notification.headline=Sending SMS
+
+nowplus.client.java.smscomposer.title=SMS message
+
+nowplus.client.java.smsform.message.hint=Type your message
+
+nowplus.client.java.statuspage.command.request=Select
+
+nowplus.client.java.statuspage.error.user.notonline=Your status is not updated as you are currently not connected to 360. Your status message will be stored and will be updated once you are reconnected.
+
+nowplus.client.java.statuspage.noresult=Status is empty
+
+nowplus.client.java.statuspage.request=Request next {0} activities
+
+nowplus.client.java.sync.cancel.popup.text=Cancelling...
+
+nowplus.client.java.sync.popup.text=Importing {0} from Phone...
+
+nowplus.client.java.sync.popup.title=Importing contacts... 
+
+nowplus.client.java.sync.user.disallowed.create.text=Please exit the application and update the settings for this application to allow access to phone's address book.
+
+nowplus.client.java.sync.user.disallowed.create.title=Can't edit the phone's address book
+
+nowplus.client.java.sync.user.disallowed.delete.text=Please exit the application and update the settings for this application to allow access to phone's address book.
+
+nowplus.client.java.sync.user.disallowed.delete.title=Can't edit the phone's address book
+
+nowplus.client.java.sync.user.disallowed.open.text=Please exit the application and update the settings for this application to allow access to phone's address book.
+
+nowplus.client.java.sync.user.disallowed.open.title=Can't read the phone's address book
+
+nowplus.client.java.sync.user.disallowed.read.text=Please exit the application and update the settings for this application to allow access to phone's address book.
+
+nowplus.client.java.sync.user.disallowed.read.title=Can't read from the phone's address book
+
+nowplus.client.java.sync.user.disallowed.write.text=Please exit the application and update the settings for this application to allow access to phone's address book.
+
+nowplus.client.java.sync.user.disallowed.write.title=Can't save to the phone's address book
+
+nowplus.client.java.sync.with.360.text=Your phone is now ready to sync with 360. This may take up to 10 minutes
+
+nowplus.client.java.sync.with.360.title=Sync with 360
+
+nowplus.client.java.takepicture.command.new=New
+
+nowplus.client.java.takepicture.command.takepic=Take picture
+
+nowplus.client.java.takepicture.command.usethis=Use this
+
+nowplus.client.java.takepicture.confirm.usethisimage=Use this image
+
+titlebar.httpcounter.kb=kB
+
+nowplus.client.java.updateapplication.confirm.yes=Yes
+
+nowplus.client.java.updateapplication.headline=There's a new version of People – A 360 service – available
+
+nowplus.client.java.updateapplication.text=Would you like to install the update?
+
+nowplus.client.java.webaccounts.add.title=Add account
+
+nowplus.client.java.webaccounts.command.done=Done
+
+nowplus.client.java.webaccounts.command.edit=Edit
+
+nowplus.client.java.webaccounts.command.login=Log in
+
+nowplus.client.java.webaccounts.command.logout=Log out
+
+nowplus.client.java.webaccounts.edit.info.suffix=Login details
+
+nowplus.client.java.webaccounts.edit.password=Password
+
+nowplus.client.java.webaccounts.edit.title=Edit account
+
+nowplus.client.java.webaccounts.edit.username=Username
+
+nowplus.client.java.webaccounts.edit.username_email=Username/Email
+
+nowplus.client.java.webaccounts.facebook.disclaimer=By proceeding, you are allowing Vodafone 360 to access your Profile information, your friends' info and other content that it requires to work. You are also agreeing to the Facebook Terms of Use in your use of Vodafone 360 (visit http://www.facebook.com/terms.php).
+
+nowplus.client.java.webaccounts.facebook.disclaimer.header=Terms & Conditions for Facebook
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text1=Connecting this application with Facebook will enable you to bring public profile pics and contact details of your friends into People in order to populate your address book.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text2=By clicking "Log in" you agree that you are granted a non-exclusive, non-transferable, personal license to use the public profile photos of your friends on People.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text3=This license ends when either Facebook or the owner of that photo requests that you delete it. This license does not allow you to use those photos for any commercial purpose or with any other service or application.
+
+nowplus.client.java.webaccounts.item.adding=Adding
+
+nowplus.client.java.webaccounts.item.deleting=Deleting
+
+
+nowplus.client.java.webaccounts.item.updating=Updating
+
+
+nowplus.client.java.webaccounts.overview.title=Social networks
+
+nowplus.client.java.webaccounts.popup.deletesn.text=Are you sure you want to delete {0} from your profile?
+
+nowplus.client.java.webaccounts.popup.deletesn.title=Delete account
+
+nowplus.client.java.webaccounts.popup.importnow.text=Do you want to import contacts from your accounts?
+
+nowplus.client.java.webaccounts.popup.importnow.title=Import accounts
+
+nowplus.client.java.webaccounts.popup.loggingout.text=Please wait while we log you out of this account
+
+nowplus.client.java.webaccounts.popup.loggingout.title=Logging out
+
+nowplus.client.java.webaccounts.popup.loginfailed.text=You couldn't be logged in to the account
+
+nowplus.client.java.webaccounts.popup.loginfailed.title=Unable to log in
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.text=You're now logged in to the account
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.title=Logged in
+
+nowplus.client.java.webaccounts.popup.logoutfailed.text=Something went wrong when you tried to log out. Please try again.
+
+nowplus.client.java.webaccounts.popup.logoutfailed.title=Unable to log out
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.text=You're now logged out from the account
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.title=Logged out
+
+nowplus.client.java.webaccounts.popup.removefailed.text=Something went wrong when you tried to remove the account. Please try again.
+
+nowplus.client.java.webaccounts.popup.removefailed.title=Unable to remove
+
+nowplus.client.java.webaccounts.popup.removesucceeded.text=The account was successfully removed.
+
+nowplus.client.java.webaccounts.popup.removesucceeded.title=Successfully removed
+
+nowplus.client.java.webaccounts.popup.saving.text=Gathering information from account
+
+nowplus.client.java.webaccounts.popup.saving.title=Logging in
+
+nowplus.client.java.webaccounts.popup.savingfailed.text=The account couldn't be added
+
+nowplus.client.java.webaccounts.popup.savingfailed.title=Unable to add account
+
+nowplus.client.java.webaccounts.popup.savingsuccess.text=The account has been added. Your contacts will be added shortly.
+
+nowplus.client.java.webaccounts.popup.savingsuccess.title=Added account
+
+nowplus.client.java.webaccounts.progress.deletesn.title=Cleaning up...
+
+nowplus.client.java.webaccounts.title=Accounts
+
+nowplus.client.java.webaccounts.windowslive.disclaimer.text=By adding your Windows Live account to 360, you'll automatically log in to Windows Live each time you launch this Application.
+

@@ -1,0 +1,331 @@
+<!--
+  CDDL HEADER START
+  
+  The contents of this file are subject to the terms of the Common Development
+  and Distribution License (the "License").
+  You may not use this file except in compliance with the License.
+  
+  You can obtain a copy of the license at
+  src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+  http://github.com/360/360-Engine-for-Android
+  See the License for the specific language governing permissions and limitations under the License.
+  
+  When distributing Covered Code, include this CDDL HEADER in each file and
+   include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+  If applicable, add the following below this CDDL HEADER, with the fields
+  enclosed by brackets "[]" replaced with your own identifying information:
+  Portions Copyright [yyyy] [name of copyright owner]
+  
+  CDDL HEADER END
+  
+  Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+  Use is subject to license terms.
+-->
+
+<!--
+	custom-css-attributes.xml can define the CSS attributes of your
+	own CustomItems. 
+	
+	Each attribute can have following attributes:
+	name (required): the name of the attribute, e.g. "icon-image".
+	description (optional): the description of the attribute.
+	type (optional): the type of the attribute, either "string", "integer",
+					 "color", "boolean" or "style". Defaults to "string".
+	appliesTo (optional): A comma-separated list of classes for which the attribute can
+				      be used, e.g. "MyCustomItem".
+	default (optional): The default-value of the attribute.
+	value (optional): All allowed values in a comma-separated list.
+
+-->
+<attributes>
+	<!-- sample-attribute:
+	<attribute
+		name="focused-style"
+		type="style"
+		appliesTo="Screen, Form, List, ChoiceGroup"
+		description="The name of the style for the currently focused item."
+		default="focused"
+	/>
+	-->
+
+
+<attribute name="background">
+	<mapping from="smooth" to="com.zyb.nowplus.presentation.view.backgrounds.SmoothBackground">
+	<param name="image" type="image-url" />
+	<param name="bgcolor" type="color" primitive="true" default="white" />
+	<param name="clipheighttop" type="int" primitive="true" default="15" />
+	<param name="clipheightbottom" type="int" primitive="true" default="15" />
+	<param name="clipwidth" type="int" primitive="true" default="11" />
+	<param name="margin-top" type="int" primitive="true" default="0" />
+	<param name="margin-bottom" type="int" primitive="true" default="0" />
+	<param name="margin-left" type="int" primitive="true" default="0" />
+	<param name="margin-right" type="int" primitive="true" default="0" />
+  </mapping>
+</attribute>
+
+<attribute name="background">
+	<mapping from="gradientwithborder" to="com.zyb.nowplus.presentation.view.backgrounds.BorderBackground">
+	<param name="bgcolor" type="color" primitive="false" default="white" />
+	<param name="bgtocolor" type="color" primitive="false" />
+	<param name="bordercolor" type="color" primitive="false" />
+	<param name="topwidth" type="int" primitive="true" default="0" />
+	<param name="bottomwidth" type="int" primitive="true" default="0" />
+	<param name="rightwidth" type="int" primitive="true" default="0" />
+	<param name="leftwidth" type="int" primitive="true" default="0" />
+  </mapping>
+</attribute>
+
+<attribute name="background">
+	<mapping from="solidwithborder" to="com.zyb.nowplus.presentation.view.backgrounds.BorderBackground">
+	<param name="bgcolor" type="color" primitive="false" default="white" />
+	<param name="bordercolor" type="color" primitive="false" default="white" />
+	<param name="topwidth" type="int" primitive="true" default="0" />
+	<param name="bottomwidth" type="int" primitive="true" default="0" />
+	<param name="rightwidth" type="int" primitive="true" default="0" />
+	<param name="leftwidth" type="int" primitive="true" default="0" />
+  </mapping>
+</attribute>
+
+<attribute name="background">
+  <mapping from="diagonalstripes" to="com.zyb.nowplus.presentation.view.backgrounds.DiagonalStripesBackground">
+	<param name="bgcolor" type="color" primitive="false" default="white" />
+	<param name="stripewidth" type="int" primitive="true" default="10" />
+	<param name="stripeheight" type="int" primitive="true" default="10" />
+	<param name="stripecolor" type="color" primitive="false" default="green" />
+  </mapping>
+</attribute>
+
+<attribute
+	name="right-padding-due-to-web-traffic"
+	type="int"
+	appliesTo="com.zyb.socialphonebook.ui.items.TitleBar"
+	default="0"
+/>
+
+<attribute name="border">
+	<mapping from="button" to="com.zyb.nowplus.presentation.view.borders.ButtonBorder" >
+		<param name="top-color" type="color" primitive="true" translucent="true" default="#e999" 
+			description="The color in the top-left border." />
+		<param name="bottom-color" type="color" primitive="true" translucent="true" default="#9333" 
+			description="The color in the bottom-right border." />
+	</mapping>
+</attribute>
+	
+<attribute name="border">	
+	<mapping from="expand-button" to="com.zyb.nowplus.presentation.view.borders.ExpandButtonBorder" >
+		<param name="color" type="color" primitive="true" translucent="true" default="#e999"
+			description="The color in the border." />
+		<param name="width" type="integer" primitive="true" default="1" 
+			description="The width of the border stroke." />
+		<param name="corner-dim" type="integer" primitive="true" default="6" 
+			description="The width and height of the bottom right triangle." />
+	</mapping>
+</attribute>
+
+	<!-- *********************************************************************************************************
+	Related to custom ContainerViews used for menus
+	-->
+
+	<attribute name="view-type">
+		<mapping from="horizontal-carousel" to="new com.zyb.nowplus.presentation.view.containerviews.HorizontalCarouselView()" appliesTo="Container"/>
+	</attribute>
+		
+	<attribute name="view-type">
+		<mapping from="horizontal-selector" to="new com.zyb.nowplus.presentation.view.containerviews.HorizontalSelectorView()" appliesTo="Container"/>
+	</attribute>
+
+	<attribute
+		name="horizontal-padding-arrows"
+		type="dimension"
+		primitive="false" 
+		default="0%"
+	/>
+		
+	<attribute
+		name="left-arrow-image"
+		type="imageurl"
+		primitive="false" 
+		default="null"
+	/>
+		
+	<attribute
+		name="right-arrow-image"
+		type="imageurl"
+		primitive="false" 
+		default="null"
+	/>
+		
+	<attribute
+		name="seeker-style"
+		type="style"
+		description="The style of animated seeker in HorizontalSelectorView"
+		default="null"
+	/>
+	
+	<attribute
+		name="stretcher-style"
+		type="style"
+		description="The style of stretcher in HorizontalCarouselView"
+		default="null"
+	/>
+
+	<!-- *********************************************************************************************************
+	Related to ContactSummaryItem	
+	-->
+
+	<attribute
+		name="name-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ContactSummarizedItem"
+		description="The name style. Defaults to parent."
+		default=""
+	/>
+
+	<attribute
+		name="presence-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ContactSummarizedItem"
+		description="The presence style. Defaults to parent."
+		default=""
+	/>
+
+	<attribute
+		name="status-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ContactSummarizedItem"
+		description="The status style. Defaults to parent."
+		default=""
+	/>
+	
+	<attribute
+		name="network-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ContactSummarizedItem"
+		description="The network style. Defaults to parent."
+		default=""
+	/>
+	
+	<attribute
+		name="left-side-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ContactSummarizedItem"
+		default=""
+	/>
+
+	<attribute
+		name="right-side-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ContactSummarizedItem"
+		default=""
+	/>
+
+	<attribute
+		name="right-inner-side-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ContactSummarizedItem"
+		default=""
+	/>
+
+	<attribute
+		name="content-priority"
+		type="string"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ContactSummarizedItem"
+		default=""
+	/>
+	
+	<!-- *********************************************************************************************************
+	Related to BaseNotificationForm	
+	-->
+	
+	<attribute
+		name="body-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.forms.BaseNotificationForm"
+		description="The style of notification body."
+		default="null"
+	/>
+	
+	<attribute
+		name="text-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.forms.BaseNotificationForm"
+		description="The style of notification texts."
+		default="null"
+	/>
+	
+	<attribute
+		name="icon-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.forms.BaseNotificationForm"
+		description="The style of notification icon."
+		default="null"
+	/>
+
+	<attribute
+		name="headline-style"
+		type="style"
+		appliesTo="com.zyb.nowplus.presentation.view.forms.NotificationForm"
+		description="The style of notification headline."
+		default="null"
+	/>
+
+	<!-- *********************************************************************************************************
+	Related to ProgressIndicatorItem	
+	-->
+
+	<attribute
+		name="distance-between-items"
+		type="int"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ProgressIndicatorItem"
+		default="20"
+	/>
+	<attribute
+		name="item-width"
+		type="int"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ProgressIndicatorItem"
+		default="20"
+	/>
+	<attribute
+		name="item-height"
+		type="int"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ProgressIndicatorItem"
+		default="20"
+	/>
+	<attribute
+		name="item-color"
+		type="color"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ProgressIndicatorItem"
+		default="black"
+	/>
+	<attribute
+		name="item-border-color"
+		type="color"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ProgressIndicatorItem"
+		default="black"
+	/>
+	<attribute
+		name="item-left-image"
+		type="imageurl"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ProgressIndicatorItem"
+	/>
+	<attribute
+		name="item-right-image"
+		type="imageurl"
+		appliesTo="com.zyb.nowplus.presentation.view.items.ProgressIndicatorItem"
+	/>
+	
+	<!-- *********************************************************************************************************
+	Slide-In Screen Change Animation for Notification, Confirmations etc.	
+	-->
+	
+	<attribute
+		name="screen-change-animation"
+		type="map"
+		appliesTo="Screen"
+		description="An effect that should be shown whenever the screen is changed."
+		id="62"
+	>
+		<mapping from="slide" to="new de.enough.polish.ui.SlideScreenChangeAnimation()" />
+	</attribute>
+
+</attributes>

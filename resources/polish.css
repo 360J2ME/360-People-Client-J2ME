@@ -1,0 +1,6849 @@
+/*******************************************************************************
+ * CDDL HEADER START
+ * 
+ * The contents of this file are subject to the terms of the Common Development
+ * and Distribution License (the "License").
+ * You may not use this file except in compliance with the License.
+ * 
+ * You can obtain a copy of the license at
+ * src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+ * http://github.com/360/360-Engine-for-Android
+ * See the License for the specific language governing permissions and limitations under the License.
+ * 
+ * When distributing Covered Code, include this CDDL HEADER in each file and
+ *  include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+ * If applicable, add the following below this CDDL HEADER, with the fields
+ * enclosed by brackets "[]" replaced with your own identifying information:
+ * Portions Copyright [yyyy] [name of copyright owner]
+ * 
+ * CDDL HEADER END
+ * 
+ * Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+ * Use is subject to license terms.
+ ******************************************************************************/
+
+/*
+Please have a read about how to approach CSS styles in this project at:
+
+Polish website:
+http://www.j2mepolish.org/cms/leftsection/documentation/design/css-basics.html
+http://www.j2mepolish.org/cms/leftsection/documentation/design/css-animations.html
+http://www.j2mepolish.org/cms/leftsection/documentation/design/css-media-queries.html
+
+Zyb/Vodafone wiki
+https://wiki.zyb.com/index.php?title=CSS_conventions
+*/
+
+/*
+NOTE: Every items marked as "reserved" are native to Polish!
+*/
+
+/*
+NOTE: To calculate relative values, use:
+	calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * someValue + 5000 / 10000 );
+	
+Using property function 'percent( someValue, ${polish.css.master.screen.width}) produces a percentvalue e.g."15%"
+and not all Polish CSS attributes support this due to legacy.
+*/
+/*
+Master Screen Constants
+*/
+//#if ${polish.ScreenWidth} < ${polish.ScreenHeight}
+//#define polish.css.master.screen.isPortrait = true
+//#else
+//#define polish.css.master.screen.isLandScape = true		
+//#endif 
+
+//#if polish.vendor == BlackBerry
+
+	/* BackBerry specific master screen size */
+	//#if polish.css.master.screen.isPortrait
+		//#define polish.css.master.screen.width= 360
+		//#define polish.css.master.screen.height = 480
+	//#elif polish.css.master.screen.isLandScape
+		//#define polish.css.master.screen.width = 480
+		//#define polish.css.master.screen.height = 360
+	//#endif
+	
+//#else
+
+	/* Default master screen size */
+	//#if polish.css.master.screen.isPortrait
+		 //#if polish.css.n80 == true
+	   		//#define polish.css.master.screen.width = 352
+			//#define polish.css.master.screen.height = 416
+		//#else
+		    //#define polish.css.master.screen.width = 240
+			//#define polish.css.master.screen.height = 320
+		//#endif
+	//#elif polish.css.master.screen.isLandScape
+		//#define polish.css.master.screen.width = 320
+		//#define polish.css.master.screen.height = 240
+	//#endif	
+	
+//#endif
+
+colors  /*reserved*/
+{
+	/*
+	Overlay color used when applying the 'repaint-previous' css attribute 
+	*/
+	
+	//#if polish.vendor == BlackBerry
+	
+		overlay: argb( 200, 50, 50, 50);
+		full_transparent: argb( 0, 100, 100, 100);
+	
+	//#else
+	
+		overlay: argb( 128, 255, 255, 255);
+		
+	//#endif
+
+	
+	/*
+	Color Scheme in accordance to NowPlus+ UI documentation
+    'GUI_basicelements_comms_client_090129_am_V1.0_draft.pdf'
+	*/
+	
+	Now_0: rgb(255, 255, 255);
+
+	Now_6: rgb(0, 0, 0);
+	Now_6_2: rgb(250, 250, 250);
+	Now_6_5: rgb(242, 242, 242);
+	Now_6_7: rgb(237, 237, 237);
+	Now_6_10: rgb(229, 229, 229);
+	Now_6_15: rgb(217, 217, 217);
+	Now_6_20: rgb(204, 204, 204);
+	Now_6_30: rgb(178, 178, 178);
+	Now_6_40: rgb(153, 153, 153);
+	Now_6_50: rgb(128, 128, 128);	
+	Now_6_60: rgb(102, 102, 102);	
+	Now_6_75: rgb(64, 64, 64);
+	
+	Now_1807: rgb(181, 16, 29);
+	Now_1807_2: rgb(254, 250, 250);
+	Now_1807_40: rgb(225,153,153);
+	Now_1807_60: rgb(211, 102, 102);
+	Now_1807_80: rgb(196, 51, 51);
+	Now_1807_dark: rgb(150, 0, 0);
+	
+	Now_520: rgb(137, 42, 160);
+	Now_520_80: rgb(161, 85, 179);
+	Now_520_60: rgb(164, 130, 171);
+	Now_520_dark: rgb(96, 29, 112);
+	
+	Now_299: rgb(0, 153, 218);
+	Now_299_dark: rgb(0, 107, 152);
+	
+	Now_485_dark: rgb(160, 19, 28);
+	Now_485: rgb(230, 0, 0);
+}
+
+fonts
+{	
+	FONT_NowPlus_black_small_plain
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			style: plain;
+			size: ${polish.device.fontname};
+			face: normal;
+			color: Now_6_75;
+			
+		//#elif polish.vendor == BlackBerry
+		
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: plain;
+				size: normal;
+				face: normal;
+				color: Now_6_75;
+				
+			//#else
+			
+				style: plain;
+				size: small;
+				face: normal;
+				color: Now_6_75;
+				
+			//#endif
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: plain;
+			size: small;
+			color: Now_6_75;
+			
+		//#endif
+	}
+	
+	FONT_NowPlus_white_small_plain
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			style: plain;
+			size: ${polish.device.fontname};
+			face: normal;
+			color: Now_0;
+			
+		//#elif polish.vendor == BlackBerry			
+			
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: plain;
+				size: normal;
+				face: normal;
+				color: Now_0;
+				
+			//#else
+			
+				style: plain;
+				size: small;
+				face: normal;
+				color: Now_0;
+				
+			//#endif
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: plain;
+			size: small;
+			color: Now_0;
+			
+		//#endif
+	}
+	
+	FONT_NowPlus_red_small_plain
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			size: ${polish.device.fontname};
+			face: normal;
+			style: plain;
+			color: Now_1807;
+			
+		//#elif polish.vendor == BlackBerry
+			
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: plain;
+				size: normal;
+				face: normal;
+				color: Now_1807;
+				
+			//#else
+			
+				style: plain;
+				size: small;
+				face: normal;
+				color: Now_1807;
+				
+			//#endif
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: plain;
+			size: small;
+			color: Now_1807;
+		
+		//#endif
+	}
+	
+	FONT_NowPlus_grey_small_plain
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			style: plain;
+			size: ${polish.device.fontname};
+			face: normal;
+			color: Now_0;
+			
+		//#elif polish.vendor == BlackBerry			
+			
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: plain;
+				size: normal;
+				face: normal;
+				color: Now_6_50;
+				
+			//#else
+			
+				style: plain;
+				size: small;
+				face: normal;
+				color: Now_6_50;
+				
+			//#endif
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: plain;
+			size: small;
+			color: Now_6_50;
+			
+		//#endif
+	}
+	
+	FONT_NowPlus_black_small_bold
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			size: ${polish.device.fontname};
+			face: normal;
+			style: bold;
+			color: Now_6_75;
+			
+		//#elif polish.vendor == BlackBerry			
+					
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: bold;
+				size: normal;
+				face: normal;
+				color: Now_6_75;
+				
+			//#else
+			
+				style: bold;
+				size: small;
+				face: normal;
+				color: Now_6_75;
+				
+			//#endif			
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: bold;
+			size: small;
+			color: Now_6_75;
+			
+		//#endif
+	}
+	
+	FONT_NowPlus_white_small_bold
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			size: ${polish.device.fontname};
+			face: normal;
+			style: bold;
+			color: Now_0;
+			
+		//#elif polish.vendor == BlackBerry
+		
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: bold;
+				size: normal;
+				face: normal;
+				color: Now_0;
+				
+			//#else
+			
+				style: bold;
+				size: small;
+				face: normal;
+				color: Now_0;
+				
+			//#endif
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: bold;
+			size: small;
+			color: Now_0;
+			
+		//#endif
+	}
+	
+	FONT_NowPlus_red_small_bold
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			size: ${polish.device.fontname};
+			face: normal;
+			style: bold;
+			color: Now_1807;
+			
+		//#elif polish.vendor == BlackBerry
+		
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: bold;
+				size: normal;
+				face: normal;
+				color: Now_1807;
+				
+			//#else
+			
+				style: bold;
+				size: small;
+				face: normal;
+				color: Now_1807;
+				
+			//#endif			
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: bold;
+			size: small;
+			color: Now_1807;
+			
+		//#endif
+	}	
+	
+	FONT_NowPlus_grey_small_bold
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			size: ${polish.device.fontname};
+			face: normal;
+			style: bold;
+			color: Now_1807;
+			
+		//#elif polish.vendor == BlackBerry
+		
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: bold;
+				size: normal;
+				face: normal;
+				color: Now_6_50;
+				
+			//#else
+			
+				style: bold;
+				size: small;
+				face: normal;
+				color: Now_6_50;
+				
+			//#endif			
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: bold;
+			size: small;
+			color: Now_6_50;
+			
+		//#endif
+	}
+	
+	FONT_NowPlus_link_white_small_underline
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			size: ${polish.device.fontname};
+			face: normal;
+			style: underline;
+			color: Now_0;
+			
+		//#elif polish.vendor == BlackBerry			
+		
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: underline;
+				size: normal;
+				face: normal;
+				color: Now_0;
+				
+			//#else
+			
+				style: underline;
+				size: small;
+				face: normal;
+				color: Now_0;
+				
+			//#endif				
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: underline;
+			size: small;
+			color: Now_0;
+			
+		//#endif
+	}
+	
+	FONT_NowPlus_link_black_small_underline
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			size: ${polish.device.fontname};
+			face: normal;
+			style: underline;
+			color: Now_6_75;
+			
+		//#elif polish.vendor == BlackBerry	
+			
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: underline;
+				size: normal;
+				face: normal;
+				color: Now_6_75;
+				
+			//#else
+			
+				style: underline;
+				size: small;
+				face: normal;
+				color: Now_6_75;
+				
+			//#endif					
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: underline;
+			size: small;
+			color: Now_6_75;
+			
+		//#endif
+	}
+		
+	FONT_NowPlus_grey_small_bold
+	{
+		/* PORT SPECIFIC: bigger characters provided for Huawei and Samsung */
+		//#if polish.device.fontname:defined
+		
+			size: ${polish.device.fontname};
+			face: normal;
+			style: bold;
+			color: Now_6_30;
+			
+		//#elif polish.vendor == BlackBerry			
+		
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: bold;
+				size: normal;
+				face: normal;
+				color: Now_6_30;
+				
+			//#else
+			
+				style: bold;
+				size: small;
+				face: normal;
+				color: Now_6_30;
+				
+			//#endif						
+			
+		//#else
+		/* ORIGINAL */
+		
+			style: bold;
+			size: small;
+			color: Now_6_30;
+			
+		//#endif
+	}
+	
+	FONT_NowPlus_help
+	{
+		/* PORT SPECIFIC: Huawei and Samsun require larger font size in hints of text field */
+		//#if polish.device.fontname:defined
+		
+			size: ${polish.device.fontname};
+			color: Now_6_40;
+			style: plain;
+			
+		//#elif polish.vendor == BlackBerry
+		
+			//#if polish.blackberry.isTouchBuild == true
+			
+				style: plain;
+				size: normal;
+				face: normal;
+				color: Now_6_40;
+				
+			//#else
+			
+				style: plain;
+				size: small;
+				face: normal;
+				color: Now_6_40;
+				
+			//#endif			
+			
+		//#else
+		/* ORIGINAL */
+		
+			size: small;
+			color: Now_6_40;
+			style: plain;
+			
+		//#endif
+	}
+	
+	FONT_NowPlus_clock
+	{
+		/* PORT SPECIFIC: HUAWEI */
+		//#if polish.vendor == Huawei
+		
+			style: plain;
+			size: normal;
+			color: Now_6_60;
+		
+		//#elif polish.vendor == BlackBerry
+		/* PORT SPECIFIC: Blackberry */
+			
+			//#if polish.blackberry.isTouchBuild == true
+				
+				style: plain;
+				size: normal;
+				face: normal;
+				color: Now_6_60;
+					
+			//#else
+			
+				style: plain;
+				size: small;
+				face: normal;
+				color: Now_6_60;
+				
+			//#endif
+		
+		//#else
+		/* ORIGINAL */
+		
+			style: plain;
+			size: small;
+			color: Now_6_60;
+			
+		//#endif
+	}	
+	
+	/****** Blackberry storm Fonts ********/
+	
+//#if polish.vendor == BlackBerry	
+	
+	FONT_NowPlus_black_large_plain
+	{
+		//#if polish.blackberry.isTouchBuild == true
+			style: plain;
+			size: normal;
+			face: normal;
+			color: Now_6_75;
+		//#else
+			style: plain;
+			size: normal;
+			face: normal;
+			color: Now_6_75;
+		//#endif		
+	}
+	
+//#endif	
+	
+	/******* 	Blackberry storm Fonts end 	********/
+}
+
+borders
+{
+
+	BORDER_NowPlus_thin_top_seperator
+	{
+		type: top;
+		width: 1;
+		color: Now_6_7;
+	}
+
+	BORDER_NowPlus_thin_bottom_seperator
+	{
+		type: bottom;
+		width: 1;
+		color: Now_6_7;
+	}
+	
+	BORDER_NowPlus_thick_top_seperator
+	{
+		type: top;
+		width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		color: Now_6_7;
+	}
+	
+	BORDER_NowPlus_thick_bottom_seperator
+	{
+		type: bottom;
+		width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		color: Now_6_7;
+	}
+	
+	BORDER_NowPlus_thick_bottom_seperator_red
+	{
+		type: bottom;
+		width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		color: now_1807;
+	}
+	
+	BORDER_NowPlus_textfield_unfocused 
+	{
+		type: button;
+		top-color: Now_6_40;
+		bottom-color: Now_6_7;
+		width: 1;	
+	}
+	
+	BORDER_NowPlus_textfield_focused
+	{
+		type: button;
+		top-color: Now_1807_dark;
+		bottom-color: Now_1807_60;
+		width: 1;	
+	}
+	
+	BORDER_NowPlus_button_unfocused 
+	{
+		type: button;
+		top-color: Now_6_5;
+		bottom-color: Now_6_20;
+	}
+	
+	BORDER_NowPlus_button_focused
+	{
+		type: button;
+		top-color: Now_1807_60;
+		bottom-color: Now_1807_dark;
+	}
+	
+	BORDER_NowPlus_profile_button_focused
+	{
+		type: button;
+		top-color: Now_520_60;
+		bottom-color: Now_520_dark;
+	}
+	
+	BORDER_NowPlus_main_navbar
+	{		
+		/* PORT SPECIFIC: BlackBerry */
+		//#if polish.vendor == BlackBerry
+		
+			type: simple;
+			
+			bottom-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			
+			right-width: 0;
+			top-width: 0;
+			left-width: 0;
+			
+			color: Now_6_20;
+			
+		//#else
+		/* ORIGINAL */
+		
+			/*width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );*/
+			width:1;
+  			color: Now_6_20;
+		
+		//#endif
+	}
+	
+ //#if activate.embedded.360email
+ 
+	BORDER_NowPlus_emailfield_unfocused
+	{
+		type: simple;
+		color: Now_6_20;
+	}
+	
+	BORDER_NowPlus_emailfield_focused
+	{
+		type: simple;
+		color: Now_485;
+	}
+	
+	BORDER_NowPlus_emailfield_expand
+	{
+		type: expand-button;
+		width:1;
+		corner-dim:calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		color: Now_6_20;
+	}
+	
+//#endif
+	
+	/********* Blackberry Border ************/
+//#if polish.vendor == BlackBerry
+
+	BORDER_NowPlus_main_navbar
+	{
+		type: simple;
+		
+		top-width: 0;
+		left-width: 0;
+		right-width: 0;
+		bottom-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );
+		
+		color: Now_6_20;
+	}
+
+	BORDER_NowPlus_main_navbar_tab_focus
+	{
+		type: simple;
+		
+		top-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );
+		left-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );
+		right-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );
+		bottom-width:0;
+		
+		color: Now_6_20;
+	}
+	
+	BORDER_NowPlus_main_navbar_tab_unfocus
+	{
+		type: simple;
+		
+		top-width: 0;
+		left-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );
+		right-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );
+		bottom-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );
+		
+		
+		color: Now_6_20;
+	}
+	
+//#endif	
+
+	/********* Blackberry Border end************/
+}
+
+backgrounds  /*reserved*/
+{
+	BG_floatingScalableWindowMenuBar 
+	{
+		//#if polish.vendor == BlackBerry
+		
+			type: smooth;
+			image: url( floatingbox_menubar_27x27.png );
+			bgcolor: transparent;
+	
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );		
+		
+		//#else
+		
+			type: smooth;
+			image: url( floatingbox_menubar_27x27.png );
+			bgcolor: transparent;
+	
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 7 + 5000 / 10000 );
+		
+		//#endif
+	}
+	
+	BG_floatingScalableWindowWhite 
+	{
+		//#if polish.vendor == BlackBerry
+		
+			type: smooth;
+			image: url( floatingbox_white_27x27.png );
+			bgcolor: transparent;
+	
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );	
+		
+		//#else
+		
+			type: smooth;
+			image: url( floatingbox_white_27x27.png );
+			bgcolor: transparent;
+	
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 7 + 5000 / 10000 );
+		
+		//#endif	
+	}
+
+	BG_floatingScalableWindowNotify
+	{
+		//#if polish.vendor == BlackBerry
+		
+			type: smooth;
+			image: url( floatingbox_progress_27x27.png );
+			bgcolor: transparent;
+			
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );	
+		
+		//#else
+		
+			type: smooth;
+			image: url( floatingbox_progress_27x27.png );
+			bgcolor: transparent;
+			
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 7 + 5000 / 10000 );
+		
+		//#endif	
+	}
+	 
+	BG_floatingScalableWindowSearch 
+	{
+		//#if polish.vendor == BlackBerry
+		
+			type: smooth;
+			image: url( floatingbox_searchfield_27x27.png );
+			bgcolor: transparent;
+	
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+		
+		//#else
+		
+			type: smooth;
+			image: url( floatingbox_searchfield_27x27.png );
+			bgcolor: transparent;
+	
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 7 + 5000 / 10000 );
+		
+		//#endif		
+	}
+	
+	BG_floatingScalableWindowEmoticon 
+	{
+		//#if polish.vendor == BlackBerry
+		
+			type: smooth;
+			image: url( chat_emoticon_background_29x35.png );
+			bgcolor: transparent;
+	
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 19 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 21 + 5000 / 10000 );
+		
+		//#else
+		
+			type: smooth;
+			image: url( chat_emoticon_background_29x35.png );
+			bgcolor: transparent;
+	
+			clipheighttop: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			clipheightbottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 13 + 5000 / 10000 );
+			clipwidth: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 14 + 5000 / 10000 );
+		
+		//#endif	
+	}
+	
+	BG_ContactSummarizedItem_Split
+	{
+		type: split;
+		top-color: Now_299;
+		bottom-color: Now_299_dark;
+		split-pos: 50%;
+		arc-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		arc-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+	}
+	
+	BG_filter_form 
+	{	
+		//#if polish.vendor == BlackBerry
+			type: simple;
+			background: bg_filter_base;	   
+		//#else
+			type: combined;
+			foreground: bg_filter_arrow_red;
+		    background: bg_filter_base;	   
+		//#endif
+   	}
+	
+	BG_filter_button 
+	{
+		type: combined;
+		foreground: bg_filter_arrow;
+		background: bg_filter_base;
+	}
+	
+	BG_filter_button_focus
+	{
+		type: combined;
+		foreground: bg_filter_arrow;
+		background: bg_filter_base_red;
+	}
+	
+	bg_filter_arrow
+	{
+		type: image;
+		color: transparent;
+		image: url(bb_dropdowntriangle_now6_20_14x14.png);
+		anchor: right | bottom;
+	}
+	
+	bg_filter_arrow_red
+	{
+		type: image;
+		color: transparent;
+		image: url(bb_dropdowntriangle_now1807_14x14.png);
+		anchor: right | bottom;
+	}		
+
+	bg_filter_base
+	{
+		type: simple;
+		color: Now_0
+	}
+	
+	bg_filter_base_red 
+	{
+		type: simple;
+		color: Now_1807
+	}
+	
+	BG_startup {
+		type: image;
+		color: white;	
+		//#if polish.blackberry	
+			 image: url( bb_landingpage_360x315_blank.png );
+		//#else
+			image: url( people_landingpage_240x224.png );
+		//#endif
+		
+		anchor: top | left;
+	}
+	
+	BG_startup_landscape {
+		type: image;
+		color: white;
+		image: url( bb_landingpage_480x224_blank.png );
+		anchor: top | left;
+	}
+	
+}
+
+/*****************************************************************
+* For internal html browsing
+*/
+
+//#if polish.vendor == BlackBerry
+
+//#else
+	.htmlform
+	{
+		layout: horizontal-expand|vertical-expand;
+		view-type: midp2;
+		background-color: rgb(255, 255, 255);
+		title-style: title_bar_base;
+	}
+
+	.htmlBrowser {
+		view-type: midp2;
+		background-color: rgb(255, 255, 255);
+	}
+
+	.browserText {
+		font-size: small;
+		font-color: black;
+	}
+
+	.browserLink {
+		font-color: blue;
+		font-style: bold;
+	}
+
+	.browserLink:hover {
+		font-color: red;
+	}
+	
+//#endif
+
+/*****************************************************************
+*/
+
+//#if polish.vendor == BlackBerry
+
+//#else
+
+form /*reserved*/
+{
+	layout: horizontal-expand|vertical-shrink;
+	view-type: midp2;
+	expand-items: true;
+	padding:1;
+	font: FONT_NowPlus_black_small_plain;
+	text-wrap:false;	
+}
+
+topframe /*reserved*/
+{
+	margin: 0;
+	padding: 0;
+}
+
+frame /*reserved*/
+{
+	margin: 0;
+	padding: 0;
+}
+
+bottomframe /*reserved*/
+{
+	margin: 0;
+	padding: 0;
+}
+
+default /*reserved*/
+{
+	margin: 0;
+	padding: 0;
+}
+//#endif
+/*************    Alert             ***************************************************************************************************/
+
+alertcontent { /*reserved*/
+	font: FONT_NowPlus_black_small_plain;
+}
+
+.error 
+{
+	
+	title-style: errorTitle;
+	margin: 0;
+	
+	layout: horizontal-center | vertical-center | horizontal-shrink | vertical-shrink;
+	repaint-previous-screen: true;
+	
+}
+
+.errorTitle 
+{
+	font: FONT_NowPlus_black_small_bold;
+	
+	layout: horizontal-center | center | horizontal-expand | vertical-expand;
+}
+
+info extends error /*reserved*/
+{
+	title-style: infoTitle;
+	
+}
+
+.infoTitle extends errorTitle
+{
+}
+
+.warning extends error
+{
+	title-style: warningTitle;
+	
+}
+
+.warningTitle extends errorTitle
+{
+}
+
+
+scrollbar 
+{
+	scrollbar-slider-color: Now_6_40;
+	scrollbar-slider-width: 6;
+	scrollbar-fadeout: false;
+	scrollbar-slider-minimum-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+	background-color: Now_6_20;
+
+	padding:0;
+	
+	/*margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );*/
+	margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+}
+
+
+/*************   MENU BAR     *************
+* Overrides native polish style. '.name' scheme
+* not allowed for these
+*/
+menubar /*reserved*/
+{
+	//#if polish.vendor == BlackBerry
+		
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		
+		background: BG_floatingScalableWindowMenuBar;
+	
+	//#else
+	
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		
+		background: BG_floatingScalableWindowMenuBar;
+	
+	//#endif
+}
+
+menu { /*reserved*/
+		
+	//#if polish.vendor == BlackBerry
+		
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		
+		max-width: calculate( ${polish.ScreenWidth} /2 );
+		
+		background: BG_floatingScalableWindowMenuBar;
+		
+		command-child-indicator-color: Now_6_75;
+		command-child-indicator-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		command-child-indicator-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		
+		layout: shrink;
+	
+	//#else
+	
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		
+		max-width: calculate( ${polish.ScreenWidth} /2 );		
+		
+		background: BG_floatingScalableWindowMenuBar;
+		
+		command-child-indicator-color: Now_6_75;
+		command-child-indicator-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		command-child-indicator-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		
+		layout: shrink;
+	
+	//#endif
+}
+
+menu1 extends menu /*reserved*/
+{
+	repaint-previous-screen: true;
+}
+
+menu1:hover
+{
+	
+}
+
+menu2 extends menu1 /*reserved*/
+{
+}
+
+menu2:hover
+{
+}
+
+menu3 extends menu2 /*reserved*/
+{
+}
+
+menu3:hover
+{
+}
+
+/**
+ * Commands within the menubar on the left side
+ */
+leftcommand	/*reserved*/
+{
+	margin: 0;
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	max-lines: 1;
+	max-width: 66,66%;
+
+	font: FONT_NowPlus_black_small_bold;
+	
+	layout: horizontal-expand|vertical-expand;
+}
+
+/**
+ * Commands within the menubar on the right side
+ */
+rightcommand extends leftcommand /*reserved*/
+{
+	layout: right;
+}
+
+
+middlecommand extends leftcommand /*reserved*/
+{
+	layout: center;
+}
+
+/**
+  * The menuItem style is a predefined style
+  * for the actual commands in a fullscreen-menu.
+  * When the menuItem style is not defined,
+  * the menu style will be used instead. 
+  */
+menuItem { /*reserved*/
+	
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	background-color: #ffffff;
+	
+	font: FONT_NowPlus_black_small_bold;
+	
+	layout: left | horizontal-expand;
+	
+	command-child-indicator-color: Now_6_75;
+	command-child-indicator-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	command-child-indicator-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+}
+
+/**
+  * This is a custom style for selected
+  * menu items. It is used, because it has
+  * been defined in the menu style. 
+  */
+menuItem:hover { /*reserved*/
+	
+	padding: 1;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	margin: 0; 
+	
+	background-color: Now_1807;
+	
+	font: FONT_NowPlus_white_small_bold;
+	
+	command-child-indicator-color: Now_0;
+	
+	layout: left | horizontal-expand;
+}
+
+info extends error /*reserved*/
+{
+}
+
+/*************************************************************************************************************
+* Contact list items
+* see http://wiki.zyb.local/index.php?title=ContactSummaryItemStyle for correct style properties
+*/
+
+.contactlist extends base_form
+{
+	layout: expand;
+
+	bottomframe-height: 0%;
+	
+	//#if polish.use-ui-animation == true
+	
+	/*
+	The searchfield is animated through animating the bottom frame
+	of this form. The animations are triggered through EventManager.fireEvent()
+	in PeoplePagePeopleTab.
+	*/
+	
+	bottomframe-height-animation 
+	{
+		on: searchShow;
+		range: 0%..100%;
+	}
+
+	bottomframe-height-animation 
+	{
+		on: searchHide;
+		range: 100%..0%;
+	}
+	
+	//#else
+	
+	bottomframe-height-animation 
+	{
+		on: searchShow;
+		range: 0%..100%;
+		duration: 0ms;
+	}
+
+	bottomframe-height-animation 
+	{
+		on: searchHide;
+		range: 100%..0%;
+		duration: 0ms;
+	}
+	
+	//#endif
+}
+
+.contactlist:hover
+{
+}
+
+.contactlist_contact extends .ui_factory_profile_item
+{
+	//#if polish.vendor == BlackBerry
+	
+		padding: 0;
+		padding-vertical: 0;
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / 240 * 1 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / 240 * 1 + 5000 / 10000 );
+			
+		margin-bottom: 0;
+		
+	   	min-height: imageheight( contact_avatar_default_40x40.png );
+		max-height: 100%;
+	
+		name-style: .contact_list_name;
+		presence-style: .ui_factory_profile_presence;
+		status-style: .contact_list_status; 
+		network-style: .ui_factory_profile_network; 		
+		
+		left-side-style: .contact_list_container_left;
+		right-side-style: .contact_list_container_right;
+		right-inner-side-style: .ui_factory_profile_container_right_inner;
+		
+		content-priority: status;
+		
+		background-color: Now_0;
+		
+		border: BORDER_NowPlus_thick_bottom_seperator;
+		
+	//#else
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / 240 * 2 + 5000 / 10000 );
+		padding-vertical: 0;
+	
+		margin-bottom: 0;
+	
+		//#if polish.css.n80 == true
+	    	min-height: imageheight( contact_avatar_default_40x40.png );
+			max-height: 100%;
+		//#else
+			min-height: calculate( imageheight( contact_avatar_default_40x40.png ) + calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 ) + calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 ) + calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 ) );
+			max-height: 50;
+		//#endif
+	
+		name-style: .contact_list_name;
+		presence-style: .ui_factory_profile_presence;
+		status-style: .contact_list_status; 
+		network-style: .ui_factory_profile_network; 		
+		
+		left-side-style: .ui_factory_profile_container_left;
+		right-side-style: .ui_factory_profile_container_right;
+		right-inner-side-style: .ui_factory_profile_container_right_inner;
+		
+		content-priority: status;
+		
+		background-color: Now_0;
+		
+		border: BORDER_NowPlus_thick_bottom_seperator;
+	
+	//#endif
+}
+
+.contactlist_contact:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		name-style: .contact_list_namefocused; 
+		presence-style: .ui_factory_profile_presencefocused; 
+		status-style: .contact_list_statusfocused;
+		network-style: .ui_factory_profile_networkfocused; 
+		
+		left-side-style: .contact_list_container_leftfocused;
+		right-side-style: .contact_list_container_rightfocused;
+		right-inner-side-style: .ui_factory_profile_container_right_innerfocused;
+	
+	    //#if polish.use-ui-animation == true
+	  
+	  	/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807;
+			duration: 200ms;
+		}
+		*/
+		
+	    //#endif
+	
+		background: none;
+	
+	//#else
+	
+		name-style: .contact_list_namefocused; 
+		presence-style: .ui_factory_profile_presencefocused; 
+		status-style: .contact_list_statusfocused;
+		network-style: .ui_factory_profile_networkfocused; 
+	
+	    //#if polish.use-ui-animation == true
+	  
+	  	/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807;
+			duration: 200ms;
+		}
+		*/
+		
+	    //#endif
+	
+		background-color: Now_1807;
+		
+		border: none;
+	
+	//#endif
+}
+
+.contact_list_name extends .ui_factory_profile_name
+{
+	font: FONT_NowPlus_black_small_bold;
+}
+
+.contact_list_name:hover extends .ui_factory_profile_namefocused
+{
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.contact_list_status extends .ui_factory_profile_status
+{
+	max-lines:1;
+	
+	/*suppress inherited text effect*/
+	text-effect: none;
+	
+	font: FONT_NowPlus_black_small_plain;
+}
+
+.contact_list_status:hover extends .ui_factory_profile_statusfocused
+{
+	/*only vert scroll when focusedsuppress inherited text effect*/
+	/* PORT SPECIFIC: SAMSUNGS U700, U800, U900 */
+	//#if polish.vendor == Samsung && (polish.name == SGH-U700-ZYB || polish.name == SGH-U800-ZYB || polish.name == SGH-U900-ZYB)
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		font: FONT_NowPlus_white_small_plain;
+	//#else
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;
+		font: FONT_NowPlus_white_small_plain;
+	//#endif
+	
+}
+
+//#if polish.vendor == BlackBerry
+
+/*Special container styles for ContactSummarizedItem BB layout in contact list*/
+
+.contact_list_container_left extends .ui_factory_profile_container_left
+{
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / 240 * 4 + 5000 / 10000 );
+}
+
+.contact_list_container_left:hover
+{
+}
+
+.contact_list_container_right extends .ui_factory_profile_container_right
+{
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / 240 * 4 + 5000 / 10000 );
+}
+
+.contact_list_container_right:hover
+{
+	background-color: Now_1807;
+}
+
+//#endif
+
+//#if use.servers.list.choices
+/****************************************************
+* Style for screen with servers list
+*/
+.servers_list_screen 
+{
+	/* TODO: Use relative values....ALWAYS */
+	padding: 2;
+	padding-left: 10;
+	padding-right: 10;
+	
+	background 
+	{
+		type: horizontal-stripes;
+		
+		first-top-color: white;
+		second-top-color: white;
+		first-bottom-color: blue;
+		second-bottom-color: black;
+	}
+	
+	layout: horizontal-expand | horizontal-center | vertical-center;
+	
+	view-type: fisheye;
+	
+	fisheyeview-scale-start: 70%;
+	fisheyeview-scale-end: 40%;
+	fisheyeview-alpha-start: 200;
+	fisheyeview-alpha-end: 80;
+	fisheyeview-remove-text: true;		
+	//#if polish.use-ui-animation == true
+	screen-change-animation: fade;
+	//#endif
+}
+
+.choice_servers_list
+{
+	padding: 0;
+	padding-vertical: 0;
+	
+	/**use app icon that alos defined in Build.xml task#j2mepolish */
+	icon-image: url( icon.png );
+	icon-image-align: top;
+	
+	layout: center;
+}
+
+.choice_servers_list:hover 
+{
+	font-style: bold;
+	font-size: large;
+	font-color: white;
+	
+	text-effect: shadow;
+}
+
+.choice_servers_list:pressed 
+{
+	view-type: particle;
+}
+
+//#endif
+
+/*************************************************************************************************************
+* Generel/Abstract Style
+*/
+
+.base_form
+{
+	margin: 0;
+	padding: 0;
+	
+	scroll-mode: normal;
+	
+	layout: top | expand;
+}
+
+/*************************************************************************************************************
+* Titlebar
+*/
+
+.title_bar_base
+{
+	/* Height is 21px according to specs, since that size will clip titlebar text it can't be used */
+	/* max-height: ${ percent( 21 , ${polish.ScreenHeight} ) }; */
+	
+	background-color: Now_6_5;
+	
+	border {
+		type: bottom;
+		color: Now_6_15;
+		width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	}
+	
+	columns: 3;
+	
+	align-heights: true;
+	
+	padding: 0;
+	
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / 240 * 4 + 5000 / 10000 );
+	
+	layout: horizontal-expand | vertical-shrink;
+}
+
+.title_bar_icon_container
+{
+	view-type: horizontal;
+	
+	padding: 0;
+	margin: 0;
+}
+
+.title_bar_title
+{
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_black_small_bold;
+	
+	max-lines: 1;
+	
+	text-layout: center | expand;
+	
+	layout: expand;
+}
+
+.title_bar_clock
+{
+	/* PORT SPECIFIC: HUAWEI */
+	//#if polish.vendor == Huawei
+	
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_clock;
+		
+		clock-format: hh:mm;
+		
+		//#ifdef polish.globeicon.right:defined
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * ${polish.globeicon.right} + 5000 / 10000 );
+		//#endif
+	
+	//#elif polish.vendor == BlackBerry
+	/* PORT SPECIFIC: Blackberry */
+	
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_clock;
+		
+		clock-format: hh:mm;
+		
+		//#ifdef polish.globeicon.right:defined
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * ${polish.globeicon.right} + 5000 / 10000 );
+		//#endif
+	
+	//#else
+	/* ORIGINAL */
+	
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_clock;
+		
+		clock-format: hh:mm;
+		
+		//#if polish.vendor == Nokia
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		//#else
+			//#ifdef polish.globeicon.right:defined
+				padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * ${polish.globeicon.right} + 5000 / 10000 );
+			//#endif
+		//#endif
+		
+	//#endif
+}
+
+.title_bar_activity_item
+{
+	padding-right: 0;
+	padding-bottom: 0;
+	margin: 0;
+	padding-top: 3;
+	
+	//#ifdef polish.globeicon.left:defined
+		padding-left: ${polish.globeicon.left};
+	//#else
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	//#endif
+
+    //#if polish.use-ui-animation == true
+    
+	y-adjust-animation {
+		on: move-up-and-out;
+		range: 0%..-100%;
+		duration: 500ms;
+	}
+
+	y-adjust-animation {
+		on: move-down-and-in;
+		range: -100%..0%;
+		duration: 500ms;
+	}
+	
+	//#endif
+
+	layout: horizontal-shrink;
+}
+
+/*************************************************************************************************************
+* PeoplePage MeTab
+*/
+//#if polish.vendor == BlackBerry
+
+.peoplepage_me_textfieldbutton_container_text{
+	font: FONT_NowPlus_black_small_bold;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 ); /*border used in parent style has 2 padding so 2+2=4*/
+	layout: left;
+}
+
+
+.peoplepage_me_textfieldbutton_container
+{
+		font: FONT_NowPlus_black_small_bold;	
+		align-heights: true;
+		columns: 2;
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 ); /*border used in parent style has 2 padding so 2+2=4*/
+		layout: horizontal-expand | hcenter | vertical-shrink;
+}
+
+.peoplepage_me_button_submit extends .ui_factory_button_item
+{
+	//#if polish.blackberry.isTouchBuild == true
+		 
+		 
+	     layout:  vcenter | vexpand | hcenter;
+		 margin-bottom:	1px;
+	
+	//#else
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	  	
+	  	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	   	
+	   	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 ); /*border used in parent style has 2 padding so 2+2=4*/
+	   
+	  	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 ); /*border used in parent style has 2 padding so 2+2=4*/
+
+		text-layout: vcenter | center;
+  	
+  		layout: vexpand | vcenter;
+	//#endif
+}
+
+.peoplepage_me_button_submit_press extends .ui_factory_button_item
+{ 
+	layout:  vcenter | vexpand | horizontal-center;
+	margin-bottom:	1px;
+	font: FONT_NowPlus_white_small_bold;
+	border: BORDER_NowPlus_button_focused;
+	background-color: Now_1807;
+}
+
+.peoplepage_me_button_submit:hover
+{
+//#if polish.blackberry.isTouchBuild == true
+
+	/* use deflaut focus style '.peoplepage_me_button_submit' */
+	
+//#else
+
+	font: FONT_NowPlus_white_small_bold;
+		
+	border: BORDER_NowPlus_button_focused;
+		
+	background-color: Now_1807;
+//#endif
+}
+
+//#endif
+
+.peoplepage_me_availability_radio_item 
+{
+	margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+	
+	radiobox-plain: url( radio_off_16x16.png );
+	radiobox-selected: url( radio_on_16x16.png );
+	
+	padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_black_small_plain;
+    min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 32 + 5000 / 10000 );
+	layout: vertical-shrink | horizontal-expand | vcenter;
+}
+
+.peoplepage_me_availability_radio_item:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+	min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 32 + 5000 / 10000 );
+	background-color: Now_1807;
+}
+
+.peoplepage_me_status_textfield extends .ui_factory_textfield
+{
+	margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+}
+
+.peoplepage_me_status_textfield:hover
+{
+	border: BORDER_NowPlus_textfield_focused;
+}
+
+.peoplepage_me_status_textfield_status
+{
+	margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+	font: FONT_NowPlus_grey_small_plain;
+}
+
+.peoplepage_me_status_textfield_status:hover {}
+
+.peoplepage_me_status_helptextfont extends .ui_factory_textfield_helpfont
+{
+//#if polish.blackberry.isTouchBuild == true
+	padding: 0;
+	font-size: normal;
+	font-color: Now_6_40;
+
+//#else
+	
+	/* use  super style '.ui_factory_textfield_helpfont' */
+
+//#endif
+}
+
+/*************************************************************************************************************
+* PeoplePage
+*/
+
+.peoplepage_item
+{
+	margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+}
+
+.peoplepage_navbar 
+{
+	//#if polish.vendor == BlackBerry
+	
+		padding-top: 0;
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-bottom: -2;
+		padding-horizontal: -1;
+		
+		max-width: 100%;
+		
+		margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		//#if activate.embedded.360email && activate.timeline.tab
+		columns: 5;
+		//#elif (activate.embedded.360email && !activate.timeline.tab) || (!activate.embedded.360email && activate.timeline.tab)
+		columns: 4;
+		//#else
+		columns: 3;
+		//#endif
+		
+		border: BORDER_NowPlus_main_navbar;
+				
+		layout: expand | center;
+			
+	//#else
+	 	
+	 	view-type: horizontal-selector;
+	 	
+	  	/*attributes used by HorizontalSelectorView*/
+	  	left-arrow-image: url( main_arrow_fake_10x14.png );
+	  	right-arrow-image: url( main_arrow_fake_10x14.png );
+		horizontal-padding-arrows: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		seeker-style: peoplepage_navbar_seeker;
+		
+		/*Adjust margins according to border size*/
+		padding: 0;
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * -2 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * -2 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * -2 + 5000 / 10000 );
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 36 + 5000 / 10000 );
+		
+		margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		max-width: 100%;
+		
+		background-color: Now_0;
+		
+		border: BORDER_NowPlus_main_navbar;
+		
+		layout: horizontal-expand;
+		
+	//#endif
+}
+
+.peoplepage_navbar:hover
+{
+    //#if polish.vendor == BlackBerry
+    
+		
+    //#else
+    
+	  	/*Adjust margins according to border size*/
+		padding-left: 0;
+		padding-right: 0;
+		padding-top: 0;
+		
+	  	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	  	
+    	view-type: horizontal-selector;
+    	
+    	/*attributes used by HorizontalSelectorView*/
+	  	left-arrow-image: url( main_arrow_left_now485_10x14_focus.png );
+	  	right-arrow-image: url( main_arrow_right_now485_10x14_focus.png );
+	  	background-color: Now_1807_60;
+	  	seeker-style: peoplepage_navbar_seekerfocused;
+	  	
+	  	border: none;
+	  	
+	  	//#if polish.use-ui-animation == true
+	  	
+	  	/*
+  	 	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807_60;
+			duration: 500ms;
+		}
+		*/
+		
+	    //#endif
+    
+    //#endif
+}
+
+.peoplepage_navbar_active_defocus extends .peoplepage_navbar
+{
+  //#if polish.vendor == BlackBerry
+  	
+  //#else
+  
+	    /*attributes used by HorizontalSelectorView*/
+	    left-arrow-image: url( main_arrow_left_now485_10x14_focus.png );
+	    right-arrow-image: url( main_arrow_right_now485_10x14_focus.png );
+	  	seeker-style: peoplepage_navbar_seekerfocused;
+	  	
+  //#endif
+}
+
+.peoplepage_navbar_seeker
+{
+  //#if polish.vendor == BlackBerry
+  
+  //#else
+  
+		max-width: calculate( imagewidth(p_top_nav_contacts_32x32_oof_highlight.png) + 2);	
+		max-height: 100%;	
+		background-color: Now_6_40;
+		layout: expand;
+		
+  //#endif
+}
+
+.peoplepage_navbar_seeker:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+	//#else
+		
+		//#if polish.use-ui-animation == true
+		/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_6_40..Now_1807;
+			duration: 500ms;
+		}
+		*/
+		//#endif
+  	
+		background-color: Now_1807;
+		
+  	//#endif
+}
+
+.peoplepage_navbar_item_base {
+	//#if polish.vendor == BlackBerry
+	
+		margin: 0;
+		margin-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 ); 
+			
+		padding: 0;
+	
+		background
+		{
+			color: Now_6_7;
+		}
+		
+		//#if polish.vendor == BlackBerry
+		border: BORDER_NowPlus_main_navbar_tab_unfocus;
+		//#endif
+		
+		font: FONT_NowPlus_black_small_plain;
+
+		text-layout: center;
+				
+		max-lines:1;
+		
+		layout: vcenter | hcenter | expand;
+	
+		//#if polish.blackberry.isTouchBuild == true
+		
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+			
+			icon-image-align: top;
+			
+			min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 62 + 5000 / 10000 );
+		//#else
+			padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );
+			
+			icon-image-align: right;
+			
+			min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 38 + 5000 / 10000 );
+		//#endif
+	//#endif
+}
+
+.peoplepage_navbar_item_base_focus extends peoplepage_navbar_item_base {
+	//#if polish.vendor == BlackBerry
+	
+		margin-top: 0;
+		
+		//#if polish.blackberry.isTouchBuild == true
+			padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+		//#else
+			padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		//#endif
+	
+		/*hover style*/
+		background 
+		{
+			color: Now_1807;
+		}
+		
+		//#if polish.vendor == BlackBerry
+		border: BORDER_NowPlus_main_navbar_tab_focus;
+		//#endif
+		
+		font: FONT_NowPlus_white_small_plain;	
+			
+	//#endif
+}
+
+.peoplepage_navbar_item_base_active extends peoplepage_navbar_item_base {
+	//#if polish.vendor == BlackBerry
+	border: BORDER_NowPlus_main_navbar_tab_unfocus;
+	//#endif
+}
+
+.peoplepage_navbar_item_base_active_focus extends peoplepage_navbar_item_base_active {
+	//#if polish.vendor == BlackBerry
+	border: BORDER_NowPlus_main_navbar_tab_unfocus;
+	//#endif
+
+	margin-top: 0; 
+	
+	//#if polish.blackberry.isTouchBuild == true
+			padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+	//#else
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	//#endif
+	
+	background 
+	{
+		color: Now_0;
+	}
+	
+	//#if polish.vendor == BlackBerry
+	border: BORDER_NowPlus_main_navbar_tab_focus;
+	//#endif
+	
+	font: FONT_NowPlus_red_small_plain;
+}
+
+/** TODO: create navbar item types programatically in UiFacory to reduce stylesheet size */
+
+.peoplepage_navbar_item_contacts extends peoplepage_navbar_item_base
+{
+	focused-style: peoplepage_navbar_item_contacts_focus;
+	
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_contacts_32x32_inactive.png);
+	//#else
+		icon-image: url(p_top_nav_contacts_32x32_oof_highlight.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_contacts_focus extends peoplepage_navbar_item_base_focus
+{
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_contacts_32x32_focus.png);
+	//#else
+		icon-image: url(p_top_nav_contacts_32x32_focus.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_contacts_active extends peoplepage_navbar_item_base_active
+{	
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_contacts_32x32_inactive.png);
+	//#else
+		icon-image: url(p_top_nav_contacts_32x32_oof.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_contacts_active_focus extends peoplepage_navbar_item_base_active_focus
+{
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_contacts_32x32_active.png);
+	//#else
+		icon-image: url(p_top_nav_contacts_32x32_focus.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_status extends peoplepage_navbar_item_base
+{
+	focused-style: peoplepage_navbar_item_status_focus;
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_status_32x32_inactive.png);
+	//#else
+		icon-image: url(p_top_nav_status_32x32_oof_highlight.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_status_focus extends peoplepage_navbar_item_base_focus
+{
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_status_32x32_focus.png);
+	//#else
+		icon-image: url(p_top_nav_status_32x32_focus.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_status_active extends peoplepage_navbar_item_base_active
+{	
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_status_32x32_inactive.png);
+	//#else
+		icon-image: url(p_top_nav_status_32x32_oof.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_status_active_focus extends peoplepage_navbar_item_base_active_focus
+{
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_status_32x32_active.png);
+	//#else
+		icon-image: url(p_top_nav_status_32x32_focus.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_me extends peoplepage_navbar_item_base
+{
+	focused-style: peoplepage_navbar_item_me_focus;
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_meview_32x32_inactive.png);
+	//#else
+		icon-image: url(p_top_nav_meview_32x32_oof_highlight.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_me_focus extends peoplepage_navbar_item_base_focus
+{
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_meview_32x32_focus.png);
+	//#else
+		icon-image: url(p_top_nav_meview_32x32_focus.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_me_active extends peoplepage_navbar_item_base_active
+{	
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_meview_32x32_inactive.png);
+	//#else
+		icon-image: url(p_top_nav_meview_32x32_oof.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_me_active_focus extends peoplepage_navbar_item_base_active_focus
+{
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_meview_32x32_active.png);
+	//#else
+		icon-image: url(p_top_nav_meview_32x32_focus.png);
+	//#endif
+}
+
+//#if activate.timeline.tab
+
+.peoplepage_navbar_item_timeline extends peoplepage_navbar_item_base
+{
+	focused-style: peoplepage_navbar_item_timeline_focus;
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_timeline_32x32_inactive.png);
+	//#else
+		icon-image: url(p_top_nav_timeline_32x32_oof_highlight.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_timeline_focus extends peoplepage_navbar_item_base_focus
+{
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_timeline_32x32_focus.png);
+	//#else
+		icon-image: url(p_top_nav_timeline_32x32_focus.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_timeline_active extends peoplepage_navbar_item_base_active
+{	
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_timeline_32x32_inactive.png);
+	//#else
+		icon-image: url(p_top_nav_timeline_32x32_oof.png);
+	//#endif
+}
+
+.peoplepage_navbar_item_timeline_active_focus extends peoplepage_navbar_item_base_active_focus
+{
+	//#if polish.vendor == BlackBerry
+		icon-image: url(bb_p_top_nav_timeline_32x32_active.png);
+	//#else
+		icon-image: url(p_top_nav_timeline_32x32_focus.png);
+	//#endif
+}
+
+//#endif
+
+.peoplepage_filtercontainer extends .peoplepage_item
+{
+	//#if polish.vendor == BlackBerry
+	
+		//#if polish.blackberry.isTouchBuild == true
+		
+			margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+			
+			layout: expand;	
+			
+		//#else			
+			
+			view-type: horizontal-carousel;
+			
+		  	/*implemented by HorizontalCarouselView*/
+			left-arrow-image: url( bb_contacts_filter_arrow_left_28x28.png );
+		    right-arrow-image: url( bb_contacts_filter_arrowright_28x28.png );
+		    horizontal-padding-arrows: 0;
+			stretcher-style: peoplepage_filtercontainer_stretcher; 
+			
+			margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+			
+			padding: 0;
+			padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			
+			background-color: Now_6_7;
+			
+		  	max-width: 100%;
+		  	
+			layout: horizontal-expand | vertical-shrink;
+			
+		//#endif
+	
+	//#else
+	
+		view-type: horizontal-carousel;
+		
+	  	/*implemented by HorizontalCarouselView*/
+		left-arrow-image: url( main_arrow_left_now6_20_10x14.png );
+	    right-arrow-image: url( main_arrow_right_now6_20_10x14.png );
+	    horizontal-padding-arrows: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		stretcher-style: peoplepage_filtercontainer_stretcher; 
+		
+		margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		padding: 0;
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		
+		background-color: Now_6_40;
+		
+	  	max-width: 100%;
+	  	
+		layout: horizontal-expand | vertical-shrink;
+	
+	//#endif
+}
+
+.peoplepage_filtercontainer:hover{
+	//#if polish.vendor == BlackBerry
+	
+		//#if polish.blackberry.isTouchBuild == false
+		
+		  	/*implemented by HorizontalCarouselView*/
+			left-arrow-image: url( bb_contacts_filter_arrow_left_highlight_28x28.png );
+		    right-arrow-image: url( bb_contacts_filter_arrowright_highlight_28x28.png );
+		  	stretcher-style: peoplepage_filtercontainer_stretcherfocused; 
+		  	background-color: Now_1807_60;	
+		
+			//#if polish.use-ui-animation == true
+			/*
+		  	 * SWITCHED OFF FOR R1
+			background-color-animation 
+			{
+				on: focus;
+				range: Now_6_40..Now_1807_60;
+				duration: 500ms;
+			}
+			*/
+			//#endif
+			
+		//#endif
+	
+	//#else
+
+	  	/*implemented by HorizontalCarouselView*/
+		left-arrow-image: url( main_arrow_left_now485_10x14_focus.png );
+	  	right-arrow-image: url( main_arrow_right_now485_10x14_focus.png );
+	  	stretcher-style: peoplepage_filtercontainer_stretcherfocused; 
+	  	background-color: Now_1807_60;	
+	
+		//#if polish.use-ui-animation == true
+		/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_6_40..Now_1807_60;
+			duration: 500ms;
+		}
+		*/
+		//#endif
+	
+	//#endif
+}
+
+.peoplepage_filtercontainer_stretcher
+{
+	//#if polish.vendor == BlackBerry
+
+		margin:0;
+		padding:0;
+			
+		max-width: 68%;
+			
+		background-color: Now_6_40;
+			
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 28 + 5000 / 10000 );
+		layout: expand;
+	
+	//#else
+	
+		margin:0;
+		padding:0;
+		
+		max-width: 59%;
+		
+		background-color: Now_6_40;
+		
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 24 + 5000 / 10000 );
+		layout: expand;
+	
+	//#endif
+}
+
+.peoplepage_filtercontainer_stretcher:hover
+{
+	//#if polish.vendor == BlackBerry
+		
+		height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 28 + 5000 / 10000 );
+		background-color: Now_1807;
+		
+		//#if polish.use-ui-animation == true
+		
+		/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_6_40..Now_1807;
+			duration: 500ms;
+		}
+				
+		max-width-animation 
+		{
+			on: focus;
+			range: 1%..68%;
+			duration: 500ms;
+		}
+		*/
+		
+		//#endif
+		
+		layout: expand;	
+	
+	//#else
+	
+		height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 24 + 5000 / 10000 );
+		background-color: Now_1807;
+		
+		//#if polish.use-ui-animation == true
+		
+		/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_6_40..Now_1807;
+			duration: 500ms;
+		}
+				
+		max-width-animation 
+		{
+			on: focus;
+			range: 1%..59%;
+			duration: 500ms;
+		}
+		*/
+		
+		//#endif
+		
+		layout: expand;	
+	
+	//#endif
+}
+
+.peoplepage_filtercontainer_filter_item_base
+{
+	//#if polish.vendor == BlackBerry
+	
+		//#if polish.blackberry.isTouchBuild == true
+		
+			padding: 0;
+			padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			
+			margin: 0;
+			
+			focus-all:true;
+			
+			font: FONT_NowPlus_black_small_bold;
+			
+		 	min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );
+		 	
+		 	max-lines: 1;
+		 	
+		 	layout: horizontal-expand | vertical-shrink | vertical-center;
+		
+		//#else
+		
+			padding: 0;
+			padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			
+			margin: 0;
+			
+			focus-all:true;
+			
+			max-width: 66%;		
+			
+			font: FONT_NowPlus_black_small_bold;
+			
+		 	min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 28 + 5000 / 10000 );
+		 	
+		 	icon-padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		 	
+		 	max-lines: 1;
+		 	
+		 	layout: shrink | vertical-center;
+		
+		//#endif
+		
+	//#else
+	
+		padding: 0;
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		
+		margin: 0;
+		
+		max-width: 59%;
+		
+		font: FONT_NowPlus_white_small_bold;
+		
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 24 + 5000 / 10000 );
+		
+		icon-padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		
+		max-lines: 1;	
+		
+	 	layout: shrink | vertical-center;
+		
+	//#endif
+}
+
+.peoplepage_filtercontainer_filter_item_base:hover
+{
+	//#if polish.vendor == BlackBerry
+		
+		//#if polish.blackberry.isTouchBuild == true
+		
+			font: FONT_NowPlus_white_small_bold;
+			
+			background-color: Now_1807;
+		
+		//#else
+		
+			font: FONT_NowPlus_white_small_bold;
+		
+		//#endif		
+		
+	//#else
+	
+		
+	//#endif
+}
+
+/*
+.peoplepage_filtercontainer_filter_item_base:pressed
+{
+	//#if polish.vendor == BlackBerry
+		
+		//#if polish.blackberry.isTouchBuild == true
+		
+			font: FONT_NowPlus_black_small_bold;
+			
+			background-color: Now_1807;
+		
+		//#else
+		
+		
+		//#endif		
+		
+	//#else
+	
+		
+	//#endif
+}
+*/
+
+//#if polish.blackberry.isTouchBuild == true
+
+.filter_form
+{
+	margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 26 + 5000 / 10000 );
+	margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 26 + 5000 / 10000 );
+	
+	padding: 0;
+	padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 ); /*5+5*/
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 ); /*3+5*/
+	
+	repaint-previous-screen: true;
+	
+	//#if polish.use-ui-animation == true
+	screen-change-animation: bottom;
+	//#endif
+	
+	background: BG_floatingScalableWindowWhite;
+	
+	layout: horizontal-expand | vertical-shrink | vertical-center;
+}
+
+.filterAndMeTab{not
+	layout: horizontal-center | expand | vertical-center;
+}
+
+.filter_button extends .ui_factory_base_item
+{
+	padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_black_small_bold;
+	
+	background: BG_filter_button;
+	
+ 	layout: horizontal-center | expand | vertical-center;
+ 	
+ 	min-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 50 + 5000 / 10000 );
+ 	
+ 	border: BORDER_NowPlus_button_unfocused; 				
+}
+
+.filter_button:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+	
+	background: BG_filter_button_focus;
+	
+	border: BORDER_NowPlus_button_focused;
+}
+
+//#endif
+
+/*************************************************************************************************************
+* ProfilePage
+*/
+
+.profilepage_form extends .base_form
+{
+	//#if polish.use-ui-animation == true
+	
+	//#if polish.use-3d-animation
+	
+	//#if polish.javapackage.jsr184
+	screen-change-animation: rotate3d-m3g;
+	//#endif
+	
+	//#endif
+	
+	//#endif
+}
+
+/*************************************************************************************************************
+* Profile page content items
+*/
+
+.profilepage_generic_content_container
+{
+	//#if polish.vendor == BlackBerry
+		
+		//#if polish.blackberry.isTouchBuild == true
+		
+			label-style: profilepage_generic_content_label;
+			include-label:false;
+			
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 14 + 5000 / 10000 );
+			
+			margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+			margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+			margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+			
+			border: BORDER_NowPlus_thick_bottom_seperator;
+			
+		    min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 40 + 5000 / 10000 );
+		    
+			layout: expand;
+		
+		//#else
+		
+			label-style: profilepage_generic_content_label;
+			include-label:false;
+			
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 14 + 5000 / 10000 );
+			
+			margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+			margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+			margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			
+			border: BORDER_NowPlus_thick_bottom_seperator;
+			
+			layout: expand;
+			
+		//#endif		
+		
+	//#else
+	
+		label-style: profilepage_generic_content_label;
+		include-label:false;
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 14 + 5000 / 10000 );
+		
+		margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		
+		border: BORDER_NowPlus_thick_bottom_seperator;
+		
+		layout: expand;
+		
+	//#endif
+}
+
+.profilepage_generic_content_label
+{
+	font: FONT_NowPlus_black_small_bold;
+	
+	text-horizontal-adjustment: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	
+	margin-left: calculate( ${polish.ScreenWidth} * 10000 / 240 * 4 + 5000 / 10000 );
+	
+	layout: shrink | top;
+}
+
+/*
+ * Plain
+ */
+.profilepage_content_item
+{
+ 	//#if polish.vendor == BlackBerry
+ 	
+		label-style: profilepage_content_item_label;
+		include-label:true;
+		inline-label: false;
+		
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 40 + 5000 / 10000 );
+		
+		margin: 0;
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+	
+		focus-all:true;
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		border: BORDER_NowPlus_thin_top_seperator;
+		
+		command-child-indicator-color: Now_0;
+		command-child-indicator-height: 1;
+		command-child-indicator-width: 1;
+		
+		layout: horizontal-expand | vertical-shrink | vcenter;
+		
+	//#else
+	
+		label-style: profilepage_content_item_label;
+		include-label:true;
+		inline-label: true;
+		
+		margin: 0;
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+	
+		focus-all:true;
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines: 1;
+		
+		border: BORDER_NowPlus_thin_top_seperator;
+		
+		command-child-indicator-color: Now_0;
+		command-child-indicator-height: 1;
+		command-child-indicator-width: 1;
+		
+		layout: horizontal-expand | vertical-shrink | vcenter;
+		
+	//#endif
+}
+
+.profilepage_content_item:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		label-style: profilepage_content_item_labelfocused;
+		include-label:true;
+		inline-label: false;
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		command-child-indicator-color: Now_1807;
+		
+		//#if polish.use-ui-animation == true
+		/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807;
+			duration: 200ms;
+		}
+		*/
+	  	//#endif
+	  
+		background-color: Now_1807;
+		
+		max-lines: 2;
+	
+	//#else
+	
+		label-style: profilepage_content_item_labelfocused;
+		include-label:true;
+		inline-label: true;
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		command-child-indicator-color: Now_1807;
+		
+		//#if polish.use-ui-animation == true
+		/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807;
+			duration: 200ms;
+		}
+		*/
+	  	//#endif
+	  
+		background-color: Now_1807;
+		
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;
+	
+	//#endif
+}
+
+.profilepage_content_cascade_item extends ui_factory_commanditem
+{
+ 	//#if polish.vendor == BlackBerry
+ 	
+		//#if polish.blackberry.isTouchBuild == true 
+			
+			min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );
+		//#endif
+			min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 30 + 5000 / 10000 );
+			
+			/*min-width: 120px;*/
+			background-color: white;
+			margin: 0;
+			padding: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+			font: FONT_NowPlus_black_small_bold;
+			border: BORDER_NowPlus_thin_bottom_seperator;
+			label-style: ui_factory_label;
+			include-label:false;
+			text-layout: vcenter | hcenter;			
+			layout: expand  | vertical-center;			
+
+	//#else
+	
+		margin: 0;
+		padding: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		font: FONT_NowPlus_black_small_plain;
+		border: BORDER_NowPlus_thin_bottom_seperator;
+		layout: horizontal-expand | vcenter;
+		
+	//#endif
+}
+
+.profilepage_content_cascade_item:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		//#if polish.blackberry.isTouchBuild == true 
+			
+			font: FONT_NowPlus_white_small_bold;
+	  
+			background-color: Now_1807;
+		
+		//#else
+		
+			font: FONT_NowPlus_white_small_plain;
+	  
+			background-color: Now_1807;
+		
+		//#endif
+	
+	//#else
+	
+		font: FONT_NowPlus_white_small_plain;
+	  
+		background-color: Now_1807;
+	
+	//#endif	
+}
+
+.profilepage_content_item_mail extends profilepage_content_item 
+{
+	border: none;
+}
+
+.profilepage_content_item_mail:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		border: none;
+		label-style: profilepage_content_item_labelfocused;
+		include-label:true;
+		inline-label: false;
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		command-child-indicator-color: Now_1807;
+		
+		//#if polish.use-ui-animation == true
+		/*
+		 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807;
+			duration: 200ms;
+		}
+		*/
+		//#endif
+	  
+		background-color: Now_1807;
+	
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;	
+	
+	//#else
+	
+		border: none;
+		label-style: profilepage_content_item_labelfocused;
+		include-label:true;
+		inline-label: true;
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		command-child-indicator-color: Now_1807;
+		
+		//#if polish.use-ui-animation == true
+		/*
+		 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807;
+			duration: 200ms;
+		}
+		*/
+		//#endif
+	  
+		background-color: Now_1807;
+	
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;	
+	
+	//#endif
+}
+
+.profilepage_content_item_label
+{
+	//#if polish.vendor == BlackBerry
+	
+		margin: 0;
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 3 + 5000 / 10000 ); /*2+1 due to border used by parent*/
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines: 1;
+		
+		layout: horizontal-expand | vertical-shrink | vcenter;
+	
+	//#else
+	
+		margin: 0;
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 3 + 5000 / 10000 ); /*2+1 due to border used by parent*/
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines: 1;
+		
+		max-width: calculate( ${polish.ScreenWidth} * 10000 / 100 * 35 / 10000 );
+		
+		layout: expand | vcenter;
+	
+	//#endif	
+
+}
+
+.profilepage_content_item_label:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+}
+
+.profilepage_content_container_nested extends profilepage_content_item
+{
+	margin: 0;
+	
+	padding: 0;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	
+	font: FONT_NowPlus_black_small_plain;
+	
+	background: none;
+}
+
+.profilepage_content_container_nested:hover
+{
+	background-color: Now_1807;
+	
+	font: FONT_NowPlus_white_small_plain;
+}
+
+.profilepage_content_item_nested
+{
+	//#if polish.vendor == BlackBerry
+	
+		label-style: profilepage_content_item_nested_label;
+		include-label:true;
+		inline-label: false;
+		
+		margin: 0;
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 ); 
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines: 2;
+		
+		layout: horizontal-expand | vertical-shrink | vcenter;
+	
+	//#else
+	
+		label-style: profilepage_content_item_nested_label;
+		include-label:true;
+		inline-label: true;
+		
+		margin: 0;
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 ); 
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines: 1;
+		
+		layout: horizontal-expand | vertical-shrink | vcenter;
+	
+	//#endif
+}
+
+.profilepage_content_item_nested:hover
+{
+	label-style: profilepage_content_item_nested_labelfocused;
+	include-label:true;
+	
+	font: FONT_NowPlus_white_small_plain;
+	
+	text-effect: vertical-scroll;
+	vertical-scroll-interval: 2000;
+}
+
+.profilepage_content_item_nested_label extends profilepage_content_item_label
+{
+	padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+}
+
+.profilepage_content_item_nested_label:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+}
+
+/*Preferred
+*/
+.profilepage_content_item_preferred extends profilepage_content_item
+{
+	//#if polish.vendor == BlackBerry
+	
+		label-style: profilepage_content_item_label_preferred; 
+		font: FONT_NowPlus_black_small_bold;
+		max-lines: 2;
+		min-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 40 + 5000 / 10000 );
+	
+	//#else
+	
+		label-style: profilepage_content_item_label_preferred; 
+		font: FONT_NowPlus_black_small_bold;
+	
+	//#endif
+}
+
+.profilepage_content_item_preferred:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		label-style: profilepage_content_item_label_preferredfocused; /*Wouldn't bite on :hover for some reason - Jens*/
+		include-label: true;
+		inline-label: false;
+		
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;
+		
+		font: FONT_NowPlus_white_small_bold;
+		
+		background-color: Now_1807;
+			
+		max-lines: 2;
+	 	min-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 40 + 5000 / 10000 );
+	
+	//#else
+	
+		label-style: profilepage_content_item_label_preferredfocused; /*Wouldn't bite on :hover for some reason - Jens*/
+		include-label: true;
+		inline-label: true;
+		
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;
+		
+		font: FONT_NowPlus_white_small_bold;
+		
+		background-color: Now_1807;
+			
+		max-lines: 1;
+	
+	//#endif
+}
+
+.profilepage_content_item_label_preferred extends profilepage_content_item_label
+{
+	font: FONT_NowPlus_black_small_bold;
+}
+
+.profilepage_content_item_label_preferred:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.profilepage_content_plain_icon_item 
+{
+	margin:0;
+	padding:0;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	layout: expand|vertical-center|left;
+}
+
+.profilepage_content_plain_icon_item:hover
+{
+}
+
+.profilepage_content_chat_item_container extends profilepage_content_item
+{
+	//#if polish.vendor == BlackBerry
+	
+		margin:0;
+		padding:0;
+		
+		columns: 3;
+		
+		columns-width: 10%,30%,60%;
+		
+		focus-all: true;
+		
+		layout: expand;
+	
+	//#else
+	
+		margin:0;
+		padding:0;
+		
+		columns: 3;
+		
+		columns-width: 10%,10%,80%;
+			
+		focus-all: true;
+		
+		layout: expand;
+	
+	//#endif
+}
+
+.profilepage_content_chat_item_container:hover
+{
+	background-color: Now_1807;
+}
+
+.profilepage_content_sn_item_container extends profilepage_content_item
+{
+	margin:0;
+	padding:0;
+	
+	columns: 2;
+	columns-width: 40%,60%;
+	
+	focus-all: true;
+	
+	layout: expand;
+}
+
+.profilepage_content_sn_item_container:hover
+{
+	background-color: Now_1807;
+}
+
+.profilepage_content_chat_item
+{
+	//#if polish.vendor == BlackBerry
+
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 ); 
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+	  	max-lines: 2;
+	  	min-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 40 + 5000 / 10000 );
+	  	
+		command-child-indicator-color: Now_0;
+		command-child-indicator-height: 1;
+		command-child-indicator-width: 1;
+		
+		layout: horizontal-expand | vertical-shrink | vcenter;
+
+	//#else		
+	
+	 	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 ); 
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		command-child-indicator-color: Now_0;
+		command-child-indicator-height: 1;
+		command-child-indicator-width: 1;
+		
+		layout: horizontal-expand | vertical-shrink | vcenter;
+		 
+	//#endif
+}
+
+/*Can't get inheritance working here so everthing was included*/
+.profilepage_content_chat_item:hover 
+{
+	//#if polish.vendor == BlackBerry
+
+		font: FONT_NowPlus_white_small_plain;
+		command-child-indicator-color: Now_1807;
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;
+
+	//#else		
+	
+		font: FONT_NowPlus_white_small_plain;
+		command-child-indicator-color: Now_1807;
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;
+		 
+	//#endif
+}
+
+.profilepage_content_chat_item_preferred extends profilepage_content_chat_item
+{
+	font: FONT_NowPlus_black_small_bold;
+}
+
+.profilepage_content_chat_item_preferred:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+	command-child-indicator-color: Now_1807;
+	text-effect: vertical-scroll;
+	vertical-scroll-interval: 2000;
+	layout: horizontal-expand | vertical-shrink | vcenter;
+}
+
+/*Invite********************************************************************************************************************
+*/
+
+.profilepage_invite_container extends .ui_factory_base_item
+{
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 20 + 5000 / 10000 );
+	padding-top:0;
+	padding-bottom:0;
+
+	margin-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+
+	columns: 3;
+
+	focus-all:true;
+	
+	border: BORDER_NowPlus_button_unfocused;
+	
+	background-color: Now_6_2;
+	
+	layout: horizontal-expand|vertical-center;
+}
+
+.profilepage_invite_container:hover
+{
+	background-color: Now_1807;
+	
+	border: BORDER_NowPlus_button_focused;
+}
+
+.profilepage_invite_labeltext
+{
+	margin:0;
+	margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	padding:0;
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_black_small_plain;	
+	
+	layout: horizontal-expand|left;
+}
+
+.profilepage_invite_labeltext:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+}
+
+.profilepage_invite_text
+{
+	margin:0;
+	margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	padding:0;
+	padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	padding-left: 1;
+	padding-right:calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_black_small_bold;
+	
+	layout: shrink|right;
+}
+
+.profilepage_invite_text:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.profilepage_invite_icon
+{
+	margin:0;
+	margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 20 + 5000 / 10000 );
+	before: url(profile_invite_icon_16x16.png);
+	layout: shrink|right;
+}
+
+/*************************************************************************************************************
+* Add/Edit Contact
+*/
+
+.editpage_profile_container extends .ui_factory_base_item
+{
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+	focus-all: true;
+	
+	columns: 2;
+	
+	padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	
+	/*background-color: Now_520;*/
+	background-color: Now_299;
+	
+	layout: vertical-shrink | horizontal-expand;
+}
+
+.editpage_profile_avatar
+{
+	margin: 0;
+	padding:0;
+	
+	layout:shrink;
+}
+
+.editpage_profile_text
+{
+	//#if polish.vendor == BlackBerry
+	
+		margin: 0;
+		padding:0;
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		border: BORDER_NowPlus_profile_button_focused;
+		
+		background-color: Now_520;
+		
+		layout:horizontal-expand;
+	  	max-lines: 2;
+	  	min-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 40 + 5000 / 10000 );
+	
+	//#else
+	
+		margin: 0;
+		padding:0;
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		border: BORDER_NowPlus_profile_button_focused;
+		
+		background-color: Now_520;
+		
+		layout:horizontal-expand;
+	
+	//#endif
+}
+
+.editpage_profile_text:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		border: BORDER_NowPlus_button_focused;
+	  	max-lines: 2;
+	  	min-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 40 + 5000 / 10000 );
+	
+	//#else
+	
+		border: BORDER_NowPlus_button_focused;
+	
+	//#endif
+}
+
+.editpage_content_item extends profilepage_content_item
+{
+	//#if polish.vendor == BlackBerry
+	
+		//#if polish.blackberry.isTouchBuild == true
+		
+			label-style: editpage_content_item_label;
+			inline-label: false;
+
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+			
+			margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			
+			border: BORDER_NowPlus_button_unfocused;
+			
+			min-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 50 + 5000 / 10000 );
+			
+			layout: horizontal-expand | vertical-shrink | vcenter;
+		
+		//#else
+		
+			label-style: editpage_content_item_label;
+			inline-label: false;
+			
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+			
+			margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			
+			border: BORDER_NowPlus_button_unfocused;
+			
+			layout: horizontal-expand | vertical-shrink | vcenter;
+		
+		//#endif
+	
+	//#else
+	
+		margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		
+		label-style: editpage_content_item_label;
+		
+		border: BORDER_NowPlus_button_unfocused;
+		
+		layout: horizontal-expand | vertical-shrink | vcenter;
+	
+	//#endif
+}
+
+.editpage_content_item:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		//#if polish.blackberry.isTouchBuild == true
+		
+			label-style: editpage_content_item_labelfocused;
+			inline-label: false;
+			
+			min-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 50 + 5000 / 10000 );
+			
+			font: FONT_NowPlus_white_small_plain;
+			
+			text-effect: vertical-scroll;
+			vertical-scroll-interval: 2000;
+			
+			border: BORDER_NowPlus_button_focused;
+			background-color: Now_1807;
+		
+		//#else
+		
+			label-style: editpage_content_item_labelfocused;
+			include-label:true;
+			
+			font: FONT_NowPlus_white_small_plain;
+			
+			text-effect: vertical-scroll;
+			vertical-scroll-interval: 2000;
+			
+			border: BORDER_NowPlus_button_focused;
+			background-color: Now_1807;
+		
+		//#endif
+	
+	//#else
+	
+		label-style: editpage_content_item_labelfocused;
+		include-label:true;
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		text-effect: vertical-scroll;
+		vertical-scroll-interval: 2000;
+		
+		border: BORDER_NowPlus_button_focused;
+		background-color: Now_1807;
+	
+	//#endif
+}
+
+.editpage_content_item_label extends profilepage_content_item_label
+{
+	//#if polish.vendor == BlackBerry
+	
+		//#if polish.blackberry.isTouchBuild == true
+		
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+			
+			layout: horizontal-expand | vertical-shrink | vcenter;
+		
+		//#else
+		
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+			
+			layout: horizontal-expand | vertical-shrink | vcenter;
+		
+		//#endif
+	
+	//#else
+	
+		layout: horizontal-expand | vertical-shrink | vcenter;
+	
+	//#endif
+}
+
+.editpage_content_item_labelfocused extends editpage_content_item_label 
+{
+	font: FONT_NowPlus_white_small_plain;
+}
+
+.editpage_content_container_nested extends editpage_content_item
+{
+	margin: 0;
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+	padding: 0;
+	
+	border: BORDER_NowPlus_button_unfocused;
+	background: none;
+}
+
+.editpage_content_container_nested:hover
+{
+	border: BORDER_NowPlus_button_focused;
+	background-color: Now_1807;
+}
+
+.editpage_content_item_nested
+{
+	//#if polish.vendor == BlackBerry
+	
+		label-style: editpage_content_item_label;
+		include-label:true;
+		inline-label: true;
+		
+		margin: 0;
+		
+	 	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 ); 
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		layout: expand;
+		
+		/*min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 40 + 5000 / 10000 );*/
+		
+		max-lines: 2;
+	
+	//#else
+	
+		label-style: editpage_content_item_label;
+		include-label:true;
+		inline-label: true;
+		
+		margin: 0;
+		
+	 	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 ); 
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+	
+	//#endif
+}
+
+.editpage_content_item_nested:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		label-style: editpage_content_item_labelfocused;
+		include-label:true;
+		
+		font: FONT_NowPlus_white_small_plain;
+			  		
+		/*min-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 40 + 5000 / 10000 );*/
+		max-lines: 2;
+	
+	//#else
+	
+		label-style: editpage_content_item_labelfocused;
+		include-label:true;
+		
+		font: FONT_NowPlus_white_small_plain;
+	
+	//#endif
+}
+
+.editdetail_form extends .base_form
+{
+	background-color: Now_0;
+}
+
+.editdetail_editbar extends .ui_factory_base_item
+{
+	before: url( edit_headline_24x24.png );
+	
+	text-horizontal-adjustment: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	
+	padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_white_small_bold;	
+	
+	background-color: Now_1807;
+	
+	layout: left | vertical-shrink | horizontal-expand;
+}
+
+/*************************************************************************************************************
+* Contextual Menu
+*/
+
+.contextualmenu_item
+{
+	//#if polish.vendor == BlackBerry
+	
+		margin: 0;
+		padding: 0;
+	
+		font: FONT_NowPlus_black_small_bold;
+		
+		layout: horizontal-expand | vertical-shrink |  vertical-center ;	
+	
+	//#else
+	
+		margin: 0;
+		padding: 0;
+	
+		layout: horizontal-expand | vertical-shrink |  vertical-center ;	
+	
+	//#endif
+}
+
+.contextualmenu_item:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		font: FONT_NowPlus_white_small_bold;
+		layout: horizontal-expand | vertical-shrink |  vertical-center ;
+		
+	//#else		
+		
+		
+	//#endif
+}
+
+.contextualmenu_base_form
+{
+	//#if polish.vendor == BlackBerry
+		margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 26 + 5000 / 10000 );
+		margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 26 + 5000 / 10000 );
+		
+		padding: 0;
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	//#else
+		margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 12 + 5000 / 10000 );
+		margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 12 + 5000 / 10000 );
+		
+		padding: 0;
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+	//#endif
+	
+	//#if polish.use-ui-animation == true
+	screen-change-animation: slide;
+	//#endif
+	
+	background: BG_floatingScalableWindowWhite;
+
+	layout: horizontal-expand | vertical-shrink | vertical-center;
+}
+	
+.contextualmenu_profile_item extends .ui_factory_profile_item
+{
+	margin: 0;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	
+	padding: 0;
+}
+
+.contextualmenu_profile_item:hover
+{
+}
+
+.contextualmenu_infobar extends .contextualmenu_item
+{
+	//#if polish.vendor == BlackBerry
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		margin-bottom: -1;
+		
+		font: FONT_NowPlus_white_small_bold;
+		
+		max-lines: 1;
+		
+		background-color: Now_6_40;
+		
+		text-layout: center;
+		
+		layout: horizontal-expand | vertical-shrink;	
+	
+	//#else
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		margin-bottom: -1;
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		max-lines: 1;
+		
+		background-color: Now_6_40;
+		
+		text-layout: center;
+		
+		layout: horizontal-expand | vertical-shrink;	
+	
+	//#endif
+}
+
+.contextualmenu_infobar:hover
+{
+	//#if polish.use-ui-animation == true
+	/*
+  	 * SWITCHED OFF FOR R1
+	background-color-animation 
+	{
+		on: focus;
+		range: Now_6_40..Now_1807_60;
+		duration: 500ms;
+	}
+	*/
+    //#endif
+    
+	background-color: Now_1807;
+}
+
+.contextualmenu_navbar extends .contextualmenu_item
+{
+	//#if polish.blackberry.isTouchBuild == true
+	
+	//#else
+	
+		view-type: horizontal-selector;
+  	
+	  	/*attributes used by HorizontalSelectorView*/
+	  	left-arrow-image: url( main_arrow_left_now6_40_10x14.png );
+	  	right-arrow-image: url( main_arrow_right_now6_40_10x14.png );
+	  	seeker-style: contextualmenu_navbar_seeker;
+		horizontal-padding-arrows: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	  	
+	  	background-color: Now_6_20;
+	  	max-width: 100%;
+		
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 12 + 5000 / 10000 );
+		margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	//#endif
+}
+
+.contextualmenu_navbar:hover
+{
+	//#if polish.blackberry.isTouchBuild == true
+	
+	
+	//#else
+	
+	  	/*attributes used by HorizontalSelectorView*/
+	  	left-arrow-image: url( main_arrow_left_now485_10x14_focus.png );
+	  	right-arrow-image: url( main_arrow_right_now485_10x14_focus.png );
+	  	seeker-style: contextualmenu_navbar_seekerfocused;	
+	  	
+		background-color: Now_1807_60;
+		
+	    //#if polish.use-ui-animation == true
+	    /*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_6_20..Now_1807_60;
+			duration: 500ms;
+		}
+		*/
+	    //#endif
+	
+	//#endif
+}
+
+.contextualmenu_navbar_seeker
+{
+	//#if polish.vendor == BlackBerry
+	
+		max-height: calculate( imagewidth(bb_optionsmenu_call_30x28.png));
+		max-width: calculate( imagewidth(p_top_nav_contacts_32x32_focus.png) + 2);
+		
+		background-color: Now_6_40;
+		
+		layout: expand;	
+	
+	//#else
+	
+		max-width: calculate( imagewidth(p_top_nav_contacts_32x32_focus.png) + 2);
+		
+		background-color: Now_6_40;
+		
+		layout: expand;
+	
+	//#endif
+}
+
+.contextualmenu_navbar_seeker:hover
+{
+	//#if polish.use-ui-animation == true
+	/*
+  	 * SWITCHED OFF FOR R1
+	background-color-animation 
+	{
+		on: focus;
+		range: Now_6_40..Now_1807;
+		duration: 500ms;
+	}
+	*/
+  	//#endif
+  
+	background-color: Now_1807;
+}
+
+//#if polish.blackberry.isTouchBuild == true
+
+/** TODO: create contextualmenu_navbar_item_* item types programatically in UiFacory to reduce stylesheet size */
+
+.contextualmenu_navbar_item_base_BB_touch
+{
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 16 + 5000 / 10000 );
+	
+	min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );
+	
+	border: BORDER_NowPlus_thick_bottom_seperator;
+	
+	font: FONT_NowPlus_black_small_plain;
+	
+	max-lines: 1;
+	
+	/*background-color: Now_0;*/ /*no need BG already white*/
+	
+	layout: left | horizontal-expand | vertical-shrink | vertical-center;
+}
+
+.contextualmenu_navbar_item_base_BB_touch:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+	
+	background-color: Now_1807;
+}
+
+.contextualmenu_navbar_item_call_BB extends .contextualmenu_navbar_item_base_BB_touch
+{
+	icon-image: url(bb_optionsmenu_call_30x28.png);
+}
+
+.contextualmenu_navbar_item_call_BB:hover
+{
+	icon-image: url(bb_optionsmenu_call_30x28_focus.png);
+	
+	font: FONT_NowPlus_white_small_plain;
+	
+	background-color: Now_1807;
+}
+
+.contextualmenu_navbar_item_email_BB extends contextualmenu_navbar_item_base_BB_touch
+{
+	icon-image: url(bb_optionsmenu_email_30x28.png);
+}
+
+.contextualmenu_navbar_item_email_BB:hover
+{
+	icon-image: url(bb_optionsmenu_email_30x28_focus.png);
+	
+	font: FONT_NowPlus_white_small_plain;
+	
+	background-color: Now_1807;
+}
+
+.contextualmenu_navbar_item_IM_BB extends .contextualmenu_navbar_item_base_BB_touch
+{
+	icon-image: url(bb_optionsmenu_im_30x28.png);
+}
+.contextualmenu_navbar_item_IM_BB:hover
+{
+	icon-image: url(bb_optionsmenu_im_30x28_focus.png);
+	
+	font: FONT_NowPlus_white_small_plain;
+	
+	background-color: Now_1807;
+}
+
+.contextualmenu_navbar_item_sms_BB extends .contextualmenu_navbar_item_base_BB_touch
+{
+	icon-image: url(bb_optionsmenu_sms_30x28.png);
+}
+.contextualmenu_navbar_item_sms_BB:hover
+{
+	icon-image: url(bb_optionsmenu_sms_30x28_focus.png);
+	
+	font: FONT_NowPlus_white_small_plain;
+	
+	background-color: Now_1807;
+}
+
+.contextualmenu_navbar_item_profile_BB extends .contextualmenu_navbar_item_base_BB_touch
+{
+	icon-image: url(bb_optionsmenu_profile_30x28.png);
+}
+
+.contextualmenu_navbar_item_profile_BB:hover
+{
+	icon-image: url(bb_optionsmenu_profile_30x28_focus.png);
+	
+	font: FONT_NowPlus_white_small_plain;
+	
+	background-color: Now_1807;
+}
+
+//#endif
+
+/** TODO: create contextualmenu_navbar_item_* item types programatically in UiFacory to reduce stylesheet size */
+
+.contextualmenu_navbar_item_call
+{
+	icon-image: url(cm_call_30x28_oof.png);
+}
+.contextualmenu_navbar_item_call:hover
+{
+	icon-image: url(cm_call_30x28_focus.png);
+}
+
+.contextualmenu_navbar_item_email
+{
+	icon-image: url(cm_email_30x28_oof.png);
+}
+.contextualmenu_navbar_item_email:hover
+{
+	icon-image: url(cm_email_30x28_focus.png);
+}
+
+.contextualmenu_navbar_item_IM 
+{
+	icon-image: url(cm_IM_30x28_oof.png);
+}
+.contextualmenu_navbar_item_IM:hover
+{
+	icon-image: url(cm_IM_30x28_focus.png);
+}
+
+.contextualmenu_navbar_item_sms
+{
+	icon-image: url(cm_sms_30x28_oof.png);
+}
+.contextualmenu_navbar_item_sms:hover
+{
+	icon-image: url(cm_sms_30x28_focus.png);
+}
+
+.contextualmenu_navbar_item_profile
+{
+	icon-image: url(cm_profile_30x28_oof.png);
+}
+.contextualmenu_navbar_item_profile:hover
+{
+	icon-image: url(cm_profile_30x28_focus.png);
+}
+
+.contextualmenu_action_item_base extends .contextualmenu_item
+{
+	//#if polish.blackberry.isTouchBuild == true
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 16 + 5000 / 10000 );
+		
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );
+		
+		border: BORDER_NowPlus_thick_bottom_seperator;
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines: 1;
+		
+		/*background-color: Now_0;*/ /*no need BG already white*/
+		
+		layout: left | horizontal-expand | vertical-shrink | vertical-center;
+	
+	//#else
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	
+		font: FONT_NowPlus_black_small_plain;
+		border: BORDER_NowPlus_thin_bottom_seperator;
+	
+		command-child-indicator-color: Now_6_40;
+		command-child-indicator-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		command-child-indicator-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	
+	//#endif
+}
+
+.contextualmenu_action_item_base:hover
+{
+	//#if polish.blackberry.isTouchBuild == true
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		background-color: Now_1807;
+				
+	//#else
+	
+	  	//#if polish.use-ui-animation == true
+	  	/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807;
+			duration: 200ms;
+		}
+		*/
+	  	//#endif
+	  
+		background-color: Now_1807;
+		font: FONT_NowPlus_white_small_plain;	
+		command-child-indicator-color: Now_0;
+	
+	//#endif	
+}
+
+/*
+.contextualmenu_action_item_base:pressed
+{
+	//#if polish.blackberry.isTouchBuild == true
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		background-color: Now_1807;
+				
+	//#else
+	
+	
+	//#endif	
+}
+*/
+
+.contextualmenu_seperator_action_item_base extends .contextualmenu_item
+{
+	//#if polish.blackberry.isTouchBuild == true
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 16 + 5000 / 10000 );
+		
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );
+		
+		border: BORDER_NowPlus_thick_bottom_seperator;
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines: 1;
+		
+		/*background-color: Now_0;*/ /*no need BG already white*/
+		
+		layout: left | horizontal-expand | vertical-shrink | vertical-center;
+				
+	//#else
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		border: BORDER_NowPlus_thick_bottom_seperator;
+		
+		max-lines:1;
+		
+		command-child-indicator-color: Now_6_40;
+		command-child-indicator-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		command-child-indicator-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	
+	//#endif	
+}
+
+.contextualmenu_seperator_action_item_base:hover
+{
+	//#if polish.blackberry.isTouchBuild == true
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		background-color: Now_1807;
+				
+	//#else
+	
+	  	//#if polish.use-ui-animation == true
+	  	/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807;
+			duration: 200ms;
+		}
+		*/
+	  	//#endif
+	  	
+		background-color: Now_1807;
+		
+		font: FONT_NowPlus_white_small_plain;	
+		
+		command-child-indicator-color: Now_0;
+	
+	//#endif		
+}
+
+/*
+.contextualmenu_seperator_action_item_base:pressed
+{
+	//#if polish.blackberry.isTouchBuild == true
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		background-color: Now_1807;
+				
+	//#else
+	
+	
+	//#endif	
+}
+*/
+
+.contextualmenu_last_action_item_base extends .contextualmenu_item
+{
+	//#if polish.blackberry.isTouchBuild == true
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 16 + 5000 / 10000 );
+		
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );
+		
+		border: BORDER_NowPlus_thick_bottom_seperator;
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines: 1;
+		
+		/*background-color: Now_0;*/ /*no need BG already white*/
+		
+		layout: left | horizontal-expand | vertical-shrink | vertical-center;
+				
+	//#else
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;	
+		
+		command-child-indicator-color: Now_6_40;
+		command-child-indicator-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		command-child-indicator-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	
+	//#endif	
+}
+
+.contextualmenu_last_action_item_base:hover
+{
+	//#if polish.blackberry.isTouchBuild == true
+		
+		font: FONT_NowPlus_white_small_plain;
+		
+		background-color: Now_1807;
+				
+	//#else
+	
+	  	//#if polish.use-ui-animation == true
+	  	/*
+	  	 * SWITCHED OFF FOR R1
+		background-color-animation 
+		{
+			on: focus;
+			range: Now_0..Now_1807;
+			duration: 200ms;
+		}
+		*/
+	  	//#endif
+	  	
+		background-color: Now_1807;
+		font: FONT_NowPlus_white_small_plain;
+		command-child-indicator-color: Now_0;
+	
+	//#endif	
+}
+
+/*
+.contextualmenu_last_action_item_base:pressed
+{
+	//#if polish.blackberry.isTouchBuild == true
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		background-color: Now_1807;
+				
+	//#else
+	
+	
+	//#endif	
+}
+*/
+
+/*************  Login ********************************/
+
+.login_form extends base_form
+{
+}
+
+.login_headline extends .ui_factory_base_item
+{
+   	//#if polish.vendor == BlackBerry
+   	
+		include-label:true;
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+		
+		background-color: Now_1807;
+		
+		font: FONT_NowPlus_white_small_bold;
+		
+		layout: horizontal-expand|vertical-shrink|center;
+		
+  	//#else
+  	
+	  	include-label:true;
+		
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	
+		background-color: Now_1807;
+		
+		font: FONT_NowPlus_white_small_bold;
+		
+		layout: horizontal-expand|vertical-shrink;
+		
+   	//#endif
+}
+
+.login_textfield_readonly extends .ui_factory_textfield
+{
+	font
+	{
+		size: small;
+		color: Now_6_20;
+		style: plain;
+	}
+	
+	background-color: Now_6_2;
+}
+
+.login_textfield_readonly:hover
+{
+	border: BORDER_NowPlus_textfield_focused;
+}
+
+.help
+{
+	font: FONT_NowPlus_help;
+
+	max-lines: 1;	
+}
+
+/*************  SMS ********************************/
+
+//#if polish.vendor == BlackBerry
+
+//#else
+
+.sms_form extends base_form
+{
+}
+
+.sms_headline extends .ui_factory_base_item
+{
+	layout: horizontal-expand|vertical-shrink;
+	include-label:true;
+	
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+
+	background-color: Now_1807;
+	
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.sms_textfield  extends .ui_factory_textfield
+{
+	min-height: calculate( ${polish.ScreenHeight} / 2);
+}
+//#endif
+/*************  Notification Base Styles********************************/
+
+.notification_body_base {
+	margin: 0;
+	padding: 0;
+	
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	padding: 0;
+	
+	//#if polish.vendor == BlackBerry
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );	
+	//#else
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+	//#endif
+	
+	background: BG_floatingScalableWindowWhite;
+}
+
+.notification_body_base:hover {
+}
+
+.notification_body_progress extends notification_body_base {
+	background: BG_floatingScalableWindowNotify;
+}
+
+.notification_body_progress:hover {
+}
+	
+
+.notification_headline_base
+{
+	view-type: horizontal;
+	
+	margin: 0;
+	
+	padding: 0;
+	
+	background-color: Now_1807_80;
+	
+	layout: horizontal-expand|vertical-shrink;
+}
+
+.notification_headline_base:hover
+{
+}
+
+.notification_icon_base
+{
+	icon-image: url(notification_headline_notif_21x21.png);
+	padding:0;
+	margin:0;
+	layout: shrink;
+}
+
+.notification_icon_base:hover
+{
+}
+
+.notification_title_base
+{
+	font: FONT_NowPlus_white_small_bold;
+		
+	padding: 0;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+	
+	margin:0;
+	
+	layout: left | vertical-center;
+}
+
+.notification_title_base:hover
+{
+}
+
+.notification_text_base
+{
+	margin: 0;
+	padding:0;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	padding-vertical: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_black_small_plain;
+}
+
+.notification_text_base:hover
+{
+}
+
+.notification_form_delete extends notification_form_base
+{
+	headline-style: notification_headline_delete;
+	icon-style: notification_icon_delete;
+	
+	max-lines: 3;
+}
+
+.notification_headline_delete extends notification_headline_base
+{
+	background-color: Now_485_dark;
+}
+
+.notification_headline_delete:hover
+{
+}
+
+.notification_icon_delete extends notification_icon_base
+{
+	icon-image: url(notification_header_trash_21x21.png);
+}
+
+.notification_icon_delete:hover
+{
+}
+
+.notification_form_progress_text extends notification_text_base
+{
+	font: FONT_NowPlus_white_small_plain;
+}
+
+
+.notification_form_base {
+	padding: 0;
+	
+	/*custom css*/
+	body-style: notification_body_base;
+	headline-style: notification_headline_base;
+	title-style: notification_title_base;
+	text-style: notification_text_base;
+	icon-style: notification_icon_base;
+	
+	//#if polish.use-ui-animation == true
+	screen-change-animation: slide;
+	//#endif
+	
+	repaint-previous-screen: true;
+	
+	background-color: #00000000;
+	
+	layout: horizontal-expand|bottom|vertical-shrink;	
+}
+
+.notification_form_base:hover {	
+}
+
+.notification_form_progress extends notification_form_base {
+	text-style: notification_form_progress_text;
+	body-style: notification_body_progress;
+}
+
+.notification_form_base_startup extends notification_form_base {
+	screen-change-animation: none;
+	
+	background: BG_startup;
+	
+	repaint-previous-screen: false;
+	
+	layout: horizontal-expand|bottom;	
+}
+
+.notification_form_base_startup:landscape{
+	screen-change-animation: none;
+	
+	background: BG_startup_landscape;
+	
+	repaint-previous-screen: false;
+	
+	layout: horizontal-expand|bottom;
+}
+
+.notification_form_base_startup:hover {	
+}
+
+.notification_form_progress_startup extends notification_form_base_startup
+{
+	text-style: notification_form_progress_text;
+	body-style: notification_body_progress;
+}
+
+.notification_form_progress_startup:hover {
+}
+
+/*************  Progress indicators  ********************************/
+.progress_infinite
+{
+	margin: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 6 + 5000 / 10000 );
+	margin-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 7 + 5000 / 10000 );
+	
+	padding:0;
+	
+	distance-between-items: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 30 + 5000 / 10000 );
+	
+	item-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 30 + 5000 / 10000 );
+	item-height: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 10 + 5000 / 10000 );
+	item-color: Now_1807_40;
+	item-border-color: Now_0;
+	
+	background
+	{
+		color: Now_0;
+	}
+}
+
+/*************  SearchField Base Styles  ********************************/
+.searchfield_base
+{
+	//#if polish.vendor == BlackBerry
+	
+		columns: 2;
+			
+		margin: 0;
+		
+		padding: 0;
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 ); /*3+2*/
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 7 + 5000 / 10000 ); /*6+1*/
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 ); /*8+2*/
+		
+		background: BG_floatingScalableWindowSearch;
+		
+		layout: horizontal-expand|vertical-shrink|bottom;	
+	
+	//#else
+	
+		columns: 2;
+			
+		margin: 0;
+		
+		padding: 0;
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 ); /*2+2*/
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 ); /*4+1*/
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 ); /*6+2*/
+		
+		background: BG_floatingScalableWindowSearch;
+		
+		layout: horizontal-expand|vertical-shrink|bottom;	
+	
+	//#endif
+}
+
+.searchfield_base:hover
+{
+}
+
+.searchfield_loopicon
+{
+	icon-image: url(search_loop_29x27.png);
+	
+	layout: shrink;
+}
+
+.searchfield_loopicon:hover
+{
+}
+
+.searchfield_textfield
+{
+	padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	background-color: Now_0;
+	
+	font: FONT_NowPlus_black_small_plain;	
+	
+	border: BORDER_NowPlus_textfield_unfocused;
+	
+	layout: expand | vcenter;	
+}
+
+.searchfield_textfield:hover
+{
+	border: BORDER_NowPlus_textfield_focused;
+}
+
+/************* Chat ********************************/
+
+.chat_profile_item extends .ui_factory_profile_item
+{
+	content-priority: empty;
+}
+
+.chat_profile_item:hover
+{
+}
+
+.chat_inputfield extends .ui_factory_base_item
+{
+	columns: 2;
+	align-heights: true;
+	
+	layout: horizontal-expand|vertical-shrink|vertical-center;
+}
+
+.chat_inputfield:hover
+{
+}
+
+.chat_inputfield_textfield_wrap extends ui_factory_textfield_wrap
+{
+	margin: 0;
+	
+	columns: 2;
+	
+	background-color: Now_1807_60;
+	
+	layout: expand | vshrink;
+}
+
+.chat_inputfield_textfield_wrap:hover
+{
+	background-color: Now_1807;
+}
+
+.chat_inputfield_textfield extends .ui_factory_textfield
+{
+	/* PORT SPECIFIC: LG KS500-ZYB */
+	//#if polish.vendor == LG && polish.name == KS500-ZYB 
+	
+		margin: 0;
+		
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-vertical: 0;
+		
+		/*Smiley texteffect disabled as a consequence of bugs 3113 & 12822. As agreed with UE.*/
+		/*text-effect: smiley;*/
+		
+		textfield-caret-color: black;
+		textfield-caret-flash: 	true;
+		
+		text-wrap: false;
+		font: FONT_NowPlus_black_small_plain;
+		content-y-adjust: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+	
+		border: BORDER_NowPlus_textfield_focused;
+		
+		background-color: Now_0;
+		
+		layout: expand | vcenter;
+		
+	//#elif polish.vendor == BlackBerry
+	
+		margin: 0;
+		
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-vertical: 0;
+		
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 40 + 5000 / 10000 );
+		 
+		/*Smiley texteffect disabled as a consequence of bugs 3113 & 12822. As agreed with UE.*/
+		/*text-effect: smiley;*/ 
+		 
+		textfield-caret-color: black;
+		textfield-caret-flash: 	true;
+		
+		text-wrap: false;
+		
+		background-color: Now_0;
+		
+		layout: expand | vcenter;
+	
+	//#else
+	/* ORIGINAL */
+	
+		margin: 0;
+		
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-vertical: 0;
+		
+		/*Smiley texteffect disabled as a consequence of bugs 3113 & 12822. As agreed with UE.*/
+		/*text-effect: smiley;*/
+		textfield-caret-color: black;
+		textfield-caret-flash: 	true;
+		
+		text-wrap: false;
+		
+		font: FONT_NowPlus_black_small_plain;	
+		
+		border: BORDER_NowPlus_textfield_focused;
+		
+		background-color: Now_0;
+		
+		layout: expand | vcenter;	
+		
+	//#endif
+}
+
+.chat_inputfield_textfield:hover
+{
+	border: BORDER_NowPlus_textfield_focused;
+}
+
+.chat_inputfield_inputmode_icon
+{
+	padding: 0;
+	margin: 0;
+	
+	layout: shrink|bottom;
+}
+
+.chat_inputfield_inputmode_icon:hover
+{
+}
+
+
+.chat_inputfield_emoticon_icon
+{
+	icon-image: url( chat_emoticon_icon_27x27.png );
+	
+	padding: 0;
+	padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	
+	margin: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	
+	background-color: Now_1807_60;
+	
+	layout: vcenter|horizontal-shrink|vertical-shrink;
+}
+
+.chat_inputfield_emoticon_icon:hover
+{
+	background-color: Now_1807;
+}
+
+.chat_emoticon_form
+{
+	//#if polish.vendor == BlackBerry
+	
+		//#if polish.blackberry.isTouchBuild == true
+		
+			repaint-previous-screen: true;
+			
+			margin: 0;
+			margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 24 + 5000 / 10000 );
+			
+			layout: shrink|right|bottom;
+		
+		//#else
+		
+			repaint-previous-screen: true;
+			
+			margin: 0;
+			margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 24 + 5000 / 10000 );
+			
+			layout: shrink|right|bottom;	
+		
+		//#endif
+	
+	//#else
+	
+		repaint-previous-screen: true;
+		
+		margin: 0;
+		margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 24 + 5000 / 10000 );
+		
+		layout: shrink|right|bottom;
+	
+	//#endif
+}
+
+.chat_emoticon_container
+{
+	//#if polish.vendor == BlackBerry
+	
+		//#if polish.blackberry.isTouchBuild == true
+		
+			margin: 0;
+		
+			padding: 0;
+			padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 5 + 5000 / 10000 );
+			padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 18 + 5000 / 10000 );
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );	
+			
+			columns: 6;
+		
+			background: BG_floatingScalableWindowEmoticon;	
+		
+		//#else
+		
+			margin: 0;
+	
+			padding: 0;
+			padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 4 + 5000 / 10000 );
+			padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 18 + 5000 / 10000 );
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );	
+			
+			columns: 11;
+		
+			background: BG_floatingScalableWindowEmoticon;	
+		
+		//#endif
+	
+	//#else
+	
+		margin: 0;
+	
+		padding: 0;
+		padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 4 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 12 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );	
+		
+		columns: 6;
+	
+		background: BG_floatingScalableWindowEmoticon;	
+	
+	//#endif
+}
+
+.chat_emoticon_container:hover
+{
+}
+
+.chat_emoticon_item
+{
+	margin: 0;
+	padding: 0;
+	border: none;	
+	layout: shrink;	
+}
+
+.chat_emoticon_item:hover
+{
+	margin: -calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	border-size: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	
+	border-color: Now_1807;
+	layout: shrink;
+}
+
+.chat_message_item_name
+{
+	font: FONT_NowPlus_black_small_bold;	
+	
+	max-lines: 1;
+	
+	layout: shrink;
+}
+
+.chat_message_item_name:hover
+{
+}
+
+.chat_message_item_name_new extends chat_message_item_name
+{
+	padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	text-horizontal-adjustment: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	
+	before: url( chat_new_message_icon_19x19.png );
+}
+
+.chat_message_item_name_new:hover
+{
+}
+
+.chat_message_item_date
+{
+	font: FONT_NowPlus_black_small_bold;
+	
+	max-lines: 1;	
+}
+
+.chat_message_item_date:hover
+{
+}
+
+.chat_message_item_self_wrap_container extends .ui_factory_base_item
+{
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 12 + 5000 / 10000 );
+	margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 7 + 5000 / 10000 );
+	
+	padding-horizontal: 0;
+	
+	focus-all: true;
+	
+	columns: 2;
+	
+	layout: shrink;
+}
+
+.chat_message_item_self_wrap_container:hover
+{
+}
+
+.chat_message_item_self_namedate_wrap_container
+{
+	columns: 3;
+	
+	padding:0;
+	margin:0;
+	
+	layout: left;
+}
+
+.chat_message_item_self_namedate_wrap_container:hover
+{
+}
+
+.chat_message_item_self_arrow
+{
+	margin: 0;
+	
+	padding:0;
+	padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	icon-image: url( chat_bubble_arrow_6_5_11x11.png );
+	
+	layout: shrink;
+}
+
+.chat_message_item_self_arrow:hover
+{
+	icon-image: url( chat_bubble_arrow_144_11x11.png );
+}
+
+.chat_message_item_self_content
+{
+	text-effect: smiley;
+		
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );	
+	
+	margin: 0;
+	
+	font: FONT_NowPlus_black_small_plain;
+	
+	background-color: Now_6_5;
+	
+	layout: horizontal-expand;
+}
+
+.chat_message_item_self_content:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+	
+	background-color: Now_1807;
+}
+
+.chat_message_item_other_wrap_container extends .ui_factory_base_item
+{
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 12 + 5000 / 10000 );
+	margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 7 + 5000 / 10000 );
+	
+	padding-horizontal: 0;
+	
+	focus-all: true;
+	
+	columns: 2;
+	
+	layout: shrink;
+}
+
+.chat_message_item_other_wrap_container:hover
+{
+}
+
+.chat_message_item_other_namedate_wrap_container
+{
+	columns: 3;
+	
+	padding:0;
+	margin:0;
+	
+	layout: right;
+}
+
+.chat_message_item_other_namedate_wrap_container:hover
+{
+}
+
+.chat_message_item_other_content
+{
+	text-effect: smiley;
+	
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	margin:0;
+	/*margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 7 + 5000 / 10000 );*/
+	
+	font: FONT_NowPlus_black_small_plain;
+		
+	background-color: Now_6_5;	
+	
+	layout: horizontal-expand;	
+}
+
+.chat_message_item_other_content:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+	
+	background-color: Now_1807;	
+}
+
+.chat_message_item_other_arrow
+{
+	margin: 0;	
+	
+	padding:0;
+	padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	icon-image: url( chat_bubble_arrow_6_5_11x11_incoming.png );
+	
+	layout: shrink | left;	
+}
+
+.chat_message_item_other_arrow:hover
+{
+	icon-image: url( chat_bubble_arrow_144_11x11_incoming.png );
+}
+
+.chat_confirmation_form
+{
+		margin: 0;
+		margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		
+		padding: 0;
+		
+		/*custom css*/
+		headline-style: notification_headline_base;
+		title-style: notification_title_base;
+		text-style: chat_confirmation_text;
+		icon-style: chat_confirmation_icon;
+		
+	//#if polish.vendor == BlackBerry
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	//#else
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 3 + 5000 / 10000 );
+	//#endif		
+		
+		repaint-previous-screen: true;
+			
+		background: BG_floatingScalableWindowWhite;
+		
+		layout: horizontal-expand|vertical-shrink|bottom;	
+}
+
+.chat_confirmation_form:hover
+{
+}
+
+.chat_confirmation_text
+{
+	//#if polish.vendor == BlackBerry
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines:5;	
+	
+	//#else
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		
+		text-effect: smiley;
+			
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines:5;	
+	
+	//#endif
+
+}
+
+.chat_confirmation_text:hover
+{
+}
+
+.chat_confirmation_icon extends notification_icon_base
+{
+	icon-image: url(notification_headline_chat_21x21.png);
+}
+
+.chat_confirmation_icon:hover
+{
+}
+
+.chat_base_columns2_container
+{
+	columns: 2;
+	
+	align-heights: true;
+	
+	layout: horizontal-expand|vertical-shrink|vertical-center;
+}
+
+
+.chat_sendButton extends .ui_factory_button_item
+{
+//#if polish.blackberry.isTouchBuild == true
+	
+	     layout: vertical-center | shrink | horizontal-center;
+	
+//#else
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	  	
+	  	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	   	
+	   	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 ); /*border used in parent style has 2 padding so 2+2=4*/
+	   
+	  	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 ); /*border used in parent style has 2 padding so 2+2=4*/
+  	
+  		layout: shrink | vcenter;
+//#endif
+		
+}
+ 
+.chat_sendButton:hover
+{
+//#if polish.blackberry.isTouchBuild == true
+
+	/* use deflaut focus style '.chat_sendButton' */
+
+//#else
+
+	font: FONT_NowPlus_white_small_bold;
+		
+	border: BORDER_NowPlus_button_focused;
+		
+	background-color: Now_1807;
+//#endif
+
+}
+
+.chat_sendButton:pressed
+{
+//#if polish.blackberry.isTouchBuild == true
+	font: FONT_NowPlus_white_small_bold;
+		
+	border: BORDER_NowPlus_button_focused;
+		
+	background-color: Now_1807;
+//#endif
+}
+
+.chat_sendButtonInactive extends .ui_factory_button_item_inactive {
+	//#if polish.blackberry.isTouchBuild == true
+	
+	     layout: bottom | shrink | horizontal-center;
+		
+	//#else
+			padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		  	
+		  	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+		   	
+		   	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 ); /*border used in parent style has 2 padding so 2+2=4*/
+		   
+		  	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 ); /*border used in parent style has 2 padding so 2+2=4*/
+	  	
+	  		layout: shrink | vcenter;
+	//#endif
+}
+
+/*******************************************************************************
+* Activities
+*/
+
+/* Generic activity item styles */
+
+.activitylist_section extends ui_factory_base_item
+{
+	margin-bottom: 0;
+	
+	padding: 0;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-top: calculate( ${polish.ScreenHeight} * 10000 / ${polish.css.master.screen.height} * 6 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_grey_small_bold;
+	
+	border: BORDER_NowPlus_thin_bottom_seperator;
+	
+	layout: expand;
+}
+
+.activitylist_section:hover{}
+
+activitylist_request_button extends ui_factory_base_item
+{
+	//#if polish.vendor == BlackBerry
+	
+		font: FONT_NowPlus_black_small_bold;
+		
+		border: BORDER_NowPlus_button_unfocused;
+		
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );
+		
+		background-color: Now_6_2;
+		
+		layout: vexpand | expand | vcenter | center;
+		
+	//#else
+	
+		background-color: Now_6_2;
+		border: BORDER_NowPlus_button_unfocused;
+		font: FONT_NowPlus_black_small_plain;
+		layout: expand | center;
+		
+	//#endif
+}
+
+activitylist_request_button:hover 
+{
+	//#if polish.vendor == BlackBerry
+	
+		background-color: Now_1807;
+		
+		border: BORDER_NowPlus_button_focused;
+		
+		font: FONT_NowPlus_white_small_bold;
+		
+	//#else
+	
+		background-color: Now_1807;
+		border: BORDER_NowPlus_button_focused;
+		font: FONT_NowPlus_white_small_plain;
+		
+	//#endif
+}
+
+activitylist_noresults 
+{
+	background-color: Now_0;
+	font: FONT_NowPlus_grey_small_bold;
+	layout: vexpand | expand | vcenter | center;
+}
+
+activitylist_noresults:hover{}
+
+
+.activity extends ui_factory_base_item 
+{
+	layout: expand;
+		
+	border: BORDER_NowPlus_thick_bottom_seperator;
+	
+	focus-all: true;
+}
+
+.activity:hover {}
+
+.activity_content extends ui_factory_base_item {
+	columns: 3;
+	layout: expand;
+	focus-all: true;
+	align-heights: true;
+	padding: 0;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+.activity_content:hover {
+	background-color: Now_1807;
+}
+
+.activity_info {
+	padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+	layout: expand;
+	focus-all: true;
+}
+
+.activity_info:hover{}
+
+.activity_name
+{
+	padding: 0;
+	margin: 0;
+		
+	max-lines: 1;
+		
+	font: FONT_NowPlus_black_small_bold;
+		
+	layout: expand;
+}
+
+.activity_name:hover
+{
+	/*scroll only when focused*/
+	text-effect: vertical-scroll;
+	vertical-scroll-interval: 2000;
+		
+	font: FONT_NowPlus_white_small_bold;
+}
+
+/* status activity item styles */
+
+.activity_status_avatar {
+	layout: top | vexpand;
+	background-color: Now_0;
+	padding: 0;
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+}
+
+.activity_status_avatar:hover {}
+
+.activity_status_time
+{
+	padding: 0;
+	margin: 0;
+		
+	max-lines: 1;
+		
+	font: FONT_NowPlus_red_small_bold;
+		
+	layout: expand;
+}
+
+.activity_status_time:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.activity_status_text
+{
+	padding: 0;
+	margin: 0;
+		
+	max-lines: 1;
+		
+	font: FONT_NowPlus_black_small_plain;
+		
+	layout: expand;
+}
+
+.activity_status_text:hover
+{
+	text-effect: vertical-scroll;
+	vertical-scroll-interval: 2000;
+		
+	font: FONT_NowPlus_white_small_plain;
+}
+
+.activity_status_service {
+	padding: 0;
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	
+	margin: 0;
+	margin-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	
+	layout: top;
+}
+
+.activity_status_service:hover {}
+
+/* timeline activity item styles */
+
+.activity_timeline_type_chat {
+	icon-image: url(bb_timeline_filter_IM_28x28.png);
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+}
+
+.activity_timeline_type_chat:hover {
+	icon-image: url(bb_timeline_filter_IM_28x28_highlight.png);
+}
+
+.activity_timeline_type_call_dialed {
+	icon-image: url(bb_timeline_filter_calldialed_28x28.png);
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+}
+
+.activity_timeline_type_call_dialed:hover {
+	icon-image: url(bb_timeline_filter_calldialed_28x28_highlight.png);
+}
+
+.activity_timeline_type_sms_sent {
+	icon-image: url(bb_timeline_filter_sms_sent_28x28.png);
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+}
+
+.activity_timeline_type_sms_sent:hover {
+	icon-image: url(bb_timeline_filter_sms_sent_28x28_highlight.png);
+}
+
+.activity_timeline_avatar {
+	layout: top | vexpand;
+	background-color: Now_0;
+	padding: 0;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+}
+
+.activity_timeline_avatar:hover {} 
+
+.activity_timeline_time
+{
+	padding: 0;
+	margin: 0;
+		
+	max-lines: 1;
+		
+	font: FONT_NowPlus_grey_small_bold;
+		
+	layout: expand;
+}
+
+.activity_timeline_time:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.activity_timeline_text
+{
+	icon-image-align:left;
+	
+	max-lines: 1;
+	
+	padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	padding: 0;
+	margin: 0;
+	font: FONT_NowPlus_black_small_plain;
+	layout: expand;
+}
+
+.activity_timeline_text:hover
+{
+	text-effect: vertical-scroll;
+	vertical-scroll-interval: 2000;
+		
+	font: FONT_NowPlus_white_small_plain;
+}
+
+/*************************************************************************************************************
+* WebAccounts
+*/
+
+.webaccount_item extends ui_factory_base_item
+{
+	columns: 4;
+	//#if polish.blackberry.isTouchBuild == true
+		columns-width: 8%,26%,54%,12%; 	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );	
+	//#else
+		columns-width: 10%,40%,40%,10%; 	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	//#endif	
+	
+	padding-horizontal: 0;
+	
+	border: BORDER_NowPlus_thin_bottom_seperator;
+			
+	focus-all: true;
+	
+	align-heights: true;
+				
+	min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );	
+	
+	layout: vcenter | vertical-shrink | horizontal-expand;	
+}
+
+.webaccount_item:hover
+{
+		background-color: Now_1807;	
+}
+
+
+.webaccount_sn_item_online
+{
+	//#if polish.blackberry.isTouchBuild == true
+	
+			padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			
+			font: FONT_NowPlus_red_small_plain;
+			
+			max-lines: 1;
+			
+			min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );	
+			
+			layout: vexpand | vcenter;
+		
+	//#else
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_red_small_plain;
+		
+		max-lines: 1;
+		
+		layout: vexpand | vcenter;
+	
+	//#endif
+}
+	
+.webaccount_sn_item_online:hover
+{
+		font: FONT_NowPlus_white_small_plain;	
+		
+		max-lines: 8;
+		
+		text-effect: vertical-scroll;
+		
+		vertical-scroll-interval: 2000;
+	
+}
+	
+.webaccount_sn_item
+{
+	//#if polish.blackberry.isTouchBuild == true
+	
+			padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			
+			font: FONT_NowPlus_black_small_plain;
+			
+			max-lines: 1;
+			
+			min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 60 + 5000 / 10000 );	
+			
+			layout: vexpand | vcenter;
+		
+	//#else
+	
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		max-lines: 1;
+		
+		layout: vexpand | vcenter;
+	
+	//#endif		
+}
+	
+.webaccount_sn_item:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		font: FONT_NowPlus_white_small_plain;	
+		
+	 	max-lines: 8;
+	
+		text-effect: vertical-scroll;
+		
+		vertical-scroll-interval: 2000;
+		
+	//#else
+	
+		font: FONT_NowPlus_white_small_plain;	
+		
+		max-lines: 8;
+		
+		text-effect: vertical-scroll;
+		
+		vertical-scroll-interval: 2000;
+	
+	//#endif		
+
+}
+	
+.webaccount_checkmark
+{
+	padding: 0;
+	
+	icon-image: url(check_21x21.png);
+	
+	layout: vexpand | vcenter | hcenter;	
+}
+
+.webaccount_checkmark:hover
+{
+	icon-image: url(check_21x21_focus.png);
+}
+
+.webaccount_headline_base extends ui_factory_base_item
+{
+	text-horizontal-adjustment: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_white_small_bold;	
+	
+	background-color: Now_1807;
+	
+	layout: horizontal-expand | vcenter;
+}
+
+.webaccount_headline extends webaccount_headline_base
+{
+	before: url( edit_headline_24x24.png );
+}
+
+.webaccount_edit_headline extends ui_factory_base_item
+{
+	columns: 2;
+	columns-width: 10%,90%; 
+	
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_white_small_bold;	
+	
+	background-color: Now_1807;
+	
+	layout: horizontal-expand | vertical-shrink | vcenter;
+}
+
+.webaccount_screen_headline extends webaccount_edit_headline
+{
+	before: url( edit_headline_24x24.png );
+}
+
+.webaccount_screen_headline_text
+{
+	padding-left: 5%;
+	
+	font: FONT_NowPlus_white_small_bold;	
+	
+	layout: horizontal-expand | vertical-shrink;
+}
+
+.webaccount_edit_headline_text
+{
+	padding: 0;
+	
+	font: FONT_NowPlus_white_small_bold;	
+	
+	layout: horizontal-expand | vertical-shrink 
+}
+
+.webaccount_edit_disclaimer_header extends ui_factory_base_item
+{
+	font: FONT_NowPlus_black_small_bold;	
+	
+	layout: top | left | expand;
+}
+
+.webaccount_edit_disclaimer_header:hover
+{
+	font: FONT_NowPlus_white_small_bold;	
+	
+	background-color: Now_1807;
+}
+
+.webaccount_edit_disclaimer_text extends webaccount_edit_disclaimer_header
+{
+	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_black_small_plain;
+		
+	layout: top | left | expand | newline-after;
+}
+
+.webaccount_edit_disclaimer_text:hover
+{
+	font: FONT_NowPlus_white_small_plain;	
+}
+
+/*************************************************************************************************************
+* Email
+*/
+
+ //#if activate.embedded.360email
+
+/*Inbox*/
+
+.emailtab_noemails
+{
+	background-color: Now_0;
+	font: FONT_NowPlus_grey_small_bold;
+	layout: vexpand | expand | vcenter | center;
+}
+
+.emailtab_email_item_container extends ui_factory_base_item
+{
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	
+	columns: 2;
+	
+	focus-all: true;
+	
+	border: BORDER_NowPlus_thin_bottom_seperator;
+	
+	layout: left | vertical-shrink | horizontal-expand;
+}
+
+.emailtab_email_item_container:hover
+{
+	background-color: Now_1807;
+}
+
+.emailtab_email_item_inner_right_container
+{
+	padding: 0;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );	
+	margin: 0;
+	
+	focus-all: true;
+	
+	layout: expand;
+}
+
+.emailtab_email_item_inner_right_container:hover
+{
+}
+
+.emailtab_email_item_mailicon
+{
+	padding: 0;
+	margin: 0;
+	
+	layout: shrink | vcenter;
+}
+
+.emailtab_email_item_mailicon:hover
+{
+}
+
+.emailtab_email_item_name
+{
+	font: FONT_NowPlus_black_small_bold;
+	
+	max-lines:1;
+}
+
+.emailtab_email_item_name:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.emailtab_email_item_subject
+{
+	font: FONT_NowPlus_black_small_plain;
+	
+	max-lines:1;
+}
+
+.emailtab_email_item_subject:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+}
+
+.emailtab_request_button extends ui_factory_base_item
+{
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );	
+		
+	background-color: Now_6_2;
+	
+	border: BORDER_NowPlus_button_unfocused;
+	
+	font: FONT_NowPlus_black_small_plain;
+	
+	layout: expand | left;
+}
+	
+.emailtab_request_button:hover 
+{
+	background-color: Now_1807;
+	
+	border: BORDER_NowPlus_button_focused;
+	
+	font: FONT_NowPlus_white_small_plain;
+}
+
+/*Show Email && New Email*/
+
+.email_headerfield extends ui_factory_base_item
+{
+	label-style: email_headerfield_label;
+	include-label:true;
+	inline-label: true;
+	
+	background-color: Now_0;
+	
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );	
+	
+	font: FONT_NowPlus_black_small_bold;
+	
+	max-lines:1;
+	
+	border: BORDER_NowPlus_emailfield_unfocused;
+	
+	layout: horizontal-expand | vertical-shrink;
+}
+
+.email_headerfield:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+	
+	border: none;
+	
+	background-color: Now_1807;
+}
+
+.email_headerfield_expand extends ui_factory_base_item
+{
+	label-style: email_headerfield_label;
+	include-label:true;
+	inline-label: true;
+	
+	background-color: Now_0;
+	
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );	
+	
+	font: FONT_NowPlus_black_small_bold;
+	
+	max-lines:1;
+	
+	border: BORDER_NowPlus_emailfield_expand;
+	
+	layout: horizontal-expand | vertical-shrink;
+}
+
+.email_headerfield_expand:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+	
+	border: BORDER_NowPlus_emailfield_expand;
+	
+	background-color: Now_1807;
+}
+
+.email_headerfield_label extends ui_factory_base_item
+{
+	padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );	/*4+1 due to border used by parent*/
+	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );	/*4+1 due to border used by parent*/
+		
+	font: FONT_NowPlus_black_small_bold;
+	
+	layout: shrink;	
+}
+
+.email_headerfield_label:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.email_subjectfield_container extends ui_factory_base_item
+{
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+
+	border: BORDER_NowPlus_emailfield_unfocused;
+	
+	layout: horizontal-expand | vertical-shrink;
+}
+
+.email_subjectfield_container:hover
+{
+	border: BORDER_NowPlus_emailfield_focused;
+}
+
+.email_subjectfield_subject
+{
+	padding: 0;
+	margin: 0;	
+	
+	max-lines: 1;
+	
+	font: FONT_NowPlus_black_small_bold;
+	
+	layout: horizontal-expand | vertical-shrink;
+}
+
+.email_subjectfield_subject:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.email_subjectfield_date
+{
+	padding: 0;
+	margin: 0;
+	
+	max-lines: 1;	
+	
+	font: FONT_NowPlus_black_small_plain;
+	
+	layout: horizontal-expand | vertical-shrink;
+}
+
+.email_subjectfield_date:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+}
+
+.email_bodyfield extends ui_factory_base_item
+{
+	background-color: Now_0;
+	
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+
+	font: FONT_NowPlus_black_small_plain;
+	
+	border: BORDER_NowPlus_emailfield_unfocused;
+	
+	layout: expand;
+}
+
+.email_bodyfield:hover
+{
+	border: BORDER_NowPlus_emailfield_focused;
+}
+
+.email_bodyfield_input extends ui_factory_base_item
+{
+	background-color: Now_0;
+	
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+
+	font: FONT_NowPlus_black_small_plain;
+	
+	border: BORDER_NowPlus_emailfield_unfocused;
+	
+	textfield-direct-input: true;
+	
+	layout: expand;
+}
+
+.email_bodyfield_input:hover
+{
+	border: BORDER_NowPlus_emailfield_focused;
+}
+
+//#endif
+
+/*******************************************************************************
+* Signup
+*/
+
+signup_form
+{
+	/* PORT SPECIFIC: HUAWEI & SAMSUNG */
+	//#if (polish.vendor == Huawei || polish.vendor == Samsung)
+	
+		layout: top | left | expand;
+		
+		margin: 0;
+		padding: 0;
+		show-scrollbar: false;
+		
+	//#elif polish.vendor == BlackBerry
+	
+		layout: top | left | expand;
+		
+		margin: 0;
+		padding: 0;
+	
+		show-scrollbar: false;
+	
+	//#else
+	
+		layout: top | left | expand;
+		
+		margin: 0;
+		padding: 0;
+	
+		show-scrollbar: true;
+		
+	//#endif
+}
+
+signup_headline extends login_headline
+{
+	layout: horizontal-expand|vertical-shrink|center;
+}
+
+.signup_button_item extends ui_factory_button_item
+{
+}
+
+.signup_button_item:hover
+{
+	//#if polish.vendor == BlackBerry
+	 
+	 	//#if polish.blackberry.isTouchBuild == true
+	 	
+			font: FONT_NowPlus_white_small_bold;
+			
+			border: BORDER_NowPlus_button_focused;
+			
+			background-color: Now_1807;	 
+	 	
+	 	//#else
+	 	
+			font: FONT_NowPlus_white_small_bold;
+			
+			border: BORDER_NowPlus_button_focused;
+			
+			background-color: Now_1807;	  	
+	 	
+	 	//#endif		
+		
+	//#else
+	
+		font: FONT_NowPlus_white_small_plain;
+		
+		border: BORDER_NowPlus_button_focused;
+		
+		background-color: Now_1807;
+	
+	//#endif
+}
+
+
+.signup_splash_image_container
+{
+		padding:0;
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 34 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 16 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 34 + 5000 / 10000 );	
+		margin:0;	
+		background: BG_startup;	
+		layout: top | left | expand;
+}
+
+//#if polish.vendor == BlackBerry
+.signup_splash_image_container:landscape
+{
+	background: BG_startup_landscape;	
+}
+//#endif
+
+
+.signup_splash_image_text_container
+{
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 7 + 5000 / 10000 );
+	margin: 0;
+	
+	background-color: Now_485;
+	
+	layout: top | left | horizontal-expand | vertical-shrink;
+}
+
+.signup_splash_image_text1
+{
+	padding: 0;
+	margin: 0;
+	
+	font: FONT_NowPlus_white_small_plain;
+
+	layout: top | left | expand | newline-after;
+}
+
+.signup_splash_image_text2 extends signup_splash_image_text1
+{
+	font: FONT_NowPlus_white_small_bold;
+}
+
+.signup_tc_link extends ui_factory_stringitem
+{
+	//#if polish.vendor == BlackBerry
+	
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		font: FONT_NowPlus_link_black_small_underline;
+		layout: expand | bottom;
+	    min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 32 + 5000 / 10000 );
+	    
+	//#else
+	
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 + imagewidth(checkbox_on_18x18.png) );
+		font: FONT_NowPlus_link_black_small_underline;
+		layout: expand;
+	
+	//#endif
+}
+
+.signup_tc_link:hover
+{
+	//#if polish.vendor == BlackBerry
+	
+		background-color: Now_1807;
+		font: FONT_NowPlus_link_white_small_underline;
+		layout: expand | bottom;
+	    min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 32 + 5000 / 10000 );
+	    
+	//#else
+	
+		background-color: Now_1807;
+		font: FONT_NowPlus_link_white_small_underline;
+		layout: expand;
+	
+	//#endif
+}
+
+/*We need following because of risk of characters being interpreted as smileys :)*/
+.signup_notification extends notification_form_base
+{
+	text-style: signup_notification_text_base;
+}
+
+.signup_notification_text_base
+{
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 10 + 5000 / 10000 );
+	padding-vertical: 0;
+		
+	font: FONT_NowPlus_black_small_plain;
+}
+
+.signup_notification_text_base:hover
+{
+}
+
+/*******************************************************************************
+* Command Buttons for BlackBerry
+*/
+//#if polish.vendor == BlackBerry
+
+.blackberry_command_buttons_container
+{
+ 	view-type: horizontal;
+ 
+  	layout: center;
+}
+
+.blackberry_command_button_base extends ui_factory_button_item
+{
+	layout: vertical-center | shrink | horizontal-center;
+}
+
+.blackberry_command_button_base:hover
+{
+	font: FONT_NowPlus_white_small_bold;
+	
+	border: BORDER_NowPlus_button_focused;
+	
+	background-color: Now_1807;
+}
+
+//#endif
+
+/*************************************************************************************************************
+* -- UI FACTORY --
+* Implements common syles used for UiFactory class. These should only be changed if changes apply globally
+* in application.
+*/
+
+.ui_factory_base_item
+{
+	/*force zero padding*/
+	padding: 0;
+	
+	/*ensure margins used for all list elements*/
+	margin:0;
+	margin-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	margin-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	margin-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+}
+
+.ui_factory_base_item:hover
+{
+}
+
+.ui_factory_textfield_wrap extends .ui_factory_base_item
+{
+	//#if polish.vendor == BlackBerry
+	
+		label-style: ui_factory_label;
+		include-label:false;
+		
+		/*
+		name="focus-all"
+		type="boolean"
+		appliesTo="Container,FakeContainerCustomItem"
+		description="Focusses all children items with their specific :hover style when the parent container is focused, even when such item's are not interactive."
+		*/
+		/*focus-all:true;*/ /*not applied for blackberry textfield*/
+		
+		background-color: Now_6_50;
+		
+		layout: vertical-shrink | horizontal-expand;	
+	
+	//#else
+	
+		label-style: ui_factory_label;
+		include-label:false;
+		
+		focus-all:true;
+		
+		columns: 2;		
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+			
+		background-color: Now_6_50;
+		
+		layout: vertical-shrink | horizontal-expand;
+	
+	//#endif
+}
+
+.ui_factory_textfield_wrap:hover
+{
+	label-style: ui_factory_labelfocused;
+	
+	background-color: Now_1807;
+}
+
+.ui_factory_textfield
+{
+	//#if polish.blackberry.isTouchBuild == true
+	
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 44 + 5000 / 10000 );
+
+		font: FONT_NowPlus_black_large_plain;	
+		
+		border: BORDER_NowPlus_textfield_unfocused;
+		
+		textfield-caret-color: black;
+		textfield-caret-flash: 	true;
+		
+		background-color: Now_0;
+			
+		layout: vertical-shrink | horizontal-expand | vcenter;
+		
+	//#else
+	
+		padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	
+		font: FONT_NowPlus_black_small_plain;	
+		
+		border: BORDER_NowPlus_textfield_unfocused;
+		
+		textfield-caret-color: black;
+		textfield-caret-flash: 	true;
+		
+		background-color: Now_0;
+		
+		layout: vertical-shrink | horizontal-expand | vcenter; 
+	
+	//#endif		
+}
+
+
+.ui_factory_textfield:hover
+{	
+	border: BORDER_NowPlus_textfield_focused;		
+}
+
+.ui_factory_textfield_helpfont
+{
+	font: FONT_NowPlus_help;
+	
+//#if polish.blackberry.isTouchBuild == false
+	/*
+	 * TODO: if total lines are more than 1,
+	 * advanced designs like text effects will be required.
+	 *
+	 *http://www.j2mepolish.org/cms/leftsection/documentation/platforms/blackberry.html
+	 * 
+	 */
+	max-lines:1;
+//#endif
+	
+}
+
+.ui_factory_textfield_inputmode
+{
+	padding: 0;
+	margin: 0;
+	
+	layout: shrink|bottom;
+}
+
+.ui_factory_textfield_inputmode
+{
+}
+
+.ui_factory_note_textfield extends .ui_factory_textfield
+{
+	max-height: 100%;
+	
+	layout: expand;
+}
+
+.ui_factory_note_textfield:hover
+{
+}
+
+.ui_factory_choicegroup extends .ui_factory_base_item
+{
+	label-style: ui_factory_label;
+	include-label:false;
+}
+
+.ui_factory_choicegroup:hover
+{
+}
+
+.ui_factory_choicegroup_label extends .ui_factory_base_item
+{
+	font: FONT_NowPlus_black_small_bold;	
+}
+
+.ui_factory_choicegroup_label:hover
+{
+}
+
+.ui_factory_checkbox_item
+{
+	//#if polish.vendor == BlackBerry
+	 
+		checkbox-plain: url( checkbox_off_18x18.png );
+		checkbox-selected: url( checkbox_on_18x18.png );
+		
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;	
+	    min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 32 + 5000 / 10000 );
+		layout: vertical-shrink | horizontal-expand | vcenter;
+		
+	//#else
+	
+		checkbox-plain: url( checkbox_off_18x18.png );
+		checkbox-selected: url( checkbox_on_18x18.png );
+		
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;	
+		
+		layout: vertical-shrink | horizontal-expand | vcenter;
+	
+	//#endif
+}
+
+.ui_factory_checkbox_item:hover
+{
+	//#if polish.vendor == BlackBerry
+	 
+		font: FONT_NowPlus_white_small_plain;
+	    min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 32 + 5000 / 10000 );
+		background-color: Now_1807;
+		
+	//#else
+	
+		font: FONT_NowPlus_white_small_plain;
+		background-color: Now_1807;
+	
+	//#endif	
+}
+
+.ui_factory_radio_item
+{
+	//#if polish.vendor == BlackBerry
+	 
+	 	radiobox-plain: url( radio_off_16x16.png );
+		radiobox-selected: url( radio_on_16x16.png );
+		
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+	    min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 32 + 5000 / 10000 );
+		layout: vertical-shrink | horizontal-expand | vcenter;	 
+		
+	//#else
+	
+		radiobox-plain: url( radio_off_16x16.png );
+		radiobox-selected: url( radio_on_16x16.png );
+		
+		padding-horizontal: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		
+		font: FONT_NowPlus_black_small_plain;
+		
+		layout: vertical-shrink | horizontal-expand | vcenter;
+	
+	//#endif	
+}
+
+.ui_factory_radio_item:hover
+{
+	//#if polish.vendor == BlackBerry
+	 
+		font: FONT_NowPlus_white_small_plain;
+		min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 32 + 5000 / 10000 );
+		background-color: Now_1807;
+		
+	//#else
+	
+		font: FONT_NowPlus_white_small_plain;
+		
+		background-color: Now_1807;
+	
+	//#endif		
+}
+
+.ui_factory_button_item extends ui_factory_base_item
+{
+	//#if polish.vendor == BlackBerry
+	 
+	 	//#if polish.blackberry.isTouchBuild == true
+	 		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 12 + 5000 / 10000 );
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 16 + 5000 / 10000 );
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 16 + 5000 / 10000 );
+		//#else
+	 		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+			padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+			padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 8 + 5000 / 10000 );
+		//#endif
+	//#else
+		padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+		padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+		padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 4 + 5000 / 10000 );
+	//#endif
+	
+	label-style: ui_factory_label;
+		
+	include-label:false;
+
+	font: FONT_NowPlus_black_small_bold;
+	
+	border: BORDER_NowPlus_button_unfocused;
+	
+	background-color: Now_6_2;
+	
+	text-layout: center;
+	
+	layout: vertical-center | vertical-shrink | horizontal-expand;		
+}
+
+.ui_factory_button_item:hover
+{
+	//#if polish.vendor == BlackBerry
+	 	font: FONT_NowPlus_white_small_bold;
+	//#else
+		font: FONT_NowPlus_white_small_plain;
+	//#endif
+	
+	border: BORDER_NowPlus_button_focused;
+	
+	background-color: Now_1807;
+}
+
+.ui_factory_button_item_inactive extends ui_factory_button_item
+{
+	font: FONT_NowPlus_grey_small_bold;
+}
+
+.ui_factory_profile_item extends .ui_factory_base_item
+{
+	columns: 2;
+	
+	scroll-mode: normal;
+	
+	focus-all: true;
+	
+	name-style: .ui_factory_profile_name;
+	presence-style: .ui_factory_profile_presence;
+	status-style: .ui_factory_profile_status; 
+	network-style: .ui_factory_profile_network; 
+	
+	content-priority: status;
+	
+	left-side-style: .ui_factory_profile_container_left;
+	right-side-style: .ui_factory_profile_container_right;
+	right-inner-side-style: .ui_factory_profile_container_right_inner;
+	
+	min-height: imageheight( contact_avatar_default_40x40.png );
+	
+	background-color: Now_299;
+	
+	layout: horizontal-expand;
+}
+
+.ui_factory_profile_item:hover
+{
+	name-style: .ui_factory_profile_namefocused;
+	presence-style: .ui_factory_profile_presencefocused;
+	status-style: .ui_factory_profile_statusfocused; 
+	network-style: .ui_factory_profile_networkfocused; 
+	
+	left-side-style: .ui_factory_profile_container_leftfocused;
+	right-side-style: .ui_factory_profile_container_rightfocused;
+	right-inner-side-style: .ui_factory_profile_container_right_innerfocused;
+}
+
+.ui_factory_profile_avatar
+{
+	padding: 0;
+	margin: 0;
+	
+	layout: shrink | vcenter;
+}
+
+.ui_factory_profile_avatar:hover
+{
+}
+
+.ui_factory_profile_name
+{
+	font: FONT_NowPlus_white_small_bold;
+
+	max-lines:1;
+
+	//#ifdef polish.profileName.padding.top:defined
+		padding-top: ${polish.profileName.padding.top};
+	//#endif
+	
+	padding: 0;
+	margin: 0;
+	
+	/*Force inner item height, setting 'layout: expand' not sufficient*/
+	min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * calculate( imageheight( contact_avatar_default_40x40.png ) / 2 - 1) + 5000 / 10000 );
+	
+	/*background-color: rgb(128,128,0);*/ /*visual test, keep*/
+	
+	layout: expand | vcenter;
+}
+
+.ui_factory_profile_name:hover
+{
+}
+
+.ui_factory_profile_presence
+{
+	padding: 0;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );	
+
+	margin: 0;
+	
+	layout: shrink | vcenter | right;
+}
+
+.ui_factory_profile_presence:hover
+{
+}
+
+.ui_factory_profile_status
+{
+	/* ORIGINAL */
+	font: FONT_NowPlus_white_small_plain;
+	
+	/*max-lines:1;*/
+
+	text-effect: vertical-scroll;
+	vertical-scroll-interval: 2000;
+		
+	padding: 0;
+	margin: 0;
+	
+	/*Force inner item height, setting 'layout: expand' not sufficient*/
+	min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * calculate( imageheight( contact_avatar_default_40x40.png ) / 2 - 1) + 5000 / 10000 );
+	
+	/*background-color: rgb(128,0,255);*/ /*visual test, keep*/
+	
+	layout: expand | vcenter;
+}
+
+.ui_factory_profile_status:hover
+{
+}
+
+.ui_factory_profile_network
+{
+	padding: 0;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	padding-right: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+
+	margin: 0;
+
+	layout: shrink | vcenter | right;
+}
+
+.ui_factory_profile_network:hover
+{
+}
+		
+.ui_factory_profile_container_left
+{
+	padding: 0;
+	margin: 0;
+	
+	/*Force inner container height, setting 'layout: expand' not sufficient*/
+	min-height: imageheight( contact_avatar_default_40x40.png );
+	
+	/*background-color: rgb(0,255,0);*/ /*visual test, keep*/
+		
+	layout: vexpand | vcenter;	
+}
+
+.ui_factory_profile_container_left:hover
+{
+}
+
+.ui_factory_profile_container_right
+{
+	focus-all: true;
+		
+	padding: 0;
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 9 + 5000 / 10000 );
+	padding-top: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );	
+	padding-bottom: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 1 + 5000 / 10000 );	
+	
+	margin: 0;
+	
+	/*Force inner container height, setting 'layout: expand' not sufficient*/
+	min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * calculate( imageheight( contact_avatar_default_40x40.png ) - 2) + 5000 / 10000 );
+			
+	/*background-color: rgb(0,0,255);*/ /*visual test, keep*/
+	
+	layout: vshrink | vcenter;	
+}
+
+.ui_factory_profile_container_right:hover
+{
+}
+
+.ui_factory_profile_container_right_inner
+{
+	focus-all: true;
+		
+	columns: 2;
+	
+	padding: 0;
+	margin: 0;
+	
+	/*Force inner container height, setting 'layout: expand' not sufficient*/
+	min-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * calculate( imageheight( contact_avatar_default_40x40.png ) - 2) + 5000 / 10000 );	
+	
+	/*background-color: rgb(0,255,255);*/ /*visual test, keep*/
+	
+	layout: vshrink | vcenter;
+}
+
+.ui_factory_profile_container_right_inner:hover
+{
+}
+
+.ui_factory_commanditem
+{
+	padding: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 2 + 5000 / 10000 );
+	padding-left: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 5 + 5000 / 10000 );
+	
+	font: FONT_NowPlus_black_small_plain;	
+	
+	command-child-indicator-color: Now_6_40;
+	command-child-indicator-height: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+	command-child-indicator-width: calculate( ${polish.ScreenWidth} * 10000 / ${polish.css.master.screen.width} * 6 + 5000 / 10000 );
+}
+
+.ui_factory_commanditem:hover
+{
+	background-color: Now_1807;
+	
+	font: FONT_NowPlus_white_small_plain;	
+	
+	command-child-indicator-color: Now_0;
+}
+
+.ui_factory_stringitem extends ui_factory_base_item
+{
+	label-style: ui_factory_label;
+	include-label:false;
+	
+	font: FONT_NowPlus_black_small_plain;	
+}
+
+.ui_factory_stringitem:hover
+{
+	font: FONT_NowPlus_white_small_plain;
+	
+	background-color: Now_1807;
+}
+
+.ui_factory_label extends ui_factory_base_item
+{
+	font: FONT_NowPlus_black_small_bold;	
+	
+	layout: expand | newline-after;
+}
+
+ui_factory_label:hover
+{
+}
+
+.ui_factory_icon
+{
+	margin: 0;
+	padding: 0;	
+	
+	layout: shrink;
+}
+
+.ui_factory_icon:hover
+{
+}
+

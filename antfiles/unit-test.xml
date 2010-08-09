@@ -1,0 +1,176 @@
+<!--
+  CDDL HEADER START
+  
+  The contents of this file are subject to the terms of the Common Development
+  and Distribution License (the "License").
+  You may not use this file except in compliance with the License.
+  
+  You can obtain a copy of the license at
+  src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+  http://github.com/360/360-Engine-for-Android
+  See the License for the specific language governing permissions and limitations under the License.
+  
+  When distributing Covered Code, include this CDDL HEADER in each file and
+   include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+  If applicable, add the following below this CDDL HEADER, with the fields
+  enclosed by brackets "[]" replaced with your own identifying information:
+  Portions Copyright [yyyy] [name of copyright owner]
+  
+  CDDL HEADER END
+  
+  Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+  Use is subject to license terms.
+-->
+
+<project name = "NOW+ Java Client Unit Tests">
+	
+	<!--
+	<taskdef name="jmunit" classname="jmunit.anttask.cldc11.Jmunit"
+		classpath="${jmunit.home}/lib/microemulator.jar:${jmunit.home}/lib/jdom.jar:${jmunit.home}/dist/jmunit_anttasks-1.2.1.jar:${jmunit.home}/dist/jmunit4cldc11-1.2.1.jar" />
+	-->
+
+    <taskdef name="report" classname="com.zyb.codecoverage.Report"
+        classpath="${basedir}/lib/codecoverage.jar" />
+
+    <taskdef name="xmltask"
+        classname="com.oopsconsultancy.xmltask.ant.XmlTask"
+        classpath="${basedir}/antlib/xmltask-v1.15.1.jar"/>
+
+    <property name="mobile-junit.suite" value="com.zyb.nowplus.test.AllTestsSuite"/>
+
+    <property name="source.dir" location="${basedir}/test/bin"/>
+    <property name="dest.dir" location="${basedir}/test"/>
+    <property name="xml.coverage.file.name" value="coverage.xml"/>
+    <property name="map.coverage.file.name" value="coverage.map"/>
+    <property name="html.coverage.file.name" value="coverage.html"/>
+
+
+    <target name="check-coverage-xml">
+        <available file="${source.dir}/${xml.coverage.file.name}" property="xml.coverage.present"/>
+    </target>
+
+    <target name="check-coverage-map">
+        <available file="${source.dir}/${map.coverage.file.name}" property="map.coverage.present"/>
+    </target>
+
+    <target name="check-coverage-html">
+        <available file="${dest.dir}/${html.coverage.file.name}" property="html.coverage.present"/>
+    </target>
+
+    <target name="init-unittest">
+		<property name="unittesting" value="true"/>
+		<property name="mobile-junit.coverage" value="off" /> <!-- or M(ethod, slow) or L(ine, very slow) -->
+    </target>
+
+    <target name="clean-coverage-xml" depends="check-coverage-xml" if="xml.coverage.present">
+        <delete file="${source.dir}/${xml.coverage.file.name}" quiet="true"/>
+    </target>
+
+    <target name="clean-coverage-html" depends="check-coverage-html" if="html.coverage.present">
+        <delete file="${dest.dir}/${html.coverage.file.name}" quiet="true"/>
+    </target>
+
+    <!-- this is a hack to get the tests running under TeamCity -->
+	<target name="run-unittest">
+        <ant target="clean-coverage-xml"/>
+        <ant target="clean-coverage-html"/>
+		<ant target="run-unittest-directly" />
+        <ant target="filter-coverage-report" />
+        <ant target="coverage-dist"/>
+    </target>
+	                 
+	<target name="run-unittest-directly" depends="init-unittest,build-for-test">
+		<echo message="Start unit tests for ${mobile-junit.suite}" />
+		<java 
+			classname="com.sonyericsson.sdkme.junit.OnDeviceTest"
+			classpath="${mobile-junit.home}/junit.jar:${mobile-junit.home}/mobile-ju-1.0.jar:${basedir}/lib/cldc_crypto.zip" 
+			fork="true" failonerror="true">
+			<arg value="print-config:on" />
+			<arg value="--project-dir:${basedir}" />
+			<arg value="--wtk:${mobile-junit.wtk}" />
+			<arg value="--javac:${jdk.home}/bin/javac.exe" />
+			<arg value="--compile-midlet:false" /> 
+			<arg value="--midlet-source:${dir.work}/Sony-Ericsson/W910-ZYB/en/source" />
+			<arg value="--midlet-resources:${dir.work}/Sony-Ericsson/W910-ZYB/en/resources" />
+			<arg value="--midlet-classes:${dir.work}/Sony-Ericsson/W910-ZYB/en/classes" />
+			<arg value="--midlet-under-test:${basedir}/dist/W910-ZYB-zyb.jar" />
+			<arg value="--test-source:sources/test" />
+			<arg value="--test-resources:resources/test" />
+			<arg value="--device:${mobile-junit.device}" />
+			<arg value="--suite:${mobile-junit.suite}" />
+			<arg value="--progress:TEXT" />
+			<arg value="--coverage:${mobile-junit.coverage}" /> 
+			<arg value="--name: Now+ Java Client - ${TODAY}" /> 
+		</java>
+	</target>
+
+    <target name="filter-xml-coverage-report"
+            depends="check-coverage-map"
+            if="map.coverage.present">
+
+        <xmltask source="${source.dir}/${xml.coverage.file.name}" dest="${source.dir}/${xml.coverage.file.name}" report="false">
+             <remove path="/coverage-report/codebase/package[starts-with(@name, &quot;de.enough.polish&quot;)]"/>
+        </xmltask>
+    </target>
+
+    <target name="update-coverage-data"
+            depends="check-coverage-map,filter-xml-coverage-report"
+            if="map.coverage.present"
+            description="update coverage report data">
+
+      <echo level="warning" message="Starting coverage data filter..." />
+
+      <java classname="test.MobileJunitCoverageXMLFilter" fork="true">
+          <classpath>
+            <pathelement location="${basedir}/antlib/mjunit-coveragexml-filter-1.0.jar" />
+          </classpath>
+          <arg value="${source.dir}/${xml.coverage.file.name}" />  <!-- source -->
+          <arg value="${source.dir}/${xml.coverage.file.name}" />  <!-- dest -->
+          <arg value="${mobile-junit.coverage}" />  <!-- coverage type -->
+      </java>
+    </target>
+
+    <target name="filter-coverage-report"
+            depends="check-coverage-map,update-coverage-data"
+            if="map.coverage.present">
+
+        <report in="${source.dir}/${xml.coverage.file.name}" out="${dest.dir}/${html.coverage.file.name}" />
+        <echo level="warning" message="done..." />
+    </target>
+
+    <target name="coverage-dist"
+            depends="check-coverage-html" 
+            if="html.coverage.present"
+            description="Copy coverage report to distribution server">
+      <echo message="Coverage report copy to ${file.serverUri}" />
+      <copy todir="${file.serverUri}" overwrite="true" >
+       <fileset dir="${dest.dir}" includes="${html.coverage.file.name}"/>
+      </copy>
+    </target>
+
+    <!--
+	<target name="run-unittest" depends="init-unittest,build-for-test">
+		<echo message="Start JM unit tests" />
+		<mkdir dir="test/bin/classes" />
+		<javac source="1.3" target="1.3" destdir = "test/bin/classes">
+			<bootclasspath>
+				<fileset dir="${mobile-junit.wtk}/lib" includes="**/*.jar" excludes="cldcapi10.jar,midpapi10.jar,midpapi20.jar" />
+			</bootclasspath>
+			<classpath>
+				<fileset dir="${jmunit.home}/dist" includes="jmunit4cldc11-1.2.1.jar" />
+			</classpath>
+			<src>
+				<path path="${dir.work}/Sony-Ericsson/W910-ZYB/en/source" />
+			 	<path path="test/src" />
+			</src>
+		</javac>
+		<jmunit haltonerror="false" haltonfailure="false" failureproperty="testfailure">
+			<formatter type="xml" />
+			<classpath>
+				<path path="test/bin/classes" />
+			</classpath>
+			<test name="com.zyb.nowplus.test.AllTestsSuite" todir="test" />
+		</jmunit>
+	</target>
+	-->
+</project>

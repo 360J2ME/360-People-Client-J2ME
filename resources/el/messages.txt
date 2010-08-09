@@ -1,0 +1,907 @@
+#-------------------------------------------------------------------------------
+# CDDL HEADER START
+# 
+# The contents of this file are subject to the terms of the Common Development
+# and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+# 
+# You can obtain a copy of the license at
+# src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+# http://github.com/360/360-Engine-for-Android
+# See the License for the specific language governing permissions and limitations under the License.
+# 
+# When distributing Covered Code, include this CDDL HEADER in each file and
+#  include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+# If applicable, add the following below this CDDL HEADER, with the fields
+# enclosed by brackets "[]" replaced with your own identifying information:
+# Portions Copyright [yyyy] [name of copyright owner]
+# 
+# CDDL HEADER END
+# 
+# Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+# Use is subject to license terms.
+#-------------------------------------------------------------------------------
+nowplus.client.java.app.criticalerror.text=Π�?έπει να εκτελέσετε επανεκκίνηση του 360 και να συνδεθείτε ξανά επειδή πα�?ουσιάστηκε κάποιο σφάλμα. Για να διασφαλιστο�?ν τα δεδομένα σας, κατά τη σ�?νδεσή σας θα εισαχθεί το βιβλίο διευθ�?νσεων του τηλεφώνου σας.
+
+nowplus.client.java.app.criticalerror.title=Απαιτείται επανεκκίνηση
+
+nowplus.client.java.app.serviceunavailable.text=Το δίκτυο δεν είναι διαθέσιμο αυτή τη στιγμή
+
+nowplus.client.java.app.serviceunavailable.title=Η σ�?νδεση δεν είναι δυνατή
+
+nowplus.client.java.application.initialisation.failed.title=REDUNDANT
+
+nowplus.client.java.application.popup.text=Εκκίνηση...
+
+nowplus.client.java.application.popup.title=Εκκίνηση...
+
+nowplus.client.java.browse.confirm.headline=Άνοιγμα π�?ογ�?άμματος πε�?ιήγησης
+
+nowplus.client.java.browse.confirm.text=Το 360 π�?όκειται να κλείσει και να ανοίξει το π�?όγ�?αμμα πε�?ιήγησης
+
+nowplus.client.java.browser.notification.title=Φό�?τωση σελίδας...
+
+nowplus.client.java.cabsabsync.popup.receiving=Ολοκλή�?ωση συγχ�?ονισμο�? με το 360
+
+nowplus.client.java.cabsabsync.popup.receiving.failed=Ο συγχ�?ονισμός δεν ολοκλη�?ώθηκε. Ωστόσο, θα ολοκλη�?ωθεί κατά την επόμενη επανεκκίνηση της εφα�?μογής.
+
+nowplus.client.java.cabsabsync.popup.sending=Αποστολή επαφών στο 360
+
+nowplus.client.java.cabsabsync.popup.sending.failed=Δεν ήταν δυνατός ο συγχ�?ονισμός όλων των επαφών σας με το 360. Ωστόσο, θα συγχ�?ονιστο�?ν κατά την επόμενη επανεκκίνηση της εφα�?μογής.
+
+nowplus.client.java.cabsabsync.popup.title=Συγχ�?ονισμός των επαφών σας...
+
+nowplus.client.java.chat.thread.confirm.delete.text=Είστε βέβαιοι ότι θέλετε να διαγ�?αφεί αυτή η επαφή;
+
+nowplus.client.java.chat.thread.confirm.delete.title=Διαγ�?αφή επαφής
+
+nowplus.client.java.chat.thread.date.day.fri=Πα�?
+
+nowplus.client.java.chat.thread.date.day.mon=Δευτ
+
+nowplus.client.java.chat.thread.date.day.sat=Σάβ
+
+nowplus.client.java.chat.thread.date.day.sun=Κυ�?
+
+nowplus.client.java.chat.thread.date.day.thu=Πέμ
+
+nowplus.client.java.chat.thread.date.day.tue=Τ�?
+
+nowplus.client.java.chat.thread.date.day.wed=Τετ
+
+nowplus.client.java.chat.thread.error.contact.notconnected=Your message can't be sent because you and {0} are not connected on 360. You can connect to from his details page.
+
+nowplus.client.java.chat.thread.error.contact.notonline=Το μήνυμά σας δεν είναι δυνατό να σταλεί επειδή ο/η φίλος/η σας δεν έχει συνδεθεί στο {0}. Μπο�?είτε να κάνετε chat όταν ο/η φίλος/η σας θα είναι και πάλι συνδεδεμένος/η.
+
+nowplus.client.java.chat.thread.error.user.notonline=redundant
+
+nowplus.client.java.chat.thread.error.user.notsignedin=Το μήνυμά σας δεν είναι δυνατό να σταλεί επειδή δεν είστε συνδεδεμένοι στο {0}. Μπο�?είτε να συνδεθείτε στο {0} από το 'Λογα�?ιασμοί', στο 'Ο λογα�?ιασμός μου'.
+
+nowplus.client.java.chat.thread.send=Αποστολή
+
+nowplus.client.java.chat.thread.textfield.helptext=Πληκτ�?ολογήστε εδώ
+
+nowplus.client.java.chat.thread.title=Chat
+
+nowplus.client.java.chat.thread.you=Εγώ
+
+nowplus.client.java.command.close=Κλείσιμο
+
+nowplus.client.java.command.exit=Έξοδος
+
+nowplus.client.java.command.ignore=Πα�?άβλεψη
+
+nowplus.client.java.command.open=Άνοιγμα
+
+nowplus.client.java.command.options=Επιλογές
+
+nowplus.client.java.command.roaming.yes=�?αι
+
+nowplus.client.java.contextual.menu.command.add.new.contact=Π�?οσθήκη νέας επαφής
+
+nowplus.client.java.contextual.menu.command.block=Αποκλεισμός επαφής
+
+nowplus.client.java.contextual.menu.command.connect=Σ�?νδεση
+
+nowplus.client.java.contextual.menu.command.create.email=�?έο email
+
+nowplus.client.java.contextual.menu.command.create.new=Δημιου�?γία νέου...
+
+nowplus.client.java.contextual.menu.command.create.sms=�?έο SMS
+
+nowplus.client.java.contextual.menu.command.create.text=Δημιου�?γία κειμένου
+
+nowplus.client.java.contextual.menu.command.delete=Διαγ�?αφή
+
+nowplus.client.java.contextual.menu.command.edit.profile=Επεξε�?γασία π�?οφίλ
+
+nowplus.client.java.contextual.menu.command.exit=Έξοδος
+
+nowplus.client.java.contextual.menu.command.help=Βοήθεια
+
+nowplus.client.java.contextual.menu.command.invite=Π�?όσκληση
+
+nowplus.client.java.contextual.menu.command.more=Πε�?ισσότε�?α...
+
+nowplus.client.java.contextual.menu.command.open.filter=Μετάβαση στην κο�?υφή
+
+nowplus.client.java.contextual.menu.command.open.ongoing.chat=Άνοιγμα τ�?έχοντος chat
+
+nowplus.client.java.contextual.menu.command.search=Ε�?�?εση 360
+
+nowplus.client.java.contextual.menu.command.settings=Ρυθμίσεις
+
+nowplus.client.java.contextual.menu.command.switch.application=Εναλλαγή εφα�?μογής
+
+nowplus.client.java.contextual.menu.command.view.profile=Π�?οβολή π�?οφίλ
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.text=Είστε βέβαιοι ότι θέλετε να διαγ�?αφεί το {0};
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.title=Διαγ�?αφή επαφής
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.text=Είστε βέβαιοι ότι θέλετε να διαγ�?αφεί το {0};
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.title=Διαγ�?αφή στοιχείου
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.text1=Είστε βέβαιοι ότι θέλετε να διαγ�?αφεί το {0} από το π�?οφίλ σας;
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.title=Διαγ�?αφή λογα�?ιασμο�?
+
+nowplus.client.java.contextual.menu.infobar.profile=Π�?οφίλ
+
+nowplus.client.java.contextual.menu.navbar.Chat=Chat
+
+nowplus.client.java.contextual.menu.navbar.Email=Email
+
+nowplus.client.java.contextual.menu.navbar.Poke=Σκουντήξτε
+
+nowplus.client.java.contextual.menu.navbar.SMS=SMS
+
+nowplus.client.java.contextual.menu.navbar.call=Κλήση
+
+nowplus.client.java.contextual.menu.notify.block.text=Η επαφή σας έχει αποκλειστεί
+
+nowplus.client.java.contextual.menu.notify.block.title=Αποκλεισμός επαφής
+
+nowplus.client.java.contextual.menu.notify.connect.text=Το αίτημα σ�?νδεσης 360 έχει σταλεί
+
+nowplus.client.java.contextual.menu.notify.connect.title=Σ�?νδεση
+
+nowplus.client.java.contextual.menu.notify.invite.text=Η επαφή σας έχει π�?οσκληθεί
+
+nowplus.client.java.contextual.menu.notify.invite.title=Π�?όσκληση
+
+nowplus.client.java.date.friday=Πα�?ασκευή
+
+nowplus.client.java.date.monday=Δευτέ�?α
+
+nowplus.client.java.date.now=Τώ�?α
+
+nowplus.client.java.date.saturday=Σάββατο
+
+nowplus.client.java.date.sunday=Κυ�?ιακή
+
+nowplus.client.java.date.thursday=Πέμπτη
+
+nowplus.client.java.date.today=Σήμε�?α
+
+nowplus.client.java.date.tuesday=Τ�?ίτη
+
+nowplus.client.java.date.wednesday=Τετά�?τη
+
+nowplus.client.java.date.yesterday=Χθες
+
+nowplus.client.java.edit.contact.add=Π�?οσθήκη
+
+nowplus.client.java.edit.contact.address=Διε�?θυνση
+
+nowplus.client.java.edit.contact.address.country=Χώ�?α
+
+nowplus.client.java.edit.contact.address.postcode=Ταχ. κώδικας
+
+nowplus.client.java.edit.contact.address.region=Πε�?ιφέ�?εια
+
+nowplus.client.java.edit.contact.address.street=Οδός
+
+nowplus.client.java.edit.contact.address.town=Πόλη
+
+nowplus.client.java.edit.contact.bdinvalid.text=Η ημε�?ομηνία γέννησης π�?έπει να είναι π�?ογενέστε�?η
+
+nowplus.client.java.edit.contact.birthday=Ημε�?. γέννησης
+
+nowplus.client.java.edit.contact.command.edit=Επεξε�?γασία
+
+nowplus.client.java.edit.contact.command.new=�?έα
+
+nowplus.client.java.edit.contact.command.save=Αποθήκευση
+
+nowplus.client.java.edit.contact.command.switch.multitab=Χ�?ήση πολλαπλής πληκτ�?ολόγησης
+
+nowplus.client.java.edit.contact.command.switch.native=Χ�?ήση λεξικο�? Τ9
+
+nowplus.client.java.edit.contact.command.takepicture=Λήψη εικόνας
+
+nowplus.client.java.edit.contact.delete.failed.notify.text=Το στοιχείο δεν ήταν δυνατό να διαγ�?αφεί. Αν αυτό συνεχιστεί, επανεκκινήστε την εφα�?μογή.
+
+nowplus.client.java.edit.contact.delete.failed.notify.title=Δεν είναι δυνατή η διαγ�?αφή.
+
+nowplus.client.java.edit.contact.edit=Επεξε�?γασία
+
+nowplus.client.java.edit.contact.email=Email
+
+nowplus.client.java.edit.contact.email.address=Διε�?θυνση Email
+
+nowplus.client.java.edit.contact.group=Ομάδα
+
+nowplus.client.java.edit.contact.group.label=Όνομα ομάδας
+
+nowplus.client.java.edit.contact.im=Chat
+
+nowplus.client.java.edit.contact.invalid.email.text=Η διε�?θυνση email που έχετε εισάγει είναι λάθος. Πα�?ακαλο�?με δοκιμάστε ξανά.
+
+nowplus.client.java.edit.contact.invalid.email.title=Λάθος email
+
+nowplus.client.java.edit.contact.invalid.name.text=Η επαφή σας δεν είναι δυνατό να αποθηκευτεί χω�?ίς όνομα. Θέλετε να ακυ�?ωθο�?ν αυτές οι αλλαγές;
+
+nowplus.client.java.edit.contact.invalid.name.title=Δεν υπά�?χει όνομα
+
+nowplus.client.java.edit.contact.missing.name.confirm.no=Όχι
+
+nowplus.client.java.edit.contact.missing.name.confirm.yes=�?αι
+
+nowplus.client.java.edit.contact.missing.name.notify.ok=ΟK
+
+nowplus.client.java.edit.contact.missing.name.text=Π�?έπει να πληκτ�?ολογήσετε τουλάχιστον ένα όνομα
+
+nowplus.client.java.edit.contact.missing.name.title=Δεν υπά�?χει όνομα
+
+nowplus.client.java.edit.contact.name=Όνομα
+
+nowplus.client.java.edit.contact.name.first=Όνομα
+
+nowplus.client.java.edit.contact.name.last=Επώνυμο
+
+nowplus.client.java.edit.contact.name.middle=Πατ�?ώνυμο
+
+nowplus.client.java.edit.contact.note=Σημειώσεις
+
+nowplus.client.java.edit.contact.note.enter=Εισαγωγή σημείωσης
+
+nowplus.client.java.edit.contact.phone=Τηλέφωνο
+
+nowplus.client.java.edit.contact.phone.number=Α�?ιθ. τηλεφώνου
+
+nowplus.client.java.edit.contact.phone.preffered=Χ�?ήση ως π�?οτιμώμενου
+
+nowplus.client.java.edit.contact.subtype.label=Ετικέτα
+
+nowplus.client.java.edit.contact.take.picture=Λήψη εικόνας
+
+nowplus.client.java.edit.contact.title=Επεξε�?γασία π�?οφίλ
+
+nowplus.client.java.edit.contact.update.failed.notify.text=Τα στοιχεία επαφής σας δεν ήταν δυνατό να ενημε�?ωθο�?ν. Αν αυτό συνεχιστεί, επανεκκινήστε την εφα�?μογή.
+
+nowplus.client.java.edit.contact.update.failed.notify.title=Δεν είναι δυνατή η ενημέ�?ωση.
+
+nowplus.client.java.edit.contact.update.notify.text=Γίνεται ενημέ�?ωση του π�?οφίλ
+
+nowplus.client.java.edit.contact.update.notify.title=Ενημέ�?ωση
+
+nowplus.client.java.edit.contact.url=Ιστοσελίδα
+
+nowplus.client.java.edit.contact.url.address=Διε�?θυνση Web
+
+nowplus.client.java.edit.contact.work=Πλη�?οφ. ε�?γασίας
+
+nowplus.client.java.exit.confirm.headline=Είστε βέβαιοι ότι θέλετε να τε�?ματιστεί το People;
+
+nowplus.client.java.exit.confirm.no=Όχι
+
+nowplus.client.java.exit.confirm.text=Έξοδος
+
+nowplus.client.java.exit.confirm.yes=�?αι
+
+nowplus.client.java.exit.notification.headline=Κλείσιμο
+
+nowplus.client.java.exit.notification.text=Πα�?ακαλώ πε�?ιμένετε. Εκτελείται τε�?ματισμός της εφα�?μογής.
+
+nowplus.client.java.help.confirm.headline=Το 360 π�?όκειται να κλείσει και να ανοίξει το π�?όγ�?αμμα πε�?ιήγησης
+
+nowplus.client.java.help.confirm.text=Άνοιγμα π�?ογ�?άμματος πε�?ιήγησης
+
+nowplus.client.java.identity.vodafone360.chatlabel=360 Chat
+
+nowplus.client.java.landingpage.tagline=redundant
+
+nowplus.client.java.landingpage.tagline1=Μια υπη�?εσία 360
+
+nowplus.client.java.landingpage.tagline2=Συγκεντ�?ώνει τον κόσμο σας
+
+nowplus.client.java.launch.postponed.text=redundant
+
+nowplus.client.java.launch.postponed.title=redundant
+
+nowplus.client.java.list.order.first=Όνομα
+
+nowplus.client.java.list.order.last=Επώνυμο
+
+nowplus.client.java.list.order.none=Καμία
+
+nowplus.client.java.login.connection.disallowed.text=Για να συνεχίσετε απαιτείται επανεκκίνηση της εφα�?μογής
+
+nowplus.client.java.login.connection.disallowed.title=Η σ�?νδεση δεν επιτ�?έπεται
+
+nowplus.client.java.login.loginfailed.text=Το όνομα χ�?ήστη ή/και ο κωδικός π�?όσβασης δεν είναι σωστά. Πα�?ακαλο�?με δοκιμάστε ξανά.
+
+nowplus.client.java.login.loginfailed.title=Δοκιμάστε ξανά
+
+nowplus.client.java.login.notification.loggingin=Γίνεται σ�?νδεση...
+
+nowplus.client.java.login.reauthenticate.text=Τα στοιχεία του λογα�?ιασμο�? σας φαίνεται ότι έχουν αλλάξει. Θα χ�?ειαστεί να συνδεθείτε ξανά.
+
+nowplus.client.java.login.title=Σ�?νδεση
+
+nowplus.client.java.loginform.command.cancel=Ακ�?�?ωση
+
+nowplus.client.java.loginform.command.mark=Επιλογή
+
+nowplus.client.java.loginform.command.save=Σ�?νδεση
+
+nowplus.client.java.loginform.command.unmark=Αποεπιλογή
+
+nowplus.client.java.loginform.headline=Σ�?νδεση στο 360
+
+nowplus.client.java.loginform.password.chosepassword.hint=Κωδικός π�?όσβασης
+
+nowplus.client.java.loginform.password.hint=Κωδικός π�?όσβασης
+
+nowplus.client.java.loginform.rememberme.label=Απομνημόνευση στοιχείων
+
+nowplus.client.java.loginform.username.choseusername.hint=Όνομα χ�?ήστη
+
+nowplus.client.java.loginform.username.hint=Όνομα χ�?ήστη
+
+nowplus.client.java.network.search.command.search=Αναζήτηση
+
+nowplus.client.java.network.search.title=Ε�?�?εση 360
+
+nowplus.client.java.networkdown.text=Η σ�?νδεση δικτ�?ου σας τε�?ματίστηκε π�?οσω�?ινά. Το 360 θα συνδεθεί όταν το δίκτυο θα είναι πάλι διαθέσιμο
+
+nowplus.client.java.networkdown.title=Η σ�?νδεση δικτ�?ου χάθηκε
+
+nowplus.client.java.new.contact.title=�?έα επαφή
+
+nowplus.client.java.newpasswordrestart.text=Εντοπίστηκε αλλαγή του κωδικο�? π�?όσβασης. Χ�?ειάζεται να εκτελέσετε επανεκκίνηση της εφα�?μογής και να πληκτ�?ολογήσετε ξανά των κωδικό π�?όσβασής σας για να συνεχιστεί η χ�?ήση.
+
+nowplus.client.java.newpasswordrestart.title=Ο κωδικός π�?όσβασης άλλαξε
+
+nowplus.client.java.peoplepage.meview.availability.available=Διαθέσιμος/η
+
+nowplus.client.java.peoplepage.meview.availability.invisible=Μη ο�?ατός/ή
+
+nowplus.client.java.peoplepage.meview.availability.label=Διαθεσιμότητα
+
+nowplus.client.java.peoplepage.meview.availability.offline=Εκτός σ�?νδεσης
+
+nowplus.client.java.peoplepage.meview.command.set=Ο�?ισμός
+
+nowplus.client.java.peoplepage.meview.myprofile=Το π�?οφίλ μου
+
+nowplus.client.java.peoplepage.meview.settings=Ρυθμίσεις
+
+nowplus.client.java.peoplepage.meview.sn.status=Δημοσιε�?σεις και στο {0}
+
+nowplus.client.java.peoplepage.meview.sn.status1=redundant
+
+nowplus.client.java.peoplepage.meview.sn.status2=redundant
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.text=Δεν είναι δυνατή η ενημέ�?ωση της κατάστασης. Η κατάστασή σας δεν ήταν δυνατό να ενημε�?ωθεί. Αν αυτό συνεχιστεί, επανεκκινήστε την εφα�?μογή.
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.title=Δεν είναι δυνατή η ενημέ�?ωση της κατάστασης.
+
+nowplus.client.java.peoplepage.meview.status.helptext=Τι κάνεις τώ�?α;
+
+nowplus.client.java.peoplepage.meview.status.label=Μήνυμα κατάστασης
+
+nowplus.client.java.peoplepage.meview.submit.command.update=Ενημέ�?ωση
+
+nowplus.client.java.peoplepage.meview.webaccounts=Λογα�?ιασμοί
+
+nowplus.client.java.peoplepage.notification.pleasewait=Πα�?ακαλώ πε�?ιμένετε...
+
+nowplus.client.java.peoplepage.people.filter.all=Όλα
+
+nowplus.client.java.peoplepage.people.filter.colleages=Ε�?γασίας
+
+nowplus.client.java.peoplepage.people.filter.family=Οικογένεια
+
+nowplus.client.java.peoplepage.people.filter.friends=Φίλοι
+
+nowplus.client.java.peoplepage.people.filter.nowplus=Έχετε συνδεθεί
+
+nowplus.client.java.peoplepage.people.filter.online=Σε σ�?νδεση
+
+nowplus.client.java.peoplepage.people.filter.phonebook=Τηλεφωνικός κατάλογος
+
+nowplus.client.java.peoplepage.tab.chat=Chat
+
+nowplus.client.java.peoplepage.tab.icon.name.contacts=Επαφές
+
+nowplus.client.java.peoplepage.tab.me=Εγώ
+
+nowplus.client.java.peoplepage.tab.people=People
+
+nowplus.client.java.peoplepage.tab.status=Κατάσταση
+
+nowplus.client.java.peoplepage.tab.timeline=Ιστο�?ικό
+
+nowplus.client.java.peoplepage.tab.timeline.empty=Κενό
+
+polish.command.back=Πίσω
+
+polish.command.cancel=Ακ�?�?ωση
+
+polish.command.clear=Απαλοιφή
+
+polish.command.delete=Διαγ�?αφή
+
+polish.command.entersymbol=Π�?οσθήκη συμβόλου
+
+polish.command.followlink=Μετάβαση
+
+polish.command.hide=Απόκ�?υψη
+
+polish.command.mark=Επιλογή
+
+polish.command.ok=ΟK
+
+polish.command.options=Επιλογές
+
+polish.command.select=Επιλογή
+
+polish.command.submit=Αποστολή
+
+polish.command.unmark=Αποεπιλογή
+
+nowplus.client.java.polish.dateformatemptytext=ΗΗ/MM/ΕΕΕΕ
+
+polish.rss.command.followlink=Μετάβαση
+
+polish.rss.command.select=Εμφάνιση
+
+polish.title.input=Ένα�?ξη πληκτ�?ολόγησης
+
+nowplus.client.java.profilepage.connect.item=Σ�?νδεση στην επαφή
+
+nowplus.client.java.profilepage.content.address=Διε�?θυνση
+
+nowplus.client.java.profilepage.content.birthday=Ημε�?. γέννησης
+
+nowplus.client.java.profilepage.content.callorsms=Α�?ιθμοί τηλεφώνου
+
+nowplus.client.java.profilepage.content.command.call=Κλήση
+
+nowplus.client.java.profilepage.content.command.chat=Chat
+
+nowplus.client.java.profilepage.content.command.mms=Εικονομήνυμα
+
+nowplus.client.java.profilepage.content.command.open=Άνοιγμα
+
+nowplus.client.java.profilepage.content.command.sms=Κείμενο
+
+nowplus.client.java.profilepage.content.command.write=Σ�?νταξη
+
+nowplus.client.java.profilepage.content.date.month.apr=Απ�?ίλιος
+
+nowplus.client.java.profilepage.content.date.month.aug=Α�?γουστος
+
+nowplus.client.java.profilepage.content.date.month.dec=Δεκέμβ�?ιος
+
+nowplus.client.java.profilepage.content.date.month.feb=Φεβ�?ουά�?ιος
+
+nowplus.client.java.profilepage.content.date.month.jan=Ιανουά�?ιος
+
+nowplus.client.java.profilepage.content.date.month.jul=Ιο�?λιος
+
+nowplus.client.java.profilepage.content.date.month.jun=Ιο�?νιος
+
+nowplus.client.java.profilepage.content.date.month.mar=Μά�?τιος
+
+nowplus.client.java.profilepage.content.date.month.may=Μάιος
+
+nowplus.client.java.profilepage.content.date.month.nov=�?οέμβ�?ιος
+
+nowplus.client.java.profilepage.content.date.month.oct=Οκτώβ�?ιος
+
+nowplus.client.java.profilepage.content.date.month.okt=Οκτώβ�?ιος
+
+nowplus.client.java.profilepage.content.date.month.sep=Σεπτέμβ�?ιος
+
+nowplus.client.java.profilepage.content.email=Email
+
+nowplus.client.java.profilepage.content.groupes=Ομάδες
+
+nowplus.client.java.profilepage.content.im=Chat
+
+nowplus.client.java.profilepage.content.name=Όνομα
+
+nowplus.client.java.profilepage.content.notes=Σημειώσεις
+
+nowplus.client.java.profilepage.content.socialnetwork=Λογα�?ιασμοί
+
+nowplus.client.java.profilepage.content.url=Ιστοσελίδα
+
+nowplus.client.java.profilepage.content.work=Πλη�?οφ. ε�?γασίας
+
+nowplus.client.java.profilepage.content.work.company=Εται�?ία
+
+nowplus.client.java.profilepage.content.work.department=Τμήμα
+
+nowplus.client.java.profilepage.content.work.title=Τίτλος
+
+nowplus.client.java.profilepage.invite.item.label=Π�?όσκληση επαφής στο
+
+nowplus.client.java.profilepage.invite.item.text=360
+
+nowplus.client.java.profilepage.subtype.fax=Φαξ
+
+nowplus.client.java.profilepage.subtype.home=Οικίας
+
+nowplus.client.java.profilepage.subtype.mobile=Κινητό
+
+nowplus.client.java.profilepage.subtype.other=Άλλο
+
+nowplus.client.java.profilepage.subtype.work=Ε�?γασίας
+
+nowplus.client.java.profilepage.tab.details=Π�?οφίλ
+
+nowplus.client.java.roamingwarning.text=Θέλετε σ�?νδεση του 360 κατά την πε�?ιαγωγή; Ενδεχομένως να ισχ�?ουν οι χ�?εώσεις πε�?ιαγωγής
+
+nowplus.client.java.roamingwarning.title=Β�?ίσκεστε σε πε�?ιαγωγή
+
+nowplus.client.java.settings.about.text=People - Μια υπη�?εσία 360 (c) Vodafone 2009
+
+nowplus.client.java.settings.about.text2010=People - Μια υπη�?εσία 360 (c) Vodafone 2010
+
+nowplus.client.java.settings.about.title=Σχετικά με
+
+nowplus.client.java.settings.clearstorage.confirm.no=Όχι
+
+nowplus.client.java.settings.clearstorage.confirm.text=Είστε βέβαιοι ότι θέλετε να διαγ�?αφο�?ν όλα τα δεδομένα από αυτή την εφα�?μογή;
+
+nowplus.client.java.settings.clearstorage.confirm.title=Διαγ�?αφή όλων των δεδομένων
+
+nowplus.client.java.settings.clearstorage.confirm.yes=�?αι
+
+nowplus.client.java.settings.clearstorage.warning.text=Π�?οσοχή. Με την κατά�?γηση των δεδομένων θα διαγ�?αφο�?ν όλες οι επαφές σας, τα μην�?ματα και τα συνδεδεμένα δίκτυα από την εφα�?μογή. Θα αποσυνδεθείτε από το 360 και μπο�?είτε να συνδεθείτε ξανά ή να εγγ�?αφείτε για ένα νέο λογα�?ιασμό.
+
+nowplus.client.java.settings.clearstorage.warning.title=Π�?οειδοποίηση
+
+nowplus.client.java.settings.command.save=Αποθήκευση
+
+nowplus.client.java.settings.datatraffic.title=Κίνηση δεδομένων
+
+nowplus.client.java.settings.removedataitem=Διαγ�?αφή όλων των δεδομένων από αυτήν την εφα�?μογή σε αυτό το τηλέφωνο
+
+nowplus.client.java.settings.removedataitem.title=Διαγ�?αφή δεδομένων
+
+nowplus.client.java.settings.reset.confirm.text=Είστε βέβαιοι ότι θα θέλατε να γίνει επαναφο�?ά του μετ�?ητή κίνησης δεδομένων;
+
+nowplus.client.java.settings.reset.confirm.title=Επαναφο�?ά μετ�?ητή
+
+nowplus.client.java.settings.resetcounteritem=Επαναφο�?ά μετ�?ητή
+
+nowplus.client.java.settings.roaming.enableroaming=Πάντα ενε�?γοποίηση δεδομένων κατά την πε�?ιαγωγή
+
+nowplus.client.java.settings.roaming.title=Πε�?ιαγωγή δεδομένων
+
+nowplus.client.java.settings.software.title=Λογισμικό
+
+nowplus.client.java.settings.sortcontacts.firstlast=Όνομα, Επώνυμο
+
+nowplus.client.java.settings.sortcontacts.lastfirst=Επώνυμο, Όνομα
+
+nowplus.client.java.settings.sortcontacts.title=Ταξινόμηση επαφών κατά
+
+nowplus.client.java.settings.sync.progress=Ένα�?ξη συγχ�?ονισμο�?...
+
+nowplus.client.java.settings.sync.syncitem=Συγχ�?ονισμός τώ�?α
+
+nowplus.client.java.settings.sync.title=Συγχ�?. επαφών
+
+nowplus.client.java.settings.title=Ρυθμίσεις
+
+nowplus.client.java.signup.checkingdata.progress.headline=Πα�?ακαλο�?με πε�?ιμένετε
+
+nowplus.client.java.signup.checkingdata.progress.text=Γίνεται έλεγχος των στοιχείων σας...
+
+nowplus.client.java.signup.command.cancel=Ακ�?�?ωση
+
+nowplus.client.java.signup.command.continue=Συνέχιση
+
+nowplus.client.java.signup.command.exit=Έξοδος
+
+nowplus.client.java.signup.command.read=Ανάγνωση
+
+nowplus.client.java.signup.command.select=Επιλογή
+
+nowplus.client.java.signup.congratulations.headline=Συγχα�?ητή�?ια!
+
+nowplus.client.java.signup.congratulations.rememberme=Απομνημόνευση στοιχείων
+
+nowplus.client.java.signup.congratulations.youarenow=Τώ�?α έχετε συνδεθεί στο 360
+
+nowplus.client.java.signup.enterdata.chosepassword=Επιλέξτε κωδ. π�?όσβασης 
+
+nowplus.client.java.signup.enterdata.choseusername=Επιλέξτε όνομα χ�?ήστη 
+
+nowplus.client.java.signup.enterdata.dob=Πληκτ�?ολογήστε την ημε�?ομηνία γέννησης
+
+nowplus.client.java.signup.enterdata.emailfield.hint=Διε�?θυνση e-mail
+
+nowplus.client.java.signup.enterdata.emailfield.title=Εισαγάγετε το e-mail σας
+
+nowplus.client.java.signup.enterdata.entermobilenumber=Πληκτ�?ολογήστε τον α�?ιθμό του κινητο�? σας
+
+nowplus.client.java.signup.enterdata.entermobilenumber.hint=Με διεθνή κωδ. πχ +30
+
+nowplus.client.java.signup.enterdata.headline=Η εγγ�?αφή είναι ε�?κολη 
+
+nowplus.client.java.signup.enterdata.privacy.text=Δήλωση απο�?�?ήτου
+
+nowplus.client.java.signup.enterdata.termsandconditions.checkbox.label=Έχω διαβάσει και συμφωνώ με τους
+
+nowplus.client.java.signup.enterdata.termsandconditions.text=Ό�?οι και π�?οϋποθέσεις
+
+nowplus.client.java.signup.error.agecheck.text=Η ηλικία που έχετε εισάγει φαίνεται ότι είναι λανθασμένη, πα�?ακαλο�?με πληκτ�?ολογήστε την ξανά.
+
+nowplus.client.java.signup.error.agecheck.title=Έλεγχος ηλικίας
+
+nowplus.client.java.signup.error.dobnotprovided=Π�?έπει να πληκτ�?ολογήσετε την ημε�?ομηνία γέννησής σας
+
+nowplus.client.java.signup.error.dobnotprovided.headline=Δεν υπά�?χει η ημε�?ομηνία γέννησης
+
+nowplus.client.java.signup.error.email.headline=E-mail
+
+nowplus.client.java.signup.error.email.invalid=Μη έγκυ�?η διε�?θυνση e-mail
+
+nowplus.client.java.signup.error.headline=Η εγγ�?αφή δεν είναι δυνατή
+
+nowplus.client.java.signup.error.mustaccepttc=Για να εγγ�?αφείτε π�?έπει να αποδεχτείτε τους Ό�?ους & Π�?οϋποθέσεις
+
+nowplus.client.java.signup.error.mustaccepttc.headline=Ό�?οι και π�?οϋποθέσεις
+
+nowplus.client.java.signup.error.mustbe14=Π�?οκειμένου να εγγ�?αφείτε για ένα λογα�?ιασμό π�?έπει να είστε άνω των 14 ετών
+
+nowplus.client.java.signup.error.mustbe14.headline=Έλεγχος ηλικίας
+
+nowplus.client.java.signup.error.mustbeinternational=Ο τηλεφωνικός α�?ιθμός που δώσατε π�?έπει να είναι σε διεθνή μο�?φή  π.χ. +30
+
+nowplus.client.java.signup.error.mustbeinternational.headline=Διεθνής μο�?φή
+
+nowplus.client.java.signup.error.mustenterphonenumber=Για να εγγ�?αφείτε π�?έπει να πληκτ�?ολογήσετε έναν α�?ιθμό κινητο�?
+
+nowplus.client.java.signup.error.mustenterphonenumber.headline=Δεν υπά�?χει α�?ιθμός κινητο�?
+
+nowplus.client.java.signup.error.passwordchars=Ο κωδικός π�?όσβασης δεν είναι δυνατό να πε�?ιλαμβάνει τους πα�?ακάτω χα�?ακτή�?ες
+
+nowplus.client.java.signup.error.passwordchars.headline=Χα�?ακτή�?ες κωδικο�? π�?όσβασης
+
+nowplus.client.java.signup.error.passwordlength=Ο κωδικός π�?όσβασής σας  π�?έπει να πε�?ιέχει από 6 χα�?ακτή�?ες έως 25 χα�?ακτή�?ες
+
+nowplus.client.java.signup.error.passwordlength.headline=Μήκος κωδικο�? π�?όσβασης
+
+nowplus.client.java.signup.error.usernamechars=Το όνομα χ�?ήστη δεν είναι δυνατό να πε�?ιλαμβάνει τους πα�?ακάτω χα�?ακτή�?ες
+
+nowplus.client.java.signup.error.usernamechars.headline=Χα�?ακτή�?ες ονόματος χ�?ήστη
+
+nowplus.client.java.signup.error.usernamelength=Το όνομα χ�?ήστη π�?έπει να πε�?ιλαμβάνει 6 έως 50 χα�?ακτή�?ες
+
+nowplus.client.java.signup.error.usernamelength.headline=Μήκος ονόματος χ�?ήστη
+
+nowplus.client.java.signup.importsn.confirmation.text=Θέλετε να εισαχθο�?ν οι επαφές από τους λογα�?ιασμο�?ς σας;
+
+nowplus.client.java.signup.importsn.confirmation.title=Εισαγωγή λογα�?ιασμών
+
+nowplus.client.java.signup.signupfailed.dobinvalid=Μη έγκυ�?η ημε�?ομηνία γέννησης. Η μο�?φή ημε�?ομηνίας είναι λάθος ή είστε κάτω των 14 ετών.
+
+nowplus.client.java.signup.signupfailed.internalerror=Π�?οέκυψε κάποιο σφάλμα
+
+nowplus.client.java.signup.signupfailed.languageinvalid=Λυπο�?μαστε, η γλώσσα σας δεν υποστη�?ίζεται
+
+nowplus.client.java.signup.signupfailed.mobilemodelinvalid=Το μοντέλο του κινητο�? είναι άγνωστο ή δεν υποστη�?ίζεται από το σ�?στημα
+
+nowplus.client.java.signup.signupfailed.msisdninvalid=Λανθασμένος α�?ιθμός τηλεφώνου
+
+nowplus.client.java.signup.signupfailed.msisdnmissing=Απαιτείται εισαγωγή τηλεφωνικο�? α�?ιθμο�?
+
+nowplus.client.java.signup.signupfailed.passwordinvalid=Ο κωδικός είναι πολ�? μικ�?ός, πολ�? μεγάλος ή πε�?ιέχει μη έγκυ�?ους χα�?ακτή�?ες
+
+nowplus.client.java.signup.signupfailed.passwordnotspecified=Απαιτείται εισαγωγή κωδικο�? π�?όσβασης
+
+nowplus.client.java.signup.signupfailed.tcnotaccepted=Απαιτείται αποδοχή των Ό�?ων και Π�?οϋποθέσεων
+
+nowplus.client.java.signup.signupfailed.title=Η εγγ�?αφή δεν είναι δυνατή
+
+nowplus.client.java.signup.signupfailed.usernamealreadytaken=Το όνομα χ�?ήστη δεν είναι διαθέσιμο
+
+nowplus.client.java.signup.signupfailed.usernameblacklisted=Το όνομα χ�?ήστη είναι στη μα�?�?η λίστα
+
+nowplus.client.java.signup.signupfailed.usernameforbidden=Το όνομα χ�?ήστη δεν επιτ�?έπεται, επιλέξτε άλλο όνομα χ�?ήστη
+
+nowplus.client.java.signup.signupfailed.usernamenotspecified=Δεν υπά�?χει όνομα χ�?ήστη
+
+nowplus.client.java.signup.signupfailedwrongnumber.text=Λυπο�?μαστε, δεν είναι δυνατή η επικοινωνία με τον συγκεκ�?ιμένο α�?ιθμό τηλεφώνου. Δοκιμάστε ξανά.
+
+nowplus.client.java.signup.signupfailedwrongnumber.title=Δεν είναι δυνατή η επαλήθευση
+
+nowplus.client.java.signup.title=Εγγ�?αφή
+
+nowplus.client.java.signup.waitforsms.notification.text=Αυτή τη στιγμή γίνεται έλεγχος του τηλεφωνικο�? σας α�?ιθμο�?. Αυτό ίσως δια�?κέσει με�?ικά λεπτά. Πα�?ακαλο�?με πε�?ιμένετε!
+
+nowplus.client.java.signup.waitforsms.notification.title=Γίνεται έλεγχος του τηλεφωνικο�? α�?ιθμο�?...
+
+nowplus.client.java.signup.welcome.button.login=Σ�?νδεση στο λογα�?ιασμό μου
+
+nowplus.client.java.signup.welcome.button.signup=Δημιου�?γία λογα�?ιασμο�?
+
+nowplus.client.java.signup.welcome.headline=Καλώς ή�?θατε στο People - Μια υπη�?εσία 360
+
+nowplus.client.java.sms.error.notification.headline=Δεν είναι δυνατή η αποστολή του SMS
+
+nowplus.client.java.sms.error.notification.message=Λυπο�?μαστε, το SMS δεν ήταν δυνατό να σταλεί.
+
+nowplus.client.java.sms.notification.headline=Εκτελείται αποστολή του SMS
+
+nowplus.client.java.smscomposer.title=Μήνυμα SMS
+
+nowplus.client.java.smsform.message.hint=Πληκτ�?ολογήστε το μήνυμά σας
+
+nowplus.client.java.statuspage.command.request=Επιλογή
+
+nowplus.client.java.statuspage.error.user.notonline=Η κατάστασή σας δεν ενημε�?ώνεται επειδή τώ�?α δεν είστε συνδεδεμένοι με το 360. Το μήνυμα της κατάστασής σας θα αποθηκευτεί και θα ενημε�?ωθεί μόλις επανασυνδεθείτε.
+
+nowplus.client.java.statuspage.noresult=Η κατάσταση είναι κενή
+
+nowplus.client.java.statuspage.request=Αίτημα επόμενων {0} δ�?αστη�?ιοτήτων
+
+nowplus.client.java.sync.cancel.popup.text=Γίνεται ακ�?�?ωση...
+
+nowplus.client.java.sync.popup.text=Εισαγωγή {0} από το τηλέφωνο...
+
+nowplus.client.java.sync.popup.title=Εισαγωγή επαφών... 
+
+nowplus.client.java.sync.user.disallowed.create.text=Τε�?ματίστε την εφα�?μογή και ενημε�?ώστε τις �?υθμίσεις για αυτή την εφα�?μογή για να είναι δυνατή η π�?όσβαση στο βιβλίο διευθ�?νσεων του τηλεφώνου.
+
+nowplus.client.java.sync.user.disallowed.create.title=Δεν είναι δυνατή η επεξε�?γασία του βιβλίου διευθ�?νσεων του τηλεφώνου
+
+nowplus.client.java.sync.user.disallowed.delete.text=Τε�?ματίστε την εφα�?μογή και ενημε�?ώστε τις �?υθμίσεις για αυτή την εφα�?μογή για να είναι δυνατή η π�?όσβαση στο βιβλίο διευθ�?νσεων του τηλεφώνου.
+
+nowplus.client.java.sync.user.disallowed.delete.title=Δεν είναι δυνατή η επεξε�?γασία του βιβλίου διευθ�?νσεων του τηλεφώνου
+
+nowplus.client.java.sync.user.disallowed.open.text=Τε�?ματίστε την εφα�?μογή και ενημε�?ώστε τις �?υθμίσεις για αυτή την εφα�?μογή για να είναι δυνατή η π�?όσβαση στο βιβλίο διευθ�?νσεων του τηλεφώνου.
+
+nowplus.client.java.sync.user.disallowed.open.title=Δεν είναι δυνατή η ανάγνωση του βιβλίου διευθ�?νσεων του τηλεφώνου
+
+nowplus.client.java.sync.user.disallowed.read.text=Τε�?ματίστε την εφα�?μογή και ενημε�?ώστε τις �?υθμίσεις για αυτή την εφα�?μογή για να είναι δυνατή η π�?όσβαση στο βιβλίο διευθ�?νσεων του τηλεφώνου.
+
+nowplus.client.java.sync.user.disallowed.read.title=Δεν είναι δυνατή η ανάγνωση από το βιβλίο διευθ�?νσεων του τηλεφώνου
+
+nowplus.client.java.sync.user.disallowed.write.text=Τε�?ματίστε την εφα�?μογή και ενημε�?ώστε τις �?υθμίσεις για αυτή την εφα�?μογή για να είναι δυνατή η π�?όσβαση στο βιβλίο διευθ�?νσεων του τηλεφώνου.
+
+nowplus.client.java.sync.user.disallowed.write.title=Δεν είναι δυνατή η αποθήκευση στο βιβλίο διευθ�?νσεων του τηλεφώνου
+
+nowplus.client.java.sync.with.360.text=Το τηλέφωνό σας είναι πλέον έτοιμο να συγχ�?ονιστεί με το 360. Αυτό ίσως δια�?κέσει έως και 10 λεπτά.
+
+nowplus.client.java.sync.with.360.title=Συγχ�?ονισμός με το 360
+
+nowplus.client.java.takepicture.command.new=�?έα
+
+nowplus.client.java.takepicture.command.takepic=Λήψη εικόνας
+
+nowplus.client.java.takepicture.command.usethis=Χ�?ήση τ�?έχουσας
+
+nowplus.client.java.takepicture.confirm.usethisimage=Χ�?ήση αυτής της εικόνας
+
+titlebar.httpcounter.kb=kB
+
+nowplus.client.java.updateapplication.confirm.yes=�?αι
+
+nowplus.client.java.updateapplication.headline=Υπά�?χει διαθέσιμη μια νέα έκδοση του People - Μια υπη�?εσία 360
+
+nowplus.client.java.updateapplication.text=Θέλετε να εγκατασταθεί η νέα έκδοση;
+
+nowplus.client.java.webaccounts.add.title=Π�?οσθήκη λογα�?ιασμο�?
+
+nowplus.client.java.webaccounts.command.done=Ολοκλη�?ώθηκε
+
+nowplus.client.java.webaccounts.command.edit=Επεξε�?γασία
+
+nowplus.client.java.webaccounts.command.login=Σ�?νδεση
+
+nowplus.client.java.webaccounts.command.logout=Αποσ�?νδεση
+
+nowplus.client.java.webaccounts.edit.info.suffix=Στοιχεία σ�?νδεσης
+
+nowplus.client.java.webaccounts.edit.password=Κωδικός π�?όσβασης
+
+nowplus.client.java.webaccounts.edit.title=Επεξε�?γασία λογα�?ιασμο�?
+
+nowplus.client.java.webaccounts.edit.username=Όνομα χ�?ήστη
+
+nowplus.client.java.webaccounts.edit.username_email=Όνομα χ�?ήστη/E-mail
+
+nowplus.client.java.webaccounts.facebook.disclaimer=Συνεχίζοντας τη διαδικασία, επιτ�?έπετε στο Vodafone 360 την π�?όσβαση στις πλη�?οφο�?ίες του π�?οφίλ σας και των φίλων σας, καθώς και σε άλλο πε�?ιεχόμενο που απαιτείται για τη λειτου�?γία. Επίσης συμφωνείτε με τους Ό�?ους Χ�?ήσης του Facebook κατά τη χ�?ήση του Vodafone 360 (επισκεφτείτε τη διε�?θυνση http://www.facebook.com/terms.php).
+
+nowplus.client.java.webaccounts.facebook.disclaimer.header=Ό�?οι και π�?οϋποθέσεις για το Facebook
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text1=Συνδέοντας αυτή την εφα�?μογή με το Facebook είναι δυνατή η μεταφο�?ά εικόνων δημόσιου π�?οφίλ και στοιχείων επαφής των φίλων σας στο People για να συμπλη�?ώσετε το βιβλίο διευθ�?νσεών σας.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text2=Κάνοντας κλικ στο 'Σ�?νδεση' συμφωνείτε ότι σας πα�?αχω�?είται μια μη αποκλειστική, μη μεταβιβάσιμη, π�?οσωπική άδεια για χ�?ήση των φωτογ�?αφιών δημόσιου π�?οφίλ των φίλων σας στο People.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text3=Αυτή η άδεια λήγει όταν το Facebook ή ο κάτοχος της συγκεκ�?ιμένης φωτογ�?αφίας ζητήσει τη διαγ�?αφή της. Η άδεια αυτή δεν σάς επιτ�?έπει τη χ�?ήση των εν λόγω φωτογ�?αφιών για τυχόν εμπο�?ικο�?ς σκοπο�?ς ή με τυχόν άλλη υπη�?εσία ή εφα�?μογή.
+
+nowplus.client.java.webaccounts.item.adding=Π�?οσθήκη
+
+nowplus.client.java.webaccounts.item.deleting=Διαγ�?αφή
+
+
+nowplus.client.java.webaccounts.item.updating=Ενημέ�?ωση
+
+
+nowplus.client.java.webaccounts.overview.title=Κοινωνικά δίκτυα
+
+nowplus.client.java.webaccounts.popup.deletesn.text=Είστε βέβαιοι ότι θέλετε να διαγ�?αφεί το {0} από το π�?οφίλ σας;
+
+nowplus.client.java.webaccounts.popup.deletesn.title=Διαγ�?αφή λογα�?ιασμο�?
+
+nowplus.client.java.webaccounts.popup.importnow.text=Θέλετε να εισαχθο�?ν οι επαφές από τους λογα�?ιασμο�?ς σας;
+
+nowplus.client.java.webaccounts.popup.importnow.title=Εισαγωγή λογα�?ιασμών
+
+nowplus.client.java.webaccounts.popup.loggingout.text=Πα�?ακαλο�?με πε�?ιμένετε ενώ εκτελείται αποσ�?νδεση από αυτόν το λογα�?ιασμό
+
+nowplus.client.java.webaccounts.popup.loggingout.title=Γίνεται αποσ�?νδεση
+
+nowplus.client.java.webaccounts.popup.loginfailed.text=Δεν ήταν δυνατή η σ�?νδεσή σας στο λογα�?ιασμό
+
+nowplus.client.java.webaccounts.popup.loginfailed.title=Η σ�?νδεση δεν είναι δυνατή
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.text=Τώ�?α έχετε συνδεθεί στο λογα�?ιασμό
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.title=Έγινε σ�?νδεση
+
+nowplus.client.java.webaccounts.popup.logoutfailed.text=Πα�?ουσιάστηκε κάποιο π�?όβλημα κατά την π�?οσπάθεια αποσ�?νδεσής σας. Δοκιμάστε ξανά.
+
+nowplus.client.java.webaccounts.popup.logoutfailed.title=Η αποσ�?νδεση δεν είναι δυνατή
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.text=Τώ�?α έχετε αποσυνδεθεί από το λογα�?ιασμό
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.title=Έγινε αποσ�?νδεση
+
+nowplus.client.java.webaccounts.popup.removefailed.text=Πα�?ουσιάστηκε κάποιο π�?όβλημα κατά την π�?οσπάθεια κατά�?γησης του λογα�?ιασμο�? σας. Δοκιμάστε ξανά.
+
+nowplus.client.java.webaccounts.popup.removefailed.title=Η κατά�?γηση δεν είναι δυνατή
+
+nowplus.client.java.webaccounts.popup.removesucceeded.text=Ο λογα�?ιασμός κατα�?γήθηκε με επιτυχία.
+
+nowplus.client.java.webaccounts.popup.removesucceeded.title=Η κατά�?γηση π�?αγματοποιήθηκε με επιτυχία
+
+nowplus.client.java.webaccounts.popup.saving.text=Συλλογή πλη�?οφο�?ιών από το λογα�?ιασμό
+
+nowplus.client.java.webaccounts.popup.saving.title=Γίνεται σ�?νδεση
+
+nowplus.client.java.webaccounts.popup.savingfailed.text=Ο λογα�?ιασμός δεν ήταν δυνατό να π�?οστεθεί
+
+nowplus.client.java.webaccounts.popup.savingfailed.title=Η π�?οσθήκη του λογα�?ιασμο�? δεν είναι δυνατή
+
+nowplus.client.java.webaccounts.popup.savingsuccess.text=Ο λογα�?ιασμός έχει π�?οστεθεί
+
+nowplus.client.java.webaccounts.popup.savingsuccess.title=Π�?οσθήκη λογα�?ιασμο�?
+
+nowplus.client.java.webaccounts.progress.deletesn.title=Γίνεται διαγ�?αφή...
+
+nowplus.client.java.webaccounts.title=Λογα�?ιασμοί
+
+nowplus.client.java.webaccounts.windowslive.disclaimer.text=Π�?οσθέτοντας τον λογα�?ιασμό του Windows Live στο 360, θα συνδέεστε αυτόματα στο Windows Live σε κάθε εκκίνηση αυτής της εφα�?μογής.
+

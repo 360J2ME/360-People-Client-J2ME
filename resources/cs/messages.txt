@@ -1,0 +1,907 @@
+#-------------------------------------------------------------------------------
+# CDDL HEADER START
+# 
+# The contents of this file are subject to the terms of the Common Development
+# and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+# 
+# You can obtain a copy of the license at
+# src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+# http://github.com/360/360-Engine-for-Android
+# See the License for the specific language governing permissions and limitations under the License.
+# 
+# When distributing Covered Code, include this CDDL HEADER in each file and
+#  include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+# If applicable, add the following below this CDDL HEADER, with the fields
+# enclosed by brackets "[]" replaced with your own identifying information:
+# Portions Copyright [yyyy] [name of copyright owner]
+# 
+# CDDL HEADER END
+# 
+# Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+# Use is subject to license terms.
+#-------------------------------------------------------------------------------
+nowplus.client.java.app.criticalerror.text=Vyskytla se chyba, proto musíte aplikaci 360 restartovat a znovu se přihlásit. Pro zabezpe�?ení vašich dat bude adresář z vašeho telefonu po přihlášení importován.
+
+nowplus.client.java.app.criticalerror.title=Vyžaduje se restart
+
+nowplus.client.java.app.serviceunavailable.text=Síť je v tomto okamžiku nedostupná
+
+nowplus.client.java.app.serviceunavailable.title=Nelze se připojit
+
+nowplus.client.java.application.initialisation.failed.title=REDUNDANT
+
+nowplus.client.java.application.popup.text=Probíhá spouštění...
+
+nowplus.client.java.application.popup.title=Probíhá spouštění...
+
+nowplus.client.java.browse.confirm.headline=Otevřít prohlíže�?
+
+nowplus.client.java.browse.confirm.text=Opouštíte aplikaci 360 a otevře se prohlíže�?
+
+nowplus.client.java.browser.notification.title=Nahrává se stránka...
+
+nowplus.client.java.cabsabsync.popup.receiving=Dokon�?uje se synchronizace se službou 360
+
+nowplus.client.java.cabsabsync.popup.receiving.failed=Synchronizace nebyla dokon�?ena. K jejímu dokon�?ení však dojde při příštím spuštění aplikace.
+
+nowplus.client.java.cabsabsync.popup.sending=Probíhá odesílání kontaktů do služby 360
+
+nowplus.client.java.cabsabsync.popup.sending.failed=Synchronizace všech vašich kontaktů se službou 360 se nezdařila. Synchronizace znovu proběhne při příštím spuštění aplikace.
+
+nowplus.client.java.cabsabsync.popup.title=Probíhá synchronizace kontaktů...
+
+nowplus.client.java.chat.thread.confirm.delete.text=Opravdu chcete tento kontakt vymazat?
+
+nowplus.client.java.chat.thread.confirm.delete.title=Odstranit kontakt
+
+nowplus.client.java.chat.thread.date.day.fri=Pá
+
+nowplus.client.java.chat.thread.date.day.mon=Po
+
+nowplus.client.java.chat.thread.date.day.sat=So
+
+nowplus.client.java.chat.thread.date.day.sun=Ne
+
+nowplus.client.java.chat.thread.date.day.thu=Čt
+
+nowplus.client.java.chat.thread.date.day.tue=Út
+
+nowplus.client.java.chat.thread.date.day.wed=St
+
+nowplus.client.java.chat.thread.error.contact.notconnected=Your message can't be sent because you and {0} are not connected on 360. You can connect to from his details page.
+
+nowplus.client.java.chat.thread.error.contact.notonline=Vaši zprávu nelze odeslat, neboť váš přítel není přihlášen k {0}. Chat můžete zahájit poté, co se váš přítel znovu přihlásí.
+
+nowplus.client.java.chat.thread.error.user.notonline=redundant
+
+nowplus.client.java.chat.thread.error.user.notsignedin=Vaši zprávu nelze odeslat, protože nejste přihlášeni do {0}. Do {0} se můžete přihlásit v �?ásti 'Ú�?ty', pod položkou 'Moje ú�?ty'.
+
+nowplus.client.java.chat.thread.send=Odeslat
+
+nowplus.client.java.chat.thread.textfield.helptext=Sem napište text
+
+nowplus.client.java.chat.thread.title=Chat
+
+nowplus.client.java.chat.thread.you=Já
+
+nowplus.client.java.command.close=Zavřít
+
+nowplus.client.java.command.exit=Konec
+
+nowplus.client.java.command.ignore=Ignorovat
+
+nowplus.client.java.command.open=Otevřít
+
+nowplus.client.java.command.options=Možnosti
+
+nowplus.client.java.command.roaming.yes=Ano
+
+nowplus.client.java.contextual.menu.command.add.new.contact=Přidat nový kontakt
+
+nowplus.client.java.contextual.menu.command.block=Blokovat kontakt
+
+nowplus.client.java.contextual.menu.command.connect=Připojit
+
+nowplus.client.java.contextual.menu.command.create.email=Nový email
+
+nowplus.client.java.contextual.menu.command.create.new=Vytvořit nový...
+
+nowplus.client.java.contextual.menu.command.create.sms=Nová SMS
+
+nowplus.client.java.contextual.menu.command.create.text=Vytvořit text
+
+nowplus.client.java.contextual.menu.command.delete=Odstranit
+
+nowplus.client.java.contextual.menu.command.edit.profile=Upravit profil
+
+nowplus.client.java.contextual.menu.command.exit=Konec
+
+nowplus.client.java.contextual.menu.command.help=Nápověda
+
+nowplus.client.java.contextual.menu.command.invite=Pozvat
+
+nowplus.client.java.contextual.menu.command.more=Další...
+
+nowplus.client.java.contextual.menu.command.open.filter=Přejít nahoru
+
+nowplus.client.java.contextual.menu.command.open.ongoing.chat=Otevřít probíhající chat
+
+nowplus.client.java.contextual.menu.command.search=Hledat v aplikaci 360
+
+nowplus.client.java.contextual.menu.command.settings=Nastavení
+
+nowplus.client.java.contextual.menu.command.switch.application=Přepnout aplikace
+
+nowplus.client.java.contextual.menu.command.view.profile=Zobrazit profil
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.text=Opravdu chcete odstranit {0}?
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.title=Odstranit kontakt
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.text=Opravdu chcete odstranit {0}?
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.title=Odstranit detail
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.text1=Opravdu chcete smazat {0} z vašeho profilu?
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.title=Odstranit ú�?et
+
+nowplus.client.java.contextual.menu.infobar.profile=Profil
+
+nowplus.client.java.contextual.menu.navbar.Chat=Chat
+
+nowplus.client.java.contextual.menu.navbar.Email=Email
+
+nowplus.client.java.contextual.menu.navbar.Poke=Šťouchnout
+
+nowplus.client.java.contextual.menu.navbar.SMS=SMS
+
+nowplus.client.java.contextual.menu.navbar.call=Zavolat
+
+nowplus.client.java.contextual.menu.notify.block.text=Váš kontakt byl zablokován
+
+nowplus.client.java.contextual.menu.notify.block.title=Blokovat kontakt
+
+nowplus.client.java.contextual.menu.notify.connect.text=Váš požadavek na připojení k aplikaci 360 byl odeslán
+
+nowplus.client.java.contextual.menu.notify.connect.title=Připojit
+
+nowplus.client.java.contextual.menu.notify.invite.text=Váš kontakt byl pozván
+
+nowplus.client.java.contextual.menu.notify.invite.title=Pozvat
+
+nowplus.client.java.date.friday=pátek
+
+nowplus.client.java.date.monday=pondělí
+
+nowplus.client.java.date.now=Nyní
+
+nowplus.client.java.date.saturday=sobota
+
+nowplus.client.java.date.sunday=neděle
+
+nowplus.client.java.date.thursday=�?tvrtek
+
+nowplus.client.java.date.today=Dnes
+
+nowplus.client.java.date.tuesday=úterý
+
+nowplus.client.java.date.wednesday=středa
+
+nowplus.client.java.date.yesterday=V�?era
+
+nowplus.client.java.edit.contact.add=Přidat
+
+nowplus.client.java.edit.contact.address=Adresa
+
+nowplus.client.java.edit.contact.address.country=Země
+
+nowplus.client.java.edit.contact.address.postcode=PSČ
+
+nowplus.client.java.edit.contact.address.region=Okres
+
+nowplus.client.java.edit.contact.address.street=Ulice
+
+nowplus.client.java.edit.contact.address.town=Město
+
+nowplus.client.java.edit.contact.bdinvalid.text=Datum narození musí být v minulosti
+
+nowplus.client.java.edit.contact.birthday=Datum narození
+
+nowplus.client.java.edit.contact.command.edit=Upravit
+
+nowplus.client.java.edit.contact.command.new=Nový
+
+nowplus.client.java.edit.contact.command.save=Uložit
+
+nowplus.client.java.edit.contact.command.switch.multitab=Použít text bez predikce
+
+nowplus.client.java.edit.contact.command.switch.native=Použít prediktivní text
+
+nowplus.client.java.edit.contact.command.takepicture=Zhotovit fotku
+
+nowplus.client.java.edit.contact.delete.failed.notify.text=Odstranění se nezdařilo. Detail nelze vymazat. Pokud problém přetrvává, restartujte aplikaci.
+
+nowplus.client.java.edit.contact.delete.failed.notify.title=Odstranění se nezdařilo.
+
+nowplus.client.java.edit.contact.edit=Upravit
+
+nowplus.client.java.edit.contact.email=Email
+
+nowplus.client.java.edit.contact.email.address=Emailová adresa
+
+nowplus.client.java.edit.contact.group=Skupina
+
+nowplus.client.java.edit.contact.group.label=Název skupiny
+
+nowplus.client.java.edit.contact.im=Chat
+
+nowplus.client.java.edit.contact.invalid.email.text=Zadali jste nesprávnou emailovou adresu. Zkuste to prosím znovu.
+
+nowplus.client.java.edit.contact.invalid.email.title=Nesprávný email
+
+nowplus.client.java.edit.contact.invalid.name.text=Váš kontakt nelze uložit bez jména. Chcete tyto změny zrušit?
+
+nowplus.client.java.edit.contact.invalid.name.title=Chybí jméno
+
+nowplus.client.java.edit.contact.missing.name.confirm.no=Ne
+
+nowplus.client.java.edit.contact.missing.name.confirm.yes=Ano
+
+nowplus.client.java.edit.contact.missing.name.notify.ok=OK
+
+nowplus.client.java.edit.contact.missing.name.text=Musíte zadat alespoň jedno jméno
+
+nowplus.client.java.edit.contact.missing.name.title=Chybí jméno
+
+nowplus.client.java.edit.contact.name=Jméno
+
+nowplus.client.java.edit.contact.name.first=Křestní
+
+nowplus.client.java.edit.contact.name.last=Příjmení
+
+nowplus.client.java.edit.contact.name.middle=Druhé křestní
+
+nowplus.client.java.edit.contact.note=Poznámky
+
+nowplus.client.java.edit.contact.note.enter=Zadejte poznámku
+
+nowplus.client.java.edit.contact.phone=Telefon
+
+nowplus.client.java.edit.contact.phone.number=Telefonní �?íslo
+
+nowplus.client.java.edit.contact.phone.preffered=Použít jako preferovaný
+
+nowplus.client.java.edit.contact.subtype.label=Jmenovka
+
+nowplus.client.java.edit.contact.take.picture=Zhotovit fotku
+
+nowplus.client.java.edit.contact.title=Upravit profil
+
+nowplus.client.java.edit.contact.update.failed.notify.text=Vaše kontaktní údaje nelze aktualizovat. Pokud problém přetrvává, restartujte aplikaci.
+
+nowplus.client.java.edit.contact.update.failed.notify.title=Aktualizace se nezdařila.
+
+nowplus.client.java.edit.contact.update.notify.text=Probíhá aktualizace profilu
+
+nowplus.client.java.edit.contact.update.notify.title=Aktualizuje se
+
+nowplus.client.java.edit.contact.url=Webové stránky
+
+nowplus.client.java.edit.contact.url.address=Webová adresa
+
+nowplus.client.java.edit.contact.work=Info o zaměstnání
+
+nowplus.client.java.exit.confirm.headline=Opravdu chcete ukon�?it aplikaci?
+
+nowplus.client.java.exit.confirm.no=Ne
+
+nowplus.client.java.exit.confirm.text=Konec
+
+nowplus.client.java.exit.confirm.yes=Ano
+
+nowplus.client.java.exit.notification.headline=Ukon�?ování
+
+nowplus.client.java.exit.notification.text=Čekejte prosím. Aplikace se ukon�?uje.
+
+nowplus.client.java.help.confirm.headline=Opouštíte aplilkaci 360 a otevře se webový prohlíže�?.
+
+nowplus.client.java.help.confirm.text=Otevřít webový prohlíže�?
+
+nowplus.client.java.identity.vodafone360.chatlabel=Chat 360
+
+nowplus.client.java.landingpage.tagline=redundant
+
+nowplus.client.java.landingpage.tagline1=Služba 360
+
+nowplus.client.java.landingpage.tagline2=Spojujeme váš svět
+
+nowplus.client.java.launch.postponed.text=redundant
+
+nowplus.client.java.launch.postponed.title=redundant
+
+nowplus.client.java.list.order.first=Křestní
+
+nowplus.client.java.list.order.last=Příjmení
+
+nowplus.client.java.list.order.none=Žádný
+
+nowplus.client.java.login.connection.disallowed.text=Pro pokra�?ování musíte aplikaci restartovat.
+
+nowplus.client.java.login.connection.disallowed.title=Připojení není dovoleno
+
+nowplus.client.java.login.loginfailed.text=Vaše uživatelské jméno nebo heslo nejsou správné. Zkuste to znovu.
+
+nowplus.client.java.login.loginfailed.title=Zkuste znovu
+
+nowplus.client.java.login.notification.loggingin=Přihlašování...
+
+nowplus.client.java.login.reauthenticate.text=Podrobnosti o vašem ú�?tu se změnily. Musíte se znovu přihlásit.
+
+nowplus.client.java.login.title=Přihlášení
+
+nowplus.client.java.loginform.command.cancel=Zrušit
+
+nowplus.client.java.loginform.command.mark=Vybrat
+
+nowplus.client.java.loginform.command.save=Přihlásit
+
+nowplus.client.java.loginform.command.unmark=Zrušit výběr
+
+nowplus.client.java.loginform.headline=Přihlášení do aplikace 360
+
+nowplus.client.java.loginform.password.chosepassword.hint=Heslo
+
+nowplus.client.java.loginform.password.hint=Heslo
+
+nowplus.client.java.loginform.rememberme.label=Zapamatuj si mě
+
+nowplus.client.java.loginform.username.choseusername.hint=Uživatelské jméno
+
+nowplus.client.java.loginform.username.hint=Uživatelské jméno
+
+nowplus.client.java.network.search.command.search=Hledat
+
+nowplus.client.java.network.search.title=Hledat v aplikaci 360
+
+nowplus.client.java.networkdown.text=Vaše síťové připojení je do�?asně nefunk�?ní. Aplikace 360 bude on-line tehdy, až bude síť opět dostupná
+
+nowplus.client.java.networkdown.title=Síťové připojení se ztratilo
+
+nowplus.client.java.new.contact.title=Nový kontakt
+
+nowplus.client.java.newpasswordrestart.text=Byla zjištěna změna hesla. Před pokra�?ováním musíte aplikaci restartovat a zadat nové heslo.
+
+nowplus.client.java.newpasswordrestart.title=Heslo změněno
+
+nowplus.client.java.peoplepage.meview.availability.available=Dostupný
+
+nowplus.client.java.peoplepage.meview.availability.invisible=Neviditelný
+
+nowplus.client.java.peoplepage.meview.availability.label=Dostupnost
+
+nowplus.client.java.peoplepage.meview.availability.offline=Offline
+
+nowplus.client.java.peoplepage.meview.command.set=Nastavit
+
+nowplus.client.java.peoplepage.meview.myprofile=Můj profil
+
+nowplus.client.java.peoplepage.meview.settings=Nastavení
+
+nowplus.client.java.peoplepage.meview.sn.status=Příspěvky také pro {0}
+
+nowplus.client.java.peoplepage.meview.sn.status1=redundant
+
+nowplus.client.java.peoplepage.meview.sn.status2=redundant
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.text=Váš stav se nepodařilo aktualizovat. Pokud tento problém přetrvává, zkuste aplikaci restartovat.
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.title=Nepodařilo se aktualizovat stav
+
+nowplus.client.java.peoplepage.meview.status.helptext=Co děláte nyní?
+
+nowplus.client.java.peoplepage.meview.status.label=Stavová zpráva
+
+nowplus.client.java.peoplepage.meview.submit.command.update=Aktualizovat
+
+nowplus.client.java.peoplepage.meview.webaccounts=Ú�?ty
+
+nowplus.client.java.peoplepage.notification.pleasewait=Okamžik...
+
+nowplus.client.java.peoplepage.people.filter.all=Všichni
+
+nowplus.client.java.peoplepage.people.filter.colleages=Práce
+
+nowplus.client.java.peoplepage.people.filter.family=Rodina
+
+nowplus.client.java.peoplepage.people.filter.friends=Přátelé
+
+nowplus.client.java.peoplepage.people.filter.nowplus=Připojeno
+
+nowplus.client.java.peoplepage.people.filter.online=On-line
+
+nowplus.client.java.peoplepage.people.filter.phonebook=Telefonní seznam
+
+nowplus.client.java.peoplepage.tab.chat=Chat
+
+nowplus.client.java.peoplepage.tab.icon.name.contacts=Kontakty
+
+nowplus.client.java.peoplepage.tab.me=Já
+
+nowplus.client.java.peoplepage.tab.people=People
+
+nowplus.client.java.peoplepage.tab.status=Stav
+
+nowplus.client.java.peoplepage.tab.timeline=Časová osa
+
+nowplus.client.java.peoplepage.tab.timeline.empty=Prázdné
+
+polish.command.back=Zpět
+
+polish.command.cancel=Zrušit
+
+polish.command.clear=Vynulovat
+
+polish.command.delete=Odstranit
+
+polish.command.entersymbol=Přidat symbol
+
+polish.command.followlink=Přejít
+
+polish.command.hide=Skrýt
+
+polish.command.mark=Vybrat
+
+polish.command.ok=OK
+
+polish.command.options=Možnosti
+
+polish.command.select=Vybrat
+
+polish.command.submit=Odeslat
+
+polish.command.unmark=Zrušit výběr
+
+nowplus.client.java.polish.dateformatemptytext=DD/MM/RRRR
+
+polish.rss.command.followlink=Přejít
+
+polish.rss.command.select=Zobrazit
+
+polish.title.input=Za�?něte psát
+
+nowplus.client.java.profilepage.connect.item=Připojit ke kontaktu
+
+nowplus.client.java.profilepage.content.address=Adresa
+
+nowplus.client.java.profilepage.content.birthday=Datum narození
+
+nowplus.client.java.profilepage.content.callorsms=Telefonní �?ísla
+
+nowplus.client.java.profilepage.content.command.call=Zavolat
+
+nowplus.client.java.profilepage.content.command.chat=Chat
+
+nowplus.client.java.profilepage.content.command.mms=Obrazová zpráva
+
+nowplus.client.java.profilepage.content.command.open=Otevřít
+
+nowplus.client.java.profilepage.content.command.sms=Poslat text
+
+nowplus.client.java.profilepage.content.command.write=Psát
+
+nowplus.client.java.profilepage.content.date.month.apr=duben
+
+nowplus.client.java.profilepage.content.date.month.aug=srpen
+
+nowplus.client.java.profilepage.content.date.month.dec=prosinec
+
+nowplus.client.java.profilepage.content.date.month.feb=únor
+
+nowplus.client.java.profilepage.content.date.month.jan=leden
+
+nowplus.client.java.profilepage.content.date.month.jul=�?ervenec
+
+nowplus.client.java.profilepage.content.date.month.jun=�?erven
+
+nowplus.client.java.profilepage.content.date.month.mar=březen
+
+nowplus.client.java.profilepage.content.date.month.may=květen
+
+nowplus.client.java.profilepage.content.date.month.nov=listopad
+
+nowplus.client.java.profilepage.content.date.month.oct=říjen
+
+nowplus.client.java.profilepage.content.date.month.okt=říjen
+
+nowplus.client.java.profilepage.content.date.month.sep=září
+
+nowplus.client.java.profilepage.content.email=Email
+
+nowplus.client.java.profilepage.content.groupes=Skupiny
+
+nowplus.client.java.profilepage.content.im=Chat
+
+nowplus.client.java.profilepage.content.name=Jméno
+
+nowplus.client.java.profilepage.content.notes=Poznámky
+
+nowplus.client.java.profilepage.content.socialnetwork=Ú�?ty
+
+nowplus.client.java.profilepage.content.url=Webové stránky
+
+nowplus.client.java.profilepage.content.work=Info o zaměstnání
+
+nowplus.client.java.profilepage.content.work.company=Spole�?nost
+
+nowplus.client.java.profilepage.content.work.department=Oddělení
+
+nowplus.client.java.profilepage.content.work.title=Titul
+
+nowplus.client.java.profilepage.invite.item.label=Pozvat kontakt do
+
+nowplus.client.java.profilepage.invite.item.text=360
+
+nowplus.client.java.profilepage.subtype.fax=Fax
+
+nowplus.client.java.profilepage.subtype.home=Domů
+
+nowplus.client.java.profilepage.subtype.mobile=Mobil
+
+nowplus.client.java.profilepage.subtype.other=Další
+
+nowplus.client.java.profilepage.subtype.work=Práce
+
+nowplus.client.java.profilepage.tab.details=Profil
+
+nowplus.client.java.roamingwarning.text=Chcete se k aplikaci 360 připojit i během roamingu? Mohou vám být ú�?továny poplatky za přenos dat při roamingu
+
+nowplus.client.java.roamingwarning.title=Nacházíte se v režimu roamingu
+
+nowplus.client.java.settings.about.text=People - Služba 360 (c) Vodafone 2009
+
+nowplus.client.java.settings.about.text2010=People - Služba 360 (c) Vodafone 2010
+
+nowplus.client.java.settings.about.title=O službě
+
+nowplus.client.java.settings.clearstorage.confirm.no=Ne
+
+nowplus.client.java.settings.clearstorage.confirm.text=Opravdu chcete odstranit všechna data z této aplikace?
+
+nowplus.client.java.settings.clearstorage.confirm.title=Odstranit všechna data
+
+nowplus.client.java.settings.clearstorage.confirm.yes=Ano
+
+nowplus.client.java.settings.clearstorage.warning.text=Pozor. Smazáním dat z aplikace odstraníte všechny vaše kontakty, zprávy a připojené sítě. Budete odhlášeni z aplikace 360. Později se budete moci znovu přihlásit nebo si zaregistrovat nový ú�?et.
+
+nowplus.client.java.settings.clearstorage.warning.title=Upozornění
+
+nowplus.client.java.settings.command.save=Uložit
+
+nowplus.client.java.settings.datatraffic.title=Datový provoz
+
+nowplus.client.java.settings.removedataitem=Smazat všechna data této aplikace v tomto telefonu
+
+nowplus.client.java.settings.removedataitem.title=Odstranit data
+
+nowplus.client.java.settings.reset.confirm.text=Opravdu chcete vynulovat po�?ítadlo přenesených dat?
+
+nowplus.client.java.settings.reset.confirm.title=Resetovat po�?ítadlo
+
+nowplus.client.java.settings.resetcounteritem=Resetovat po�?ítadlo
+
+nowplus.client.java.settings.roaming.enableroaming=Vždy povolit datové připojení při roamingu
+
+nowplus.client.java.settings.roaming.title=Datový roaming
+
+nowplus.client.java.settings.software.title=Software
+
+nowplus.client.java.settings.sortcontacts.firstlast=Křesntí jméno, Příjmení
+
+nowplus.client.java.settings.sortcontacts.lastfirst=Příjmení, Křestní jméno
+
+nowplus.client.java.settings.sortcontacts.title=Třídit kontakty podle
+
+nowplus.client.java.settings.sync.progress=Spouští se synchronizace...
+
+nowplus.client.java.settings.sync.syncitem=Synchronizovat nyní
+
+nowplus.client.java.settings.sync.title=Synchronizovat kontakty
+
+nowplus.client.java.settings.title=Nastavení
+
+nowplus.client.java.signup.checkingdata.progress.headline=Čekejte prosím
+
+nowplus.client.java.signup.checkingdata.progress.text=Kontrola vašich detailů...
+
+nowplus.client.java.signup.command.cancel=Zrušit
+
+nowplus.client.java.signup.command.continue=Pokra�?ovat
+
+nowplus.client.java.signup.command.exit=Konec
+
+nowplus.client.java.signup.command.read=Číst
+
+nowplus.client.java.signup.command.select=Vybrat
+
+nowplus.client.java.signup.congratulations.headline=Gratulujeme!
+
+nowplus.client.java.signup.congratulations.rememberme=Zapamatuj si mě
+
+nowplus.client.java.signup.congratulations.youarenow=Nyní jste přihlášeni ke službě 360
+
+nowplus.client.java.signup.enterdata.chosepassword=Zvolte si heslo 
+
+nowplus.client.java.signup.enterdata.choseusername=Vyberte si uživatelské jméno 
+
+nowplus.client.java.signup.enterdata.dob=Zadejte vaše datum narození
+
+nowplus.client.java.signup.enterdata.emailfield.hint=Emailová adresa
+
+nowplus.client.java.signup.enterdata.emailfield.title=Zadejte email
+
+nowplus.client.java.signup.enterdata.entermobilenumber=Zadejte �?íslo vašeho mobilního telefonu
+
+nowplus.client.java.signup.enterdata.entermobilenumber.hint=V�?etně mezinárodního kódu, např. +44
+
+nowplus.client.java.signup.enterdata.headline=Registrace je snadná 
+
+nowplus.client.java.signup.enterdata.privacy.text=Prohlášení o ochraně osobních údajů
+
+nowplus.client.java.signup.enterdata.termsandconditions.checkbox.label=Pře�?etl(a) jsem si a souhlasím se
+
+nowplus.client.java.signup.enterdata.termsandconditions.text=Všeobecné podmínky
+
+nowplus.client.java.signup.error.agecheck.text=Zadaný věk se zdá být nesprávný, zkuste to prosím znovu.
+
+nowplus.client.java.signup.error.agecheck.title=Kontrola věku
+
+nowplus.client.java.signup.error.dobnotprovided=Musíte zadat vaše datum narození
+
+nowplus.client.java.signup.error.dobnotprovided.headline=Chybí datum narození
+
+nowplus.client.java.signup.error.email.headline=Email
+
+nowplus.client.java.signup.error.email.invalid=Neplatná emailová adresa
+
+nowplus.client.java.signup.error.headline=Registrace se nezdařila
+
+nowplus.client.java.signup.error.mustaccepttc=Před registrací musíte vyjádřit souhlas se Všeobecnými podmínkami
+
+nowplus.client.java.signup.error.mustaccepttc.headline=Všeobecné podmínky
+
+nowplus.client.java.signup.error.mustbe14=Pro registraci ú�?tu vám musí být nejméně 14 let
+
+nowplus.client.java.signup.error.mustbe14.headline=Kontrola věku
+
+nowplus.client.java.signup.error.mustbeinternational=Zadané telefonní �?íslo musí být v mezinárodním formátu, tj. musí za�?ínat např. +44
+
+nowplus.client.java.signup.error.mustbeinternational.headline=Mezinárodní formát
+
+nowplus.client.java.signup.error.mustenterphonenumber=Pro registraci musíte zadat mobilní telefonní �?íslo
+
+nowplus.client.java.signup.error.mustenterphonenumber.headline=Chybí mobilní telefonní �?íslo
+
+nowplus.client.java.signup.error.passwordchars=Heslo nesmí obsahovat následující znaky
+
+nowplus.client.java.signup.error.passwordchars.headline=Znaky hesla
+
+nowplus.client.java.signup.error.passwordlength=Vaše heslo musí mít délku 6 - 25 znaků
+
+nowplus.client.java.signup.error.passwordlength.headline=Délka hesla
+
+nowplus.client.java.signup.error.usernamechars=Uživatelské jméno nesmí obsahovat následující znaky
+
+nowplus.client.java.signup.error.usernamechars.headline=Znaky uživatelského jména
+
+nowplus.client.java.signup.error.usernamelength=Vaše uživatelské jméno musí mít délku 6 - 50 znaků
+
+nowplus.client.java.signup.error.usernamelength.headline=Délka uživatelského jména
+
+nowplus.client.java.signup.importsn.confirmation.text=Chcete importovat kontakty z vašich ú�?tů?
+
+nowplus.client.java.signup.importsn.confirmation.title=Importovat ú�?ty
+
+nowplus.client.java.signup.signupfailed.dobinvalid=Datum narození není platné. Bu�? je chybný formát, nebo jste nedosáhli 14 let.
+
+nowplus.client.java.signup.signupfailed.internalerror=Vyskytla se chyba
+
+nowplus.client.java.signup.signupfailed.languageinvalid=Omlouváme se, váš jazyk není podporován
+
+nowplus.client.java.signup.signupfailed.mobilemodelinvalid=Tento model mobilního telefonu je bu�? neznámý, nebo není touto službou podporován.
+
+nowplus.client.java.signup.signupfailed.msisdninvalid=Chybné telefonní �?íslo
+
+nowplus.client.java.signup.signupfailed.msisdnmissing=Musíte zadat telefonní �?íslo
+
+nowplus.client.java.signup.signupfailed.passwordinvalid=Heslo je bu�? příliš krátké, dlouhé, nebo obsahuje neplatné znaky
+
+nowplus.client.java.signup.signupfailed.passwordnotspecified=Musíte zadat heslo
+
+nowplus.client.java.signup.signupfailed.tcnotaccepted=Musíte vyjádřit souhlas se Všeobecnými podmínkami
+
+nowplus.client.java.signup.signupfailed.title=Registrace se nezdařila
+
+nowplus.client.java.signup.signupfailed.usernamealreadytaken=Uživatelské jméno se již používá
+
+nowplus.client.java.signup.signupfailed.usernameblacklisted=Uživatelské jméno není povoleno
+
+nowplus.client.java.signup.signupfailed.usernameforbidden=Uživatelské jméno je zakázané. Zvolte si prosím jiné
+
+nowplus.client.java.signup.signupfailed.usernamenotspecified=Chybí uživatelské jméno
+
+nowplus.client.java.signup.signupfailedwrongnumber.text=Omlouváme se, toto telefonní �?íslo nelze kontaktovat. Zkuste to prosím znovu.
+
+nowplus.client.java.signup.signupfailedwrongnumber.title=Ověření se nezdařilo
+
+nowplus.client.java.signup.title=Přihlásit se
+
+nowplus.client.java.signup.waitforsms.notification.text=Probíhá ověřování vašeho telefonního �?ísla. To může chvíli trvat. Prosím �?ekejte!
+
+nowplus.client.java.signup.waitforsms.notification.title=Ověřuje se telefonní �?íslo...
+
+nowplus.client.java.signup.welcome.button.login=Přihlásit se k ú�?tu
+
+nowplus.client.java.signup.welcome.button.signup=Registrace ú�?tu
+
+nowplus.client.java.signup.welcome.headline=Vítejte ve People - službě 360
+
+nowplus.client.java.sms.error.notification.headline=Nepodařilo se odeslat SMS
+
+nowplus.client.java.sms.error.notification.message=Omlouváme se, SMS zprávu se nepodařilo odeslat.
+
+nowplus.client.java.sms.notification.headline=Odesílá se SMS
+
+nowplus.client.java.smscomposer.title=SMS zpráva
+
+nowplus.client.java.smsform.message.hint=Napište zprávu
+
+nowplus.client.java.statuspage.command.request=Vybrat
+
+nowplus.client.java.statuspage.error.user.notonline=Váš stav nebyl aktualizován, neboť nejste právě připojeni k aplikaci 360. Váš stav bude uložen a aktualizován po připojení.
+
+nowplus.client.java.statuspage.noresult=Stav je prázdný
+
+nowplus.client.java.statuspage.request=Vyžádat dalších {0} �?inností
+
+nowplus.client.java.sync.cancel.popup.text=Probíhá rušení...
+
+nowplus.client.java.sync.popup.text=Import {0} z telefonu...
+
+nowplus.client.java.sync.popup.title=Probíhá import kontaktů... 
+
+nowplus.client.java.sync.user.disallowed.create.text=Ukon�?ete prosím tuto aplikaci a v jejích nastaveních povolte přístup k adresáři telefonu.
+
+nowplus.client.java.sync.user.disallowed.create.title=Adresář telefonu nelze upravit
+
+nowplus.client.java.sync.user.disallowed.delete.text=Ukon�?ete prosím tuto aplikaci a v jejích nastaveních povolte přístup k adresáři telefonu.
+
+nowplus.client.java.sync.user.disallowed.delete.title=Adresář telefonu nelze upravit
+
+nowplus.client.java.sync.user.disallowed.open.text=Ukon�?ete prosím tuto aplikaci a v jejích nastaveních povolte přístup k adresáři telefonu.
+
+nowplus.client.java.sync.user.disallowed.open.title=Nelze �?íst z adresáře telefonu
+
+nowplus.client.java.sync.user.disallowed.read.text=Ukon�?ete prosím tuto aplikaci a v jejích nastaveních povolte přístup k adresáři telefonu.
+
+nowplus.client.java.sync.user.disallowed.read.title=Nelze �?íst z adresáře telefonu
+
+nowplus.client.java.sync.user.disallowed.write.text=Ukon�?ete prosím tuto aplikaci a v jejích nastaveních povolte přístup k adresáři telefonu.
+
+nowplus.client.java.sync.user.disallowed.write.title=Nelze ukládat do adresáře telefonu
+
+nowplus.client.java.sync.with.360.text=Váš telefon je nyní připraven k synchronizaci se službou 360. Synchronizace může trvat až 10 minut.
+
+nowplus.client.java.sync.with.360.title=Synchronizovat se službou 360
+
+nowplus.client.java.takepicture.command.new=Nový
+
+nowplus.client.java.takepicture.command.takepic=Zhotovit fotku
+
+nowplus.client.java.takepicture.command.usethis=Použít tuto
+
+nowplus.client.java.takepicture.confirm.usethisimage=Použít tuto fotku
+
+titlebar.httpcounter.kb=kB
+
+nowplus.client.java.updateapplication.confirm.yes=Ano
+
+nowplus.client.java.updateapplication.headline=K dispozici je nová verze People – služby 360
+
+nowplus.client.java.updateapplication.text=Chcete nainstalovat aktualizaci?
+
+nowplus.client.java.webaccounts.add.title=Přidat ú�?et
+
+nowplus.client.java.webaccounts.command.done=Hotovo
+
+nowplus.client.java.webaccounts.command.edit=Upravit
+
+nowplus.client.java.webaccounts.command.login=Přihlásit
+
+nowplus.client.java.webaccounts.command.logout=Odhlásit
+
+nowplus.client.java.webaccounts.edit.info.suffix=Přihlašovací údaje
+
+nowplus.client.java.webaccounts.edit.password=Heslo
+
+nowplus.client.java.webaccounts.edit.title=Upravit ú�?et
+
+nowplus.client.java.webaccounts.edit.username=Uživatelské jméno
+
+nowplus.client.java.webaccounts.edit.username_email=Uživatelské jméno/email
+
+nowplus.client.java.webaccounts.facebook.disclaimer=Pokra�?ováním poskytnete aplikaci Vodafone 360 přístup k informacím ve svém Profilu, k informacím o vašich přátelích a k dalšímu obsahu, který tato aplikace pro svou funkci potřebuje. Použitím aplikace Vodafone 360 dále souhlasíte se Všeobecnými podmínkami sítě Facebook (navštivte http://www.facebook.com/terms.php).
+
+nowplus.client.java.webaccounts.facebook.disclaimer.header=Všeobecné podmínky služby Facebook
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text1=Připojení této aplikace ke službě Facebook vám umožní přenést veřejné snímky z profilů a kontaktní údaje vašich přátel do služby People a rozšířit tak kontaktní údaje ve vašem adresáři.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text2=Kliknutím na "Přihlásit" souhlasíte s tím, že je vám poskytnuta nevýhradní, nepřenosná osobní licence na používání veřejných snímků z profilů vašich přátel ve službě People.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text3=Tato licence skon�?í v okamžiku, kdy vás Facebook nebo vlastník dané fotografie požádá o její smazání. Tato licence vám neumožňuje používat tyto fotografie pro žádné komer�?ní ú�?ely ani pro jiné služby nebo aplikace.
+
+nowplus.client.java.webaccounts.item.adding=Přidává se
+
+nowplus.client.java.webaccounts.item.deleting=Odstraňuje se
+
+
+nowplus.client.java.webaccounts.item.updating=Aktualizuje se
+
+
+nowplus.client.java.webaccounts.overview.title=Komunitní sítě
+
+nowplus.client.java.webaccounts.popup.deletesn.text=Opravdu chcete smazat {0} z vašeho profilu?
+
+nowplus.client.java.webaccounts.popup.deletesn.title=Odstranit ú�?et
+
+nowplus.client.java.webaccounts.popup.importnow.text=Chcete importovat kontakty z vašich ú�?tů?
+
+nowplus.client.java.webaccounts.popup.importnow.title=Importovat ú�?ty
+
+nowplus.client.java.webaccounts.popup.loggingout.text=Čekejte prosím, probíhá odhlašování od tohoto ú�?tu
+
+nowplus.client.java.webaccounts.popup.loggingout.title=Odhlašování
+
+nowplus.client.java.webaccounts.popup.loginfailed.text=Přihlášení k ú�?tu se nezdařilo
+
+nowplus.client.java.webaccounts.popup.loginfailed.title=Nelze se přihlásit
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.text=Nyní jste přihlášeni k ú�?tu
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.title=Přihlášen(a)
+
+nowplus.client.java.webaccounts.popup.logoutfailed.text=Při pokusu o odhlášení se vyskytla chyba. Zkuste to prosím znovu.
+
+nowplus.client.java.webaccounts.popup.logoutfailed.title=Odhlášení se nezdařilo
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.text=Nyní jste odhlášeni z ú�?tu
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.title=Odhlášen(a)
+
+nowplus.client.java.webaccounts.popup.removefailed.text=Při pokusu o odstranění ú�?tu se vyskytla chyba. Zkuste to prosím znovu.
+
+nowplus.client.java.webaccounts.popup.removefailed.title=Odstranění se nezdařilo
+
+nowplus.client.java.webaccounts.popup.removesucceeded.text=Ú�?et byl úspěšně odstraněn.
+
+nowplus.client.java.webaccounts.popup.removesucceeded.title=Odstranění bylo úspěšné
+
+nowplus.client.java.webaccounts.popup.saving.text=Shromaž�?ují se informace z ú�?tu
+
+nowplus.client.java.webaccounts.popup.saving.title=Přihlašování
+
+nowplus.client.java.webaccounts.popup.savingfailed.text=Ú�?et nelze přidat
+
+nowplus.client.java.webaccounts.popup.savingfailed.title=Přidání webového ú�?tu se nezdařilo
+
+nowplus.client.java.webaccounts.popup.savingsuccess.text=Ú�?et byl přidán
+
+nowplus.client.java.webaccounts.popup.savingsuccess.title=Ú�?et byl přidán
+
+nowplus.client.java.webaccounts.progress.deletesn.title=Probíhá �?ištění...
+
+nowplus.client.java.webaccounts.title=Ú�?ty
+
+nowplus.client.java.webaccounts.windowslive.disclaimer.text=Přidáním vašeho ú�?tu Windows Live do služby 360 budete při každém spuštění této aplikace automaticky přihlášeni do Windows Live.
+

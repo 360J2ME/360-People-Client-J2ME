@@ -1,0 +1,907 @@
+#-------------------------------------------------------------------------------
+# CDDL HEADER START
+# 
+# The contents of this file are subject to the terms of the Common Development
+# and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+# 
+# You can obtain a copy of the license at
+# src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+# http://github.com/360/360-Engine-for-Android
+# See the License for the specific language governing permissions and limitations under the License.
+# 
+# When distributing Covered Code, include this CDDL HEADER in each file and
+#  include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+# If applicable, add the following below this CDDL HEADER, with the fields
+# enclosed by brackets "[]" replaced with your own identifying information:
+# Portions Copyright [yyyy] [name of copyright owner]
+# 
+# CDDL HEADER END
+# 
+# Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+# Use is subject to license terms.
+#-------------------------------------------------------------------------------
+nowplus.client.java.app.criticalerror.text=Der er opstået en fejl. 360 skal genstartes, og du skal logge ind igen. For at sikre dine data bliver telefonens adressebog importeret, når du logger ind.
+
+nowplus.client.java.app.criticalerror.title=Genstart nødvendig
+
+nowplus.client.java.app.serviceunavailable.text=Netværket er i øjeblikket utilgængeligt
+
+nowplus.client.java.app.serviceunavailable.title=Kan ikke oprette forbindelse
+
+nowplus.client.java.application.initialisation.failed.title=REDUNDANT
+
+nowplus.client.java.application.popup.text=Starter op...
+
+nowplus.client.java.application.popup.title=Starter op...
+
+nowplus.client.java.browse.confirm.headline=Åbn browser
+
+nowplus.client.java.browse.confirm.text=Du er ved at forlade 360 og åbne en browser
+
+nowplus.client.java.browser.notification.title=Indlæser side...
+
+nowplus.client.java.cabsabsync.popup.receiving=Afslutter synkronisering med 360
+
+nowplus.client.java.cabsabsync.popup.receiving.failed=Synkronisering blev ikke afsluttet, men afsluttes næste gang, du starter applikationen.
+
+nowplus.client.java.cabsabsync.popup.sending=Sender kontakter til 360
+
+nowplus.client.java.cabsabsync.popup.sending.failed=Vi kunne ikke synkronisere alle dine kontakter med 360, men de synkroniseres næste gang, du starter applikationen.
+
+nowplus.client.java.cabsabsync.popup.title=Synkroniserer dine kontakter...
+
+nowplus.client.java.chat.thread.confirm.delete.text=Vil du slette denne kontakt?
+
+nowplus.client.java.chat.thread.confirm.delete.title=Slet kontakt
+
+nowplus.client.java.chat.thread.date.day.fri=Fre
+
+nowplus.client.java.chat.thread.date.day.mon=Man
+
+nowplus.client.java.chat.thread.date.day.sat=Lør
+
+nowplus.client.java.chat.thread.date.day.sun=Søn
+
+nowplus.client.java.chat.thread.date.day.thu=Tors
+
+nowplus.client.java.chat.thread.date.day.tue=Tirs
+
+nowplus.client.java.chat.thread.date.day.wed=Ons
+
+nowplus.client.java.chat.thread.error.contact.notconnected=Your message can't be sent because you and {0} are not connected on 360. You can connect to from his details page.
+
+nowplus.client.java.chat.thread.error.contact.notonline=Din meddelelse kan ikke sendes, da din ven ikke er logget ind på {0}. Du kan begynde at chatte, når din ven er online igen.
+
+nowplus.client.java.chat.thread.error.user.notonline=redundant
+
+nowplus.client.java.chat.thread.error.user.notsignedin=Din meddelelse kan ikke sendes, fordi du ikke er logget ind på {0}. Du kan logge ind på {0} under dine 'Konti' under 'Mig'.
+
+nowplus.client.java.chat.thread.send=Send
+
+nowplus.client.java.chat.thread.textfield.helptext=Skriv tekst her
+
+nowplus.client.java.chat.thread.title=Chat
+
+nowplus.client.java.chat.thread.you=Mig
+
+nowplus.client.java.command.close=Luk
+
+nowplus.client.java.command.exit=Afslut
+
+nowplus.client.java.command.ignore=Ignorer
+
+nowplus.client.java.command.open=Åbn
+
+nowplus.client.java.command.options=Funktioner
+
+nowplus.client.java.command.roaming.yes=Ja
+
+nowplus.client.java.contextual.menu.command.add.new.contact=Tilføj ny kontakt
+
+nowplus.client.java.contextual.menu.command.block=Bloker kontakt
+
+nowplus.client.java.contextual.menu.command.connect=Opret forbindelse
+
+nowplus.client.java.contextual.menu.command.create.email=Ny e-mail
+
+nowplus.client.java.contextual.menu.command.create.new=Opret ny...
+
+nowplus.client.java.contextual.menu.command.create.sms=Ny SMS
+
+nowplus.client.java.contextual.menu.command.create.text=Opret tekst
+
+nowplus.client.java.contextual.menu.command.delete=Slet
+
+nowplus.client.java.contextual.menu.command.edit.profile=Rediger profil
+
+nowplus.client.java.contextual.menu.command.exit=Afslut
+
+nowplus.client.java.contextual.menu.command.help=Hjælp
+
+nowplus.client.java.contextual.menu.command.invite=Inviter
+
+nowplus.client.java.contextual.menu.command.more=Mere...
+
+nowplus.client.java.contextual.menu.command.open.filter=Til toppen
+
+nowplus.client.java.contextual.menu.command.open.ongoing.chat=Åbn igangværende chat
+
+nowplus.client.java.contextual.menu.command.search=Søg 360
+
+nowplus.client.java.contextual.menu.command.settings=Indstillinger
+
+nowplus.client.java.contextual.menu.command.switch.application=Skift applikation
+
+nowplus.client.java.contextual.menu.command.view.profile=Vis profil
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.text=Vil du slette {0}?
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.title=Slet kontakt
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.text=Vil du slette {0}?
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.title=Slet oplysning
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.text1=Vil du slette {0} fra din profil?
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.title=Slet konto
+
+nowplus.client.java.contextual.menu.infobar.profile=Profil
+
+nowplus.client.java.contextual.menu.navbar.Chat=Chat
+
+nowplus.client.java.contextual.menu.navbar.Email=E-mail
+
+nowplus.client.java.contextual.menu.navbar.Poke=Prik til
+
+nowplus.client.java.contextual.menu.navbar.SMS=SMS
+
+nowplus.client.java.contextual.menu.navbar.call=Opkald
+
+nowplus.client.java.contextual.menu.notify.block.text=Din kontakt er blevet blokeret
+
+nowplus.client.java.contextual.menu.notify.block.title=Bloker kontakt
+
+nowplus.client.java.contextual.menu.notify.connect.text=Din anmodning om oprettelse af forbindelse er sendt
+
+nowplus.client.java.contextual.menu.notify.connect.title=Opret forbindelse
+
+nowplus.client.java.contextual.menu.notify.invite.text=Din kontakt er blevet inviteret
+
+nowplus.client.java.contextual.menu.notify.invite.title=Inviter
+
+nowplus.client.java.date.friday=Fredag
+
+nowplus.client.java.date.monday=Mandag
+
+nowplus.client.java.date.now=Nu
+
+nowplus.client.java.date.saturday=Lørdag
+
+nowplus.client.java.date.sunday=Søndag
+
+nowplus.client.java.date.thursday=Torsdag
+
+nowplus.client.java.date.today=I dag
+
+nowplus.client.java.date.tuesday=Tirsdag
+
+nowplus.client.java.date.wednesday=Onsdag
+
+nowplus.client.java.date.yesterday=I går
+
+nowplus.client.java.edit.contact.add=Tilføj
+
+nowplus.client.java.edit.contact.address=Adresse
+
+nowplus.client.java.edit.contact.address.country=Land
+
+nowplus.client.java.edit.contact.address.postcode=Postnummer
+
+nowplus.client.java.edit.contact.address.region=Region
+
+nowplus.client.java.edit.contact.address.street=Vej/gade
+
+nowplus.client.java.edit.contact.address.town=By
+
+nowplus.client.java.edit.contact.bdinvalid.text=Fødselsdato skal ligge i fortiden
+
+nowplus.client.java.edit.contact.birthday=Fødselsdato
+
+nowplus.client.java.edit.contact.command.edit=Rediger
+
+nowplus.client.java.edit.contact.command.new=Ny
+
+nowplus.client.java.edit.contact.command.save=Gem
+
+nowplus.client.java.edit.contact.command.switch.multitab=Anvend multi-tap tekst
+
+nowplus.client.java.edit.contact.command.switch.native=Anvend intelligent ordbog
+
+nowplus.client.java.edit.contact.command.takepicture=Tag et billede
+
+nowplus.client.java.edit.contact.delete.failed.notify.text=Detaljen kunne ikke slettes. Genstart applikationen, hvis dette fortsætter.
+
+nowplus.client.java.edit.contact.delete.failed.notify.title=Kan ikke slette
+
+nowplus.client.java.edit.contact.edit=Rediger
+
+nowplus.client.java.edit.contact.email=E-mail
+
+nowplus.client.java.edit.contact.email.address=E-mail-adresse
+
+nowplus.client.java.edit.contact.group=Gruppe
+
+nowplus.client.java.edit.contact.group.label=Gruppenavn
+
+nowplus.client.java.edit.contact.im=Chat
+
+nowplus.client.java.edit.contact.invalid.email.text=Du har angivet en forkert e-mail-adresse. Prøv igen.
+
+nowplus.client.java.edit.contact.invalid.email.title=Forkert e-mail
+
+nowplus.client.java.edit.contact.invalid.name.text=Din kontakt kan ikke gemmes uden et navn. Vil du annullere ændringerne?
+
+nowplus.client.java.edit.contact.invalid.name.title=Navn mangler
+
+nowplus.client.java.edit.contact.missing.name.confirm.no=Nej
+
+nowplus.client.java.edit.contact.missing.name.confirm.yes=Ja
+
+nowplus.client.java.edit.contact.missing.name.notify.ok=OK
+
+nowplus.client.java.edit.contact.missing.name.text=Du skal angive mindst et navn
+
+nowplus.client.java.edit.contact.missing.name.title=Navn mangler
+
+nowplus.client.java.edit.contact.name=Navn
+
+nowplus.client.java.edit.contact.name.first=Fornavn
+
+nowplus.client.java.edit.contact.name.last=Efternavn
+
+nowplus.client.java.edit.contact.name.middle=Mellemnavn
+
+nowplus.client.java.edit.contact.note=Noter
+
+nowplus.client.java.edit.contact.note.enter=Angiv note
+
+nowplus.client.java.edit.contact.phone=Telefon
+
+nowplus.client.java.edit.contact.phone.number=Telefonnr.
+
+nowplus.client.java.edit.contact.phone.preffered=Anvend som foretrukken
+
+nowplus.client.java.edit.contact.subtype.label=Etiket
+
+nowplus.client.java.edit.contact.take.picture=Tag et billede
+
+nowplus.client.java.edit.contact.title=Rediger profil
+
+nowplus.client.java.edit.contact.update.failed.notify.text=Dine kontaktdetaljer kunne ikke opdateres. Genstart applikationen, hvis dette fortsætter.
+
+nowplus.client.java.edit.contact.update.failed.notify.title=Kunne ikke opdatere
+
+nowplus.client.java.edit.contact.update.notify.text=Profil bliver opdateret
+
+nowplus.client.java.edit.contact.update.notify.title=Opdaterer
+
+nowplus.client.java.edit.contact.url=Website
+
+nowplus.client.java.edit.contact.url.address=Webadresse
+
+nowplus.client.java.edit.contact.work=Arbejdsmæssig info
+
+nowplus.client.java.exit.confirm.headline=Vil du afslutte People?
+
+nowplus.client.java.exit.confirm.no=Nej
+
+nowplus.client.java.exit.confirm.text=Afslut
+
+nowplus.client.java.exit.confirm.yes=Ja
+
+nowplus.client.java.exit.notification.headline=Lukker
+
+nowplus.client.java.exit.notification.text=Vent et øjeblik. Programmet lukker.
+
+nowplus.client.java.help.confirm.headline=Du er ved at forlade 360 og åbne en browser
+
+nowplus.client.java.help.confirm.text=Åbn browser
+
+nowplus.client.java.identity.vodafone360.chatlabel=360 Chat
+
+nowplus.client.java.landingpage.tagline=redundant
+
+nowplus.client.java.landingpage.tagline1=En 360-tjeneste
+
+nowplus.client.java.landingpage.tagline2=Samler din verden på ét sted
+
+nowplus.client.java.launch.postponed.text=redundant
+
+nowplus.client.java.launch.postponed.title=redundant
+
+nowplus.client.java.list.order.first=Fornavn
+
+nowplus.client.java.list.order.last=Efternavn
+
+nowplus.client.java.list.order.none=Ingen
+
+nowplus.client.java.login.connection.disallowed.text=Programmet skal genstartes for at fortsætte
+
+nowplus.client.java.login.connection.disallowed.title=Forbindelse ikke tilladt
+
+nowplus.client.java.login.loginfailed.text=Dit brugernavn og/eller adgangskode er ugyldig. Prøv igen.
+
+nowplus.client.java.login.loginfailed.title=Prøv igen
+
+nowplus.client.java.login.notification.loggingin=Logger ind
+
+nowplus.client.java.login.reauthenticate.text=Dine kontodetaljer kan være ændret. Log ind igen.
+
+nowplus.client.java.login.title=Log ind
+
+nowplus.client.java.loginform.command.cancel=Annuller
+
+nowplus.client.java.loginform.command.mark=Vælg
+
+nowplus.client.java.loginform.command.save=Log ind
+
+nowplus.client.java.loginform.command.unmark=Fravælg
+
+nowplus.client.java.loginform.headline=Log ind på 360
+
+nowplus.client.java.loginform.password.chosepassword.hint=Adgangskode
+
+nowplus.client.java.loginform.password.hint=Adgangskode
+
+nowplus.client.java.loginform.rememberme.label=Husk mig
+
+nowplus.client.java.loginform.username.choseusername.hint=Brugernavn
+
+nowplus.client.java.loginform.username.hint=Brugernavn
+
+nowplus.client.java.network.search.command.search=Søg
+
+nowplus.client.java.network.search.title=Søg 360
+
+nowplus.client.java.networkdown.text=Din netværksforbindelse er nede i øjeblikket. 360 går online, når netværket er tilgængeligt igen.
+
+nowplus.client.java.networkdown.title=Netværksforbindelse mistet
+
+nowplus.client.java.new.contact.title=Ny kontakt
+
+nowplus.client.java.newpasswordrestart.text=Der blev registreret en ændret adgangskode. Du skal genstarte applikationen og indtaste din adgangskode igen for at fortsætte.
+
+nowplus.client.java.newpasswordrestart.title=Adgangskode ændret
+
+nowplus.client.java.peoplepage.meview.availability.available=Tilgængelig
+
+nowplus.client.java.peoplepage.meview.availability.invisible=Usynlig
+
+nowplus.client.java.peoplepage.meview.availability.label=Tilgængelighed
+
+nowplus.client.java.peoplepage.meview.availability.offline=Offline
+
+nowplus.client.java.peoplepage.meview.command.set=Indstil
+
+nowplus.client.java.peoplepage.meview.myprofile=Min profil
+
+nowplus.client.java.peoplepage.meview.settings=Indstillinger
+
+nowplus.client.java.peoplepage.meview.sn.status=Poster også til {0}
+
+nowplus.client.java.peoplepage.meview.sn.status1=redundant
+
+nowplus.client.java.peoplepage.meview.sn.status2=redundant
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.text=Din status kunne ikke opdateres. Genstart applikationen, hvis dette fortsætter.
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.title=Kunne ikke opdatere status
+
+nowplus.client.java.peoplepage.meview.status.helptext=Hvad laver du nu?
+
+nowplus.client.java.peoplepage.meview.status.label=Statusmeddelelse
+
+nowplus.client.java.peoplepage.meview.submit.command.update=Opdatering
+
+nowplus.client.java.peoplepage.meview.webaccounts=Konti
+
+nowplus.client.java.peoplepage.notification.pleasewait=Vent et øjeblik...
+
+nowplus.client.java.peoplepage.people.filter.all=Alle
+
+nowplus.client.java.peoplepage.people.filter.colleages=Arbejde
+
+nowplus.client.java.peoplepage.people.filter.family=Familie
+
+nowplus.client.java.peoplepage.people.filter.friends=Venner
+
+nowplus.client.java.peoplepage.people.filter.nowplus=Forbundet
+
+nowplus.client.java.peoplepage.people.filter.online=Online
+
+nowplus.client.java.peoplepage.people.filter.phonebook=Telefonbog
+
+nowplus.client.java.peoplepage.tab.chat=Chat
+
+nowplus.client.java.peoplepage.tab.icon.name.contacts=Kontakter
+
+nowplus.client.java.peoplepage.tab.me=Mig
+
+nowplus.client.java.peoplepage.tab.people=People
+
+nowplus.client.java.peoplepage.tab.status=Status
+
+nowplus.client.java.peoplepage.tab.timeline=Tidslinje
+
+nowplus.client.java.peoplepage.tab.timeline.empty=Tom
+
+polish.command.back=Tilbage
+
+polish.command.cancel=Annuller
+
+polish.command.clear=Ryd
+
+polish.command.delete=Slet
+
+polish.command.entersymbol=Tilføj symbol
+
+polish.command.followlink=Gå til
+
+polish.command.hide=Skjul
+
+polish.command.mark=Vælg
+
+polish.command.ok=OK
+
+polish.command.options=Funktioner
+
+polish.command.select=Vælg
+
+polish.command.submit=Send
+
+polish.command.unmark=Fravælg
+
+nowplus.client.java.polish.dateformatemptytext=DD/MM/ÅÅÅÅ
+
+polish.rss.command.followlink=Gå til
+
+polish.rss.command.select=Vis
+
+polish.title.input=Start indtastning
+
+nowplus.client.java.profilepage.connect.item=Opret forbindelse til kontakt
+
+nowplus.client.java.profilepage.content.address=Adresse
+
+nowplus.client.java.profilepage.content.birthday=Fødselsdato
+
+nowplus.client.java.profilepage.content.callorsms=Telefonnumre
+
+nowplus.client.java.profilepage.content.command.call=Opkald
+
+nowplus.client.java.profilepage.content.command.chat=Chat
+
+nowplus.client.java.profilepage.content.command.mms=Billedbesked
+
+nowplus.client.java.profilepage.content.command.open=Åbn
+
+nowplus.client.java.profilepage.content.command.sms=Tekstbesked
+
+nowplus.client.java.profilepage.content.command.write=Skriv
+
+nowplus.client.java.profilepage.content.date.month.apr=April
+
+nowplus.client.java.profilepage.content.date.month.aug=August
+
+nowplus.client.java.profilepage.content.date.month.dec=December
+
+nowplus.client.java.profilepage.content.date.month.feb=Februar
+
+nowplus.client.java.profilepage.content.date.month.jan=Januar
+
+nowplus.client.java.profilepage.content.date.month.jul=Juli
+
+nowplus.client.java.profilepage.content.date.month.jun=Juni
+
+nowplus.client.java.profilepage.content.date.month.mar=Marts
+
+nowplus.client.java.profilepage.content.date.month.may=Maj
+
+nowplus.client.java.profilepage.content.date.month.nov=November
+
+nowplus.client.java.profilepage.content.date.month.oct=Oktober
+
+nowplus.client.java.profilepage.content.date.month.okt=Oktober
+
+nowplus.client.java.profilepage.content.date.month.sep=September
+
+nowplus.client.java.profilepage.content.email=E-mail
+
+nowplus.client.java.profilepage.content.groupes=Grupper
+
+nowplus.client.java.profilepage.content.im=Chat
+
+nowplus.client.java.profilepage.content.name=Navn
+
+nowplus.client.java.profilepage.content.notes=Noter
+
+nowplus.client.java.profilepage.content.socialnetwork=Konti
+
+nowplus.client.java.profilepage.content.url=Website
+
+nowplus.client.java.profilepage.content.work=Arbejdsmæssig info
+
+nowplus.client.java.profilepage.content.work.company=Firma
+
+nowplus.client.java.profilepage.content.work.department=Afdeling
+
+nowplus.client.java.profilepage.content.work.title=Titel
+
+nowplus.client.java.profilepage.invite.item.label=Inviter kontakt til
+
+nowplus.client.java.profilepage.invite.item.text=360
+
+nowplus.client.java.profilepage.subtype.fax=Fax
+
+nowplus.client.java.profilepage.subtype.home=Hjem
+
+nowplus.client.java.profilepage.subtype.mobile=Mobil
+
+nowplus.client.java.profilepage.subtype.other=Øvrige
+
+nowplus.client.java.profilepage.subtype.work=Arbejde
+
+nowplus.client.java.profilepage.tab.details=Profil
+
+nowplus.client.java.roamingwarning.text=Skal 360 oprette forbindelse under roaming? Du kan blive pålagt roamingdata-gebyrer
+
+nowplus.client.java.roamingwarning.title=Du roamer
+
+nowplus.client.java.settings.about.text=People - En 360-tjeneste (c) Vodafone 2009
+
+nowplus.client.java.settings.about.text2010=People - En 360-tjeneste (c) Vodafone 2010
+
+nowplus.client.java.settings.about.title=Om
+
+nowplus.client.java.settings.clearstorage.confirm.no=Nej
+
+nowplus.client.java.settings.clearstorage.confirm.text=Vil du slette alle data i programmet?
+
+nowplus.client.java.settings.clearstorage.confirm.title=Slet alle data
+
+nowplus.client.java.settings.clearstorage.confirm.yes=Ja
+
+nowplus.client.java.settings.clearstorage.warning.text=Bemærk! Når du sletter data, bliver alle dine kontakter, meddelelser og netværk, der er oprettet forbindelse til, slettet i programmet. Du bliver logget af 360 og kan logge ind igen eller registrere dig til en ny konto.
+
+nowplus.client.java.settings.clearstorage.warning.title=Advarsel
+
+nowplus.client.java.settings.command.save=Gem
+
+nowplus.client.java.settings.datatraffic.title=Datatrafik
+
+nowplus.client.java.settings.removedataitem=Slet alle data, der gemmes på denne telefon, fra dette program
+
+nowplus.client.java.settings.removedataitem.title=Slet data
+
+nowplus.client.java.settings.reset.confirm.text=Vil du nulstille datatrafiktælleren?
+
+nowplus.client.java.settings.reset.confirm.title=Nulstil tæller
+
+nowplus.client.java.settings.resetcounteritem=Nulstil tæller
+
+nowplus.client.java.settings.roaming.enableroaming=Aktiver altid data ved roaming
+
+nowplus.client.java.settings.roaming.title=Dataroaming
+
+nowplus.client.java.settings.software.title=Software
+
+nowplus.client.java.settings.sortcontacts.firstlast=Fornavn, Efternavn
+
+nowplus.client.java.settings.sortcontacts.lastfirst=Efternavn, Fornavn
+
+nowplus.client.java.settings.sortcontacts.title=Sorter kontakter efter
+
+nowplus.client.java.settings.sync.progress=Starter synk...
+
+nowplus.client.java.settings.sync.syncitem=Synk. nu
+
+nowplus.client.java.settings.sync.title=Synkroniser kontakter
+
+nowplus.client.java.settings.title=Indstillinger
+
+nowplus.client.java.signup.checkingdata.progress.headline=Vent
+
+nowplus.client.java.signup.checkingdata.progress.text=Kontrollerer dine detaljer...
+
+nowplus.client.java.signup.command.cancel=Annuller
+
+nowplus.client.java.signup.command.continue=Fortsæt
+
+nowplus.client.java.signup.command.exit=Afslut
+
+nowplus.client.java.signup.command.read=Læs
+
+nowplus.client.java.signup.command.select=Vælg
+
+nowplus.client.java.signup.congratulations.headline=Tillykke!
+
+nowplus.client.java.signup.congratulations.rememberme=Husk mig
+
+nowplus.client.java.signup.congratulations.youarenow=Du er nu logget ind på 360
+
+nowplus.client.java.signup.enterdata.chosepassword=Vælg adgangskode 
+
+nowplus.client.java.signup.enterdata.choseusername=Vælg brugernavn 
+
+nowplus.client.java.signup.enterdata.dob=Angiv fødselsdato
+
+nowplus.client.java.signup.enterdata.emailfield.hint=E-mail-adresse
+
+nowplus.client.java.signup.enterdata.emailfield.title=Indtast e-mail
+
+nowplus.client.java.signup.enterdata.entermobilenumber=Angiv mobilnummer
+
+nowplus.client.java.signup.enterdata.entermobilenumber.hint=Medtag int'l. kode, fx +45
+
+nowplus.client.java.signup.enterdata.headline=Registrering er let 
+
+nowplus.client.java.signup.enterdata.privacy.text=Erklæring om personlige oplysninger
+
+nowplus.client.java.signup.enterdata.termsandconditions.checkbox.label=Jeg har læst og accepteret
+
+nowplus.client.java.signup.enterdata.termsandconditions.text=Vilkår
+
+nowplus.client.java.signup.error.agecheck.text=Din angivne alder er vist forkert. Angiv den igen.
+
+nowplus.client.java.signup.error.agecheck.title=Kontrol af alder
+
+nowplus.client.java.signup.error.dobnotprovided=Du skal angive fødselsdato
+
+nowplus.client.java.signup.error.dobnotprovided.headline=Fødselsdato mangler
+
+nowplus.client.java.signup.error.email.headline=E-mail
+
+nowplus.client.java.signup.error.email.invalid=Ugyldig e-mail-adresse
+
+nowplus.client.java.signup.error.headline=Registrering mislykkedes
+
+nowplus.client.java.signup.error.mustaccepttc=Du skal acceptere Vilkårene for at registrere dig
+
+nowplus.client.java.signup.error.mustaccepttc.headline=Vilkår
+
+nowplus.client.java.signup.error.mustbe14=Du skal være 14 år eller ældre for at registrere dig
+
+nowplus.client.java.signup.error.mustbe14.headline=Kontrol af alder
+
+nowplus.client.java.signup.error.mustbeinternational=Det valgte telefonnummer skal være i internationalt format, fx begynde med +45
+
+nowplus.client.java.signup.error.mustbeinternational.headline=Internationalt format
+
+nowplus.client.java.signup.error.mustenterphonenumber=Du skal angive et mobilnummer for at registrere dig
+
+nowplus.client.java.signup.error.mustenterphonenumber.headline=Mobilnummer mangler
+
+nowplus.client.java.signup.error.passwordchars=Disse tegn er ikke tilladt i en adgangskode
+
+nowplus.client.java.signup.error.passwordchars.headline=Tegn i adgangskode
+
+nowplus.client.java.signup.error.passwordlength=Din adgangskode skal være mellem 6 og 25 tegn lang
+
+nowplus.client.java.signup.error.passwordlength.headline=Adgangskodens længde
+
+nowplus.client.java.signup.error.usernamechars=Disse tegn er ikke tilladt i et brugernavn
+
+nowplus.client.java.signup.error.usernamechars.headline=Tegn i brugernavn
+
+nowplus.client.java.signup.error.usernamelength=Brugernavnet skal være mellem 6 og 50 tegn
+
+nowplus.client.java.signup.error.usernamelength.headline=Brugernavnets længde
+
+nowplus.client.java.signup.importsn.confirmation.text=Vil du importere kontakter fra dine konti?
+
+nowplus.client.java.signup.importsn.confirmation.title=Importer konti
+
+nowplus.client.java.signup.signupfailed.dobinvalid=Fødselsdato er ugyldig. Enten er dataformatet forkert, eller du er ikke fyldt 14 år
+
+nowplus.client.java.signup.signupfailed.internalerror=Something just went wrong
+
+nowplus.client.java.signup.signupfailed.languageinvalid=Dit sprog er desværre ikke understøttet
+
+nowplus.client.java.signup.signupfailed.mobilemodelinvalid=Mobiltelefonmodellen er enten ukendt eller understøttes ikke af tjenesten.
+
+nowplus.client.java.signup.signupfailed.msisdninvalid=Forkert telefonnummer
+
+nowplus.client.java.signup.signupfailed.msisdnmissing=Du skal angive et telefonnummer
+
+nowplus.client.java.signup.signupfailed.passwordinvalid=Adgangskoden er for kort, for lang eller indeholder ugyldige tegn
+
+nowplus.client.java.signup.signupfailed.passwordnotspecified=Du skal angive en adgangskode
+
+nowplus.client.java.signup.signupfailed.tcnotaccepted=Læs og accepter Vilkårene
+
+nowplus.client.java.signup.signupfailed.title=Registrering mislykkedes
+
+nowplus.client.java.signup.signupfailed.usernamealreadytaken=Brugernavn er allerede taget
+
+nowplus.client.java.signup.signupfailed.usernameblacklisted=Brugernavn er ikke tilladt
+
+nowplus.client.java.signup.signupfailed.usernameforbidden=Dette brugernavn er ikke tilladt. Vælg et andet.
+
+nowplus.client.java.signup.signupfailed.usernamenotspecified=Brugernavn mangler
+
+nowplus.client.java.signup.signupfailedwrongnumber.text=Vi kan desværre ikke finde telefonnummeret. Prøv igen.
+
+nowplus.client.java.signup.signupfailedwrongnumber.title=Kan ikke bekræfte
+
+nowplus.client.java.signup.title=Registrer dig
+
+nowplus.client.java.signup.waitforsms.notification.text=Vi kontrollerer dit telefonnummer. Vent et øjeblik!
+
+nowplus.client.java.signup.waitforsms.notification.title=Kontrollerer telefonnummer...
+
+nowplus.client.java.signup.welcome.button.login=Log ind på min konto
+
+nowplus.client.java.signup.welcome.button.signup=Registrer dig og få en konto
+
+nowplus.client.java.signup.welcome.headline=Velkommen til People - En 360-tjeneste
+
+nowplus.client.java.sms.error.notification.headline=SMS kunne ikke sendes
+
+nowplus.client.java.sms.error.notification.message=SMS'en kunne desværre ikke sendes.
+
+nowplus.client.java.sms.notification.headline=Sender SMS
+
+nowplus.client.java.smscomposer.title=SMS
+
+nowplus.client.java.smsform.message.hint=Indtast din meddelelse
+
+nowplus.client.java.statuspage.command.request=Vælg
+
+nowplus.client.java.statuspage.error.user.notonline=Din status er ikke opdateret, da du er forbundet til 360 i øjeblikket. Din statusmeddelelse bliver gemt og opdateret, når du har oprettet forbindelse igen.
+
+nowplus.client.java.statuspage.noresult=Status er tom
+
+nowplus.client.java.statuspage.request=Anmod om næste {0} aktiviteter
+
+nowplus.client.java.sync.cancel.popup.text=Annullerer...
+
+nowplus.client.java.sync.popup.text=Importerer {0} fra telefon...
+
+nowplus.client.java.sync.popup.title=Importerer kontakter... 
+
+nowplus.client.java.sync.user.disallowed.create.text=Afslut applikationen, og opdater applikationens indstillinger for at tillade adgang til telefonens adressebog.
+
+nowplus.client.java.sync.user.disallowed.create.title=Kan ikke redigere telefonens adressebog
+
+nowplus.client.java.sync.user.disallowed.delete.text=Afslut applikationen, og opdater applikationens indstillinger for at tillade adgang til telefonens adressebog.
+
+nowplus.client.java.sync.user.disallowed.delete.title=Kan ikke redigere telefonens adressebog
+
+nowplus.client.java.sync.user.disallowed.open.text=Afslut applikationen, og opdater applikationens indstillinger for at tillade adgang til telefonens adressebog.
+
+nowplus.client.java.sync.user.disallowed.open.title=Kan ikke læse telefonens adressebog
+
+nowplus.client.java.sync.user.disallowed.read.text=Afslut applikationen, og opdater applikationens indstillinger for at tillade adgang til telefonens adressebog.
+
+nowplus.client.java.sync.user.disallowed.read.title=Kan ikke læse fra telefonens adressebog
+
+nowplus.client.java.sync.user.disallowed.write.text=Afslut applikationen, og opdater applikationens indstillinger for at tillade adgang til telefonens adressebog.
+
+nowplus.client.java.sync.user.disallowed.write.title=Kan ikke gemme til telefonens adressebog
+
+nowplus.client.java.sync.with.360.text=Du kan nu synkronisere din telefon med 360. Det kan tage op til 10 minutter.
+
+nowplus.client.java.sync.with.360.title=Synk. med 360
+
+nowplus.client.java.takepicture.command.new=Ny
+
+nowplus.client.java.takepicture.command.takepic=Tag et billede
+
+nowplus.client.java.takepicture.command.usethis=Anvend dette
+
+nowplus.client.java.takepicture.confirm.usethisimage=Anvend dette billede
+
+titlebar.httpcounter.kb=kB
+
+nowplus.client.java.updateapplication.confirm.yes=Ja
+
+nowplus.client.java.updateapplication.headline=En ny version af People – En 360-tjeneste – er tilgængelig
+
+nowplus.client.java.updateapplication.text=Vil du installere opdateringen?
+
+nowplus.client.java.webaccounts.add.title=Tilføj konto
+
+nowplus.client.java.webaccounts.command.done=Udført
+
+nowplus.client.java.webaccounts.command.edit=Rediger
+
+nowplus.client.java.webaccounts.command.login=Log ind
+
+nowplus.client.java.webaccounts.command.logout=Log af
+
+nowplus.client.java.webaccounts.edit.info.suffix=Logon-detaljer
+
+nowplus.client.java.webaccounts.edit.password=Adgangskode
+
+nowplus.client.java.webaccounts.edit.title=Rediger konto
+
+nowplus.client.java.webaccounts.edit.username=Brugernavn
+
+nowplus.client.java.webaccounts.edit.username_email=Brugernavn/e-mail
+
+nowplus.client.java.webaccounts.facebook.disclaimer=Ved at fortsætte giver du Vodafone 360 adgang til dine profiloplysninger, dine venners oplysninger og andet indhold, som Vodafone 360 skal bruge for at fungere. Du samtykker også til Facebooks vilkår for brug, når du bruger Vodafone 360 (besøg http://www.facebook.com/terms.php).
+
+nowplus.client.java.webaccounts.facebook.disclaimer.header=Vilkår for Facebook
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text1=Når du forbinder denne applikation med Facebook, kan du hente dine venners offentlige profilbilleder og kontaktoplysninger til People og overføre dem til din adressebog.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text2=Ved at klikke på Logon accepterer du, at du får en ikke-eksklusiv, ikke-overdragelig personlig licens til at bruge dine venners offentlige profilbilleder på People.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text3=Licensen ophører, når Facebook eller ejeren af det pågældende foto beder dig om at slette det. Licensen giver dig ikke lov til at bruge billederne i nogen form for kommercielt øjemed eller med nogen anden tjeneste eller applikation.
+
+nowplus.client.java.webaccounts.item.adding=Tilføjer
+
+nowplus.client.java.webaccounts.item.deleting=Sletter
+
+
+nowplus.client.java.webaccounts.item.updating=Opdaterer
+
+
+nowplus.client.java.webaccounts.overview.title=Sociale netværk
+
+nowplus.client.java.webaccounts.popup.deletesn.text=Vil du slette {0} fra din profil?
+
+nowplus.client.java.webaccounts.popup.deletesn.title=Slet konto
+
+nowplus.client.java.webaccounts.popup.importnow.text=Vil du importere kontakter fra dine konti?
+
+nowplus.client.java.webaccounts.popup.importnow.title=Importer konti
+
+nowplus.client.java.webaccounts.popup.loggingout.text=Vent, mens vi logger dig af kontoen
+
+nowplus.client.java.webaccounts.popup.loggingout.title=Logger af
+
+nowplus.client.java.webaccounts.popup.loginfailed.text=Du kunne ikke logges på kontoen
+
+nowplus.client.java.webaccounts.popup.loginfailed.title=Logon mislykkedes
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.text=Du er nu logget på kontoen
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.title=Logget ind
+
+nowplus.client.java.webaccounts.popup.logoutfailed.text=Noget gik galt, da du forsøgte at logge af. Prøv igen.
+
+nowplus.client.java.webaccounts.popup.logoutfailed.title=Log out mislykkedes
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.text=Du er nu logget af kontoen
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.title=Logget af
+
+nowplus.client.java.webaccounts.popup.removefailed.text=Noget gik galt, da du forsøgte at fjerne kontoen. Prøv igen.
+
+nowplus.client.java.webaccounts.popup.removefailed.title=Kan ikke fjerne
+
+nowplus.client.java.webaccounts.popup.removesucceeded.text=Fjernelse af kontoen lykkedes.
+
+nowplus.client.java.webaccounts.popup.removesucceeded.title=Fjernet
+
+nowplus.client.java.webaccounts.popup.saving.text=Samler oplysninger fra konto
+
+nowplus.client.java.webaccounts.popup.saving.title=Logger ind
+
+nowplus.client.java.webaccounts.popup.savingfailed.text=Kontoen kunne ikke tilføjes
+
+nowplus.client.java.webaccounts.popup.savingfailed.title=Kontoen kunne ikke tilføjes
+
+nowplus.client.java.webaccounts.popup.savingsuccess.text=Kontoen blev tilføjet
+
+nowplus.client.java.webaccounts.popup.savingsuccess.title=Tilføjet konto
+
+nowplus.client.java.webaccounts.progress.deletesn.title=Sletter....
+
+nowplus.client.java.webaccounts.title=Konti
+
+nowplus.client.java.webaccounts.windowslive.disclaimer.text=Når du tilføjer din Windows Live-konto til 360, logges du automatisk ind på Windows Live, hver gang du starter denne applikation.
+

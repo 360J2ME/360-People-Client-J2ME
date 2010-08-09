@@ -1,0 +1,907 @@
+#-------------------------------------------------------------------------------
+# CDDL HEADER START
+# 
+# The contents of this file are subject to the terms of the Common Development
+# and Distribution License (the "License").
+# You may not use this file except in compliance with the License.
+# 
+# You can obtain a copy of the license at
+# src/com/vodafone360/people/VODAFONE.LICENSE.txt or
+# http://github.com/360/360-Engine-for-Android
+# See the License for the specific language governing permissions and limitations under the License.
+# 
+# When distributing Covered Code, include this CDDL HEADER in each file and
+#  include the License file at src/com/vodafone360/people/VODAFONE.LICENSE.txt.
+# If applicable, add the following below this CDDL HEADER, with the fields
+# enclosed by brackets "[]" replaced with your own identifying information:
+# Portions Copyright [yyyy] [name of copyright owner]
+# 
+# CDDL HEADER END
+# 
+# Copyright 2010 Vodafone Sales & Services Ltd.  All rights reserved.
+# Use is subject to license terms.
+#-------------------------------------------------------------------------------
+nowplus.client.java.app.criticalerror.text=Bir hata oluştu. Bu nedenle 360'ı yeniden başlatmanız ve tekrar oturum açmanız gerekiyor. Verilerinizi güvence altına almak için, oturum açtığınızda telefonunuzun adres defteri alınacaktır.
+
+nowplus.client.java.app.criticalerror.title=Yeniden başlatma gerekiyor
+
+nowplus.client.java.app.serviceunavailable.text=Ağ şu anda kullanılamıyor
+
+nowplus.client.java.app.serviceunavailable.title=Bağlanılamıyor
+
+nowplus.client.java.application.initialisation.failed.title=REDUNDANT
+
+nowplus.client.java.application.popup.text=Başlatılıyor...
+
+nowplus.client.java.application.popup.title=Başlatılıyor...
+
+nowplus.client.java.browse.confirm.headline=Tarayıcıyı aç
+
+nowplus.client.java.browse.confirm.text=360'tan çıkmak ve bir tarayıcı açmak üzeresiniz
+
+nowplus.client.java.browser.notification.title=Sayfa yükleniyor...
+
+nowplus.client.java.cabsabsync.popup.receiving=360 ile senkronizasyon sonlandırılıyor
+
+nowplus.client.java.cabsabsync.popup.receiving.failed=Senkronizasyon tamamlanamadı. Ancak uygulamayı bir sonraki başlatmanızda tamamlanacak.
+
+nowplus.client.java.cabsabsync.popup.sending=Kişiler 360'a gönderiliyor
+
+nowplus.client.java.cabsabsync.popup.sending.failed=Kişilerinizin tümü 360 ile senkronize edilemedi. Ancak uygulamayı bir sonraki başlatmanızda senkronize edilecek.
+
+nowplus.client.java.cabsabsync.popup.title=Kişileriniz senkronize ediliyor...
+
+nowplus.client.java.chat.thread.confirm.delete.text=Bu kişiyi silmek istediğinizden emin misiniz?
+
+nowplus.client.java.chat.thread.confirm.delete.title=Kişiyi sil
+
+nowplus.client.java.chat.thread.date.day.fri=Cum
+
+nowplus.client.java.chat.thread.date.day.mon=Pzt
+
+nowplus.client.java.chat.thread.date.day.sat=Cmt
+
+nowplus.client.java.chat.thread.date.day.sun=Paz
+
+nowplus.client.java.chat.thread.date.day.thu=Per
+
+nowplus.client.java.chat.thread.date.day.tue=Sal
+
+nowplus.client.java.chat.thread.date.day.wed=Çar
+
+nowplus.client.java.chat.thread.error.contact.notconnected=Your message can't be sent because you and {0} are not connected on 360. You can connect to from his details page.
+
+nowplus.client.java.chat.thread.error.contact.notonline=Arkadaşınız {0}'da oturum açmadığından mesajınız gönderilemiyor. Arkadaşınız yeniden çevrimiçi olduğunda sohbete başlayabilirsiniz.
+
+nowplus.client.java.chat.thread.error.user.notonline=redundant
+
+nowplus.client.java.chat.thread.error.user.notsignedin={0} oturumu açmadığınız için mesajınız gönderilemiyor. {0} oturumunu, 'Ben' altında 'Hesaplar' bölümünden açabilirsiniz.
+
+nowplus.client.java.chat.thread.send=Gönder
+
+nowplus.client.java.chat.thread.textfield.helptext=Metni buraya yazın
+
+nowplus.client.java.chat.thread.title=Sohbet
+
+nowplus.client.java.chat.thread.you=Ben
+
+nowplus.client.java.command.close=Kapat
+
+nowplus.client.java.command.exit=Çıkış
+
+nowplus.client.java.command.ignore=Yok say
+
+nowplus.client.java.command.open=Aç
+
+nowplus.client.java.command.options=Seçenekler
+
+nowplus.client.java.command.roaming.yes=Evet
+
+nowplus.client.java.contextual.menu.command.add.new.contact=Yeni kişi ekle
+
+nowplus.client.java.contextual.menu.command.block=Kişiyi engelle
+
+nowplus.client.java.contextual.menu.command.connect=Bağlan
+
+nowplus.client.java.contextual.menu.command.create.email=Yeni e-posta
+
+nowplus.client.java.contextual.menu.command.create.new=Yeni oluştur...
+
+nowplus.client.java.contextual.menu.command.create.sms=Yeni SMS
+
+nowplus.client.java.contextual.menu.command.create.text=SMS oluştur
+
+nowplus.client.java.contextual.menu.command.delete=Sil
+
+nowplus.client.java.contextual.menu.command.edit.profile=Profili düzenle
+
+nowplus.client.java.contextual.menu.command.exit=Çıkış
+
+nowplus.client.java.contextual.menu.command.help=Yardım
+
+nowplus.client.java.contextual.menu.command.invite=Davet et
+
+nowplus.client.java.contextual.menu.command.more=Diğer...
+
+nowplus.client.java.contextual.menu.command.open.filter=En üste git
+
+nowplus.client.java.contextual.menu.command.open.ongoing.chat=Devam eden sohbeti aç
+
+nowplus.client.java.contextual.menu.command.search=360'ı ara
+
+nowplus.client.java.contextual.menu.command.settings=Ayarlar
+
+nowplus.client.java.contextual.menu.command.switch.application=Uygulamaya Geç
+
+nowplus.client.java.contextual.menu.command.view.profile=Profili göster
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.text={0} adlı kişiyi silmek istediğinizden emin misiniz?
+
+nowplus.client.java.contextual.menu.confirm.delete.contact.title=Kişiyi sil
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.text={0} adlı kişiyi silmek istediğinizden emin misiniz?
+
+nowplus.client.java.contextual.menu.confirm.delete.detail.title=Bilgiyi sil
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.text1=Profilinizden {0} bilgisini silmek istediğinizden emin misiniz?
+
+nowplus.client.java.contextual.menu.confirm.delete.sn.title=Hesabı sil
+
+nowplus.client.java.contextual.menu.infobar.profile=Profil
+
+nowplus.client.java.contextual.menu.navbar.Chat=Sohbet
+
+nowplus.client.java.contextual.menu.navbar.Email=E-posta
+
+nowplus.client.java.contextual.menu.navbar.Poke=Dürt
+
+nowplus.client.java.contextual.menu.navbar.SMS=SMS
+
+nowplus.client.java.contextual.menu.navbar.call=Ara
+
+nowplus.client.java.contextual.menu.notify.block.text=Kişi engellendi
+
+nowplus.client.java.contextual.menu.notify.block.title=Kişiyi engelle
+
+nowplus.client.java.contextual.menu.notify.connect.text=360 bağlantı isteğiniz gönderildi
+
+nowplus.client.java.contextual.menu.notify.connect.title=Bağlan
+
+nowplus.client.java.contextual.menu.notify.invite.text=Kişi davet edildi
+
+nowplus.client.java.contextual.menu.notify.invite.title=Davet et
+
+nowplus.client.java.date.friday=Cuma
+
+nowplus.client.java.date.monday=Pazartesi
+
+nowplus.client.java.date.now=Şimdi
+
+nowplus.client.java.date.saturday=Cumartesi
+
+nowplus.client.java.date.sunday=Pazar
+
+nowplus.client.java.date.thursday=Perşembe
+
+nowplus.client.java.date.today=Bugün
+
+nowplus.client.java.date.tuesday=Salı
+
+nowplus.client.java.date.wednesday=Çarşamba
+
+nowplus.client.java.date.yesterday=Dün
+
+nowplus.client.java.edit.contact.add=Ekle
+
+nowplus.client.java.edit.contact.address=Adres
+
+nowplus.client.java.edit.contact.address.country=Ülke
+
+nowplus.client.java.edit.contact.address.postcode=Posta kodu
+
+nowplus.client.java.edit.contact.address.region=İlçe
+
+nowplus.client.java.edit.contact.address.street=Sokak
+
+nowplus.client.java.edit.contact.address.town=Belde
+
+nowplus.client.java.edit.contact.bdinvalid.text=Doğum tarihi geçmiş bir tarihi göstermelidir
+
+nowplus.client.java.edit.contact.birthday=Doğum günü
+
+nowplus.client.java.edit.contact.command.edit=Düzenle
+
+nowplus.client.java.edit.contact.command.new=Yeni
+
+nowplus.client.java.edit.contact.command.save=Kaydet
+
+nowplus.client.java.edit.contact.command.switch.multitab=Normal mesaj yazma
+
+nowplus.client.java.edit.contact.command.switch.native=T9 Sözlük-yazma
+
+nowplus.client.java.edit.contact.command.takepicture=Resim çek
+
+nowplus.client.java.edit.contact.delete.failed.notify.text=Ayrıntı silinemedi. Bu durum devam ederse uygulamayı tekrar başlatın.
+
+nowplus.client.java.edit.contact.delete.failed.notify.title=Silinemiyor
+
+nowplus.client.java.edit.contact.edit=Düzenle
+
+nowplus.client.java.edit.contact.email=E-posta
+
+nowplus.client.java.edit.contact.email.address=E-posta adresi
+
+nowplus.client.java.edit.contact.group=Grup
+
+nowplus.client.java.edit.contact.group.label=Grup adı
+
+nowplus.client.java.edit.contact.im=Sohbet
+
+nowplus.client.java.edit.contact.invalid.email.text=E-posta adresini yanlış girdiniz. Lütfen tekrar deneyin.
+
+nowplus.client.java.edit.contact.invalid.email.title=Hatalı e-posta
+
+nowplus.client.java.edit.contact.invalid.name.text=Kişi, adı olmadan kaydedilemez. Bu değişiklikleri iptal etmek istiyor misiniz?
+
+nowplus.client.java.edit.contact.invalid.name.title=Adı yok
+
+nowplus.client.java.edit.contact.missing.name.confirm.no=Hayır
+
+nowplus.client.java.edit.contact.missing.name.confirm.yes=Evet
+
+nowplus.client.java.edit.contact.missing.name.notify.ok=Tamam
+
+nowplus.client.java.edit.contact.missing.name.text=En az bir ad girmeniz gerekiyor
+
+nowplus.client.java.edit.contact.missing.name.title=Adı yok
+
+nowplus.client.java.edit.contact.name=Ad
+
+nowplus.client.java.edit.contact.name.first=Adı
+
+nowplus.client.java.edit.contact.name.last=Soyadı
+
+nowplus.client.java.edit.contact.name.middle=İkinci adı
+
+nowplus.client.java.edit.contact.note=Notlar
+
+nowplus.client.java.edit.contact.note.enter=Not gir
+
+nowplus.client.java.edit.contact.phone=Telefon
+
+nowplus.client.java.edit.contact.phone.number=Telefon numarası
+
+nowplus.client.java.edit.contact.phone.preffered=Tercih edilen olarak kullan
+
+nowplus.client.java.edit.contact.subtype.label=Etiket
+
+nowplus.client.java.edit.contact.take.picture=Resim çek
+
+nowplus.client.java.edit.contact.title=Profili düzenle
+
+nowplus.client.java.edit.contact.update.failed.notify.text=İletişim bilgileriniz güncellenemedi. Bu durum devam ederse lütfen uygulamayı yeniden başlatın.
+
+nowplus.client.java.edit.contact.update.failed.notify.title=Güncellenemiyor.
+
+nowplus.client.java.edit.contact.update.notify.text=Profil güncelleniyor
+
+nowplus.client.java.edit.contact.update.notify.title=Güncelleniyor
+
+nowplus.client.java.edit.contact.url=Web sitesi
+
+nowplus.client.java.edit.contact.url.address=Web adresi
+
+nowplus.client.java.edit.contact.work=İş bilgisi
+
+nowplus.client.java.exit.confirm.headline=People'dan çıkmak istediğinizden emin misiniz?
+
+nowplus.client.java.exit.confirm.no=Hayır
+
+nowplus.client.java.exit.confirm.text=Çıkış
+
+nowplus.client.java.exit.confirm.yes=Evet
+
+nowplus.client.java.exit.notification.headline=Kapatılıyor
+
+nowplus.client.java.exit.notification.text=Biraz bekleyin. Uygulama kapanıyor.
+
+nowplus.client.java.help.confirm.headline=360'tan çıkmak ve bir tarayıcı açmak üzeresiniz
+
+nowplus.client.java.help.confirm.text=Tarayıcıyı aç
+
+nowplus.client.java.identity.vodafone360.chatlabel=360 Sohbet
+
+nowplus.client.java.landingpage.tagline=redundant
+
+nowplus.client.java.landingpage.tagline1=Bir 360 hizmeti
+
+nowplus.client.java.landingpage.tagline2=Tüm dünyan tek bir yerde
+
+nowplus.client.java.launch.postponed.text=redundant
+
+nowplus.client.java.launch.postponed.title=redundant
+
+nowplus.client.java.list.order.first=Adı
+
+nowplus.client.java.list.order.last=Soyadı
+
+nowplus.client.java.list.order.none=Yok
+
+nowplus.client.java.login.connection.disallowed.text=Devam etmek için uygulamayı yeniden başlatmanız gerekiyor
+
+nowplus.client.java.login.connection.disallowed.title=Bağlantıya izin verilmiyor
+
+nowplus.client.java.login.loginfailed.text=Kullanıcı adınız ve/veya parolanız doğru değil. Lütfen tekrar deneyin.
+
+nowplus.client.java.login.loginfailed.title=Tekrar deneyin
+
+nowplus.client.java.login.notification.loggingin=Oturum açılıyor...
+
+nowplus.client.java.login.reauthenticate.text=Hesap bilgileriniz değişmiş görünüyor. Tekrar giriş yapmanız gerekiyor.
+
+nowplus.client.java.login.title=Oturum aç
+
+nowplus.client.java.loginform.command.cancel=İptal
+
+nowplus.client.java.loginform.command.mark=Seç
+
+nowplus.client.java.loginform.command.save=Oturum aç
+
+nowplus.client.java.loginform.command.unmark=Seçimi kaldır
+
+nowplus.client.java.loginform.headline=360'ta Oturum Aç
+
+nowplus.client.java.loginform.password.chosepassword.hint=Parola
+
+nowplus.client.java.loginform.password.hint=Parola
+
+nowplus.client.java.loginform.rememberme.label=Beni hatırla
+
+nowplus.client.java.loginform.username.choseusername.hint=Kullanıcı adı
+
+nowplus.client.java.loginform.username.hint=Kullanıcı adı
+
+nowplus.client.java.network.search.command.search=Ara
+
+nowplus.client.java.network.search.title=360'ı ara
+
+nowplus.client.java.networkdown.text=Ağ bağlantınız geçici olarak kapalı. Ağ yeniden kullanılabilir olduğunda 360 çevrimiçi olacak
+
+nowplus.client.java.networkdown.title=Ağ bağlantısı kesildi
+
+nowplus.client.java.new.contact.title=Yeni kişi
+
+nowplus.client.java.newpasswordrestart.text=Bir parola değişimi algılandı. Kullanmaya devam etmek için uygulamayı tekrar başlatmanız ve parolanızı yeniden yazmanız gerekiyor.
+
+nowplus.client.java.newpasswordrestart.title=Parola değiştirildi
+
+nowplus.client.java.peoplepage.meview.availability.available=Uygun
+
+nowplus.client.java.peoplepage.meview.availability.invisible=Görünmez
+
+nowplus.client.java.peoplepage.meview.availability.label=Uygunluk
+
+nowplus.client.java.peoplepage.meview.availability.offline=Çevrimdışı
+
+nowplus.client.java.peoplepage.meview.command.set=Ayarla
+
+nowplus.client.java.peoplepage.meview.myprofile=Profilim
+
+nowplus.client.java.peoplepage.meview.settings=Ayarlar
+
+nowplus.client.java.peoplepage.meview.sn.status=Buraya da gönderir: {0}
+
+nowplus.client.java.peoplepage.meview.sn.status1=redundant
+
+nowplus.client.java.peoplepage.meview.sn.status2=redundant
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.text=Durum bilginiz güncellenemedi. Bu durum devam ederse lütfen uygulamayı yeniden başlatın.
+
+nowplus.client.java.peoplepage.meview.status.failed.notify.title=Durum güncellenemiyor
+
+nowplus.client.java.peoplepage.meview.status.helptext=Şu anda ne yapıyorsunuz?
+
+nowplus.client.java.peoplepage.meview.status.label=Durum mesajı
+
+nowplus.client.java.peoplepage.meview.submit.command.update=Güncelleştir
+
+nowplus.client.java.peoplepage.meview.webaccounts=Hesaplar
+
+nowplus.client.java.peoplepage.notification.pleasewait=Biraz bekleyin...
+
+nowplus.client.java.peoplepage.people.filter.all=Tümü
+
+nowplus.client.java.peoplepage.people.filter.colleages=İş
+
+nowplus.client.java.peoplepage.people.filter.family=Aile
+
+nowplus.client.java.peoplepage.people.filter.friends=Arkadaşlar
+
+nowplus.client.java.peoplepage.people.filter.nowplus=Bağlı
+
+nowplus.client.java.peoplepage.people.filter.online=Çevrimiçi
+
+nowplus.client.java.peoplepage.people.filter.phonebook=Telefon rehberi
+
+nowplus.client.java.peoplepage.tab.chat=Sohbet
+
+nowplus.client.java.peoplepage.tab.icon.name.contacts=Kişiler
+
+nowplus.client.java.peoplepage.tab.me=Ben
+
+nowplus.client.java.peoplepage.tab.people=People
+
+nowplus.client.java.peoplepage.tab.status=Durum
+
+nowplus.client.java.peoplepage.tab.timeline=Geçmiş
+
+nowplus.client.java.peoplepage.tab.timeline.empty=Boş
+
+polish.command.back=Geri
+
+polish.command.cancel=İptal
+
+polish.command.clear=Temizle
+
+polish.command.delete=Sil
+
+polish.command.entersymbol=Sembol ekle
+
+polish.command.followlink=Git
+
+polish.command.hide=Gizle
+
+polish.command.mark=Seç
+
+polish.command.ok=Tamam
+
+polish.command.options=Seçenekler
+
+polish.command.select=Seç
+
+polish.command.submit=Gönder
+
+polish.command.unmark=Seçimi kaldır
+
+nowplus.client.java.polish.dateformatemptytext=GG/AA/YYYY
+
+polish.rss.command.followlink=Git
+
+polish.rss.command.select=Göster
+
+polish.title.input=Yazmaya başlayın
+
+nowplus.client.java.profilepage.connect.item=Kişiye bağlan
+
+nowplus.client.java.profilepage.content.address=Adres
+
+nowplus.client.java.profilepage.content.birthday=Doğum günü
+
+nowplus.client.java.profilepage.content.callorsms=Telefon numaraları
+
+nowplus.client.java.profilepage.content.command.call=Ara
+
+nowplus.client.java.profilepage.content.command.chat=Sohbet
+
+nowplus.client.java.profilepage.content.command.mms=Resimli mesaj
+
+nowplus.client.java.profilepage.content.command.open=Aç
+
+nowplus.client.java.profilepage.content.command.sms=SMS
+
+nowplus.client.java.profilepage.content.command.write=Yaz
+
+nowplus.client.java.profilepage.content.date.month.apr=Nisan
+
+nowplus.client.java.profilepage.content.date.month.aug=Ağustos
+
+nowplus.client.java.profilepage.content.date.month.dec=Aralık
+
+nowplus.client.java.profilepage.content.date.month.feb=Şubat
+
+nowplus.client.java.profilepage.content.date.month.jan=Ocak
+
+nowplus.client.java.profilepage.content.date.month.jul=Temmuz
+
+nowplus.client.java.profilepage.content.date.month.jun=Haziran
+
+nowplus.client.java.profilepage.content.date.month.mar=Mart
+
+nowplus.client.java.profilepage.content.date.month.may=Mayıs
+
+nowplus.client.java.profilepage.content.date.month.nov=Kasım
+
+nowplus.client.java.profilepage.content.date.month.oct=Ekim
+
+nowplus.client.java.profilepage.content.date.month.okt=Ekim
+
+nowplus.client.java.profilepage.content.date.month.sep=Eylül
+
+nowplus.client.java.profilepage.content.email=E-posta
+
+nowplus.client.java.profilepage.content.groupes=Gruplar
+
+nowplus.client.java.profilepage.content.im=Sohbet
+
+nowplus.client.java.profilepage.content.name=Ad
+
+nowplus.client.java.profilepage.content.notes=Notlar
+
+nowplus.client.java.profilepage.content.socialnetwork=Hesaplar
+
+nowplus.client.java.profilepage.content.url=Web sitesi
+
+nowplus.client.java.profilepage.content.work=İş bilgisi
+
+nowplus.client.java.profilepage.content.work.company=Şirket
+
+nowplus.client.java.profilepage.content.work.department=Bölüm
+
+nowplus.client.java.profilepage.content.work.title=Unvan
+
+nowplus.client.java.profilepage.invite.item.label=Kişiyi buraya davet et
+
+nowplus.client.java.profilepage.invite.item.text=360
+
+nowplus.client.java.profilepage.subtype.fax=Faks
+
+nowplus.client.java.profilepage.subtype.home=Ev
+
+nowplus.client.java.profilepage.subtype.mobile=Cep
+
+nowplus.client.java.profilepage.subtype.other=Diğer
+
+nowplus.client.java.profilepage.subtype.work=İş
+
+nowplus.client.java.profilepage.tab.details=Profil
+
+nowplus.client.java.roamingwarning.text=Dolaşımdayken 360'a bağlanmak ister misiniz? Dolaşımda uygulanan veri ücretleri geçerli olabilir
+
+nowplus.client.java.roamingwarning.title=Dolaşımdasınız
+
+nowplus.client.java.settings.about.text=People - Bir 360 hizmeti (c) Vodafone 2009
+
+nowplus.client.java.settings.about.text2010=People - Bir 360 hizmeti (c) Vodafone 2010
+
+nowplus.client.java.settings.about.title=Hakkında
+
+nowplus.client.java.settings.clearstorage.confirm.no=Hayır
+
+nowplus.client.java.settings.clearstorage.confirm.text=Bu uygulamadan tüm verileri silmek istediğinizden emin misiniz?
+
+nowplus.client.java.settings.clearstorage.confirm.title=Tüm verileri sil
+
+nowplus.client.java.settings.clearstorage.confirm.yes=Evet
+
+nowplus.client.java.settings.clearstorage.warning.text=Dikkatli olun. Verilerin kaldırılması tüm kişilerinizi, mesajlarınızı ve bağlı ağları uygulamadan silecektir. 360 oturumunuz kapatılacak. Yeniden oturum açabilir ya da yeni bir hesaba kayıt olabilirsiniz.
+
+nowplus.client.java.settings.clearstorage.warning.title=Uyarı
+
+nowplus.client.java.settings.command.save=Kaydet
+
+nowplus.client.java.settings.datatraffic.title=Veri trafiği
+
+nowplus.client.java.settings.removedataitem=Bu uygulamadan telefon üzerinde kayıtlı tüm verileri sil
+
+nowplus.client.java.settings.removedataitem.title=Verileri sil
+
+nowplus.client.java.settings.reset.confirm.text=Veri trafiği sayacını sıfırlamak istediğinizden emin misiniz?
+
+nowplus.client.java.settings.reset.confirm.title=Sayacı sıfırla
+
+nowplus.client.java.settings.resetcounteritem=Sayacı sıfırla
+
+nowplus.client.java.settings.roaming.enableroaming=Yurtdışı kullanımında her zaman verileri aç
+
+nowplus.client.java.settings.roaming.title=Yurtdışı kullanımı
+
+nowplus.client.java.settings.software.title=Yazılım
+
+nowplus.client.java.settings.sortcontacts.firstlast=Adı, Soyadı
+
+nowplus.client.java.settings.sortcontacts.lastfirst=Soyadı, Adı
+
+nowplus.client.java.settings.sortcontacts.title=Kişileri sıralama düzeni
+
+nowplus.client.java.settings.sync.progress=Senkronizasyon başlatılıyor...
+
+nowplus.client.java.settings.sync.syncitem=Şimdi senkronize et
+
+nowplus.client.java.settings.sync.title=Kişileri Senkronize Et
+
+nowplus.client.java.settings.title=Ayarlar
+
+nowplus.client.java.signup.checkingdata.progress.headline=Lütfen bekleyin
+
+nowplus.client.java.signup.checkingdata.progress.text=Bilgileriniz kontrol ediliyor...
+
+nowplus.client.java.signup.command.cancel=İptal
+
+nowplus.client.java.signup.command.continue=Devam
+
+nowplus.client.java.signup.command.exit=Çıkış
+
+nowplus.client.java.signup.command.read=Oku
+
+nowplus.client.java.signup.command.select=Seç
+
+nowplus.client.java.signup.congratulations.headline=Tebrikler!
+
+nowplus.client.java.signup.congratulations.rememberme=Beni hatırla
+
+nowplus.client.java.signup.congratulations.youarenow=Artık 360'da oturum açtınız
+
+nowplus.client.java.signup.enterdata.chosepassword=Bir parola girin 
+
+nowplus.client.java.signup.enterdata.choseusername=Bir kullanıcı adı girin 
+
+nowplus.client.java.signup.enterdata.dob=Doğum tarihinizi girin
+
+nowplus.client.java.signup.enterdata.emailfield.hint=E-posta adresi
+
+nowplus.client.java.signup.enterdata.emailfield.title=E-posta adresinizi girin
+
+nowplus.client.java.signup.enterdata.entermobilenumber=Cep numaranızı girin
+
+nowplus.client.java.signup.enterdata.entermobilenumber.hint=+90 gibi uls. kodu ekleyin
+
+nowplus.client.java.signup.enterdata.headline=Kayıt olmak çok kolay 
+
+nowplus.client.java.signup.enterdata.privacy.text=Gizlilik Bildirisi
+
+nowplus.client.java.signup.enterdata.termsandconditions.checkbox.label=Okudum ve kabul ediyorum
+
+nowplus.client.java.signup.enterdata.termsandconditions.text=Kurallar ve Koşullar
+
+nowplus.client.java.signup.error.agecheck.text=Girdiğiniz yaş bilgisi hatalı görünüyor, lütfen tekrar yazın.
+
+nowplus.client.java.signup.error.agecheck.title=Yaş kontrolü
+
+nowplus.client.java.signup.error.dobnotprovided=Doğum tarihinizi girmeniz gerekiyor
+
+nowplus.client.java.signup.error.dobnotprovided.headline=Doğum tarihi yok
+
+nowplus.client.java.signup.error.email.headline=E-posta
+
+nowplus.client.java.signup.error.email.invalid=Geçersiz E-posta Adresi
+
+nowplus.client.java.signup.error.headline=Kaydedilemedi
+
+nowplus.client.java.signup.error.mustaccepttc=Kayıt olmak için Kuralları ve Koşulları kabul etmeniz gerekiyor
+
+nowplus.client.java.signup.error.mustaccepttc.headline=Kurallar ve Koşullar
+
+nowplus.client.java.signup.error.mustbe14=Bir hesaba kayıt olmak için 14 yaşında ya da daha büyük olmanız gerekiyor
+
+nowplus.client.java.signup.error.mustbe14.headline=Yaş kontrolü
+
+nowplus.client.java.signup.error.mustbeinternational=Girdiğiniz telefon uluslararası biçimde olmalıdır (örn. +90 ile başlamalıdır)
+
+nowplus.client.java.signup.error.mustbeinternational.headline=Uluslararası biçim
+
+nowplus.client.java.signup.error.mustenterphonenumber=Kayıt olmak için bir cep numarası girmeniz gerekiyor
+
+nowplus.client.java.signup.error.mustenterphonenumber.headline=Cep numarası yok
+
+nowplus.client.java.signup.error.passwordchars=Parolada aşağıdaki karakterlere izin verilmiyor
+
+nowplus.client.java.signup.error.passwordchars.headline=Parola karakterleri
+
+nowplus.client.java.signup.error.passwordlength=Parolanızın karakter sayısı, 6-25 arasında olmalıdır
+
+nowplus.client.java.signup.error.passwordlength.headline=Parola uzunluğu
+
+nowplus.client.java.signup.error.usernamechars=Kullanıcı adında aşağıdaki karakterlere izin verilmiyor
+
+nowplus.client.java.signup.error.usernamechars.headline=Kullanıcı adı karakterleri
+
+nowplus.client.java.signup.error.usernamelength=Kullanıcı adınızın karakter sayısı, 6-50 arasında olmalıdır
+
+nowplus.client.java.signup.error.usernamelength.headline=Kullanıcı adı uzunluğu
+
+nowplus.client.java.signup.importsn.confirmation.text=Hesaplarınızdan kişilerinizi almak istiyor musunuz?
+
+nowplus.client.java.signup.importsn.confirmation.title=Hesapları al
+
+nowplus.client.java.signup.signupfailed.dobinvalid=Doğum tarihi geçersiz. Tarih biçimi yanlış ya da 14 yaşında veya daha büyük değilsiniz.
+
+nowplus.client.java.signup.signupfailed.internalerror=Bir şeyler yolunda gitmedi
+
+nowplus.client.java.signup.signupfailed.languageinvalid=Üzgünüz, diliniz desteklenmiyor
+
+nowplus.client.java.signup.signupfailed.mobilemodelinvalid=Cep telefonu modeli bilinmiyor ya da bu hizmet tarafından desteklenmiyor.
+
+nowplus.client.java.signup.signupfailed.msisdninvalid=Yanlış telefon numarası
+
+nowplus.client.java.signup.signupfailed.msisdnmissing=Bir telefon numarası girmeniz gerekiyor
+
+nowplus.client.java.signup.signupfailed.passwordinvalid=Parola çok kısa, çok uzun ya da geçersiz karakterler içeriyor
+
+nowplus.client.java.signup.signupfailed.passwordnotspecified=Bir parola girmeniz gerekiyor
+
+nowplus.client.java.signup.signupfailed.tcnotaccepted=Kurallar ve Koşulları kabul etmeniz gerekiyor
+
+nowplus.client.java.signup.signupfailed.title=Kaydedilemedi
+
+nowplus.client.java.signup.signupfailed.usernamealreadytaken=Kullanıcı adı zaten alınmış
+
+nowplus.client.java.signup.signupfailed.usernameblacklisted=Kullanıcı adı kara listede
+
+nowplus.client.java.signup.signupfailed.usernameforbidden=Kullanıcı adına izin verilmiyor. Lütfen başka bir kullanıcı adı seçin
+
+nowplus.client.java.signup.signupfailed.usernamenotspecified=Kullanıcı adı yok
+
+nowplus.client.java.signup.signupfailedwrongnumber.text=Üzgünüz, bu telefon numarasıyla iletişim kurulamadı. Lütfen tekrar deneyin.
+
+nowplus.client.java.signup.signupfailedwrongnumber.title=Doğrulanamıyor
+
+nowplus.client.java.signup.title=Kayıt
+
+nowplus.client.java.signup.waitforsms.notification.text=Şu anda telefon numaranızı doğruluyoruz. Bu işlem biraz zaman alabilir. Lütfen bekleyin!
+
+nowplus.client.java.signup.waitforsms.notification.title=Telefon numarası kontrol ediliyor...
+
+nowplus.client.java.signup.welcome.button.login=Hesabımda oturum aç
+
+nowplus.client.java.signup.welcome.button.signup=Bir hesaba kaydol
+
+nowplus.client.java.signup.welcome.headline=People'a hoş geldiniz - Bir 360 hizmeti
+
+nowplus.client.java.sms.error.notification.headline=SMS gönderilemiyor
+
+nowplus.client.java.sms.error.notification.message=Üzgünüz, SMS gönderilemedi
+
+nowplus.client.java.sms.notification.headline=SMS gönderiliyor
+
+nowplus.client.java.smscomposer.title=SMS Mesajı
+
+nowplus.client.java.smsform.message.hint=Mesajınızı yazın
+
+nowplus.client.java.statuspage.command.request=Seç
+
+nowplus.client.java.statuspage.error.user.notonline=Şu anda 360'a bağlı olmadığınızdan durumunuz güncellenmedi. Durum mesajınız kaydedilecek ve tekrar bağlandığınızda güncellenecektir.
+
+nowplus.client.java.statuspage.noresult=Durum boş
+
+nowplus.client.java.statuspage.request=Sonraki {0} etkinliklerini iste
+
+nowplus.client.java.sync.cancel.popup.text=İptal ediliyor...
+
+nowplus.client.java.sync.popup.text={0} bilgisi alınıyor...
+
+nowplus.client.java.sync.popup.title=Kişiler alınıyor... 
+
+nowplus.client.java.sync.user.disallowed.create.text=Uygulamanın telefonun adres defterine erişimine izin vermek için lütfen uygulamadan çıkın ve bu uygulamanın ayarlarını güncelleştirin.
+
+nowplus.client.java.sync.user.disallowed.create.title=Telefonun adres defteri düzenlenemiyor
+
+nowplus.client.java.sync.user.disallowed.delete.text=Uygulamanın telefonun adres defterine erişimine izin vermek için lütfen uygulamadan çıkın ve bu uygulamanın ayarlarını güncelleştirin.
+
+nowplus.client.java.sync.user.disallowed.delete.title=Telefonun adres defteri düzenlenemiyor
+
+nowplus.client.java.sync.user.disallowed.open.text=Uygulamanın telefonun adres defterine erişimine izin vermek için lütfen uygulamadan çıkın ve bu uygulamanın ayarlarını güncelleştirin.
+
+nowplus.client.java.sync.user.disallowed.open.title=Telefonun adres defteri okunamıyor
+
+nowplus.client.java.sync.user.disallowed.read.text=Uygulamanın telefonun adres defterine erişimine izin vermek için lütfen uygulamadan çıkın ve bu uygulamanın ayarlarını güncelleştirin.
+
+nowplus.client.java.sync.user.disallowed.read.title=Telefonun adres defterinden okunamıyor
+
+nowplus.client.java.sync.user.disallowed.write.text=Uygulamanın telefonun adres defterine erişimine izin vermek için lütfen uygulamadan çıkın ve bu uygulamanın ayarlarını güncelleştirin.
+
+nowplus.client.java.sync.user.disallowed.write.title=Telefonun adres defterine kaydedilemiyor
+
+nowplus.client.java.sync.with.360.text=Telefonunuz şimdi 360 ile senkronizasyon için hazır. Bu işlem 10 dakika sürebilir.
+
+nowplus.client.java.sync.with.360.title=360 ile Senkronizasyon
+
+nowplus.client.java.takepicture.command.new=Yeni
+
+nowplus.client.java.takepicture.command.takepic=Resim çek
+
+nowplus.client.java.takepicture.command.usethis=Bunu kullan
+
+nowplus.client.java.takepicture.confirm.usethisimage=Bu görüntüyü kullan
+
+titlebar.httpcounter.kb=kB
+
+nowplus.client.java.updateapplication.confirm.yes=Evet
+
+nowplus.client.java.updateapplication.headline=People'ın (Bir 360 hizmeti) yeni bir sürümü hazır
+
+nowplus.client.java.updateapplication.text=Güncelleştirmeyi yüklemek istiyor musunuz?
+
+nowplus.client.java.webaccounts.add.title=Hesap ekle
+
+nowplus.client.java.webaccounts.command.done=Bitti
+
+nowplus.client.java.webaccounts.command.edit=Düzenle
+
+nowplus.client.java.webaccounts.command.login=Oturum aç
+
+nowplus.client.java.webaccounts.command.logout=Oturumu kapat
+
+nowplus.client.java.webaccounts.edit.info.suffix=Oturum açma bilgileri
+
+nowplus.client.java.webaccounts.edit.password=Parola
+
+nowplus.client.java.webaccounts.edit.title=Hesabı düzenle
+
+nowplus.client.java.webaccounts.edit.username=Kullanıcı adı
+
+nowplus.client.java.webaccounts.edit.username_email=Kullanıcı adı/e-posta
+
+nowplus.client.java.webaccounts.facebook.disclaimer=Devam ettiğinizde, Vodafone 360'ın Profil bilgilerinize, arkadaşlarınızın bilgilerine ve çalışması için gereken diğer içeriklere erişimine izin vermiş oluyorsunuz. Aynı zamanda Vodafone 360'ı kullanımınızda Facebook Kullanım Koşullarını da kabul ediyorsunuz (http://www.facebook.com/terms.php'ye bakın).
+
+nowplus.client.java.webaccounts.facebook.disclaimer.header=Facebook için Kurallar ve Koşullar
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text1=Bu uygulamanın Facebook'a bağlanması, arkadaşlarınızın açık profil resimlerini ve iletişim bilgilerini, adres defterinizi doldurmak üzere 360'a getirmenizi sağlayacaktır.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text2="Oturum Aç"ı tıklatarak, arkadaşlarınızın açık profil fotoğraflarını People'da kullanmak için özel olmayan, aktarılamayan, kişisel lisansa sahip olduğunuzu kabul etmektesiniz.
+
+nowplus.client.java.webaccounts.facebook.disclaimer.text3=Bu lisans, Facebook ya da fotoğrafın sahibi sizden fotoğrafı silmesini istediğinde sona erer. Bu lisans, fotoğrafları herhangi bir ticari amaç ya da başka bir servis ya da uygulamada kullanmanıza izin vermez.
+
+nowplus.client.java.webaccounts.item.adding=Ekleniyor
+
+nowplus.client.java.webaccounts.item.deleting=Siliniyor
+
+
+nowplus.client.java.webaccounts.item.updating=Güncelleniyor
+
+
+nowplus.client.java.webaccounts.overview.title=Sosyal ağlar
+
+nowplus.client.java.webaccounts.popup.deletesn.text=Profilinizden {0} bilgisini silmek istediğinizden emin misiniz?
+
+nowplus.client.java.webaccounts.popup.deletesn.title=Hesabı sil
+
+nowplus.client.java.webaccounts.popup.importnow.text=Hesaplarınızdan kişilerinizi almak istiyor musunuz?
+
+nowplus.client.java.webaccounts.popup.importnow.title=Hesapları al
+
+nowplus.client.java.webaccounts.popup.loggingout.text=Lütfen bu hesap oturumunuzu kapatırken bekleyin
+
+nowplus.client.java.webaccounts.popup.loggingout.title=Oturum kapatılıyor
+
+nowplus.client.java.webaccounts.popup.loginfailed.text=Hesapta oturum açamadınız
+
+nowplus.client.java.webaccounts.popup.loginfailed.title=Oturum açılamadı
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.text=Şimdi hesapta oturum açtınız
+
+nowplus.client.java.webaccounts.popup.loginsucceeded.title=Oturum açıldı
+
+nowplus.client.java.webaccounts.popup.logoutfailed.text=Oturumu kapatmaya çalışırken bazı sorunlar oldu. Lütfen tekrar deneyin.
+
+nowplus.client.java.webaccounts.popup.logoutfailed.title=Oturum kapatılamıyor
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.text=Şimdi hesap oturumunu kapattınız
+
+nowplus.client.java.webaccounts.popup.logoutsucceeded.title=Oturum kapatıldı
+
+nowplus.client.java.webaccounts.popup.removefailed.text=Hesabı kaldırmaya çalışırken bazı sorunlar oldu. Lütfen tekrar deneyin.
+
+nowplus.client.java.webaccounts.popup.removefailed.title=Kaldırılamıyor
+
+nowplus.client.java.webaccounts.popup.removesucceeded.text=Hesap başarıyla kaldırıldı.
+
+nowplus.client.java.webaccounts.popup.removesucceeded.title=Başarıyla kaldırıldı
+
+nowplus.client.java.webaccounts.popup.saving.text=Hesaptan bilgiler derleniyor
+
+nowplus.client.java.webaccounts.popup.saving.title=Oturum açılıyor
+
+nowplus.client.java.webaccounts.popup.savingfailed.text=Hesap eklenemedi
+
+nowplus.client.java.webaccounts.popup.savingfailed.title=Hesap eklenemiyor
+
+nowplus.client.java.webaccounts.popup.savingsuccess.text=Hesap eklendi
+
+nowplus.client.java.webaccounts.popup.savingsuccess.title=Eklenen hesap
+
+nowplus.client.java.webaccounts.progress.deletesn.title=Temizleniyor...
+
+nowplus.client.java.webaccounts.title=Hesaplar
+
+nowplus.client.java.webaccounts.windowslive.disclaimer.text=Windows Live hesabını 360'a eklediğinizde, bu uygulamayı her başlatmanızda otomatik olarak Windows Live'da oturum açacaksınız.
+
